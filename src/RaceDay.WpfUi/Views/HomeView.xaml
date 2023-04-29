@@ -3,16 +3,73 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:ctrl="clr-namespace:RaceDay.WpfUi.Controls"
-             xmlns:local="clr-namespace:RaceDay.WpfUi.Views"
+             xmlns:vm="clr-namespace:RaceDay.WpfUi.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="720"
-             d:DesignWidth="850" >
-    <Grid>
+             d:DesignWidth="850"
+             d:DataContext="{d:DesignInstance vm:HomeViewModel, IsDesignTimeCreatable=True}" >
+    <Grid Background="{DynamicResource MaterialDesignPaper}" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <ctrl:AppHeader/>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0" >
+            <TextBlock Text="Show Distance In:"
+                       Style="{DynamicResource MaterialDesignTextBlock}"
+                       Margin="5" />
+            <RadioButton GroupName="Units"
+                         Content="Kilometers"
+                         IsChecked="{Binding DisplayAsKilometers}"
+                         Style="{StaticResource MaterialDesignRadioButton}"
+                         Margin="5" />
+            <RadioButton GroupName="Units"
+                         Content="Miles"
+                         IsChecked="{Binding DisplayAsKilometers, Converter={StaticResource InverseBooleanConverter}}"
+                         Style="{StaticResource MaterialDesignRadioButton}"
+                         Margin="5" />
+        </StackPanel>
+
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding RaceDays}"
+                  AutoGenerateColumns="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Race Name"
+                                    DisplayIndex="0"
+                                    Binding="{Binding Name}" />
+                
+                <DataGridTextColumn Header="SignUp Fee" DisplayIndex="1" Binding="{Binding SignUpFee}"/>
+                
+                <DataGridTemplateColumn Header="Lap Distance" DisplayIndex="2">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DisplayAsKilometers}" Value="True">
+                                                <Setter Property="Text" Value="{Binding LapDistanceKilometers}" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DisplayAsKilometers}" Value="False">
+                                                <Setter Property="Text">
+                                                    <Setter.Value>
+                                                        <MultiBinding StringFormat="{}{0:N2}m">
+                                                            <Binding Path="LapDistanceMiles" />
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

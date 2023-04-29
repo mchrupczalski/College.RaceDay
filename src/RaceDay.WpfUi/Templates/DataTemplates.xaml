@@ -1,4 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:RaceDay.WpfUi.ViewModels"
+                    xmlns:v="clr-namespace:RaceDay.WpfUi.Views" >
+    <DataTemplate DataType="{x:Type vm:HomeViewModel}" >
+        <v:HomeView />
+    </DataTemplate>
 </ResourceDictionary>
