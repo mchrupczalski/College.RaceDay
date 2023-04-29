@@ -15,7 +15,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
+        
+        <!-- #region: Show distance options -->
         <StackPanel Orientation="Horizontal"
                     Grid.Row="0" >
             <TextBlock Text="Show Distance In:"
@@ -32,7 +33,9 @@
                          Style="{StaticResource MaterialDesignRadioButton}"
                          Margin="5" />
         </StackPanel>
+        <!-- #endregion -->
 
+        <!-- #region: Race Day Data Grid -->
         <DataGrid Grid.Row="1"
                   ItemsSource="{Binding RaceDays}"
                   AutoGenerateColumns="False" >
@@ -71,5 +74,16 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <!-- #endregion -->
+        
+        <!-- #region: Selected Race Day Races Grid -->
+        <!-- #endregion -->
+        
+        <!-- #region: Buttons -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button Content="Create New" Style="{DynamicResource MaterialDesignRaisedLightButton}" Margin="10 0"/>
+            <Button Content="Start Selected" Style="{DynamicResource MaterialDesignRaisedSecondaryLightButton}" Margin="10 0"/>
+        </StackPanel>
+        <!-- #endregion -->
     </Grid>
 </UserControl>
