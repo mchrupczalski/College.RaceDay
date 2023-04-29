@@ -5,11 +5,17 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
+        <StartupObject>RaceDay.WpfUi.App</StartupObject>
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Templates\" />
-      <Folder Include="ViewModels\" />
+      <PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ApplicationDefinition Remove="App.xaml" />
+      <Page Include="App.xaml" />
     </ItemGroup>
 
 </Project>
