@@ -14,6 +14,5 @@ public class MainViewModel : ViewModelBase
 
     public MainViewModel()
     {
-        ActiveViewModel = new HomeViewModel();
     }
 }

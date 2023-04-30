@@ -52,7 +52,12 @@ public class FileRepository<T> : IRepository<T>
     }
 
     /// <inheritdoc />
-    public Task<T> GetById(int id) => throw new NotImplementedException();
+    public Task<T?> GetById(Guid guid)
+    {
+        if(_entities.Count == 0) GetAll();
+        var target = _entities.FirstOrDefault(x => x.Guid == guid);
+        return Task.FromResult(target);
+    }
 
     /// <inheritdoc />
     public Task<IEnumerable<T>> GetAll()

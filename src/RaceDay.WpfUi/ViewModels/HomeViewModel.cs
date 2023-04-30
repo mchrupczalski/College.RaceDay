@@ -1,12 +1,18 @@
-﻿using System.Collections.ObjectModel;
-using RaceDay.WpfUi.Infrastructure;
-using RaceDay.WpfUi.Models;
+﻿using RaceDay.WpfUi.Infrastructure;
 
 namespace RaceDay.WpfUi.ViewModels;
 
 public class HomeViewModel : ViewModelBase
 {
-    public bool DisplayAsKilometers { get; set; } = true;
-    public ObservableCollection<RaceDayModel> RaceDays { get; } = new();
-    
+    #region Properties
+
+    public RaceDaySummaryViewModel RaceDaySummaryViewModel { get; }
+
+    #endregion
+
+    #region Constructors
+
+    public HomeViewModel(RaceDaySummaryViewModel raceDaySummaryViewModel) => RaceDaySummaryViewModel = raceDaySummaryViewModel;
+
+    #endregion
 }

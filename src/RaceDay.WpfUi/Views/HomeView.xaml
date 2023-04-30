@@ -11,76 +11,19 @@
     <Grid Background="{DynamicResource MaterialDesignPaper}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
-        <!-- #region: Show distance options -->
-        <StackPanel Orientation="Horizontal"
-                    Grid.Row="0" >
-            <TextBlock Text="Show Distance In:"
-                       Style="{DynamicResource MaterialDesignTextBlock}"
-                       Margin="5" />
-            <RadioButton GroupName="Units"
-                         Content="Kilometers"
-                         IsChecked="{Binding DisplayAsKilometers}"
-                         Style="{StaticResource MaterialDesignRadioButton}"
-                         Margin="5" />
-            <RadioButton GroupName="Units"
-                         Content="Miles"
-                         IsChecked="{Binding DisplayAsKilometers, Converter={StaticResource InverseBooleanConverter}}"
-                         Style="{StaticResource MaterialDesignRadioButton}"
-                         Margin="5" />
-        </StackPanel>
-        <!-- #endregion -->
-
         <!-- #region: Race Day Data Grid -->
-        <DataGrid Grid.Row="1"
-                  ItemsSource="{Binding RaceDays}"
-                  AutoGenerateColumns="False" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Race Name"
-                                    DisplayIndex="0"
-                                    Binding="{Binding Name}" />
-                
-                <DataGridTextColumn Header="SignUp Fee" DisplayIndex="1" Binding="{Binding SignUpFee}"/>
-                
-                <DataGridTemplateColumn Header="Lap Distance" DisplayIndex="2">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock>
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DisplayAsKilometers}" Value="True">
-                                                <Setter Property="Text" Value="{Binding LapDistanceKilometers}" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DisplayAsKilometers}" Value="False">
-                                                <Setter Property="Text">
-                                                    <Setter.Value>
-                                                        <MultiBinding StringFormat="{}{0:N2}m">
-                                                            <Binding Path="LapDistanceMiles" />
-                                                        </MultiBinding>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ContentControl Grid.Row="0" Content="{Binding RaceDaySummaryViewModel}"></ContentControl>
         <!-- #endregion -->
         
         <!-- #region: Selected Race Day Races Grid -->
         <!-- #endregion -->
         
         <!-- #region: Buttons -->
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
             <Button Content="Create New" Style="{DynamicResource MaterialDesignRaisedLightButton}" Margin="10 0"/>
             <Button Content="Start Selected" Style="{DynamicResource MaterialDesignRaisedSecondaryLightButton}" Margin="10 0"/>
         </StackPanel>

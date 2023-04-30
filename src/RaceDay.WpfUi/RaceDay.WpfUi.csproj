@@ -18,4 +18,8 @@
       <Page Include="App.xaml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\RaceDay.Core\RaceDay.Core.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace RaceDay.WpfUi.Models;
@@ -7,12 +8,13 @@ public class RaceDayModel
 {
     #region Properties
 
-    public string Name { get; init; }
+    public Guid Guid { get; init; }
+    public string? Name { get; set; }
 
-    public float SignUpFee { get; init; }
+    public float SignUpFee { get; set; }
 
     public float LapDistanceKilometers { get; set; }
-    
+
     public float LapDistanceMiles => LapDistanceKilometers * 0.621371f;
 
 
@@ -24,7 +26,13 @@ public class RaceDayModel
     public RaceLapModel? RecordLap => Races.SelectMany(r => r.Laps)
                                            .MinBy(l => l.LapTime);
 
-    private ObservableCollection<RaceModel> Races { get; } = new();
+    public ObservableCollection<RaceModel> Races { get; } = new();
+
+    #endregion
+
+    #region Constructors
+
+    public RaceDayModel(Guid guid) => Guid = guid;
 
     #endregion
 }

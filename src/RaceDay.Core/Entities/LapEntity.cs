@@ -6,7 +6,6 @@ public class LapEntity : IEntity
 {
     public Guid Guid { get; init; }
     public Guid RaceDayGuid { get; init; }
-    public float LapDistanceM { get; set; }
     public float LapDistanceKm { get; set; }
     public float PetrolCostPerLap { get; set; }
 }

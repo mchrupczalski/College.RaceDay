@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace RaceDay.WpfUi.Infrastructure;
 
-public abstract class ObservableBase : INotifyPropertyChanged
+public abstract class ObservableObject : INotifyPropertyChanged
 {
     #region Interfaces Implement
 

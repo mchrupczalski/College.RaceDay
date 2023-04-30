@@ -1,5 +1,5 @@
 ﻿namespace RaceDay.WpfUi.Infrastructure;
 
-public abstract class ViewModelBase : ObservableBase
+public abstract class ViewModelBase : ObservableObject
 {
 }
