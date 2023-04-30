@@ -26,9 +26,11 @@ public class Bootstrapper
 
                             /* ViewModels */
                             services.AddSingleton<HomeViewModel>(s => new HomeViewModel(s.GetRequiredService<RaceDaySummaryViewModel>(),
-                                                                                        s.GetRequiredService<RaceDayRacesViewModel>()));
+                                                                                        s.GetRequiredService<RaceDayRacesViewModel>(),
+                                                                                        s.GetRequiredService<NavigationService>()));
                             services.AddSingleton<RaceDaySummaryViewModel>();
                             services.AddSingleton<RaceDayRacesViewModel>();
+                            services.AddSingleton<CreateRaceDayViewModel>();
 
                             /* Repositories */
                             string filesRoot = AppDomain.CurrentDomain.BaseDirectory;

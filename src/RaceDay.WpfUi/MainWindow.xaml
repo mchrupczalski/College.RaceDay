@@ -5,24 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ctrl="clr-namespace:RaceDay.WpfUi.Controls"
         xmlns:vm="clr-namespace:RaceDay.WpfUi.ViewModels"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Race Day"
         Height="720"
         Width="1280"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}" >
-    <Grid Background="{DynamicResource MaterialDesignPaper}">
+    <Grid Background="{DynamicResource MaterialDesignPaper}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ctrl:AppHeader Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
-        <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding  NavigationService.ActiveViewModel}" />
+        <ctrl:AppHeader Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3" />
+        <materialDesign:DialogHost Grid.Row="1"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3"
+                                   CloseOnClickAway="True"
+                                   DialogContent="{Binding NavigationService.ActiveDialogViewModel}"
+                                   DialogTheme="Inherit"
+                                   OverlayBackground="{DynamicResource MaterialDesignDarkBackground}"
+                                   IsOpen="{Binding NavigationService.ActiveDialogViewModel.DialogHostIsOpen, FallbackValue=False}" >
+            <ContentControl Content="{Binding  NavigationService.ActiveViewModel}" />
+        </materialDesign:DialogHost>
     </Grid>
 </Window>

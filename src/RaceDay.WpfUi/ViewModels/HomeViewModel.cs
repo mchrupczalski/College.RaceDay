@@ -1,16 +1,23 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
 using RaceDay.WpfUi.Infrastructure;
+using RaceDay.WpfUi.Services;
 
 namespace RaceDay.WpfUi.ViewModels;
 
 public class HomeViewModel : ViewModelBase
 {
+    private readonly NavigationService _navigationService;
+
     #region Properties
 
     public RaceDaySummaryViewModel RaceDaySummaryViewModel { get; }
     public RaceDayRacesViewModel RaceDayRacesViewModel { get; }
+    public CreateRaceDayViewModel CreateRaceDayViewModel { get; }
 
     public ICommand CreateNewRaceDayCommand { get; set; }
 
@@ -23,11 +30,12 @@ public class HomeViewModel : ViewModelBase
     {
     }
 
-    public HomeViewModel(RaceDaySummaryViewModel raceDaySummaryViewModel, RaceDayRacesViewModel raceDayRacesViewModel)
+    public HomeViewModel(RaceDaySummaryViewModel raceDaySummaryViewModel, RaceDayRacesViewModel raceDayRacesViewModel, NavigationService navigationService)
     {
+        _navigationService = navigationService;
         RaceDaySummaryViewModel = raceDaySummaryViewModel;
         RaceDayRacesViewModel = raceDayRacesViewModel;
-        
+
         CreateNewRaceDayCommand = new RelayCommand(CreateRaceDay, CanCreateRaceDay);
 
         raceDaySummaryViewModel.PropertyChanged += (sender, args) =>
@@ -39,10 +47,7 @@ public class HomeViewModel : ViewModelBase
 
     private void CreateRaceDay(object? obj)
     {
-        var w = new Window();
-        var vm = new CreateRaceDayViewModel();
-        w.Content = vm;
-        w.ShowDialog();
+        _navigationService.DisplayDialog<CreateRaceDayViewModel>();
     }
 
     private static bool CanCreateRaceDay(object? arg) => true;
