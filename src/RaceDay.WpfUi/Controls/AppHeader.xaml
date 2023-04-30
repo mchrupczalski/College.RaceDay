@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              d:DesignHeight="70"
              d:DesignWidth="300" >
-    <Grid Background="{DynamicResource MaterialDesignCardBackground}" >
+    <Grid Background="{DynamicResource MaterialDesignDarkBackground}" >
         <StackPanel Orientation="Horizontal"
                     Height="50" >
             <Viewbox Width="50"

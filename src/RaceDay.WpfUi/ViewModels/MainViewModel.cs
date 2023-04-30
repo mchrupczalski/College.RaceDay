@@ -1,18 +1,19 @@
 ﻿using RaceDay.WpfUi.Infrastructure;
+using RaceDay.WpfUi.Services;
 
 namespace RaceDay.WpfUi.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
-    private ViewModelBase _activeViewModel;
+    #region Properties
 
-    public ViewModelBase ActiveViewModel
-    {
-        get => _activeViewModel;
-        set => SetField(ref _activeViewModel, value);
-    }
+    public NavigationService NavigationService { get; }
 
-    public MainViewModel()
-    {
-    }
+    #endregion
+
+    #region Constructors
+
+    public MainViewModel(NavigationService navigationService) => NavigationService = navigationService;
+
+    #endregion
 }

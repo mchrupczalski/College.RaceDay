@@ -8,9 +8,9 @@
         mc:Ignorable="d"
         Title="Race Day"
         Height="720"
-        Width="850"
+        Width="1280"
         d:DataContext="{d:DesignInstance vm:MainViewModel, IsDesignTimeCreatable=True}" >
-    <Grid>
+    <Grid Background="{DynamicResource MaterialDesignPaper}">
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition Height="*" />
@@ -23,6 +23,6 @@
         </Grid.ColumnDefinitions>
 
         <ctrl:AppHeader Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
-        <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding ActiveViewModel}" />
+        <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding  NavigationService.ActiveViewModel}" />
     </Grid>
 </Window>

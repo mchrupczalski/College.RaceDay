@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using RaceDay.Core.Entities;
 using RaceDay.Core.Interfaces;
 using RaceDay.Core.Repositories;
+using RaceDay.WpfUi.Services;
 using RaceDay.WpfUi.ViewModels;
 using RaceDay.WpfUi.Views;
 
@@ -20,6 +21,9 @@ public class Bootstrapper
                             services.AddSingleton<App>();
                             services.AddSingleton<MainWindow>();
                             services.AddSingleton<MainViewModel>();
+                            
+                            /* Services */
+                            services.AddSingleton<NavigationService>();
                             
                             /* ViewModels */
                             services.AddSingleton<HomeViewModel>();

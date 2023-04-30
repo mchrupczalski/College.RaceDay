@@ -8,25 +8,39 @@
              d:DesignHeight="720"
              d:DesignWidth="850"
              d:DataContext="{d:DesignInstance vm:HomeViewModel, IsDesignTimeCreatable=True}" >
-    <Grid Background="{DynamicResource MaterialDesignPaper}" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        
-        <!-- #region: Race Day Data Grid -->
-        <ContentControl Grid.Row="0" Content="{Binding RaceDaySummaryViewModel}"></ContentControl>
-        <!-- #endregion -->
-        
-        <!-- #region: Selected Race Day Races Grid -->
-        <!-- #endregion -->
-        
+    <DockPanel HorizontalAlignment="Stretch"
+               VerticalAlignment="Stretch"
+               LastChildFill="True" >
+
         <!-- #region: Buttons -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-            <Button Content="Create New" Style="{DynamicResource MaterialDesignRaisedLightButton}" Margin="10 0"/>
-            <Button Content="Start Selected" Style="{DynamicResource MaterialDesignRaisedSecondaryLightButton}" Margin="10 0"/>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="10"
+                    DockPanel.Dock="Bottom" >
+            <Button Content="Create New"
+                    Style="{DynamicResource MaterialDesignRaisedLightButton}"
+                    Margin="10 0" />
+            <Button Content="Start Selected"
+                    Style="{DynamicResource MaterialDesignRaisedSecondaryLightButton}"
+                    Margin="10 0" />
         </StackPanel>
         <!-- #endregion -->
-    </Grid>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- #region: Race Day Data Grid -->
+            <ContentControl Grid.Row="0"
+                            Content="{Binding RaceDaySummaryViewModel}" />
+            <!-- #endregion -->
+
+            <!-- #region: Selected Race Day Races Grid -->
+            <!-- #endregion -->
+
+        </Grid>
+    </DockPanel>
+
 </UserControl>

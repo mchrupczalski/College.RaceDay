@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RaceDay.WpfUi.Services;
 using RaceDay.WpfUi.StartUp;
 using RaceDay.WpfUi.ViewModels;
 
@@ -52,6 +53,9 @@ namespace RaceDay.WpfUi
             var mainViewModel = _host.Services.GetRequiredService<MainViewModel>();
             mainWindow.DataContext = mainViewModel;
             mainWindow.Show();
+            
+            var navService = _host.Services.GetRequiredService<NavigationService>();
+            navService.NavigateTo<HomeViewModel>();
         }
 
         #endregion
