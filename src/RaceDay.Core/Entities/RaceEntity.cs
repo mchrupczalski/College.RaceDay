@@ -1,6 +1,8 @@
-﻿namespace RaceDay.Core.Entities;
+﻿using RaceDay.Core.Interfaces;
 
-public class RaceEntity
+namespace RaceDay.Core.Entities;
+
+public class RaceEntity : IEntity
 {
     public Guid Guid { get; init; }
     public Guid RaceDayGuid { get; init; }
