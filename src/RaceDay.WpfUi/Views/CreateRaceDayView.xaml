@@ -5,12 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:RaceDay.WpfUi.ViewModels"
              xmlns:validation="clr-namespace:RaceDay.WpfUi.ValidationRules"
-             Height="300"
-             Width="350"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:Background="{DynamicResource MaterialDesignPaper}"
              d:DesignHeight="300"
-             d:DesignWidth="350"
+             d:DesignWidth="200"
              d:DataContext="{d:DesignInstance vm:CreateRaceDayViewModel, IsDesignTimeCreatable=True}" >
     <DockPanel HorizontalAlignment="Stretch"
                VerticalAlignment="Stretch"
@@ -51,32 +50,22 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
 
             <!-- Name -->
-            <TextBlock Grid.Row="0"
-                       Grid.Column="0"
-                       Text="Name:"
-                       Margin="5"
-                       Style="{DynamicResource MaterialDesignTextBlock}"
-                       HorizontalAlignment="Right" />
             <TextBox Grid.Row="0"
-                     Grid.Column="1"
+                     VerticalAlignment="Center"
+                     TextAlignment="Center"
+                     materialDesign:HintAssist.Hint="Race Day Name"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Text="{Binding NewRaceDay.Name}"
                      Margin="5" />
 
             <!-- Fee -->
-            <TextBlock Grid.Row="1"
-                       Grid.Column="0"
-                       Text="SignUp Fee (£):"
-                       Margin="5"
-                       Style="{DynamicResource MaterialDesignTextBlock}"
-                       HorizontalAlignment="Right" />
             <TextBox Grid.Row="1"
-                     Grid.Column="1"
+                     VerticalAlignment="Center"
+                     TextAlignment="Center"
+                     materialDesign:HintAssist.Hint="SignUp Fee (£)"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Margin="5"
                      Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" >
                 <TextBox.Text>
@@ -92,26 +81,20 @@
             </TextBox>
 
             <!-- Lap -->
-            <TextBlock Grid.Row="2"
-                       Grid.Column="0"
-                       Text="Lap Distance (km):"
-                       Margin="5"
-                       Style="{DynamicResource MaterialDesignTextBlock}"
-                       HorizontalAlignment="Right" />
             <TextBox Grid.Row="2"
-                     Grid.Column="1"
+                     VerticalAlignment="Center"
+                     TextAlignment="Center"
+                     materialDesign:HintAssist.Hint="Lap Distance (km)"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Text="{Binding NewRaceDay.LapDistance}"
                      Margin="5" />
 
             <!-- Petrol Cost -->
-            <TextBlock Grid.Row="3"
-                       Grid.Column="0"
-                       Text="Est. Petrol Cost Per Lap (£):"
-                       Margin="5"
-                       Style="{DynamicResource MaterialDesignTextBlock}"
-                       HorizontalAlignment="Right" />
             <TextBox Grid.Row="3"
-                     Grid.Column="1"
+                     VerticalAlignment="Center"
+                     TextAlignment="Center"
+                     materialDesign:HintAssist.Hint="Est. Petrol Cost Per Lap (£)"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Text="{Binding NewRaceDay.PetrolCostPerLap}"
                      Margin="5" />
         </Grid>
