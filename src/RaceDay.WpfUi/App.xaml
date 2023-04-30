@@ -11,6 +11,8 @@
             <ResourceDictionary.MergedDictionaries>
 
                 <ResourceDictionary Source="Templates/DataTemplates.xaml" />
+                <ResourceDictionary Source="Templates/ControlTemplates.xaml" />
+                <ResourceDictionary Source="Templates/StyleTemplates.xaml" />
 
                 <!--#region MaterialTheme-->
                 <ResourceDictionary
@@ -22,7 +24,7 @@
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
 
                 <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Green.xaml" />
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.DeepOrange.xaml" />
 

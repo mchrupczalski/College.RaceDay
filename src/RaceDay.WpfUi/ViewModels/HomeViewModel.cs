@@ -1,21 +1,18 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Input;
 using RaceDay.WpfUi.Infrastructure;
 
 namespace RaceDay.WpfUi.ViewModels;
 
 public class HomeViewModel : ViewModelBase
 {
-    private RaceDaySummaryViewModel _raceDaySummaryViewModel;
-
     #region Properties
 
-    public RaceDaySummaryViewModel RaceDaySummaryViewModel
-    {
-        get => _raceDaySummaryViewModel;
-        private set => SetField(ref _raceDaySummaryViewModel, value);
-    }
+    public RaceDaySummaryViewModel RaceDaySummaryViewModel { get; }
+    public RaceDayRacesViewModel RaceDayRacesViewModel { get; }
 
-    public RaceDayRacesViewModel RaceDayRacesViewModel { get; private set; }
+    public ICommand CreateNewRaceDayCommand { get; set; }
 
     #endregion
 
@@ -31,12 +28,24 @@ public class HomeViewModel : ViewModelBase
         RaceDaySummaryViewModel = raceDaySummaryViewModel;
         RaceDayRacesViewModel = raceDayRacesViewModel;
         
+        CreateNewRaceDayCommand = new RelayCommand(CreateRaceDay, CanCreateRaceDay);
+
         raceDaySummaryViewModel.PropertyChanged += (sender, args) =>
         {
             if (args.PropertyName != nameof(RaceDaySummaryViewModel.SelectedRaceDay)) return;
             if (raceDaySummaryViewModel.SelectedRaceDay != null) raceDayRacesViewModel.LoadRaceDayRaces(raceDaySummaryViewModel.SelectedRaceDay.Guid);
         };
     }
+
+    private void CreateRaceDay(object? obj)
+    {
+        var w = new Window();
+        var vm = new CreateRaceDayViewModel();
+        w.Content = vm;
+        w.ShowDialog();
+    }
+
+    private static bool CanCreateRaceDay(object? arg) => true;
 
     #endregion
 }

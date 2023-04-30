@@ -14,4 +14,8 @@
         <v:RaceDayRacesView />
     </DataTemplate>
     
+    <DataTemplate DataType="{x:Type vm:CreateRaceDayViewModel}" >
+        <v:CreateRaceDayView />
+    </DataTemplate>
+    
 </ResourceDictionary>

@@ -17,9 +17,10 @@
                     HorizontalAlignment="Right"
                     Margin="10"
                     DockPanel.Dock="Bottom" >
-            <Button Content="Create New"
+            <Button Content="Create New Race Day"
                     Style="{DynamicResource MaterialDesignRaisedLightButton}"
-                    Margin="10 0" />
+                    Margin="10 0" 
+                    Command="{Binding CreateNewRaceDayCommand}"/>
             <Button Content="Start Selected"
                     Style="{DynamicResource MaterialDesignRaisedSecondaryLightButton}"
                     Margin="10 0" />
