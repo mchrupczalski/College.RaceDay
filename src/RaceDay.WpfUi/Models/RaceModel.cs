@@ -11,5 +11,8 @@ public class RaceModel
     }
 
     public Guid Guid { get; init; }
+    public RaceDayModel? RaceDay { get; set; }
+
+    public DateTime RaceDate { get; set; }
     public ObservableCollection<RaceLapModel> Laps { get; set; } = new();
 }

@@ -4,12 +4,17 @@ namespace RaceDay.WpfUi.Models;
 
 public class RacerModel
 {
-    public RacerModel(Guid guid)
-    {
-        Guid = guid;
-    }
+    #region Properties
 
     public Guid Guid { get; init; }
     public string Name { get; set; }
     public byte Age { get; set; }
+
+    #endregion
+
+    #region Constructors
+
+    public RacerModel(Guid guid) => Guid = guid;
+
+    #endregion
 }

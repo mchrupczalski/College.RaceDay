@@ -7,7 +7,6 @@ using RaceDay.Core.Interfaces;
 using RaceDay.Core.Repositories;
 using RaceDay.WpfUi.Services;
 using RaceDay.WpfUi.ViewModels;
-using RaceDay.WpfUi.Views;
 
 namespace RaceDay.WpfUi.StartUp;
 
@@ -21,14 +20,16 @@ public class Bootstrapper
                             services.AddSingleton<App>();
                             services.AddSingleton<MainWindow>();
                             services.AddSingleton<MainViewModel>();
-                            
+
                             /* Services */
                             services.AddSingleton<NavigationService>();
-                            
+
                             /* ViewModels */
-                            services.AddSingleton<HomeViewModel>();
+                            services.AddSingleton<HomeViewModel>(s => new HomeViewModel(s.GetRequiredService<RaceDaySummaryViewModel>(),
+                                                                                        s.GetRequiredService<RaceDayRacesViewModel>()));
                             services.AddSingleton<RaceDaySummaryViewModel>();
-                            
+                            services.AddSingleton<RaceDayRacesViewModel>();
+
                             /* Repositories */
                             string filesRoot = AppDomain.CurrentDomain.BaseDirectory;
                             services.AddSingleton<IRepository<LapEntity>, FileRepository<LapEntity>>(s => new FileRepository<LapEntity>(Path.Combine(filesRoot, "Laps.json")));

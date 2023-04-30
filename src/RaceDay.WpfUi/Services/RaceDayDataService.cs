@@ -60,8 +60,6 @@ public class RaceDayDataService
             {
                 Name = raceDay.Name,
                 SignUpFee = raceDay.SignUpFee,
-                LapDistanceKilometers = raceDayLap?.LapDistanceKm ?? 0,
-                PetrolCostPerLap = raceDayLap?.PetrolCostPerLap ?? 0
             };
             raceDayModel.Races.Clear();
 
