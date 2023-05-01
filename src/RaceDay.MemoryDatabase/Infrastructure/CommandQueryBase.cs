@@ -1,9 +1,9 @@
 ﻿using System.Data;
 using RaceDay.MemoryDatabase.Enums;
 
-namespace RaceDay.MemoryDatabase.Queries;
+namespace RaceDay.MemoryDatabase.Infrastructure;
 
-public abstract class QueryBase
+public abstract class CommandQueryBase
 {
     #region Properties
 
@@ -13,7 +13,7 @@ public abstract class QueryBase
 
     #region Constructors
 
-    protected QueryBase(InMemoryDatabase database) => Database = database;
+    protected CommandQueryBase(InMemoryDatabase database) => Database = database;
 
     #endregion
 

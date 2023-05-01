@@ -8,62 +8,64 @@ namespace RaceDay.MemoryDatabase;
 
 public class InMemoryDatabase
 {
+    #region Fields
+
     private readonly string _dataFilePath;
 
-    #region Static Fields and Const
+    #endregion
+
+    #region Properties
 
     public DataSet DataSet { get; } = new();
     public TableDefinitionBase<RaceDayEntity>? RaceDays { get; private set; }
     public TableDefinitionBase<RaceEntity>? Races { get; private set; }
-    public TableDefinitionBase<LapEntity>? Laps { get; private set; }
     public TableDefinitionBase<RaceLapEntity>? RaceLaps { get; private set; }
     public TableDefinitionBase<RacerEntity>? Racers { get; private set; }
     public TableDefinitionBase<RaceRacerEntity>? RaceRacers { get; private set; }
 
     #endregion
 
-    public InMemoryDatabase(string dataFilePath)
-    {
-        _dataFilePath = dataFilePath;
-    }
+    #region Constructors
+
+    public InMemoryDatabase(string dataFilePath) => _dataFilePath = dataFilePath;
+
+    #endregion
 
     public void Initialize()
     {
         CreateDataTables();
         BuildRelations();
+        LoadData();
     }
-    
+
     private void CreateDataTables()
     {
-        Laps = new LapsTableDefinition();
-        RaceDays = new RaceDaysTableDefinition();
-        RaceLaps = new RaceLapsTableDefinition();
-        RaceRacers = new RaceRacersTableDefinition();
-        Races = new RacesTableDefinition();
-        Racers = new RacersTableDefinition();
-        
-        var lapsTable = Laps.Table;
+        RaceDays = new RaceDaysTableDefinition(_dataFilePath);
+        RaceLaps = new RaceLapsTableDefinition(_dataFilePath);
+        RaceRacers = new RaceRacersTableDefinition(_dataFilePath);
+        Races = new RacesTableDefinition(_dataFilePath);
+        Racers = new RacersTableDefinition(_dataFilePath);
+
         var raceDaysTable = RaceDays.Table;
         var raceLapsTable = RaceLaps.Table;
         var raceRacersTable = RaceRacers.Table;
         var racesTable = Races.Table;
         var racersTable = Racers.Table;
 
-        DataSet.Tables.AddRange(new[] { lapsTable, raceDaysTable, raceLapsTable, raceRacersTable, racesTable, racersTable });
+        DataSet.Tables.AddRange(new[] { raceDaysTable, raceLapsTable, raceRacersTable, racesTable, racersTable });
     }
 
     private void BuildRelations()
     {
         var fkDefinitions = new ForeignKeyDefinition[]
         {
-            new(TableName.RaceDays, new[] { nameof(RaceDayEntity.Id) }, TableName.Races, new[] { nameof(RaceEntity.RaceDayId) }),
-            new(TableName.RaceDays, new[] { nameof(RaceDayEntity.Id) }, TableName.Laps, new[] { nameof(LapEntity.RaceDayId) }),
+            new(TableName.RaceDays,  nameof(RaceDayEntity.Id) , TableName.Races,  nameof(RaceEntity.RaceDayId) ),
             new(TableName.Races, new[] { nameof(RaceEntity.RaceDayId), nameof(RaceEntity.RaceNumber) }, TableName.RaceRacers,
                 new[] { nameof(RaceRacerEntity.RaceDayId), nameof(RaceRacerEntity.RaceNumber) }),
-            new(TableName.Racers, new[] { nameof(RacerEntity.Id) }, TableName.RaceRacers, new[] { nameof(RaceRacerEntity.RacerId) }),
-            new(TableName.Laps, new[] { nameof(LapEntity.RaceDayId) }, TableName.RaceLaps, new[] { nameof(RaceLapEntity.RaceDayId) }),
+            new(TableName.Racers,  nameof(RacerEntity.Id) , TableName.RaceRacers, nameof(RaceRacerEntity.RacerId) ),
             new(TableName.RaceRacers, new[] { nameof(RaceRacerEntity.RaceDayId), nameof(RaceRacerEntity.RaceNumber), nameof(RaceRacerEntity.RacerId) }, TableName.RaceLaps,
-                new[] { nameof(RaceLapEntity.RaceDayId), nameof(RaceLapEntity.RaceNumber), nameof(RaceLapEntity.RacerId) })
+                new[] { nameof(RaceLapEntity.RaceDayId), nameof(RaceLapEntity.RaceNumber), nameof(RaceLapEntity.RacerId) }),
+            new(TableName.RaceDays,  nameof(RaceDayEntity.Id) , TableName.RaceLaps,  nameof(RaceLapEntity.RaceDayId) )
         };
 
         foreach (var fkDefinition in fkDefinitions)
@@ -90,5 +92,14 @@ public class InMemoryDatabase
             var foreignKeyConstraint = new ForeignKeyConstraint(fkDefinition.Name, parentColumns, childColumns);
             childTable.Constraints.Add(foreignKeyConstraint);
         }
+    }
+    
+    private void LoadData()
+    {
+        RaceDays?.LoadDataFromFile();
+        Races?.LoadDataFromFile();
+        Racers?.LoadDataFromFile();
+        RaceRacers?.LoadDataFromFile();
+        RaceLaps?.LoadDataFromFile();
     }
 }

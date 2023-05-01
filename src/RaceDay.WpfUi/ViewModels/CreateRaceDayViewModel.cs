@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
-using RaceDay.Core.Entities;
-using RaceDay.Core.Interfaces;
+using RaceDay.Domain.DTOs;
 using RaceDay.Domain.Entities;
+using RaceDay.MemoryDatabase.Commands;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 
@@ -12,8 +12,8 @@ public class CreateRaceDayViewModel : DialogViewModelBase
 {
     #region Fields
 
-    private readonly IRepository<LapEntity> _lapRepository;
-    private readonly IRepository<RaceDayEntity> _raceDayRepository;
+    private readonly CreateRaceDayCommand _createRaceDayCommand;
+
     private CreateRaceDayModel _newRaceDay = new();
 
     #endregion
@@ -33,10 +33,9 @@ public class CreateRaceDayViewModel : DialogViewModelBase
 
     #region Constructors
 
-    public CreateRaceDayViewModel(IRepository<RaceDayEntity> raceDayRepository, IRepository<LapEntity> lapRepository)
+    public CreateRaceDayViewModel(CreateRaceDayCommand createRaceDayCommand)
     {
-        _raceDayRepository = raceDayRepository;
-        _lapRepository = lapRepository;
+        _createRaceDayCommand = createRaceDayCommand;
 
         CancelCommand = new RelayCommand(Cancel, CanCancel);
         SaveCommand = new RelayCommand(Save,     CanSave);
@@ -60,24 +59,23 @@ public class CreateRaceDayViewModel : DialogViewModelBase
 
     private void Save(object? obj)
     {
-        var race = new RaceDayEntity
+        var dto = new RaceDayDto()
         {
+            Id = 0,
             Name = NewRaceDay.Name,
-            SignUpFee = NewRaceDay.SignUpFee.GetValueOrDefault()
-        };
-
-        var lap = new LapEntity
-        {
-            Guid = Guid.NewGuid(),
-            RaceDayGuid = race.Guid,
+            SignUpFee = NewRaceDay.SignUpFee.GetValueOrDefault(),
             LapDistanceKm = NewRaceDay.LapDistance.GetValueOrDefault(),
             PetrolCostPerLap = NewRaceDay.PetrolCostPerLap.GetValueOrDefault()
         };
 
-        _raceDayRepository.Create(race);
-        _lapRepository.Create(lap);
-
-        CloseDialog();
+        try
+        {
+            _createRaceDayCommand.Create(dto);
+            CloseDialog();
+        }
+        catch (Exception e)
+        {
+        }
     }
 
     private bool CanSave(object? arg) => NewRaceDay is { HasErrors: false, HasAllRequiredData: true };

@@ -6,6 +6,5 @@ public enum TableName
     Races,
     RaceRacers,
     Racers,
-    Laps,
     RaceLaps
 }

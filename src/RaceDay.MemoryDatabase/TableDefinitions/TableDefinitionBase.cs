@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Diagnostics;
+using Newtonsoft.Json;
 using RaceDay.MemoryDatabase.Enums;
 
 namespace RaceDay.MemoryDatabase.TableDefinitions;
@@ -17,6 +18,9 @@ public abstract class TableDefinitionBase<TEntity>
 
     #region Properties
 
+    protected string DataFilesRoot { get; }
+    protected string DataFileName { get; }
+
     public DataTable Table
     {
         get
@@ -31,7 +35,12 @@ public abstract class TableDefinitionBase<TEntity>
 
     #region Constructors
 
-    protected TableDefinitionBase(TableName tableName) => _tableName = tableName;
+    protected TableDefinitionBase(TableName tableName, string dataFilesRoot, string dataFileName)
+    {
+        DataFilesRoot = dataFilesRoot;
+        DataFileName = dataFileName;
+        _tableName = tableName;
+    }
 
     #endregion
 
@@ -55,8 +64,11 @@ public abstract class TableDefinitionBase<TEntity>
 
     private static DataColumn CreateColumn(string propertyName, bool allowNull = false)
     {
-        var propertyType = typeof(TEntity).GetProperty(propertyName)
-                                         ?.GetType() ?? throw new InvalidOperationException("Property not found.");
+        var propertyInfo = typeof(TEntity).GetProperty(propertyName) ?? throw new InvalidOperationException("Property not found.");
+        var propertyType = propertyInfo.PropertyType;
+
+        if (!propertyType.IsPrimitive && propertyType != typeof(string) && propertyType != typeof(DateTime))
+            throw new InvalidOperationException($"Property {propertyType} type of {propertyName} in {typeof(TEntity)} not supported.");
 
         var column = new DataColumn(propertyName, propertyType);
         column.AllowDBNull = allowNull;
@@ -66,7 +78,7 @@ public abstract class TableDefinitionBase<TEntity>
     public IEnumerable<TEntity> GetEntities()
     {
         var output = new List<TEntity>();
-        
+
         foreach (DataRow row in Table.Rows)
         {
             var entity = Activator.CreateInstance<TEntity>();
@@ -78,7 +90,46 @@ public abstract class TableDefinitionBase<TEntity>
 
             output.Add(entity);
         }
-        
+
         return output;
+    }
+
+    public void AddEntity(TEntity entity)
+    {
+        var row = Table.NewRow();
+        var properties = typeof(TEntity).GetProperties();
+        foreach (var property in properties)
+        {
+            var column = Table.Columns[property.Name] ?? throw new InvalidOperationException("Column not found.");
+            if(column.AutoIncrement) continue;
+            
+            row[property.Name] = property.GetValue(entity);
+        }
+
+        Table.Rows.Add(row);
+        SaveDataToFile();
+    }
+
+    public void LoadDataFromFile()
+    {
+        string filePath = Path.Combine(DataFilesRoot, DataFileName);
+        if (!File.Exists(filePath)) return;
+
+        string json = File.ReadAllText(filePath);
+        var entities = JsonConvert.DeserializeObject<IEnumerable<TEntity>>(json)
+                                 ?.ToArray() ?? Array.Empty<TEntity>();
+        foreach (var entity in entities)
+        {
+            AddEntity(entity);
+        }
+    }
+
+    public void SaveDataToFile()
+    {
+        string filePath = Path.Combine(DataFilesRoot, DataFileName);
+        var entities = GetEntities()
+           .ToArray();
+        string json = JsonConvert.SerializeObject(entities, Formatting.Indented);
+        File.WriteAllText(filePath, json);
     }
 }

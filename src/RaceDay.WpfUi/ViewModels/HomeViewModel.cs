@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
-using MaterialDesignThemes.Wpf;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Interfaces;
 using RaceDay.WpfUi.Services;
@@ -12,13 +8,16 @@ namespace RaceDay.WpfUi.ViewModels;
 
 public class HomeViewModel : ViewModelBase, INavigableViewModel
 {
+    #region Fields
+
     private readonly NavigationService _navigationService;
+
+    #endregion
 
     #region Properties
 
     public RaceDaySummaryViewModel RaceDaySummaryViewModel { get; }
     public RaceDayRacesViewModel RaceDayRacesViewModel { get; }
-    public CreateRaceDayViewModel CreateRaceDayViewModel { get; }
 
     public ICommand CreateNewRaceDayCommand { get; set; }
 
@@ -26,10 +25,13 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
 
     #region Constructors
 
+#pragma warning disable CS8618
     [Obsolete("Design time only", true)]
     public HomeViewModel()
+
     {
     }
+#pragma warning restore CS8618
 
     public HomeViewModel(RaceDaySummaryViewModel raceDaySummaryViewModel, RaceDayRacesViewModel raceDayRacesViewModel, NavigationService navigationService)
     {
@@ -43,11 +45,20 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
         {
             if (args.PropertyName != nameof(RaceDaySummaryViewModel.SelectedRaceDay)) return;
             if (raceDaySummaryViewModel.SelectedRaceDay == null) return;
-            
-            raceDayRacesViewModel.LoadRaceDayRaces(raceDaySummaryViewModel.SelectedRaceDay.Id);
+
+            raceDayRacesViewModel.LoadRaceDayRaces(raceDaySummaryViewModel.SelectedRaceDay.RaceDayId);
             raceDayRacesViewModel.UpdateViewTitle(raceDaySummaryViewModel.SelectedRaceDay.Name);
         };
     }
+
+    #endregion
+
+    #region Interfaces Implement
+
+    /// <inheritdoc />
+    public void OnNavigatedTo() => RaceDaySummaryViewModel.LoadData();
+
+    #endregion
 
     private void CreateRaceDay(object? obj)
     {
@@ -55,13 +66,4 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
     }
 
     private static bool CanCreateRaceDay(object? arg) => true;
-
-    #endregion
-
-    #region Implementation of INavigableViewModel
-
-    /// <inheritdoc />
-    public void OnNavigatedTo() => RaceDaySummaryViewModel.LoadData();
-
-    #endregion
 }

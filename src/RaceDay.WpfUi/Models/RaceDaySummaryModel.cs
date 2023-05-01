@@ -7,7 +7,7 @@ public record RaceDaySummaryModel
 {
     #region Properties
 
-    public int Id { get; init; }
+    public int RaceDayId { get; init; }
     public string? Name { get; init; }
     public float SignUpFee { get; init; }
     public float LapDistanceKilometers { get; init; }

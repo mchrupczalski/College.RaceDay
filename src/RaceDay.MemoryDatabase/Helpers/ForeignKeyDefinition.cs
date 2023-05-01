@@ -30,6 +30,17 @@ public class ForeignKeyDefinition
         ChildTableName = childTableName;
         ChildColumnNames = childColumnNames;
     }
+    
+    public ForeignKeyDefinition(TableName parentTableName, string parentColumnName, TableName childTableName, string childColumnName)
+    {
+        if (parentTableName == childTableName)
+            throw new ArgumentException("Parent and child table names must be different.");
+
+        ParentTableName = parentTableName;
+        ParentColumnNames = new[] { parentColumnName };
+        ChildTableName = childTableName;
+        ChildColumnNames = new []{ childColumnName };
+    }
 
     #endregion
 }

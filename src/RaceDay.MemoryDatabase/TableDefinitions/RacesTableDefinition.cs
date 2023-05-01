@@ -9,7 +9,7 @@ internal class RacesTableDefinition : TableDefinitionBase<RaceEntity>
     #region Constructors
 
     /// <inheritdoc />
-    public RacesTableDefinition(TableName tableName = TableName.Races) : base(tableName)
+    public RacesTableDefinition(string dataFilesRoot, string dataFileName = "Races.json", TableName tableName = TableName.Races) : base(tableName, dataFilesRoot, dataFileName)
     {
     }
 

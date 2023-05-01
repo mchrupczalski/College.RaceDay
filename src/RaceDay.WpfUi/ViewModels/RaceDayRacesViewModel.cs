@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Documents;
-using RaceDay.Core.Entities;
-using RaceDay.Core.Interfaces;
+using RaceDay.MemoryDatabase.Queries;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 
@@ -12,14 +8,16 @@ namespace RaceDay.WpfUi.ViewModels;
 
 public class RaceDayRacesViewModel : ViewModelBase
 {
-    private readonly IRepository<RaceDayEntity> _raceDayRepo;
-    private readonly IRepository<RaceEntity> _raceRepo;
-    private readonly IRepository<LapEntity> _lapRepo;
-    private readonly IRepository<RaceLapEntity> _raceLapRepo;
-    private readonly IRepository<RacerEntity> _racerRepo;
+    #region Fields
+
+    private readonly RaceDayRacesQuery _raceDayRacesQuery;
     private string _viewTitle = "Race Day Name - Races";
 
-    public ObservableCollection<RaceDayRaceModel> Races { get;  } = new();
+    #endregion
+
+    #region Properties
+
+    public ObservableCollection<RaceDayRaceModel> Races { get; } = new();
 
     public string ViewTitle
     {
@@ -27,14 +25,20 @@ public class RaceDayRacesViewModel : ViewModelBase
         private set => SetField(ref _viewTitle, value);
     }
 
+    #endregion
+
+    #region Constructors
+
+#pragma warning disable CS8618
     [Obsolete("Design-time only", true)]
     public RaceDayRacesViewModel()
+
     {
-        Races.Add(new RaceDayRaceModel()
+        Races.Add(new RaceDayRaceModel
         {
-            Guid = new Guid(),
-            RaceDayGuid = new Guid(),
-            RaceDate = new DateTime(2022,03,12),
+            RaceDayId = 1,
+            RaceNumber = 1,
+            RaceDate = new DateTime(2022, 03, 12),
             NumberOfRacers = 15,
             TotalNumberOfLaps = 103,
             BestLapTime = TimeSpan.FromMinutes(1.5),
@@ -43,11 +47,11 @@ public class RaceDayRacesViewModel : ViewModelBase
             TotalExpenses = 3000,
             TotalProfit = 2000
         });
-        
-        Races.Add(new RaceDayRaceModel()
+
+        Races.Add(new RaceDayRaceModel
         {
-            Guid = new Guid(),
-            RaceDayGuid = new Guid(),
+            RaceDayId = 1,
+            RaceNumber = 2,
             RaceDate = new DateTime(2022, 03, 12),
             NumberOfRacers = 15,
             TotalNumberOfLaps = 103,
@@ -58,56 +62,31 @@ public class RaceDayRacesViewModel : ViewModelBase
             TotalProfit = 2000
         });
     }
+#pragma warning restore CS8618
 
-    public RaceDayRacesViewModel(IRepository<RaceDayEntity> raceDayRepo,
-                                 IRepository<RaceEntity> raceRepo,
-                                 IRepository<LapEntity> lapRepo,
-                                 IRepository<RaceLapEntity> raceLapRepo,
-                                 IRepository<RacerEntity> racerRepo)
-    {
-        _raceDayRepo = raceDayRepo;
-        _raceRepo = raceRepo;
-        _lapRepo = lapRepo;
-        _raceLapRepo = raceLapRepo;
-        _racerRepo = racerRepo;
-    }
+    public RaceDayRacesViewModel(RaceDayRacesQuery raceDayRacesQuery) => _raceDayRacesQuery = raceDayRacesQuery;
 
-    public void LoadRaceDayRaces(Guid raceDayGuid)
+    #endregion
+
+    public void LoadRaceDayRaces(int raceDayId)
     {
         Races.Clear();
-        var raceDay = _raceDayRepo.GetById(raceDayGuid)
-                                  .Result;
-        
-        var raceLap = _lapRepo.GetAll().Result.ToArray().FirstOrDefault(l => l.RaceDayGuid == raceDayGuid);
+        var raceDtos = _raceDayRacesQuery.GetAll(raceDayId);
 
-        if (raceDay == null || raceLap == null) return;
-
-        var races = _raceRepo.GetAll().Result.ToArray().Where(r => r.RaceDayGuid == raceDay.Guid).ToArray();
-        var laps = _raceLapRepo.GetAll().Result.ToArray().Where(l => l.RaceGuid == raceDay.Guid).ToArray();
-        var racers = _racerRepo.GetAll().Result.ToArray().Where(r => laps.Any(l => l.RacerGuid == r.Guid)).ToArray();
-        
-        foreach (var race in races)
+        foreach (var race in raceDtos)
         {
-            var raceLaps = laps.Where(l => l.RaceGuid == race.Guid)
-                               .ToArray();
-            var bestLap = raceLaps.MinBy(rl => rl.LapTimeSeconds);
-            var raceRacers = racers.Where(r => raceLaps.Any(rl => rl.RacerGuid == r.Guid))
-                                   .ToArray();
-            float totalIncome = raceDay.SignUpFee * raceRacers.Length;
-            float totalExpenses = raceLap.PetrolCostPerLap * raceLaps.Length;
-            
-            Races.Add(new RaceDayRaceModel()
+            Races.Add(new RaceDayRaceModel
             {
-                Guid = race.Guid,
-                RaceDayGuid = race.RaceDayGuid,
+                RaceDayId = race.RaceDayId,
+                RaceNumber = race.RaceNumber,
                 RaceDate = race.RaceDate,
-                NumberOfRacers = racers.Count(r => laps.Any(l => l.RacerGuid == r.Guid && l.RaceGuid == race.Guid)),
-                TotalNumberOfLaps = raceLaps.Length,
-                BestLapTime =  TimeSpan.FromSeconds(bestLap?.LapTimeSeconds ?? 0),
-                BestLapTimeHolder = raceRacers.FirstOrDefault(r => r.Guid == bestLap?.RacerGuid)?.Name,
-                TotalIncome = totalIncome,
-                TotalExpenses = totalExpenses,
-                TotalProfit = totalIncome - totalExpenses
+                NumberOfRacers = race.NumberOfRacers,
+                TotalNumberOfLaps = race.TotalNumberOfLaps,
+                BestLapTime = race.BestLapTime,
+                BestLapTimeHolder = race.BestLapTimeHolder,
+                TotalIncome = race.TotalIncome,
+                TotalExpenses = race.TotalExpenses,
+                TotalProfit = race.TotalProfit
             });
         }
     }

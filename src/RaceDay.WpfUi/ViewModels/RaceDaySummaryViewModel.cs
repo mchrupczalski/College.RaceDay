@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RaceDay.Core.Entities;
-using RaceDay.Core.Interfaces;
+using RaceDay.MemoryDatabase.Queries;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 
@@ -12,11 +11,8 @@ public class RaceDaySummaryViewModel : ViewModelBase
 {
     #region Fields
 
-    private readonly IRepository<LapEntity> _lapRepo;
-    private readonly IRepository<RaceDayEntity> _raceDayRepo;
-    private readonly IRepository<RaceLapEntity> _raceLapRepo;
-    private readonly IRepository<RaceEntity> _raceRepo;
-    private readonly IRepository<RacerEntity> _racerRepo;
+    private readonly RaceDaySummaryQuery _raceDaySummaryQuery;
+
     private bool _displayAsKilometers = true;
     private RaceDaySummaryModel? _selectedRaceDay;
 
@@ -42,12 +38,13 @@ public class RaceDaySummaryViewModel : ViewModelBase
 
     #region Constructors
 
+#pragma warning disable CS8618
     [Obsolete("Design-time only", true)]
     public RaceDaySummaryViewModel()
     {
         RaceDays.Add(new RaceDaySummaryModel
         {
-            Id = new Guid(),
+            RaceDayId = 1,
             Name = "Test Race Day 1",
             SignUpFee = 300,
             LapDistanceKilometers = 5,
@@ -60,7 +57,7 @@ public class RaceDaySummaryViewModel : ViewModelBase
 
         RaceDays.Add(new RaceDaySummaryModel
         {
-            Id = new Guid(),
+            RaceDayId = 2,
             Name = "Test Race Day 2",
             SignUpFee = 3000,
             LapDistanceKilometers = 15,
@@ -71,63 +68,35 @@ public class RaceDaySummaryViewModel : ViewModelBase
             AverageProfit = 50000
         });
     }
+#pragma warning restore CS8618
 
-    public RaceDaySummaryViewModel(IRepository<RaceDayEntity> raceDayRepo,
-                                   IRepository<RaceEntity> raceRepo,
-                                   IRepository<LapEntity> lapRepo,
-                                   IRepository<RaceLapEntity> raceLapRepo,
-                                   IRepository<RacerEntity> racerRepo)
-    {
-        _raceDayRepo = raceDayRepo;
-        _raceRepo = raceRepo;
-        _lapRepo = lapRepo;
-        _raceLapRepo = raceLapRepo;
-        _racerRepo = racerRepo;
-    }
+    public RaceDaySummaryViewModel(RaceDaySummaryQuery raceDaySummaryQuery) => _raceDaySummaryQuery = raceDaySummaryQuery;
 
     #endregion
 
     public void LoadData()
     {
-        var laps = _lapRepo.GetAll()
-                           .Result.ToArray();
-        var raceDays = _raceDayRepo.GetAll()
-                                   .Result.ToArray();
-        var races = _raceRepo.GetAll()
-                             .Result.ToArray();
-        var raceLaps = _raceLapRepo.GetAll()
-                                   .Result.ToArray();
-        var racers = _racerRepo.GetAll()
-                               .Result.ToArray();
-
         RaceDays.Clear();
+        var dtos = _raceDaySummaryQuery.GetAll();
 
-        foreach (var raceDay in raceDays)
+        foreach (var dto in dtos)
         {
-            var raceDayLap = laps.FirstOrDefault(l => l.RaceDayGuid == raceDay.Guid);
-            var raceDayRaces = races.Where(r => r.RaceDayGuid == raceDay.Guid)
-                                    .ToArray();
-            var raceDayRaceLaps = raceLaps.Where(rl => raceDayRaces.Any(r => r.Guid == rl.RaceGuid));
-            var recordLap = raceDayRaceLaps.MinBy(rl => rl.LapTimeSeconds);
-            var recordLapRacer = racers.FirstOrDefault(r => recordLap != null && r.Guid == recordLap.RacerGuid);
-
             var model = new RaceDaySummaryModel
             {
-                Id = raceDay.Guid,
-                Name = raceDay.Name,
-                SignUpFee = raceDay.SignUpFee,
-                LapDistanceKilometers = raceDayLap?.LapDistanceKm ?? 0,
-                PetrolCostPerLap = raceDayLap?.PetrolCostPerLap ?? 0,
-                TotalRaces = raceDayRaces.Length,
-                RecordLap = TimeSpan.FromSeconds(recordLap?.LapTimeSeconds ?? 0),
-                RecordHolderName = recordLapRacer?.Name ?? "N/A"
-                // ToDo: AverageProfit
+                RaceDayId = dto.Id,
+                Name = dto.Name,
+                SignUpFee = dto.SignUpFee,
+                LapDistanceKilometers = dto.LapDistanceKilometers,
+                PetrolCostPerLap = dto.PetrolCostPerLap,
+                TotalRaces = dto.TotalRaces,
+                RecordLap = dto.RecordLap,
+                RecordHolderName = dto.RecordHolderName,
+                AverageProfit = dto.AverageProfit
             };
-
             RaceDays.Add(model);
         }
 
-        bool hasSelectedRaceDay = SelectedRaceDay != null && RaceDays.Any(r => r.Id == SelectedRaceDay.Id);
+        bool hasSelectedRaceDay = SelectedRaceDay != null && RaceDays.Any(r => r.RaceDayId == SelectedRaceDay.RaceDayId);
         if (SelectedRaceDay == null) SelectedRaceDay = RaceDays.FirstOrDefault();
         else if (SelectedRaceDay != null && !hasSelectedRaceDay) SelectedRaceDay = RaceDays.FirstOrDefault();
     }
