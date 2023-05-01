@@ -61,14 +61,14 @@ public class CreateRaceDayViewModel : DialogViewModelBase
     {
         var race = new RaceDayEntity
         {
-            Guid = new Guid(),
+            Guid = Guid.NewGuid(),
             Name = NewRaceDay.Name,
             SignUpFee = NewRaceDay.SignUpFee.GetValueOrDefault()
         };
 
         var lap = new LapEntity
         {
-            Guid = new Guid(),
+            Guid = Guid.NewGuid(),
             RaceDayGuid = race.Guid,
             LapDistanceKm = NewRaceDay.LapDistance.GetValueOrDefault(),
             PetrolCostPerLap = NewRaceDay.PetrolCostPerLap.GetValueOrDefault()

@@ -69,7 +69,7 @@
                      TextAlignment="Center"
                      materialDesign:HintAssist.Hint="SignUp Fee (£)"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding NewRaceDay.SignUpFee, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                     Text="{Binding NewRaceDay.SignUpFee, UpdateSourceTrigger=LostFocus, ValidatesOnNotifyDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
                      Margin="10" />
 
@@ -79,7 +79,7 @@
                      TextAlignment="Center"
                      materialDesign:HintAssist.Hint="Lap Distance (km)"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding NewRaceDay.LapDistance, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                     Text="{Binding NewRaceDay.LapDistance, UpdateSourceTrigger=LostFocus, ValidatesOnNotifyDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
                      Margin="10" />
 
@@ -89,7 +89,7 @@
                      TextAlignment="Center"
                      materialDesign:HintAssist.Hint="Est. Petrol Cost Per Lap (£)"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding NewRaceDay.PetrolCostPerLap, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                     Text="{Binding NewRaceDay.PetrolCostPerLap, UpdateSourceTrigger=LostFocus, ValidatesOnNotifyDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
                      Margin="10" />
         </Grid>
