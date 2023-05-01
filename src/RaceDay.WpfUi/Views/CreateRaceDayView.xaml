@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:RaceDay.WpfUi.ViewModels"
              xmlns:validation="clr-namespace:RaceDay.WpfUi.ValidationRules"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Width="400"
              mc:Ignorable="d"
              d:Background="{DynamicResource MaterialDesignPaper}"
              d:DesignHeight="300"
@@ -22,7 +23,7 @@
                 <TextBlock Text="New Race Day"
                            Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                            Foreground="{DynamicResource MaterialDesignDarkForeground}"
-                           Margin="5" />
+                           Margin="50 5" />
             </Grid>
         </Grid>
         <!-- #endregion -->
@@ -57,8 +58,9 @@
                      TextAlignment="Center"
                      materialDesign:HintAssist.Hint="Race Day Name"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding NewRaceDay.Name}"
-                     Margin="5" />
+                     Text="{Binding NewRaceDay.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
+                     Margin="10" />
 
             <!-- Fee -->
             <TextBox Grid.Row="1"
@@ -66,19 +68,9 @@
                      TextAlignment="Center"
                      materialDesign:HintAssist.Hint="SignUp Fee (£)"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Margin="5"
-                     Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" >
-                <TextBox.Text>
-                    <Binding Path="NewRaceDay.SignUpFee"
-                             UpdateSourceTrigger="PropertyChanged"
-                             ValidatesOnDataErrors="True" >
-                        <Binding.ValidationRules>
-                            <validation:FloatValidationRule Min="0"
-                                                            PropertyName="SignUp Fee" />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
+                     Text="{Binding NewRaceDay.SignUpFee, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
+                     Margin="10" />
 
             <!-- Lap -->
             <TextBox Grid.Row="2"
@@ -86,8 +78,9 @@
                      TextAlignment="Center"
                      materialDesign:HintAssist.Hint="Lap Distance (km)"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding NewRaceDay.LapDistance}"
-                     Margin="5" />
+                     Text="{Binding NewRaceDay.LapDistance, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
+                     Margin="10" />
 
             <!-- Petrol Cost -->
             <TextBox Grid.Row="3"
@@ -95,8 +88,9 @@
                      TextAlignment="Center"
                      materialDesign:HintAssist.Hint="Est. Petrol Cost Per Lap (£)"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding NewRaceDay.PetrolCostPerLap}"
-                     Margin="5" />
+                     Text="{Binding NewRaceDay.PetrolCostPerLap, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
+                     Margin="10" />
         </Grid>
     </DockPanel>
 

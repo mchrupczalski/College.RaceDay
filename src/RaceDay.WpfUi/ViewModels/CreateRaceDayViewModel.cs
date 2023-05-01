@@ -24,10 +24,7 @@ public class CreateRaceDayViewModel : DialogViewModelBase
         throw new NotImplementedException();
     }
 
-    private bool CanSave(object? arg)
-    {
-        throw new NotImplementedException();
-    }
+    private bool CanSave(object? arg) => !NewRaceDay.HasErrors;
 
     private void Cancel(object? obj)
     {
@@ -35,9 +32,4 @@ public class CreateRaceDayViewModel : DialogViewModelBase
     }
 
     private static bool CanCancel(object? arg) => true;
-
-    public void CreateRaceDay(Guid raceDayGuid)
-    {
-        NewRaceDay = new CreateRaceDayModel();
-    }
 }
