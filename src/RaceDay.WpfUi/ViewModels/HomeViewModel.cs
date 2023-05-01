@@ -44,7 +44,7 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
             if (args.PropertyName != nameof(RaceDaySummaryViewModel.SelectedRaceDay)) return;
             if (raceDaySummaryViewModel.SelectedRaceDay == null) return;
             
-            raceDayRacesViewModel.LoadRaceDayRaces(raceDaySummaryViewModel.SelectedRaceDay.Guid);
+            raceDayRacesViewModel.LoadRaceDayRaces(raceDaySummaryViewModel.SelectedRaceDay.Id);
             raceDayRacesViewModel.UpdateViewTitle(raceDaySummaryViewModel.SelectedRaceDay.Name);
         };
     }

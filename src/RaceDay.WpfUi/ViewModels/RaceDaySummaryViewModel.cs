@@ -47,7 +47,7 @@ public class RaceDaySummaryViewModel : ViewModelBase
     {
         RaceDays.Add(new RaceDaySummaryModel
         {
-            Guid = new Guid(),
+            Id = new Guid(),
             Name = "Test Race Day 1",
             SignUpFee = 300,
             LapDistanceKilometers = 5,
@@ -60,7 +60,7 @@ public class RaceDaySummaryViewModel : ViewModelBase
 
         RaceDays.Add(new RaceDaySummaryModel
         {
-            Guid = new Guid(),
+            Id = new Guid(),
             Name = "Test Race Day 2",
             SignUpFee = 3000,
             LapDistanceKilometers = 15,
@@ -113,7 +113,7 @@ public class RaceDaySummaryViewModel : ViewModelBase
 
             var model = new RaceDaySummaryModel
             {
-                Guid = raceDay.Guid,
+                Id = raceDay.Guid,
                 Name = raceDay.Name,
                 SignUpFee = raceDay.SignUpFee,
                 LapDistanceKilometers = raceDayLap?.LapDistanceKm ?? 0,
@@ -127,7 +127,7 @@ public class RaceDaySummaryViewModel : ViewModelBase
             RaceDays.Add(model);
         }
 
-        bool hasSelectedRaceDay = SelectedRaceDay != null && RaceDays.Any(r => r.Guid == SelectedRaceDay.Guid);
+        bool hasSelectedRaceDay = SelectedRaceDay != null && RaceDays.Any(r => r.Id == SelectedRaceDay.Id);
         if (SelectedRaceDay == null) SelectedRaceDay = RaceDays.FirstOrDefault();
         else if (SelectedRaceDay != null && !hasSelectedRaceDay) SelectedRaceDay = RaceDays.FirstOrDefault();
     }

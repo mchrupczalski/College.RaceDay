@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using RaceDay.Core.Entities;
 using RaceDay.Core.Interfaces;
+using RaceDay.Domain.Entities;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 
@@ -61,7 +62,6 @@ public class CreateRaceDayViewModel : DialogViewModelBase
     {
         var race = new RaceDayEntity
         {
-            Guid = Guid.NewGuid(),
             Name = NewRaceDay.Name,
             SignUpFee = NewRaceDay.SignUpFee.GetValueOrDefault()
         };

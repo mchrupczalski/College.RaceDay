@@ -8,11 +8,24 @@ namespace RaceDay.MemoryDatabase;
 
 public class InMemoryDatabase
 {
+    private readonly string _dataFilePath;
+
     #region Static Fields and Const
 
     public DataSet DataSet { get; } = new();
+    public TableDefinitionBase<RaceDayEntity>? RaceDays { get; private set; }
+    public TableDefinitionBase<RaceEntity>? Races { get; private set; }
+    public TableDefinitionBase<LapEntity>? Laps { get; private set; }
+    public TableDefinitionBase<RaceLapEntity>? RaceLaps { get; private set; }
+    public TableDefinitionBase<RacerEntity>? Racers { get; private set; }
+    public TableDefinitionBase<RaceRacerEntity>? RaceRacers { get; private set; }
 
     #endregion
+
+    public InMemoryDatabase(string dataFilePath)
+    {
+        _dataFilePath = dataFilePath;
+    }
 
     public void Initialize()
     {
@@ -22,12 +35,19 @@ public class InMemoryDatabase
     
     private void CreateDataTables()
     {
-        var lapsTable = new LapsTableDefinition().Table;
-        var raceDaysTable = new RaceDaysTableDefinition().Table;
-        var raceLapsTable = new RaceLapsTableDefinition().Table;
-        var raceRacersTable = new RaceRacersTableDefinition().Table;
-        var racesTable = new RacesTableDefinition().Table;
-        var racersTable = new RacersTableDefinition().Table;
+        Laps = new LapsTableDefinition();
+        RaceDays = new RaceDaysTableDefinition();
+        RaceLaps = new RaceLapsTableDefinition();
+        RaceRacers = new RaceRacersTableDefinition();
+        Races = new RacesTableDefinition();
+        Racers = new RacersTableDefinition();
+        
+        var lapsTable = Laps.Table;
+        var raceDaysTable = RaceDays.Table;
+        var raceLapsTable = RaceLaps.Table;
+        var raceRacersTable = RaceRacers.Table;
+        var racesTable = Races.Table;
+        var racersTable = Racers.Table;
 
         DataSet.Tables.AddRange(new[] { lapsTable, raceDaysTable, raceLapsTable, raceRacersTable, racesTable, racersTable });
     }
@@ -71,6 +91,4 @@ public class InMemoryDatabase
             childTable.Constraints.Add(foreignKeyConstraint);
         }
     }
-
-
 }

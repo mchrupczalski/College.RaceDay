@@ -20,6 +20,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\RaceDay.Core\RaceDay.Core.csproj" />
+      <ProjectReference Include="..\RaceDay.MemoryDatabase\RaceDay.MemoryDatabase.csproj" />
     </ItemGroup>
 
 </Project>

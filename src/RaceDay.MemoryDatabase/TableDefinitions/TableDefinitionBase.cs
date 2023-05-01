@@ -4,7 +4,7 @@ using RaceDay.MemoryDatabase.Enums;
 
 namespace RaceDay.MemoryDatabase.TableDefinitions;
 
-internal abstract class TableDefinitionBase<TEntity>
+public abstract class TableDefinitionBase<TEntity>
     where TEntity : class
 {
     #region Fields
@@ -17,7 +17,7 @@ internal abstract class TableDefinitionBase<TEntity>
 
     #region Properties
 
-    internal DataTable Table
+    public DataTable Table
     {
         get
         {
@@ -61,5 +61,24 @@ internal abstract class TableDefinitionBase<TEntity>
         var column = new DataColumn(propertyName, propertyType);
         column.AllowDBNull = allowNull;
         return column;
+    }
+
+    public IEnumerable<TEntity> GetEntities()
+    {
+        var output = new List<TEntity>();
+        
+        foreach (DataRow row in Table.Rows)
+        {
+            var entity = Activator.CreateInstance<TEntity>();
+            var properties = typeof(TEntity).GetProperties();
+            foreach (var property in properties)
+            {
+                property.SetValue(entity, row[property.Name]);
+            }
+
+            output.Add(entity);
+        }
+        
+        return output;
     }
 }
