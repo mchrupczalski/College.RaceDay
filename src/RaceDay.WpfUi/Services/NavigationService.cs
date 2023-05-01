@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Extensions.DependencyInjection;
 using RaceDay.WpfUi.Infrastructure;
@@ -9,11 +10,11 @@ namespace RaceDay.WpfUi.Services;
 public class NavigationService : ObservableObject
 {
     private readonly IServiceProvider _serviceProvider;
-    private ViewModelBase? _activeViewModel;
+    private INavigableViewModel? _activeViewModel;
     private DialogViewModelBase? _activeDialogViewModel;
 
 
-    public ViewModelBase? ActiveViewModel
+    public INavigableViewModel? ActiveViewModel
     {
         get => _activeViewModel;
         private set => SetField(ref _activeViewModel, value);
@@ -30,16 +31,28 @@ public class NavigationService : ObservableObject
         _serviceProvider = serviceProvider;
     }
     
-    public void NavigateTo<T>() where T : ViewModelBase
+    public void NavigateTo<T>() where T : INavigableViewModel
     {
         var viewModel = _serviceProvider.GetRequiredService<T>();
         ActiveViewModel = viewModel;
+        ActiveViewModel.OnNavigatedTo();
     }
     
     public void DisplayDialog<T>() where T : DialogViewModelBase
     {
         var viewModel = _serviceProvider.GetRequiredService<T>();
         ActiveDialogViewModel = viewModel;
+        viewModel.OpenDialog();
+    }
+    
+    public void DisplayDialog<T>(Action? callOnClose) where T : DialogViewModelBase
+    {
+        var viewModel = _serviceProvider.GetRequiredService<T>();
+        ActiveDialogViewModel = viewModel;
+        viewModel.DialogClosingHandler = (sender, args) =>
+        {
+            callOnClose?.Invoke();
+        };
         viewModel.OpenDialog();
     }
 }

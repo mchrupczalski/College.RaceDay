@@ -5,11 +5,12 @@ using System.Windows;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
 using RaceDay.WpfUi.Infrastructure;
+using RaceDay.WpfUi.Interfaces;
 using RaceDay.WpfUi.Services;
 
 namespace RaceDay.WpfUi.ViewModels;
 
-public class HomeViewModel : ViewModelBase
+public class HomeViewModel : ViewModelBase, INavigableViewModel
 {
     private readonly NavigationService _navigationService;
 
@@ -47,10 +48,17 @@ public class HomeViewModel : ViewModelBase
 
     private void CreateRaceDay(object? obj)
     {
-        _navigationService.DisplayDialog<CreateRaceDayViewModel>();
+        _navigationService.DisplayDialog<CreateRaceDayViewModel>(RaceDaySummaryViewModel.LoadData);
     }
 
     private static bool CanCreateRaceDay(object? arg) => true;
+
+    #endregion
+
+    #region Implementation of INavigableViewModel
+
+    /// <inheritdoc />
+    public void OnNavigatedTo() => RaceDaySummaryViewModel.LoadData();
 
     #endregion
 }

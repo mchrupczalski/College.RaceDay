@@ -31,6 +31,7 @@
                                    Grid.ColumnSpan="3"
                                    CloseOnClickAway="True"
                                    DialogContent="{Binding NavigationService.ActiveDialogViewModel}"
+                                   DialogClosingCallback="{Binding NavigationService.ActiveDialogViewModel.DialogClosingHandler}"
                                    DialogTheme="Inherit"
                                    OverlayBackground="{DynamicResource MaterialDesignDarkBackground}"
                                    IsOpen="{Binding NavigationService.ActiveDialogViewModel.DialogHostIsOpen, FallbackValue=False}" >

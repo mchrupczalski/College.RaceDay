@@ -1,39 +1,83 @@
 ﻿using System;
 using System.Windows.Input;
-using MaterialDesignThemes.Wpf;
+using RaceDay.Core.Entities;
+using RaceDay.Core.Interfaces;
 using RaceDay.WpfUi.Infrastructure;
-using RaceDay.WpfUi.Interfaces;
 using RaceDay.WpfUi.Models;
 
 namespace RaceDay.WpfUi.ViewModels;
 
 public class CreateRaceDayViewModel : DialogViewModelBase
 {
-    public CreateRaceDayModel NewRaceDay { get; set; } = new();
-    public ICommand CancelCommand { get;  }
-    public ICommand SaveCommand { get;  }
+    #region Fields
 
-    public CreateRaceDayViewModel()
+    private readonly IRepository<LapEntity> _lapRepository;
+    private readonly IRepository<RaceDayEntity> _raceDayRepository;
+    private CreateRaceDayModel _newRaceDay = new();
+
+    #endregion
+
+    #region Properties
+
+    public CreateRaceDayModel NewRaceDay
     {
-        CancelCommand = new RelayCommand(Cancel, CanCancel);
-        SaveCommand = new RelayCommand(Save, CanSave);
+        get => _newRaceDay;
+        private set => SetField(ref _newRaceDay, value);
     }
 
-    #region Overrides of DialogViewModelBase
+    public ICommand CancelCommand { get; }
+    public ICommand SaveCommand { get; }
+
+    #endregion
+
+    #region Constructors
+
+    public CreateRaceDayViewModel(IRepository<RaceDayEntity> raceDayRepository, IRepository<LapEntity> lapRepository)
+    {
+        _raceDayRepository = raceDayRepository;
+        _lapRepository = lapRepository;
+
+        CancelCommand = new RelayCommand(Cancel, CanCancel);
+        SaveCommand = new RelayCommand(Save,     CanSave);
+    }
+
+    #endregion
+
+    #region Overrides
 
     /// <inheritdoc />
     public override void OpenDialog()
     {
         base.OpenDialog();
-        NewRaceDay = new CreateRaceDayModel();
-        NewRaceDay.ForceInitialErrorState = true;
+        NewRaceDay = new CreateRaceDayModel
+        {
+            ForceInitialErrorState = true
+        };
     }
 
     #endregion
 
     private void Save(object? obj)
     {
-        throw new NotImplementedException();
+        var race = new RaceDayEntity
+        {
+            Guid = new Guid(),
+            Name = NewRaceDay.Name,
+            SignUpFee = NewRaceDay.SignUpFee.GetValueOrDefault()
+        };
+
+        var lap = new LapEntity
+        {
+            Guid = new Guid(),
+            RaceDayGuid = race.Guid,
+            LapDistanceKm = NewRaceDay.LapDistance.GetValueOrDefault(),
+            PetrolCostPerLap = NewRaceDay.PetrolCostPerLap.GetValueOrDefault()
+        };
+
+        _raceDayRepository.Create(race);
+        _lapRepository.Create(lap);
+
+        CloseDialog();
     }
 
     private bool CanSave(object? arg) => NewRaceDay is { HasErrors: false, HasAllRequiredData: true };
