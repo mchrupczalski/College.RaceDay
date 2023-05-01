@@ -7,6 +7,7 @@
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <converters:InverseEqualityToVisibilityConverter x:Key="InverseEqualityToVisibilityConverter" />
 
             <ResourceDictionary.MergedDictionaries>
 

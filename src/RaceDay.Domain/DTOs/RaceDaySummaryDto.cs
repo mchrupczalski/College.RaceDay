@@ -1,22 +1,14 @@
-﻿using System;
-using RaceDay.WpfUi.Infrastructure;
+﻿namespace RaceDay.Domain.DTOs;
 
-namespace RaceDay.WpfUi.Models;
-
-public record RaceDaySummaryModel
+public record RaceDaySummaryDto
 {
-    #region Properties
-
-    public int RaceDayId { get; init; }
+    public int Id { get; init; }
     public string? Name { get; init; }
     public float SignUpFee { get; init; }
     public float LapDistanceKilometers { get; init; }
-    public float LapDistanceMiles => LapDistanceKilometers * 0.621371f;
     public float PetrolCostPerLap { get; init; }
     public int TotalRaces { get; init; }
     public TimeSpan? RecordLap { get; init; }
     public string? RecordHolderName { get; init; }
     public float AverageProfit { get; init; }
-
-    #endregion
 }

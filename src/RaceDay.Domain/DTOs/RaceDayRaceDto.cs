@@ -1,9 +1,9 @@
-﻿using System;
+﻿namespace RaceDay.Domain.DTOs;
 
-namespace RaceDay.WpfUi.Models;
-
-public class RaceDayRaceModel
+public record RaceDayRaceDto
 {
+    #region Properties
+
     public int RaceDayId { get; init; }
     public int RaceNumber { get; init; }
     public DateTime RaceDate { get; init; }
@@ -14,4 +14,6 @@ public class RaceDayRaceModel
     public float TotalIncome { get; init; }
     public float TotalExpenses { get; init; }
     public float TotalProfit { get; init; }
+
+    #endregion
 }
