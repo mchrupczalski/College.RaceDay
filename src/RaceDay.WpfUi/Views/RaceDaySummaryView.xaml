@@ -42,18 +42,30 @@
                   IsReadOnly="True"
                   SelectionMode="Single"
                   SelectionUnit="FullRow"
+                  SelectedItem="{Binding SelectedRaceDay}"
                   Style="{DynamicResource MaterialDesignDataGrid}" >
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" x:Key="DataGridTextColumnCenterStyle" TargetType="DataGridCell">
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+                <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" x:Key="DataGridTextColumnLeftStyle" TargetType="DataGridCell">
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Race Name"
                                     DisplayIndex="0"
-                                    Binding="{Binding Name}" />
+                                    Binding="{Binding Name}"
+                                    CellStyle="{StaticResource DataGridTextColumnLeftStyle}"/>
 
                 <DataGridTextColumn Header="SignUp Fee"
                                     DisplayIndex="1"
-                                    Binding="{Binding SignUpFee, StringFormat={}£{0:N2}}" />
+                                    Binding="{Binding SignUpFee, StringFormat={}£{0:N2}}" 
+                                    CellStyle="{StaticResource DataGridTextColumnCenterStyle}"/>
 
                 <DataGridTemplateColumn Header="Lap Distance"
-                                        DisplayIndex="2" >
+                                        DisplayIndex="2" 
+                                        CellStyle="{StaticResource DataGridTextColumnCenterStyle}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -92,12 +104,13 @@
 
                 <DataGridTextColumn Header="Est. Petrol Cost / Lap"
                                     DisplayIndex="3"
-                                    Binding="{Binding PetrolCostPerLap, StringFormat={}£{0:N2}}" />
+                                    Binding="{Binding PetrolCostPerLap, StringFormat={}£{0:N2}}" 
+                                    CellStyle="{StaticResource DataGridTextColumnCenterStyle}"/>
                 
-                <DataGridTextColumn Header="Total Races" DisplayIndex="4" Binding="{Binding TotalRaces}"/>
-                <DataGridTextColumn Header="Lap Record" DisplayIndex="5" Binding="{Binding RecordLap}"/>
-                <DataGridTextColumn Header="Record Holder" DisplayIndex="6" Binding="{Binding RecordHolderName}"/>
-                <DataGridTextColumn Header="Avg. Profit" DisplayIndex="7" Binding="{Binding AverageProfit, StringFormat={}£{0:N2}}"/>
+                <DataGridTextColumn Header="Total Races" DisplayIndex="4" Binding="{Binding TotalRaces}" CellStyle="{StaticResource DataGridTextColumnCenterStyle}"/>
+                <DataGridTextColumn Header="Lap Record" DisplayIndex="5" Binding="{Binding RecordLap}" CellStyle="{StaticResource DataGridTextColumnCenterStyle}"/>
+                <DataGridTextColumn Header="Record Holder" DisplayIndex="6" Binding="{Binding RecordHolderName}" CellStyle="{StaticResource DataGridTextColumnCenterStyle}"/>
+                <DataGridTextColumn Header="Avg. Profit" DisplayIndex="7" Binding="{Binding AverageProfit, StringFormat={}£{0:N2}}" CellStyle="{StaticResource DataGridTextColumnCenterStyle}"/>
             </DataGrid.Columns>
         </DataGrid>
         <!-- #endregion -->

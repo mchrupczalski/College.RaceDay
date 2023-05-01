@@ -111,4 +111,6 @@ public class RaceDayRacesViewModel : ViewModelBase
             });
         }
     }
+
+    public void UpdateViewTitle(string? title) => ViewTitle = $"{title} - Races";
 }
