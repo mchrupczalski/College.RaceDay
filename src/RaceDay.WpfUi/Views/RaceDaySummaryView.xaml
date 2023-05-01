@@ -39,6 +39,9 @@
                   ItemsSource="{Binding RaceDays}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
                   Style="{DynamicResource MaterialDesignDataGrid}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Race Name"

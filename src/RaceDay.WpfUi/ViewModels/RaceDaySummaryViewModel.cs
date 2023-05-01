@@ -17,14 +17,26 @@ public class RaceDaySummaryViewModel : ViewModelBase
     private readonly IRepository<RaceLapEntity> _raceLapRepo;
     private readonly IRepository<RaceEntity> _raceRepo;
     private readonly IRepository<RacerEntity> _racerRepo;
+    private bool _displayAsKilometers = true;
+    private RaceDaySummaryModel? _selectedRaceDay;
 
     #endregion
 
     #region Properties
 
-    public bool DisplayAsKilometers { get; set; } = true;
+    public bool DisplayAsKilometers
+    {
+        get => _displayAsKilometers;
+        set => SetField(ref _displayAsKilometers, value);
+    }
+
     public ObservableCollection<RaceDaySummaryModel> RaceDays { get; } = new();
-    public RaceDaySummaryModel? SelectedRaceDay { get; set; }
+
+    public RaceDaySummaryModel? SelectedRaceDay
+    {
+        get => _selectedRaceDay;
+        set => SetField(ref _selectedRaceDay, value);
+    }
 
     #endregion
 

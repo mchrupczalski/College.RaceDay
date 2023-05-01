@@ -53,6 +53,7 @@ public class NavigationService : ObservableObject
         {
             callOnClose?.Invoke();
         };
+        
         viewModel.OpenDialog();
     }
 }
