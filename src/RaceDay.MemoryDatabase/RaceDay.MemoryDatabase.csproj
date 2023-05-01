@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\RaceDay.Domain\RaceDay.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
