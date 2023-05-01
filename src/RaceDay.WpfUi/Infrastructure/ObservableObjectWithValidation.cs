@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace RaceDay.WpfUi.Infrastructure;
 
-public class ObservableObjectWithValidation : ObservableObject, INotifyDataErrorInfo
+public abstract class ObservableObjectWithValidation : ObservableObject, INotifyDataErrorInfo
 {
     #region Fields
 
@@ -19,7 +19,14 @@ public class ObservableObjectWithValidation : ObservableObject, INotifyDataError
     #region Properties
 
     /// <inheritdoc />
-    public bool HasErrors => _errors.Any();
+    public bool HasErrors => _errors.Any() || ForceInitialErrorState;
+    
+    /// <summary>
+    ///     This property is used to force the initial error state of the object, before any property has been set.
+    ///     This is useful for when you want to show the error state of the object before the user has interacted with it.
+    ///     For example, when a dialog is opened, you may want to force the error state to set the CanExecute state of a command. 
+    /// </summary>
+    public bool ForceInitialErrorState { get; set; } = false;
 
     #endregion
 
@@ -52,6 +59,8 @@ public class ObservableObjectWithValidation : ObservableObject, INotifyDataError
     private void Validate(object? val, [CallerMemberName] string? propertyName = null)
     {
         if (propertyName != null && _errors.ContainsKey(propertyName)) _errors.Remove(propertyName);
+        
+        ForceInitialErrorState = false;
 
         var context = new ValidationContext(this) { MemberName = propertyName };
         List<ValidationResult> results = new();

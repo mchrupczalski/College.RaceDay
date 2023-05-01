@@ -19,16 +19,28 @@ public class CreateRaceDayViewModel : DialogViewModelBase
         SaveCommand = new RelayCommand(Save, CanSave);
     }
 
+    #region Overrides of DialogViewModelBase
+
+    /// <inheritdoc />
+    public override void OpenDialog()
+    {
+        base.OpenDialog();
+        NewRaceDay = new CreateRaceDayModel();
+        NewRaceDay.ForceInitialErrorState = true;
+    }
+
+    #endregion
+
     private void Save(object? obj)
     {
         throw new NotImplementedException();
     }
 
-    private bool CanSave(object? arg) => !NewRaceDay.HasErrors;
+    private bool CanSave(object? arg) => NewRaceDay is { HasErrors: false, HasAllRequiredData: true };
 
     private void Cancel(object? obj)
     {
-        DialogHostIsOpen = false;
+        CloseDialog();
     }
 
     private static bool CanCancel(object? arg) => true;

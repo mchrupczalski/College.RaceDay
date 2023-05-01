@@ -14,8 +14,13 @@ public abstract class DialogViewModelBase : ObservableObject
         set => SetField(ref _dialogHostIsOpen, value);
     }
     
-    public void OpenDialog()
+    public virtual void OpenDialog()
     {
         DialogHostIsOpen = true;
+    }
+    
+    public virtual void CloseDialog()
+    {
+        DialogHostIsOpen = false;
     }
 }

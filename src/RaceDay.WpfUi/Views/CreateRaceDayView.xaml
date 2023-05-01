@@ -34,7 +34,8 @@
                     DockPanel.Dock="Bottom" >
             <Button Content="Create"
                     Style="{StaticResource MaterialDesignFlatMidBgButton}"
-                    Margin="10" />
+                    Margin="10" 
+                    Command="{Binding SaveCommand}"/>
             <Button Content="Cancel"
                     Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
                     Margin="10"

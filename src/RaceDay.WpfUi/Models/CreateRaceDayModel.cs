@@ -45,4 +45,6 @@ public class CreateRaceDayModel : ObservableObjectWithValidation
         get => _petrolCostPerLap;
         set => SetField(ref _petrolCostPerLap, value);
     }
+
+    public bool HasAllRequiredData => !string.IsNullOrEmpty(Name) && SignUpFee.HasValue && LapDistance.HasValue && PetrolCostPerLap.HasValue;
 }
