@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
 using RaceDay.Domain.DTOs;
-using RaceDay.Domain.Entities;
 using RaceDay.MemoryDatabase.Commands;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
@@ -13,12 +12,25 @@ public class CreateRaceDayViewModel : DialogViewModelBase
     #region Fields
 
     private readonly CreateRaceDayCommand _createRaceDayCommand;
+    private string _errorMessage = string.Empty;
 
     private CreateRaceDayModel _newRaceDay = new();
 
     #endregion
 
     #region Properties
+
+    public string ErrorMessage
+    {
+        get => _errorMessage;
+        private set
+        {
+            SetField(ref _errorMessage, value);
+            OnPropertyChanged(nameof(DisplayError));
+        }
+    }
+
+    public bool DisplayError => !string.IsNullOrEmpty(ErrorMessage);
 
     public CreateRaceDayModel NewRaceDay
     {
@@ -33,6 +45,14 @@ public class CreateRaceDayViewModel : DialogViewModelBase
 
     #region Constructors
 
+#pragma warning disable CS8618
+    [Obsolete("Design time only", true)]
+    public CreateRaceDayViewModel()
+
+    {
+    }
+#pragma warning restore CS8618
+    
     public CreateRaceDayViewModel(CreateRaceDayCommand createRaceDayCommand)
     {
         _createRaceDayCommand = createRaceDayCommand;
@@ -59,7 +79,7 @@ public class CreateRaceDayViewModel : DialogViewModelBase
 
     private void Save(object? obj)
     {
-        var dto = new RaceDayDto()
+        var dto = new RaceDayDto
         {
             Id = 0,
             Name = NewRaceDay.Name,
@@ -70,11 +90,13 @@ public class CreateRaceDayViewModel : DialogViewModelBase
 
         try
         {
+            ErrorMessage = string.Empty;
             _createRaceDayCommand.Create(dto);
             CloseDialog();
         }
         catch (Exception e)
         {
+            ErrorMessage = e.Message;
         }
     }
 
