@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceDay.Core", "src\RaceDay
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceDay.WpfUi", "src\RaceDay.WpfUi\RaceDay.WpfUi.csproj", "{5DAD148E-3460-4867-A584-E7FF6469EACE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceDay.MemoryDatabase", "src\RaceDay.MemoryDatabase\RaceDay.MemoryDatabase.csproj", "{C33A4461-80A8-4A28-BBA8-7B9847616196}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BAB9AADA-0440-4BE1-970C-EDB62F7C60CD} = {B7659B5A-3F63-4BB6-89EB-CD135612AEA7}
 		{5DAD148E-3460-4867-A584-E7FF6469EACE} = {B7659B5A-3F63-4BB6-89EB-CD135612AEA7}
+		{C33A4461-80A8-4A28-BBA8-7B9847616196} = {B7659B5A-3F63-4BB6-89EB-CD135612AEA7}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BAB9AADA-0440-4BE1-970C-EDB62F7C60CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +33,9 @@ Global
 		{5DAD148E-3460-4867-A584-E7FF6469EACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DAD148E-3460-4867-A584-E7FF6469EACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DAD148E-3460-4867-A584-E7FF6469EACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C33A4461-80A8-4A28-BBA8-7B9847616196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C33A4461-80A8-4A28-BBA8-7B9847616196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C33A4461-80A8-4A28-BBA8-7B9847616196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C33A4461-80A8-4A28-BBA8-7B9847616196}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
