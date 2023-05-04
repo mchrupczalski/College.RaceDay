@@ -29,12 +29,10 @@
         <materialDesign:DialogHost Grid.Row="1"
                                    Grid.Column="0"
                                    Grid.ColumnSpan="3"
+                                   Identifier="{Binding DialogService.DialogHostIdentifier}"
                                    CloseOnClickAway="True"
-                                   DialogContent="{Binding NavigationService.ActiveDialogViewModel}"
-                                   DialogClosingCallback="{Binding NavigationService.ActiveDialogViewModel.DialogClosingHandler}"
                                    DialogTheme="Inherit"
-                                   OverlayBackground="{DynamicResource MaterialDesignDarkBackground}"
-                                   IsOpen="{Binding NavigationService.ActiveDialogViewModel.DialogHostIsOpen, FallbackValue=False}" >
+                                   OverlayBackground="{DynamicResource MaterialDesignDarkBackground}" >
             <ContentControl Content="{Binding  NavigationService.ActiveViewModel}" />
         </materialDesign:DialogHost>
     </Grid>

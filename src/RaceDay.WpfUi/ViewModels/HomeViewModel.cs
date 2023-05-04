@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using RaceDay.MemoryDatabase.Commands;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Interfaces;
+using RaceDay.WpfUi.Models;
 using RaceDay.WpfUi.Services;
 
 namespace RaceDay.WpfUi.ViewModels;
@@ -11,6 +15,7 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
     #region Fields
 
     private readonly NavigationService _navigationService;
+    private readonly DialogService _dialogService;
 
     #endregion
 
@@ -19,7 +24,8 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
     public RaceDaySummaryViewModel RaceDaySummaryViewModel { get; }
     public RaceDayRacesViewModel RaceDayRacesViewModel { get; }
 
-    public ICommand CreateNewRaceDayCommand { get; set; }
+    public ICommand CreateNewRaceDayCommand { get; }
+    public ICommand StartNewRaceCommand { get; }
 
     #endregion
 
@@ -33,13 +39,15 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
     }
 #pragma warning restore CS8618
 
-    public HomeViewModel(RaceDaySummaryViewModel raceDaySummaryViewModel, RaceDayRacesViewModel raceDayRacesViewModel, NavigationService navigationService)
+    public HomeViewModel(RaceDaySummaryViewModel raceDaySummaryViewModel, RaceDayRacesViewModel raceDayRacesViewModel, NavigationService navigationService, DialogService dialogService)
     {
         _navigationService = navigationService;
+        _dialogService = dialogService;
         RaceDaySummaryViewModel = raceDaySummaryViewModel;
         RaceDayRacesViewModel = raceDayRacesViewModel;
 
         CreateNewRaceDayCommand = new RelayCommand(CreateRaceDay, CanCreateRaceDay);
+        StartNewRaceCommand = new RelayCommand(StartRaceDay, CanStartRaceDay);
 
         raceDaySummaryViewModel.PropertyChanged += (sender, args) =>
         {
@@ -49,6 +57,21 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
             raceDayRacesViewModel.LoadRaceDayRaces(raceDaySummaryViewModel.SelectedRaceDay.RaceDayId);
             raceDayRacesViewModel.UpdateViewTitle(raceDaySummaryViewModel.SelectedRaceDay.Name);
         };
+    }
+
+    private bool CanStartRaceDay(object? arg) => RaceDaySummaryViewModel.SelectedRaceDay != null;
+
+    private async void StartRaceDay(object? obj)
+    {
+        var newRaceModel = new NewRaceDayRaceModel()
+        {
+            RaceDayId = RaceDaySummaryViewModel.SelectedRaceDay!.RaceDayId,
+            RaceDayName = RaceDaySummaryViewModel.SelectedRaceDay!.Name,
+            RaceDate = DateTime.Today
+        };
+
+        var race = await _dialogService.DisplayDialogAsync<NewRaceViewModel, NewRaceDayRaceModel, RaceModel>(newRaceModel);
+        Debug.WriteLine(race);
     }
 
     #endregion

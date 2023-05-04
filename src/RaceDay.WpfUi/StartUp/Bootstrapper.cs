@@ -22,13 +22,15 @@ public class Bootstrapper
 
                             /* Services */
                             services.AddSingleton<NavigationService>();
+                            services.AddSingleton<DialogService>();
 
                             /* ViewModels */
                             services.AddSingleton<HomeViewModel>(s => new HomeViewModel(s.GetRequiredService<RaceDaySummaryViewModel>(),
-                                                                                        s.GetRequiredService<RaceDayRacesViewModel>(), s.GetRequiredService<NavigationService>()));
+                                                                                        s.GetRequiredService<RaceDayRacesViewModel>(), s.GetRequiredService<NavigationService>(), s.GetRequiredService<DialogService>()));
                             services.AddSingleton<RaceDaySummaryViewModel>(s => new RaceDaySummaryViewModel(s.GetRequiredService<RaceDaySummaryQuery>()));
                             services.AddSingleton<RaceDayRacesViewModel>(s => new RaceDayRacesViewModel(s.GetRequiredService<RaceDayRacesQuery>()));
                             services.AddSingleton<CreateRaceDayViewModel>();
+                            services.AddSingleton<NewRaceViewModel>();
 
                             /* In Memory Database */
                             string filesRoot = AppDomain.CurrentDomain.BaseDirectory;
@@ -45,6 +47,7 @@ public class Bootstrapper
 
                             /* Commands */
                             services.AddSingleton<CreateRaceDayCommand>();
+                            services.AddSingleton<CreateRaceDayRaceCommand>();
                         })
                        .Build();
 

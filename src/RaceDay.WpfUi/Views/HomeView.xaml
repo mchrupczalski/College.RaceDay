@@ -22,14 +22,11 @@
                     Style="{DynamicResource MaterialDesignRaisedLightButton}"
                     Margin="10 0" 
                     Command="{Binding CreateNewRaceDayCommand}"/>
-            <Button Content="Start Selected"
+            <Button Content="Start New Race For Selected Race Day"
                     Style="{DynamicResource MaterialDesignRaisedSecondaryLightButton}"
                     IsEnabled="True"
                     Margin="10 0" 
-                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
-                <Button.CommandParameter>
-                    <Binding Path="CreateRaceDayViewModel"></Binding>
-                </Button.CommandParameter>
+                    Command="{Binding StartNewRaceCommand}">
             </Button>
         </StackPanel>
         <!-- #endregion -->

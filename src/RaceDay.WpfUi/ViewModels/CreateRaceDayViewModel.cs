@@ -12,7 +12,7 @@ public class CreateRaceDayViewModel : DialogViewModelBase
     #region Fields
 
     private readonly CreateRaceDayCommand _createRaceDayCommand;
-    private string _errorMessage = string.Empty;
+    
 
     private CreateRaceDayModel _newRaceDay = new();
 
@@ -20,17 +20,7 @@ public class CreateRaceDayViewModel : DialogViewModelBase
 
     #region Properties
 
-    public string ErrorMessage
-    {
-        get => _errorMessage;
-        private set
-        {
-            SetField(ref _errorMessage, value);
-            OnPropertyChanged(nameof(DisplayError));
-        }
-    }
 
-    public bool DisplayError => !string.IsNullOrEmpty(ErrorMessage);
 
     public CreateRaceDayModel NewRaceDay
     {
@@ -66,9 +56,9 @@ public class CreateRaceDayViewModel : DialogViewModelBase
     #region Overrides
 
     /// <inheritdoc />
-    public override void OpenDialog()
+    public void OpenDialog()
     {
-        base.OpenDialog();
+        base.OpenDialog("ss");
         NewRaceDay = new CreateRaceDayModel
         {
             ForceInitialErrorState = true
