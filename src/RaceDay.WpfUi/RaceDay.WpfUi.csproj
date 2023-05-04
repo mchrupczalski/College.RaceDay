@@ -23,4 +23,43 @@
       <ProjectReference Include="..\RaceDay.MemoryDatabase\RaceDay.MemoryDatabase.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Resources\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\counter-100.png" />
+      <Resource Include="Resources\counter-100.png" />
+      <None Remove="Resources\finish-flag-100.png" />
+      <Resource Include="Resources\finish-flag-100.png" />
+      <None Remove="Resources\go-100.png" />
+      <Resource Include="Resources\go-100.png" />
+      <None Remove="Resources\medal-first-place-80.png" />
+      <Resource Include="Resources\medal-first-place-80.png" />
+      <None Remove="Resources\medal-second-place-80.png" />
+      <Resource Include="Resources\medal-second-place-80.png" />
+      <None Remove="Resources\medal-third-place-80.png" />
+      <Resource Include="Resources\medal-third-place-80.png" />
+      <None Remove="Resources\motorbike-helmet-100.png" />
+      <Resource Include="Resources\motorbike-helmet-100.png" />
+      <None Remove="Resources\speed-100.png" />
+      <Resource Include="Resources\speed-100.png" />
+      <None Remove="Resources\stopwatch-100.png" />
+      <Resource Include="Resources\stopwatch-100.png" />
+      <None Remove="Resources\time-100.png" />
+      <Resource Include="Resources\time-100.png" />
+      <None Remove="Resources\timer-100.png" />
+      <Resource Include="Resources\timer-100.png" />
+      <None Remove="Resources\trophy-96.png" />
+      <Resource Include="Resources\trophy-96.png" />
+      <None Remove="Resources\down-button-80.png" />
+      <Resource Include="Resources\down-button-80.png" />
+      <None Remove="Resources\slide-up-80.png" />
+      <Resource Include="Resources\slide-up-80.png" />
+      <None Remove="Resources\trash-can.gif" />
+      <Resource Include="Resources\trash-can.gif" />
+      <None Remove="Resources\trash-can-80.png" />
+      <Resource Include="Resources\trash-can-80.png" />
+    </ItemGroup>
+
 </Project>
