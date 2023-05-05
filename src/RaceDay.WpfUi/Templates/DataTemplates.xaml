@@ -10,8 +10,8 @@
         <v:RaceDaySummaryView />
     </DataTemplate>
     
-    <DataTemplate DataType="{x:Type vm:RaceDayRacesViewModel}" >
-        <v:RaceDayRacesView />
+    <DataTemplate DataType="{x:Type vm:RacesSummaryViewModel}" >
+        <v:RacesSummaryView />
     </DataTemplate>
     
     <DataTemplate DataType="{x:Type vm:NewRaceDayViewModel}" >

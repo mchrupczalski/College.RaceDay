@@ -22,7 +22,7 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
     #region Properties
 
     public RaceDaySummaryViewModel RaceDaySummaryViewModel { get; }
-    public RaceDayRacesViewModel RaceDayRacesViewModel { get; }
+    public RacesSummaryViewModel RaceDayRacesViewModel { get; }
 
     public ICommand CreateNewRaceDayCommand { get; }
     public ICommand StartNewRaceCommand { get; }
@@ -39,7 +39,7 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
     }
 #pragma warning restore CS8618
 
-    public HomeViewModel(RaceDaySummaryViewModel raceDaySummaryViewModel, RaceDayRacesViewModel raceDayRacesViewModel, NavigationService navigationService, DialogService dialogService)
+    public HomeViewModel(RaceDaySummaryViewModel raceDaySummaryViewModel, RacesSummaryViewModel raceDayRacesViewModel, NavigationService navigationService, DialogService dialogService)
     {
         _navigationService = navigationService;
         _dialogService = dialogService;

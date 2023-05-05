@@ -27,9 +27,9 @@ public class Bootstrapper
 
                             /* ViewModels */
                             services.AddSingleton<HomeViewModel>(s => new HomeViewModel(s.GetRequiredService<RaceDaySummaryViewModel>(),
-                                                                                        s.GetRequiredService<RaceDayRacesViewModel>(), s.GetRequiredService<NavigationService>(), s.GetRequiredService<DialogService>()));
+                                                                                        s.GetRequiredService<RacesSummaryViewModel>(), s.GetRequiredService<NavigationService>(), s.GetRequiredService<DialogService>()));
                             services.AddSingleton<RaceDaySummaryViewModel>(s => new RaceDaySummaryViewModel(s.GetRequiredService<DaySummaryQuery>()));
-                            services.AddSingleton<RaceDayRacesViewModel>(s => new RaceDayRacesViewModel(s.GetRequiredService<RaceSummaryQuery>()));
+                            services.AddSingleton<RacesSummaryViewModel>();
                             services.AddSingleton<NewRaceDayViewModel>();
                             services.AddSingleton<NewRaceViewModel>();
 

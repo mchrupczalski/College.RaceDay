@@ -2,9 +2,9 @@
 
 namespace RaceDay.WpfUi.Views;
 
-public partial class RaceDayRacesView : UserControl
+public partial class RacesSummaryView : UserControl
 {
-    public RaceDayRacesView()
+    public RacesSummaryView()
     {
         InitializeComponent();
     }
