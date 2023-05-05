@@ -12,7 +12,7 @@ public class CreateRaceDayCommand : CommandQueryBase
     {
     }
 
-    public void Create(RaceDayDto dto)
+    public RaceDaySummaryDto Execute(NewRaceDayDto dto)
     {
         var existingRaceDay = Database.RaceDays?.GetEntities().FirstOrDefault(x => x.Name == dto.Name);
         if (existingRaceDay != null) throw new RecordExistException($"Race Day with name '{dto.Name}' already exists.");

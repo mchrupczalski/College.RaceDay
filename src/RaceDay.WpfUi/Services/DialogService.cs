@@ -52,11 +52,12 @@ public class DialogService : ObservableObject
         where TViewModel : DialogViewModelBase<TModel, TResult>
     {
         var viewModel = _serviceProvider.GetRequiredService<TViewModel>();
+        viewModel.Model = model;
 
         ActiveDialogViewModel = viewModel;
+        ActiveDialogViewModel.DialogHostIsOpen = true;
         ActiveDialogViewModel.PropertyChanged += DialogStateChanged;
-        ActiveDialogViewModel.OpenDialog(DialogHostIdentifier);
-        
+
         object? result = null;
 
         if (viewModel.DialogClosingHandler != null)

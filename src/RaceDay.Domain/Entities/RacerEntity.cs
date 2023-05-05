@@ -1,10 +1,8 @@
 ﻿namespace RaceDay.Domain.Entities;
 
-public record RacerEntity
+public record RacerEntity : EntityBase
 {
     #region Properties
-
-    public int Id { get; init; }
     public string? Name { get; init; }
     public byte Age { get; init; }
 

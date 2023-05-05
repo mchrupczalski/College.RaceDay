@@ -11,7 +11,7 @@ public class RaceDayRacesQuery : CommandQueryBase
     {
     }
 
-    public IEnumerable<RaceDayRaceDto> GetAll(int raceDayId)
+    public IEnumerable<RaceSummaryDto> GetAll(int raceDayId)
     {
         var raceDay = Database.RaceDays?.GetEntities()
                               .FirstOrDefault(rd => rd.Id == raceDayId) ?? throw new ArgumentNullException(nameof(raceDayId), "Race Day not found");
@@ -36,7 +36,7 @@ public class RaceDayRacesQuery : CommandQueryBase
                 let totalIncome = raceDay.SignUpFee * uniqueRacersCount
                 let totalExpense = raceDay.PetrolCostPerLap * raceLaps.Length
                 let totalProfit = totalIncome - totalExpense
-                select new RaceDayRaceDto()
+                select new RaceSummaryDto()
                 {
                     RaceDayId = raceDayId,
                     RaceNumber = race.RaceNumber,
@@ -50,4 +50,6 @@ public class RaceDayRacesQuery : CommandQueryBase
                     TotalProfit = totalProfit
                 }).ToList();
     }
+    
+    public RaceDto
 }

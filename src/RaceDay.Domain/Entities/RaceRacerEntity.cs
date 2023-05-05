@@ -1,6 +1,6 @@
 ﻿namespace RaceDay.Domain.Entities;
 
-public record RaceRacerEntity
+public record RaceRacerEntity : EntityBase
 {
     public int RaceDayId { get; init; }
     public int RaceNumber { get; init; }

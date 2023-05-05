@@ -23,7 +23,7 @@ public class RaceViewModel : ViewModelBase
             RaceProfit = 100.00f,
         };
         
-        RaceModel.Racers.Add(new RaceRacerModel()
+        RaceModel.Racers.Add(new RacerModel()
         {
             RaceDayId = 1,
             RaceNumber = 1,
@@ -31,7 +31,7 @@ public class RaceViewModel : ViewModelBase
             RacerName = "Racer Name 01",
         });
         
-        RaceModel.Racers.Add(new RaceRacerModel()
+        RaceModel.Racers.Add(new RacerModel()
         {
             RaceDayId = 1,
             RaceNumber = 1,

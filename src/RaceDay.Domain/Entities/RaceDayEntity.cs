@@ -1,10 +1,9 @@
 ﻿namespace RaceDay.Domain.Entities;
 
-public record RaceDayEntity
+public record RaceDayEntity : EntityBase
 {
     #region Properties
-
-    public int Id { get; init; }
+    
     public string? Name { get; init; }
     public float SignUpFee { get; init; }
 

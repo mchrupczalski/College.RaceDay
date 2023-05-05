@@ -1,12 +1,13 @@
 ﻿using System.Data;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using RaceDay.Domain.Entities;
 using RaceDay.MemoryDatabase.Enums;
 
 namespace RaceDay.MemoryDatabase.TableDefinitions;
 
 public abstract class TableDefinitionBase<TEntity>
-    where TEntity : class
+    where TEntity : EntityBase
 {
     #region Fields
 
@@ -94,7 +95,7 @@ public abstract class TableDefinitionBase<TEntity>
         return output;
     }
 
-    public void AddEntity(TEntity entity)
+    public TEntity AddEntity(TEntity entity)
     {
         var row = Table.NewRow();
         var properties = typeof(TEntity).GetProperties();
@@ -108,6 +109,8 @@ public abstract class TableDefinitionBase<TEntity>
 
         Table.Rows.Add(row);
         SaveDataToFile();
+        
+        
     }
 
     public void LoadDataFromFile()
@@ -131,5 +134,19 @@ public abstract class TableDefinitionBase<TEntity>
            .ToArray();
         string json = JsonConvert.SerializeObject(entities, Formatting.Indented);
         File.WriteAllText(filePath, json);
+    }
+
+    public TEntity GetById(int id)
+    {
+        var row = Table.Columns[nameof(EntityBase.Id)]?.Table?.Rows.Find(id);
+        if (row == null) throw new InvalidOperationException("Row not found.");
+        var entity = Activator.CreateInstance<TEntity>();
+        var properties = typeof(TEntity).GetProperties();
+        foreach (var property in properties)
+        {
+            property.SetValue(entity, row[property.Name]);
+        }
+
+        return entity;
     }
 }

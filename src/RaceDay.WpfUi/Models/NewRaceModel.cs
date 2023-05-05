@@ -3,7 +3,7 @@ using RaceDay.WpfUi.Infrastructure;
 
 namespace RaceDay.WpfUi.Models;
 
-public class NewRaceDayRaceModel : ObservableObject
+public class NewRaceModel : ObservableObject
 {
     #region Fields
 

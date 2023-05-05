@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace RaceDay.WpfUi.Models;
 
-public class RaceRacerModel
+public class RacerModel
 {
     public int RaceDayId { get; set; }
     public int RaceNumber { get; set; }

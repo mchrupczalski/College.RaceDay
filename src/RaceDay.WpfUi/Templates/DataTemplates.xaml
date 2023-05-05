@@ -14,7 +14,7 @@
         <v:RaceDayRacesView />
     </DataTemplate>
     
-    <DataTemplate DataType="{x:Type vm:CreateRaceDayViewModel}" >
+    <DataTemplate DataType="{x:Type vm:NewRaceDayViewModel}" >
         <v:CreateRaceDayView />
     </DataTemplate>
     

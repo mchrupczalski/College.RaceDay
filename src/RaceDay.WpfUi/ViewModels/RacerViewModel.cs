@@ -9,7 +9,7 @@ public class RacerViewModel
 {
     #region Properties
 
-    public RaceRacerModel Racer { get; }
+    public RacerModel Racer { get; }
     public ImageSource? MedalImage { get; }
     
     
@@ -29,7 +29,7 @@ public class RacerViewModel
     [Obsolete("For design-time use only", true)]
     public RacerViewModel()
     {
-        Racer = new RaceRacerModel
+        Racer = new RacerModel
         {
             RaceDayId = 1,
             RaceNumber = 1,
@@ -56,7 +56,7 @@ public class RacerViewModel
         DisplayLaps = true;
     }
 
-    public RacerViewModel(RaceRacerModel raceRacerModel) => Racer = raceRacerModel;
+    public RacerViewModel(RacerModel raceRacerModel) => Racer = raceRacerModel;
 
     #endregion
 }

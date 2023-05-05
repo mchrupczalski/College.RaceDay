@@ -2,7 +2,12 @@
 
 public record NewRaceDayDto
 {
-    public int RaceDayId { get; init; }
-    public int RaceNumber { get; init; }
-    public DateTime RaceDate { get; init; }
+    #region Properties
+    
+    public string? Name { get; init; }
+    public float SignUpFee { get; init; }
+    public float LapDistanceKm { get; init; }
+    public float PetrolCostPerLap { get; init; }
+
+    #endregion
 }

@@ -3,11 +3,12 @@ using System.Windows.Input;
 using RaceDay.Domain.DTOs;
 using RaceDay.MemoryDatabase.Commands;
 using RaceDay.WpfUi.Infrastructure;
+using RaceDay.WpfUi.Interfaces;
 using RaceDay.WpfUi.Models;
 
 namespace RaceDay.WpfUi.ViewModels;
 
-public class CreateRaceDayViewModel : DialogViewModelBase
+public class NewRaceDayViewModel : DialogViewModelBase<CreateRaceDayModel,RaceDaySummaryModel>
 {
     #region Fields
 
@@ -37,13 +38,13 @@ public class CreateRaceDayViewModel : DialogViewModelBase
 
 #pragma warning disable CS8618
     [Obsolete("Design time only", true)]
-    public CreateRaceDayViewModel()
+    public NewRaceDayViewModel()
 
     {
     }
 #pragma warning restore CS8618
     
-    public CreateRaceDayViewModel(CreateRaceDayCommand createRaceDayCommand)
+    public NewRaceDayViewModel(CreateRaceDayCommand createRaceDayCommand)
     {
         _createRaceDayCommand = createRaceDayCommand;
 
@@ -53,23 +54,9 @@ public class CreateRaceDayViewModel : DialogViewModelBase
 
     #endregion
 
-    #region Overrides
-
-    /// <inheritdoc />
-    public void OpenDialog()
-    {
-        base.OpenDialog("ss");
-        NewRaceDay = new CreateRaceDayModel
-        {
-            ForceInitialErrorState = true
-        };
-    }
-
-    #endregion
-
     private void Save(object? obj)
     {
-        var dto = new RaceDayDto
+        var dto = new NewRaceDayDto
         {
             Id = 0,
             Name = NewRaceDay.Name,
@@ -81,7 +68,7 @@ public class CreateRaceDayViewModel : DialogViewModelBase
         try
         {
             ErrorMessage = string.Empty;
-            _createRaceDayCommand.Create(dto);
+            _createRaceDayCommand.Execute(dto);
             CloseDialog();
         }
         catch (Exception e)
@@ -98,4 +85,5 @@ public class CreateRaceDayViewModel : DialogViewModelBase
     }
 
     private static bool CanCancel(object? arg) => true;
+    
 }

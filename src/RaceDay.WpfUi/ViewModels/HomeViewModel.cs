@@ -63,14 +63,14 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
 
     private async void StartRaceDay(object? obj)
     {
-        var newRaceModel = new NewRaceDayRaceModel()
+        var newRaceModel = new NewRaceModel()
         {
             RaceDayId = RaceDaySummaryViewModel.SelectedRaceDay!.RaceDayId,
             RaceDayName = RaceDaySummaryViewModel.SelectedRaceDay!.Name,
             RaceDate = DateTime.Today
         };
 
-        var race = await _dialogService.DisplayDialogAsync<NewRaceViewModel, NewRaceDayRaceModel, RaceModel>(newRaceModel);
+        var race = await _dialogService.DisplayDialogAsync<NewRaceViewModel, NewRaceModel, RaceModel>(newRaceModel);
         Debug.WriteLine(race);
     }
 
@@ -85,7 +85,7 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
 
     private void CreateRaceDay(object? obj)
     {
-        _navigationService.DisplayDialog<CreateRaceDayViewModel>(RaceDaySummaryViewModel.LoadData);
+        _navigationService.DisplayDialog<NewRaceDayViewModel>(RaceDaySummaryViewModel.LoadData);
     }
 
     private static bool CanCreateRaceDay(object? arg) => true;

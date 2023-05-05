@@ -3,13 +3,14 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
+using RaceDay.Domain.DTOs;
 using RaceDay.MemoryDatabase.Commands;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 
 namespace RaceDay.WpfUi.ViewModels;
 
-public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceDayRaceModel, RaceModel>
+public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceModel>
 {
     #region Fields
 
@@ -24,13 +25,11 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceDayRaceModel, 
     public string ViewTitle
     {
         get => _viewTitle;
-        set => SetField(ref _viewTitle, value);
+        private set => SetField(ref _viewTitle, value);
     }
 
     public ICommand ConfirmCommand { get; }
     public ICommand CancelCommand { get; }
-
-    public NewRaceDayRaceModel RaceDayRaceModel { get; private set; } = new();
 
     #endregion
 
@@ -54,51 +53,40 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceDayRaceModel, 
 
     #endregion
 
-    #region Overrides
-
-    public async Task<RaceModel?> OpenDialog(NewRaceDayRaceModel raceDayRaceModel)
-    {
-        RaceDayRaceModel = raceDayRaceModel;
-        ViewTitle = $"Pick Date for new {raceDayRaceModel.RaceDayName}";
-        _raceModel = null;
-        //base.OpenDialog();
-        if (DialogClosingHandler != null)
-        {
-            object? result = await DialogHost.Show(this, "RootDialog", DialogClosingHandler);
-            Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
-            return new RaceModel();
-        }
-        else
-        {
-            object? result = await DialogHost.Show(this, "RootDialog");
-        }
-
-        return null;
-    }
-
-    #endregion
-
     #region Events And Handlers
 
     private void OnDialogClosing(object sender, DialogClosingEventArgs eventargs)
     {
         if (eventargs.Parameter is bool and false) return;
+
+        try
+        {
+            var dto = new NewRaceDto()
+            {
+                RaceDayId = Model.RaceDayId,
+                RaceDate = Model.RaceDate
+            };
+            
+            var newRace = _createRaceDayRaceCommand.Execute(dto);
+        }
+        catch (Exception e)
+        {
+            ErrorMessage = e.Message;
+        }
     }
 
     #endregion
 
+
     private bool CanCancel(object? arg) => true;
 
-    private void Cancel(object? obj)
-    {
-        CloseDialog();
-    }
+    private void Cancel(object? obj) => CloseDialog();
 
     private bool CanConfirm(object? arg) => true;
 
     private void Confirm(object? obj)
     {
-        CloseDialog();
         Result = _raceModel;
+        CloseDialog();
     }
 }

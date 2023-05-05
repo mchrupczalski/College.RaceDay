@@ -11,7 +11,7 @@ public class CreateRaceDayRaceCommand : CommandQueryBase
     {
     }
 
-    public NewRaceDayDto Execute(NewRaceDayDto dto)
+    public void Execute(NewRaceDto dto)
     {
         int raceNumber = Database.Races?.GetEntities()
                                  .Count(r => r.RaceDayId == dto.RaceDayId) +1  ?? 1;
@@ -24,7 +24,9 @@ public class CreateRaceDayRaceCommand : CommandQueryBase
         
         Database.Races?.AddEntity(entity);
         
-        return new NewRaceDayDto()
+        var raceDayEntity = Database.RaceDays?.GetById(dto.RaceDayId);
+        
+        return new RaceDto()
         {
             RaceDayId = entity.RaceDayId,
             RaceNumber = raceNumber,

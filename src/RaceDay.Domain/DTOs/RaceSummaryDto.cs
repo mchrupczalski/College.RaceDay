@@ -1,6 +1,6 @@
 ﻿namespace RaceDay.Domain.DTOs;
 
-public record RaceDayRaceDto
+public record RaceSummaryDto
 {
     #region Properties
 

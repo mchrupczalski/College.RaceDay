@@ -29,7 +29,7 @@ public class Bootstrapper
                                                                                         s.GetRequiredService<RaceDayRacesViewModel>(), s.GetRequiredService<NavigationService>(), s.GetRequiredService<DialogService>()));
                             services.AddSingleton<RaceDaySummaryViewModel>(s => new RaceDaySummaryViewModel(s.GetRequiredService<RaceDaySummaryQuery>()));
                             services.AddSingleton<RaceDayRacesViewModel>(s => new RaceDayRacesViewModel(s.GetRequiredService<RaceDayRacesQuery>()));
-                            services.AddSingleton<CreateRaceDayViewModel>();
+                            services.AddSingleton<NewRaceDayViewModel>();
                             services.AddSingleton<NewRaceViewModel>();
 
                             /* In Memory Database */
