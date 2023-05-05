@@ -1,8 +1,8 @@
 ﻿using RaceDay.Domain.DTOs;
 using RaceDay.Domain.Entities;
-using RaceDay.MemoryDatabase.Infrastructure;
+using RaceDay.SqlLite.Infrastructure;
 
-namespace RaceDay.MemoryDatabase.Queries;
+namespace RaceDay.SqlLite.Queries;
 
 public class RaceDaySummaryQuery : CommandQueryBase
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using RaceDay.MemoryDatabase.Queries;
+using RaceDay.SqlLite.Queries;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 

@@ -1,10 +1,10 @@
 ﻿using System.Data;
 using RaceDay.Domain.Entities;
-using RaceDay.MemoryDatabase.Enums;
-using RaceDay.MemoryDatabase.Helpers;
-using RaceDay.MemoryDatabase.TableDefinitions;
+using RaceDay.SqlLite.Enums;
+using RaceDay.SqlLite.Helpers;
+using RaceDay.SqlLite.TableDefinitions;
 
-namespace RaceDay.MemoryDatabase;
+namespace RaceDay.SqlLite;
 
 public class InMemoryDatabase
 {

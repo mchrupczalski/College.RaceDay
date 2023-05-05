@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
 using RaceDay.Domain.DTOs;
-using RaceDay.MemoryDatabase.Commands;
+using RaceDay.SqlLite.Commands;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 

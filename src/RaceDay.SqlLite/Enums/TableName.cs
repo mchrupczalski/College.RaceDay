@@ -1,4 +1,4 @@
-﻿namespace RaceDay.MemoryDatabase.Enums;
+﻿namespace RaceDay.SqlLite.Enums;
 
 public enum TableName
 {

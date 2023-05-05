@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using RaceDay.Domain.DTOs;
-using RaceDay.MemoryDatabase.Commands;
+using RaceDay.SqlLite.Commands;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Interfaces;
 using RaceDay.WpfUi.Models;

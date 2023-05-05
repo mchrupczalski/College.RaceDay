@@ -1,7 +1,7 @@
 ﻿using System.Data;
-using RaceDay.MemoryDatabase.Enums;
+using RaceDay.SqlLite.Enums;
 
-namespace RaceDay.MemoryDatabase.Infrastructure;
+namespace RaceDay.SqlLite.Infrastructure;
 
 public abstract class CommandQueryBase
 {

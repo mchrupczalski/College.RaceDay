@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RaceDay.MemoryDatabase.Commands;
+using RaceDay.SqlLite.Commands;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Interfaces;
 using RaceDay.WpfUi.Models;

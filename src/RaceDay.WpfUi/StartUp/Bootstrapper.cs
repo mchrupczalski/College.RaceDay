@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RaceDay.MemoryDatabase;
-using RaceDay.MemoryDatabase.Commands;
-using RaceDay.MemoryDatabase.Queries;
+using RaceDay.SqlLite;
+using RaceDay.SqlLite.Commands;
+using RaceDay.SqlLite.Queries;
 using RaceDay.WpfUi.Services;
 using RaceDay.WpfUi.ViewModels;
 

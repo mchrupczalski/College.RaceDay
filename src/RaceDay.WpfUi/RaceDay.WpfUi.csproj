@@ -20,7 +20,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\RaceDay.Core\RaceDay.Core.csproj" />
-      <ProjectReference Include="..\RaceDay.MemoryDatabase\RaceDay.MemoryDatabase.csproj" />
+      <ProjectReference Include="..\RaceDay.SqlLite\RaceDay.SqlLite.csproj" />
     </ItemGroup>
 
     <ItemGroup>

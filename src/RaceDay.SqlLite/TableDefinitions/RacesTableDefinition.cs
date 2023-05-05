@@ -1,8 +1,8 @@
 ﻿using System.Data;
 using RaceDay.Domain.Entities;
-using RaceDay.MemoryDatabase.Enums;
+using RaceDay.SqlLite.Enums;
 
-namespace RaceDay.MemoryDatabase.TableDefinitions;
+namespace RaceDay.SqlLite.TableDefinitions;
 
 internal class RacesTableDefinition : TableDefinitionBase<RaceEntity>
 {

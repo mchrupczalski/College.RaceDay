@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using Newtonsoft.Json;
 using RaceDay.Domain.Entities;
-using RaceDay.MemoryDatabase.Enums;
+using RaceDay.SqlLite.Enums;
 
-namespace RaceDay.MemoryDatabase.TableDefinitions;
+namespace RaceDay.SqlLite.TableDefinitions;
 
 public abstract class TableDefinitionBase<TEntity>
     where TEntity : EntityBase
