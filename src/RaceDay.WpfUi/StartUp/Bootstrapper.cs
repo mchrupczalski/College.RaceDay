@@ -1,12 +1,11 @@
 ﻿using System;
+using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RaceDay.SqlLite;
 using RaceDay.SqlLite.Commands;
 using RaceDay.SqlLite.Queries;
 using RaceDay.WpfUi.Services;
 using RaceDay.WpfUi.ViewModels;
-using SQLite;
 
 namespace RaceDay.WpfUi.StartUp;
 
@@ -26,16 +25,19 @@ public class Bootstrapper
                             services.AddSingleton<DialogService>();
 
                             /* ViewModels */
-                            services.AddSingleton<HomeViewModel>(s => new HomeViewModel(s.GetRequiredService<RaceDaySummaryViewModel>(),
-                                                                                        s.GetRequiredService<RacesSummaryViewModel>(), s.GetRequiredService<NavigationService>(), s.GetRequiredService<DialogService>()));
-                            services.AddSingleton<RaceDaySummaryViewModel>(s => new RaceDaySummaryViewModel(s.GetRequiredService<DaySummaryQuery>()));
-                            services.AddSingleton<RacesSummaryViewModel>();
+                            services.AddSingleton<HomeViewModel>(s => new HomeViewModel(s.GetRequiredService<DaySummaryViewModel>(),
+                                                                                        s.GetRequiredService<RacesSummaryViewModel>()));
+                            services.AddSingleton<DaySummaryViewModel>(
+                                s => new DaySummaryViewModel(s.GetRequiredService<DialogService>(), s.GetRequiredService<DaySummaryQuery>()));
+                            services.AddSingleton<RacesSummaryViewModel>(s => new RacesSummaryViewModel(s.GetRequiredService<DialogService>(),
+                                                                                                        s.GetRequiredService<NavigationService>(),
+                                                                                                        s.GetRequiredService<RaceSummaryQuery>()));
                             services.AddSingleton<NewRaceDayViewModel>();
                             services.AddSingleton<NewRaceViewModel>();
 
                             /* In SQLite Database */
                             string filesRoot = AppDomain.CurrentDomain.BaseDirectory;
-                            string dbPath = System.IO.Path.Combine(filesRoot, "RaceDay.SqlLite.db");
+                            string dbPath = Path.Combine(filesRoot, "RaceDay.SqlLite.db");
 
                             /* Queries */
                             services.AddSingleton<DaySummaryQuery>(s => new DaySummaryQuery(dbPath));

@@ -3,9 +3,9 @@ using System.Windows.Controls;
 
 namespace RaceDay.WpfUi.Views;
 
-public partial class RaceDaySummaryView : UserControl
+public partial class DaySummaryView : UserControl
 {
-    public RaceDaySummaryView()
+    public DaySummaryView()
     {
         InitializeComponent();
         Initialized += RaceDaySummaryView_Initialized;
@@ -13,7 +13,7 @@ public partial class RaceDaySummaryView : UserControl
 
     private void RaceDaySummaryView_Initialized(object? sender, EventArgs e)
     {
-        var dc = DataContext as ViewModels.RaceDaySummaryViewModel;
+        var dc = DataContext as ViewModels.DaySummaryViewModel;
         dc?.LoadData();
     }
 }

@@ -6,8 +6,8 @@
         <v:HomeView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:RaceDaySummaryViewModel}" >
-        <v:RaceDaySummaryView />
+    <DataTemplate DataType="{x:Type vm:DaySummaryViewModel}" >
+        <v:DaySummaryView />
     </DataTemplate>
     
     <DataTemplate DataType="{x:Type vm:RacesSummaryViewModel}" >

@@ -10,23 +10,16 @@ public class NavigationService : ObservableObject
     #region Fields
 
     private readonly IServiceProvider _serviceProvider;
-    private DialogViewModelBase _activeDialogViewModel;
-    private INavigableViewModel? _activeViewModel;
+    private ViewModelBase? _activeViewModel;
 
     #endregion
 
     #region Properties
 
-    public INavigableViewModel? ActiveViewModel
+    public ViewModelBase? ActiveViewModel
     {
         get => _activeViewModel;
         private set => SetField(ref _activeViewModel, value);
-    }
-
-    public DialogViewModelBase ActiveDialogViewModel
-    {
-        get => _activeDialogViewModel;
-        private set => SetField(ref _activeDialogViewModel, value);
     }
 
     #endregion
@@ -38,10 +31,10 @@ public class NavigationService : ObservableObject
     #endregion
 
     public void NavigateTo<T>()
-        where T : INavigableViewModel
+        where T : ViewModelBase, INavigableViewModel
     {
         var viewModel = _serviceProvider.GetRequiredService<T>();
         ActiveViewModel = viewModel;
-        ActiveViewModel.OnNavigatedTo();
+        viewModel.OnNavigatedTo();
     }
 }

@@ -9,7 +9,7 @@ using RaceDay.WpfUi.Models;
 
 namespace RaceDay.WpfUi.ViewModels;
 
-public class NewRaceDayViewModel : DialogViewModelBase<CreateRaceDayModel,RaceDaySummaryModel>
+public class NewRaceDayViewModel : DialogViewModelBase<CreateRaceDayModel,DaySummaryModel>
 {
     #region Fields
 
