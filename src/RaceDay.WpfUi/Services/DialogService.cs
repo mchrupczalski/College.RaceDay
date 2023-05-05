@@ -55,7 +55,7 @@ public class DialogService : ObservableObject
         viewModel.Model = model;
 
         ActiveDialogViewModel = viewModel;
-        ActiveDialogViewModel.DialogHostIsOpen = true;
+        ActiveDialogViewModel.OpenDialog();
         ActiveDialogViewModel.PropertyChanged += DialogStateChanged;
 
         object? result = null;

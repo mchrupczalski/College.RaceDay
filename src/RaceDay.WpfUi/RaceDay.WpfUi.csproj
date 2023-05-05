@@ -11,6 +11,7 @@
     <ItemGroup>
       <PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+      <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     </ItemGroup>
 
     <ItemGroup>
@@ -20,7 +21,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\RaceDay.Core\RaceDay.Core.csproj" />
-      <ProjectReference Include="..\RaceDay.MemoryDatabase\RaceDay.MemoryDatabase.csproj" />
+      <ProjectReference Include="..\RaceDay.SqlLite\RaceDay.SqlLite.csproj" />
     </ItemGroup>
 
     <ItemGroup>

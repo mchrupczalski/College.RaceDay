@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
 using RaceDay.Domain.DTOs;
-using RaceDay.MemoryDatabase.Commands;
+using RaceDay.Domain.Entities;
+using RaceDay.SqlLite.Commands;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Interfaces;
 using RaceDay.WpfUi.Models;
@@ -12,7 +13,7 @@ public class NewRaceDayViewModel : DialogViewModelBase<CreateRaceDayModel,RaceDa
 {
     #region Fields
 
-    private readonly CreateRaceDayCommand _createRaceDayCommand;
+    private readonly CreateDayCommand _createRaceDayCommand;
     
 
     private CreateRaceDayModel _newRaceDay = new();
@@ -44,7 +45,7 @@ public class NewRaceDayViewModel : DialogViewModelBase<CreateRaceDayModel,RaceDa
     }
 #pragma warning restore CS8618
     
-    public NewRaceDayViewModel(CreateRaceDayCommand createRaceDayCommand)
+    public NewRaceDayViewModel(CreateDayCommand createRaceDayCommand)
     {
         _createRaceDayCommand = createRaceDayCommand;
 
@@ -56,11 +57,10 @@ public class NewRaceDayViewModel : DialogViewModelBase<CreateRaceDayModel,RaceDa
 
     private void Save(object? obj)
     {
-        var dto = new NewRaceDayDto
+        var dto = new DayEntity()
         {
-            Id = 0,
             Name = NewRaceDay.Name,
-            SignUpFee = NewRaceDay.SignUpFee.GetValueOrDefault(),
+            Fee = NewRaceDay.SignUpFee.GetValueOrDefault(),
             LapDistanceKm = NewRaceDay.LapDistance.GetValueOrDefault(),
             PetrolCostPerLap = NewRaceDay.PetrolCostPerLap.GetValueOrDefault()
         };

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RaceDay.MemoryDatabase.Commands;
+using RaceDay.SqlLite.Commands;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Interfaces;
 using RaceDay.WpfUi.Models;
@@ -71,7 +71,6 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
         };
 
         var race = await _dialogService.DisplayDialogAsync<NewRaceViewModel, NewRaceModel, RaceModel>(newRaceModel);
-        Debug.WriteLine(race);
     }
 
     #endregion
@@ -85,7 +84,7 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
 
     private void CreateRaceDay(object? obj)
     {
-        _navigationService.DisplayDialog<NewRaceDayViewModel>(RaceDaySummaryViewModel.LoadData);
+        //_dialogService.DisplayDialog<NewRaceDayViewModel>(RaceDaySummaryViewModel.LoadData);
     }
 
     private static bool CanCreateRaceDay(object? arg) => true;

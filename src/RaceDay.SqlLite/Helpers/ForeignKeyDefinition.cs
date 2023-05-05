@@ -1,6 +1,6 @@
-﻿using RaceDay.MemoryDatabase.Enums;
+﻿using RaceDay.SqlLite.Enums;
 
-namespace RaceDay.MemoryDatabase.Helpers;
+namespace RaceDay.SqlLite.Helpers;
 
 public class ForeignKeyDefinition
 {
