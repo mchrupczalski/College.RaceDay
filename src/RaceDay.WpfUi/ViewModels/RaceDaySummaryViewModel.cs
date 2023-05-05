@@ -11,7 +11,7 @@ public class RaceDaySummaryViewModel : ViewModelBase
 {
     #region Fields
 
-    private readonly RaceDaySummaryQuery _raceDaySummaryQuery;
+    private readonly DaySummaryQuery _raceDaySummaryQuery;
 
     private bool _displayAsKilometers = true;
     private RaceDaySummaryModel? _selectedRaceDay;
@@ -70,7 +70,7 @@ public class RaceDaySummaryViewModel : ViewModelBase
     }
 #pragma warning restore CS8618
 
-    public RaceDaySummaryViewModel(RaceDaySummaryQuery raceDaySummaryQuery) => _raceDaySummaryQuery = raceDaySummaryQuery;
+    public RaceDaySummaryViewModel(DaySummaryQuery raceDaySummaryQuery) => _raceDaySummaryQuery = raceDaySummaryQuery;
 
     #endregion
 
@@ -83,15 +83,14 @@ public class RaceDaySummaryViewModel : ViewModelBase
         {
             var model = new RaceDaySummaryModel
             {
-                RaceDayId = dto.Id,
-                Name = dto.Name,
+                RaceDayId = dto.RaceDayId,
+                Name = dto.RaceDayName,
                 SignUpFee = dto.SignUpFee,
-                LapDistanceKilometers = dto.LapDistanceKilometers,
+                LapDistanceKilometers = dto.LapDistanceKm,
                 PetrolCostPerLap = dto.PetrolCostPerLap,
                 TotalRaces = dto.TotalRaces,
-                RecordLap = dto.RecordLap,
-                RecordHolderName = dto.RecordHolderName,
-                AverageProfit = dto.AverageProfit
+                RecordLap = dto.RecordLapTime,
+                RecordHolderName = dto.RecordHolderName
             };
             RaceDays.Add(model);
         }

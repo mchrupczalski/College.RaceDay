@@ -71,7 +71,6 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
         };
 
         var race = await _dialogService.DisplayDialogAsync<NewRaceViewModel, NewRaceModel, RaceModel>(newRaceModel);
-        Debug.WriteLine(race);
     }
 
     #endregion
@@ -85,7 +84,7 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
 
     private void CreateRaceDay(object? obj)
     {
-        _navigationService.DisplayDialog<NewRaceDayViewModel>(RaceDaySummaryViewModel.LoadData);
+        //_dialogService.DisplayDialog<NewRaceDayViewModel>(RaceDaySummaryViewModel.LoadData);
     }
 
     private static bool CanCreateRaceDay(object? arg) => true;

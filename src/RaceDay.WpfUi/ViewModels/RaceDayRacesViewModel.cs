@@ -10,7 +10,7 @@ public class RaceDayRacesViewModel : ViewModelBase
 {
     #region Fields
 
-    private readonly RaceDayRacesQuery _raceDayRacesQuery;
+    private readonly RaceSummaryQuery _raceDayRacesQuery;
     private string _viewTitle = "Race Day Name - Races";
 
     #endregion
@@ -64,7 +64,7 @@ public class RaceDayRacesViewModel : ViewModelBase
     }
 #pragma warning restore CS8618
 
-    public RaceDayRacesViewModel(RaceDayRacesQuery raceDayRacesQuery) => _raceDayRacesQuery = raceDayRacesQuery;
+    public RaceDayRacesViewModel(RaceSummaryQuery raceDayRacesQuery) => _raceDayRacesQuery = raceDayRacesQuery;
 
     #endregion
 
@@ -78,15 +78,14 @@ public class RaceDayRacesViewModel : ViewModelBase
             Races.Add(new RaceDayRaceModel
             {
                 RaceDayId = race.RaceDayId,
-                RaceNumber = race.RaceNumber,
                 RaceDate = race.RaceDate,
-                NumberOfRacers = race.NumberOfRacers,
-                TotalNumberOfLaps = race.TotalNumberOfLaps,
+                NumberOfRacers = race.TotalRacers,
+                TotalNumberOfLaps = race.TotalLaps,
                 BestLapTime = race.BestLapTime,
                 BestLapTimeHolder = race.BestLapTimeHolder,
                 TotalIncome = race.TotalIncome,
-                TotalExpenses = race.TotalExpenses,
-                TotalProfit = race.TotalProfit
+                TotalExpenses = race.TotalExpense,
+                TotalProfit = race.TotalIncome - race.TotalExpense
             });
         }
     }

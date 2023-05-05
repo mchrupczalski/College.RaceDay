@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
 using RaceDay.Domain.DTOs;
+using RaceDay.Domain.Entities;
 using RaceDay.SqlLite.Commands;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
@@ -14,7 +15,7 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceMod
 {
     #region Fields
 
-    private readonly CreateRaceDayRaceCommand _createRaceDayRaceCommand;
+    private readonly CreateRaceCommand _createRaceDayRaceCommand;
     private RaceModel? _raceModel;
     private string _viewTitle = "Pick Date";
 
@@ -42,7 +43,7 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceMod
     }
 #pragma warning restore CS8618
 
-    public NewRaceViewModel(CreateRaceDayRaceCommand createRaceDayRaceCommand)
+    public NewRaceViewModel(CreateRaceCommand createRaceDayRaceCommand)
     {
         _createRaceDayRaceCommand = createRaceDayRaceCommand;
         DialogClosingHandler = OnDialogClosing;
@@ -61,7 +62,7 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceMod
 
         try
         {
-            var dto = new NewRaceDto()
+            var dto = new RaceEntity()
             {
                 RaceDayId = Model.RaceDayId,
                 RaceDate = Model.RaceDate
