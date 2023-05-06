@@ -8,12 +8,12 @@ namespace RaceDay.SqlLite.Commands;
 /// <summary>
 ///     A command to create new Race Day.
 /// </summary>
-public class CreateDayCommand : CommandQueryBase
+public class CreateRaceDayCommand : CommandQueryBase
 {
     #region Constructors
 
     /// <inheritdoc />
-    public CreateDayCommand(string connectionString) : base(connectionString)
+    public CreateRaceDayCommand(string connectionString) : base(connectionString)
     {
     }
 
@@ -27,20 +27,14 @@ public class CreateDayCommand : CommandQueryBase
     /// <returns>The id of the newly created record.</returns>
     public DayEntity? Execute(DayEntity entity)
     {
-        // @formatter:off
-        const string sql = "INSERT INTO Days(Name, Fee, LapDistanceKm, PetrolCostPerLap)" +
-                           "VALUES (@Name, @Fee, @LapDistanceKm, @PetrolCostPerLap);" +
-                           "SELECT Id, Name, Fee, LapDistanceKm, PetrolCostPerLap" + 
-                           "FROM Days" +
-                           "WHERE Id = last_insert_rowid();";
-        // @formatter:on
+        const string selectSql = " SELECT Id, Name, Fee, LapDistanceKm, PetrolCostPerLap FROM Days WHERE Id = last_insert_rowid();";
+        var insertSql = $"INSERT INTO Days(Name, Fee, LapDistanceKm, PetrolCostPerLap) VALUES ('{entity.Name}', {entity.Fee}, {entity.LapDistanceKm}, {entity.PetrolCostPerLap});";
 
         using var cnx = CreateConnection();
         //cnx.Open();
-
-        var cmd = new SQLiteCommand(cnx);
-        cmd.CommandText = sql;
-        var result = cnx.Query<DayEntity>(sql).FirstOrDefault();
+        
+        cnx.Query<DayEntity>(insertSql);
+        var result = cnx.Query<DayEntity>(selectSql).FirstOrDefault();
         /*
         cmd.Parameters.AddWithValue("@Name",     entity.Name);
         cmd.Parameters.AddWithValue("@Fee",      entity.Fee);

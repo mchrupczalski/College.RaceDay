@@ -1,30 +1,28 @@
 ﻿using System;
 using System.Windows.Input;
-using RaceDay.Domain.DTOs;
 using RaceDay.Domain.Entities;
 using RaceDay.SqlLite.Commands;
+using RaceDay.SqlLite.Queries;
 using RaceDay.WpfUi.Infrastructure;
-using RaceDay.WpfUi.Interfaces;
 using RaceDay.WpfUi.Models;
 
 namespace RaceDay.WpfUi.ViewModels;
 
-public class NewRaceDayViewModel : DialogViewModelBase<CreateRaceDayModel,DaySummaryModel>
+public class NewRaceDayViewModel : DialogViewModelBase<NewRaceDayModel, DaySummaryModel>
 {
     #region Fields
 
-    private readonly CreateDayCommand _createRaceDayCommand;
-    
+    private readonly CreateRaceDayCommand _createRaceDayCommand;
+    private readonly DaySummaryQuery _daySummaryQuery;
 
-    private CreateRaceDayModel _newRaceDay = new();
+
+    private NewRaceDayModel _newRaceDay = new();
 
     #endregion
 
     #region Properties
 
-
-
-    public CreateRaceDayModel NewRaceDay
+    public NewRaceDayModel NewRaceDay
     {
         get => _newRaceDay;
         private set => SetField(ref _newRaceDay, value);
@@ -44,10 +42,11 @@ public class NewRaceDayViewModel : DialogViewModelBase<CreateRaceDayModel,DaySum
     {
     }
 #pragma warning restore CS8618
-    
-    public NewRaceDayViewModel(CreateDayCommand createRaceDayCommand)
+
+    public NewRaceDayViewModel(CreateRaceDayCommand createRaceDayCommand, DaySummaryQuery daySummaryQuery)
     {
         _createRaceDayCommand = createRaceDayCommand;
+        _daySummaryQuery = daySummaryQuery;
 
         CancelCommand = new RelayCommand(Cancel, CanCancel);
         SaveCommand = new RelayCommand(Save,     CanSave);
@@ -57,7 +56,7 @@ public class NewRaceDayViewModel : DialogViewModelBase<CreateRaceDayModel,DaySum
 
     private void Save(object? obj)
     {
-        var dto = new DayEntity()
+        var entity = new DayEntity
         {
             Name = NewRaceDay.Name,
             Fee = NewRaceDay.SignUpFee.GetValueOrDefault(),
@@ -68,7 +67,26 @@ public class NewRaceDayViewModel : DialogViewModelBase<CreateRaceDayModel,DaySum
         try
         {
             ErrorMessage = string.Empty;
-            _createRaceDayCommand.Execute(dto);
+            var newDay = _createRaceDayCommand.Execute(entity);
+            if (newDay != null)
+            {
+                var resultDto = _daySummaryQuery.GetById(newDay.Id);
+                if (resultDto != null)
+                    Result = new DaySummaryModel
+                    {
+                        RaceDayId = resultDto.RaceDayId,
+                        RaceDayName = resultDto.RaceDayName,
+                        SignUpFee = resultDto.SignUpFee,
+                        LapDistanceKilometers = resultDto.LapDistanceKm,
+                        PetrolCostPerLap = resultDto.PetrolCostPerLap,
+                        TotalRaces = resultDto.TotalRaces,
+                        RecordLapTime = resultDto.RecordLapTime,
+                        RecordHolderName = resultDto.RecordHolderName,
+                        TotalIncome = resultDto.TotalIncome,
+                        TotalCost = resultDto.TotalCost
+                    };
+            }
+
             CloseDialog();
         }
         catch (Exception e)
@@ -85,5 +103,4 @@ public class NewRaceDayViewModel : DialogViewModelBase<CreateRaceDayModel,DaySum
     }
 
     private static bool CanCancel(object? arg) => true;
-    
 }

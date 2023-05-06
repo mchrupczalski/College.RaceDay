@@ -52,9 +52,13 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
             <!-- #region: Show distance options -->
             <StackPanel Orientation="Horizontal"
@@ -84,7 +88,9 @@
                       SelectionMode="Single"
                       SelectionUnit="FullRow"
                       SelectedItem="{Binding SelectedRaceDay}"
-                      Style="{DynamicResource MaterialDesignDataGrid}" >
+                      Style="{DynamicResource MaterialDesignDataGrid}" 
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto">
                 <DataGrid.Resources>
                     <Style BasedOn="{StaticResource MaterialDesignDataGridCell}"
                            x:Key="DataGridTextColumnCenterStyle"

@@ -98,9 +98,11 @@ public class DaySummaryViewModel : ViewModelBase
     /// <param name="arg">Not Used</param>
     private static bool CanCreateRaceDay(object? arg) => true;
 
-    private void CreateRaceDay(object? obj)
+    private async void CreateRaceDay(object? obj)
     {
-        throw new NotImplementedException();
+        var newRaceDay = new NewRaceDayModel();
+        var result = await _dialogService.DisplayDialogAsync<NewRaceDayViewModel, NewRaceDayModel, DaySummaryModel>(newRaceDay);
+        if (result != null) RaceDays.Add(result);
     }
 
     #endregion

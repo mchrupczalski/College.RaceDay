@@ -44,7 +44,7 @@ public class Bootstrapper
                             services.AddSingleton<RaceSummaryQuery>(s => new RaceSummaryQuery(dbPath));
 
                             /* Commands */
-                            services.AddSingleton<CreateDayCommand>(s => new CreateDayCommand(dbPath));
+                            services.AddSingleton<CreateRaceDayCommand>(s => new CreateRaceDayCommand(dbPath));
                             services.AddSingleton<CreateRaceCommand>(s => new CreateRaceCommand(dbPath));
                         })
                        .Build();
