@@ -22,4 +22,8 @@
         <v:NewRaceView />
     </DataTemplate>
     
+    <DataTemplate DataType="{x:Type vm:RaceViewModel}" >
+        <v:RaceView />
+    </DataTemplate>
+    
 </ResourceDictionary>

@@ -37,4 +37,10 @@ public class NavigationService : ObservableObject
         ActiveViewModel = viewModel;
         viewModel.OnNavigatedTo();
     }
+    
+    public void NavigateTo(ViewModelBase viewModel)
+    {
+        ActiveViewModel = viewModel;
+        //viewModel.OnNavigatedTo();
+    }
 }

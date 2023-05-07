@@ -15,6 +15,7 @@ public class RacesSummaryViewModel : ViewModelBase
     private readonly DialogService _dialogService;
     private readonly NavigationService _navigationService;
     private readonly RaceSummaryQuery _raceDayRacesQuery;
+    private readonly RaceViewModel.CreateRaceViewModel _createRaceViewModel;
     private RaceSummaryModel? _selectedRace;
     private string _viewTitle = "Race Day Races";
     private DaySummaryModel? _daySummaryModel;
@@ -92,11 +93,12 @@ public class RacesSummaryViewModel : ViewModelBase
     /// <param name="dialogService">The dialog service.</param>
     /// <param name="navigationService">The navigation service.</param>
     /// <param name="raceDayRacesQuery">Query to select all Races and their summary details for a given Race Day.</param>
-    public RacesSummaryViewModel(DialogService dialogService, NavigationService navigationService, RaceSummaryQuery raceDayRacesQuery)
+    public RacesSummaryViewModel(DialogService dialogService, NavigationService navigationService, RaceSummaryQuery raceDayRacesQuery, RaceViewModel.CreateRaceViewModel createRaceViewModel)
     {
         _dialogService = dialogService;
         _navigationService = navigationService;
         _raceDayRacesQuery = raceDayRacesQuery;
+        _createRaceViewModel = createRaceViewModel;
 
         CreateRaceCommand = new RelayCommand(CreateRace,   CanCreateRace);
         DisplayRaceCommand = new RelayCommand(DisplayRace, CanDisplayRace);
@@ -112,7 +114,19 @@ public class RacesSummaryViewModel : ViewModelBase
 
     private void DisplayRace(object? obj)
     {
-        throw new NotImplementedException();
+        if (SelectedRace == null || _daySummaryModel == null ) return;
+        
+        var raceModel = new RaceModel()
+        {
+            RaceId = SelectedRace.RaceId,
+            RaceDayId = _daySummaryModel.RaceDayId,
+            RaceDayName = _daySummaryModel.RaceDayName,
+            SignUpFee = _daySummaryModel.SignUpFee,
+            AllTimeLapRecord = SelectedRace.BestLapTime,
+        };
+
+        var raceVm = _createRaceViewModel(raceModel);
+        _navigationService.NavigateTo(raceVm);
     }
 
     /// <summary>
@@ -132,6 +146,18 @@ public class RacesSummaryViewModel : ViewModelBase
         var newRace = new NewRaceModel(){RaceDayId = _daySummaryModel.RaceDayId, RaceDayName = _daySummaryModel.RaceDayName, RaceDate = DateTime.Now};
         var result = await _dialogService.DisplayDialogAsync<NewRaceViewModel, NewRaceModel, RaceSummaryModel>(newRace);
         if (result != null) Races.Add(result);
+
+        var raceModel = new RaceModel()
+        {
+            RaceId = result.RaceId,
+            RaceDayId = _daySummaryModel.RaceDayId,
+            RaceDayName = _daySummaryModel.RaceDayName,
+            SignUpFee = _daySummaryModel.SignUpFee,
+            AllTimeLapRecord = result.BestLapTime,
+        };
+
+        var raceVm = _createRaceViewModel(raceModel);
+        _navigationService.NavigateTo(raceVm);
     }
 
     /// <summary>

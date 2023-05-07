@@ -31,7 +31,11 @@ public class Bootstrapper
                                 s => new DaySummaryViewModel(s.GetRequiredService<DialogService>(), s.GetRequiredService<DaySummaryQuery>()));
                             services.AddSingleton<RacesSummaryViewModel>(s => new RacesSummaryViewModel(s.GetRequiredService<DialogService>(),
                                                                                                         s.GetRequiredService<NavigationService>(),
-                                                                                                        s.GetRequiredService<RaceSummaryQuery>()));
+                                                                                                        s.GetRequiredService<RaceSummaryQuery>(),
+                                                                                                        s.GetRequiredService<RaceViewModel.CreateRaceViewModel>()));
+
+                            services.AddSingleton<RaceViewModel.CreateRaceViewModel>(s => r => new RaceViewModel(r));
+
                             services.AddSingleton<NewRaceDayViewModel>();
                             services.AddSingleton<NewRaceViewModel>();
 

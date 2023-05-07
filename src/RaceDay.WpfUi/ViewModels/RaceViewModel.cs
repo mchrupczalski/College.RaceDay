@@ -6,7 +6,15 @@ namespace RaceDay.WpfUi.ViewModels;
 
 public class RaceViewModel : ViewModelBase
 {
-    public RaceModel RaceModel { get; }
+    public delegate RaceViewModel CreateRaceViewModel(RaceModel raceModel);
+
+    private RaceModel _raceModel;
+
+    public RaceModel RaceModel
+    {
+        get => _raceModel;
+        private set => SetField(ref _raceModel, value);
+    }
 
     [Obsolete("For design-time only", true)]
     public RaceViewModel()
