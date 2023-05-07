@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 
@@ -15,6 +16,13 @@ public class RaceViewModel : ViewModelBase
         get => _raceModel;
         private set => SetField(ref _raceModel, value);
     }
+
+    public ICommand StopAllCommand { get; }
+    public ICommand StartAllCommand { get; }
+    public ICommand AddRacerCommand { get; }
+    public ICommand GoBackCommand { get; }
+    
+
 
     [Obsolete("For design-time only", true)]
     public RaceViewModel()

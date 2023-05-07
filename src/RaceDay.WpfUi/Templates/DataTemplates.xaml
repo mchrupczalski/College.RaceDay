@@ -26,4 +26,8 @@
         <v:RaceView />
     </DataTemplate>
     
+    <DataTemplate DataType="{x:Type vm:RacerViewModel}" >
+        <v:RacerView />
+    </DataTemplate>
+    
 </ResourceDictionary>
