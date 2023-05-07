@@ -89,7 +89,7 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceSum
                 {
                     RaceId = resultDto.RaceId,
                     RaceDayId = resultDto.RaceDayId,
-                    RaceDate = resultDto.RaceDate,
+                    RaceDate = DateTime.TryParse(resultDto.RaceDate, out var raceDate) ? raceDate : null,
                     TotalRacers = resultDto.TotalRacers,
                     TotalLaps = resultDto.TotalLaps,
                     BestLapTime = resultDto.BestLapTime,

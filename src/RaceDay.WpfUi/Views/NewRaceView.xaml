@@ -3,15 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:RaceDay.WpfUi.Views"
              xmlns:vm="clr-namespace:RaceDay.WpfUi.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
              d:Background="White"
              d:DesignHeight="300"
-             d:DesignWidth="300" 
-             d:DataContext="{d:DesignInstance vm:NewRaceViewModel, IsDesignTimeCreatable=True}">
+             d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance vm:NewRaceViewModel, IsDesignTimeCreatable=True}" >
     <DockPanel HorizontalAlignment="Stretch"
                VerticalAlignment="Stretch"
                LastChildFill="True" >
@@ -27,7 +26,7 @@
             </Grid>
         </Grid>
         <!-- #endregion -->
-        
+
         <!-- #region: Buttons -->
         <StackPanel DockPanel.Dock="Bottom" >
             <StackPanel Orientation="Horizontal"
@@ -37,7 +36,7 @@
                         Margin="10"
                         Command="{Binding ConfirmCommand}" >
                     <Button.CommandParameter>
-                        <system:Boolean >
+                        <system:Boolean>
                             True
                         </system:Boolean>
                     </Button.CommandParameter>
@@ -45,27 +44,28 @@
                 <Button Content="Cancel"
                         Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
                         Margin="10"
-                        Command="{Binding CancelCommand}" 
-                        IsCancel="True">
+                        Command="{Binding CancelCommand}"
+                        IsCancel="True" >
                     <Button.CommandParameter>
-                        <system:Boolean >
+                        <system:Boolean>
                             False
                         </system:Boolean>
                     </Button.CommandParameter>
                 </Button>
             </StackPanel>
-            
+
             <materialDesign:Snackbar HorizontalAlignment="Stretch"
                                      IsActive="{Binding DisplayError}" >
                 <materialDesign:SnackbarMessage Content="{Binding ErrorMessage}" />
             </materialDesign:Snackbar>
         </StackPanel>
         <!-- #endregion -->
-        
+
         <!-- #region: Content -->
-        <StackPanel Orientation="Vertical">
-            <DatePicker Margin="10" DisplayDate="{Binding RaceDayRaceModel.RaceDate}"></DatePicker>
+        <StackPanel Orientation="Vertical" >
+            <DatePicker Margin="10"
+                        SelectedDate="{Binding Model.RaceDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
-        
+
     </DockPanel>
 </UserControl>

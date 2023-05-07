@@ -53,6 +53,7 @@ public class DialogService : ObservableObject
     {
         var viewModel = _serviceProvider.GetRequiredService<TViewModel>();
         viewModel.Model = model;
+        viewModel.Result = default;
 
         ActiveDialogViewModel = viewModel;
         ActiveDialogViewModel.OpenDialog();

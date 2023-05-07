@@ -18,7 +18,7 @@ public class CreateRaceCommand : CommandQueryBase
     public RaceEntity? Execute(RaceEntity entity)
     {
         const string selectSql = "SELECT Id, RaceDayId, RaceDate FROM Races WHERE Id = last_insert_rowid();";
-        string insertSql = $"INSERT INTO Races(RaceDayId, RaceDate) VALUES({entity.RaceDayId}, '{entity.RaceDate:yyyy-MM-dd}');";
+        string insertSql = $"INSERT INTO Races(RaceDayId, RaceDate) VALUES({entity.RaceDayId}, '{entity.RaceDate:yyyy/MM/dd}');";
 
         using var cnx = CreateConnection();
 

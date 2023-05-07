@@ -151,7 +151,7 @@ public class RacesSummaryViewModel : ViewModelBase
             {
                 RaceId = race.RaceId,
                 RaceDayId = race.RaceDayId,
-                RaceDate = race.RaceDate,
+                RaceDate = DateTime.TryParse(race.RaceDate, out var raceDate) ? raceDate : null,
                 TotalRacers = race.TotalRacers,
                 TotalLaps = race.TotalLaps,
                 BestLapTime = race.BestLapTime,

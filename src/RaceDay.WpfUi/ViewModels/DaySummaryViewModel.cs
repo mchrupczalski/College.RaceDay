@@ -107,7 +107,7 @@ public class DaySummaryViewModel : ViewModelBase
 
     #endregion
 
-    public void LoadData()
+    public void LoadData(bool changeSelectedDay = true)
     {
         int? selectedDayId = SelectedRaceDay?.RaceDayId;
         
@@ -132,9 +132,14 @@ public class DaySummaryViewModel : ViewModelBase
             RaceDays.Add(model);
         }
 
+        if (!changeSelectedDay)
+        {
+            SelectedRaceDay = RaceDays.FirstOrDefault(r => r.RaceDayId == selectedDayId);
+            return;
+        }
         // when data is loaded check if previously selected day is in the collection and select it again
         bool hasSelectedRaceDay = SelectedRaceDay != null && RaceDays.Any(r => r.RaceDayId == selectedDayId);
         if(hasSelectedRaceDay) SelectedRaceDay = RaceDays.FirstOrDefault(r => r.RaceDayId == selectedDayId);
-        if(SelectedRaceDay == null && RaceDays.Any()) SelectedRaceDay = RaceDays.First();
+        else if(SelectedRaceDay == null && RaceDays.Any()) SelectedRaceDay = RaceDays.First();
     }
 }

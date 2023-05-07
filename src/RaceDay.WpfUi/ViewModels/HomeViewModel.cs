@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Interfaces;
 
@@ -32,10 +33,16 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
             if (args.PropertyName != nameof(RaceDaySummaryViewModel.SelectedRaceDay)) return;
             if (raceDaySummaryViewModel.SelectedRaceDay == null) return;
 
+            raceDayRacesViewModel.Races.CollectionChanged -= RacesCollectionChanged;
+
             raceDayRacesViewModel.LoadRaceDayRaces(raceDaySummaryViewModel.SelectedRaceDay);
             raceDayRacesViewModel.UpdateViewTitle(raceDaySummaryViewModel.SelectedRaceDay.RaceDayName);
+            
+            raceDayRacesViewModel.Races.CollectionChanged += RacesCollectionChanged;
         };
     }
+
+    private void RacesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) => RaceDaySummaryViewModel.LoadData(false);
 
     #endregion
 
