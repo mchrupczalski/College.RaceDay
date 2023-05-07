@@ -1,0 +1,211 @@
+﻿<UserControl x:Class="RaceDay.WpfUi.Views.DaySummaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:RaceDay.WpfUi.ViewModels"
+             xmlns:extensions="clr-namespace:RaceDay.WpfUi.Extensions"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="720"
+             d:DesignWidth="1200"
+             d:Background="{DynamicResource MaterialDesignPaper}"
+             d:DataContext="{d:DesignInstance vm:DaySummaryViewModel, IsDesignTimeCreatable=True}" >
+    <DockPanel LastChildFill="True" >
+        <!-- Header -->
+        <Border DockPanel.Dock="Top"
+                Padding="8"
+                BorderThickness="0 0 0 2"
+                BorderBrush="{DynamicResource PrimaryHueMidBrush}" >
+            <TextBlock Text="{Binding ViewTitle}"
+                       Style="{DynamicResource MaterialDesignHeadline6TextBlock}" />
+        </Border>
+
+        <!-- Buttons -->
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom" >
+            <Button x:Name="CreateRaceDayButton"
+                    Margin="8"
+                    ToolTip="Create New Race Day"
+                    Command="{Binding CreateRaceDayCommand}"
+                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" >
+                <Grid>
+                    <materialDesign:PackIcon Kind="Calendar"
+                                             Height="24"
+                                             Width="24"
+                                             Foreground="Black"
+                                             Margin="0"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="Plus"
+                                             Height="16"
+                                             Width="16"
+                                             Margin="12 12 0 0"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Bottom" />
+                </Grid>
+            </Button>
+        </StackPanel>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- #region: Show distance options -->
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="0" >
+                <TextBlock Text="Show Distance In:"
+                           Style="{DynamicResource MaterialDesignTextBlock}"
+                           Margin="5" />
+                <RadioButton GroupName="Units"
+                             Content="Kilometers"
+                             IsChecked="{Binding DisplayAsKilometers}"
+                             Style="{StaticResource MaterialDesignRadioButton}"
+                             Margin="5" />
+                <RadioButton GroupName="Units"
+                             Content="Miles"
+                             IsChecked="{Binding DisplayAsKilometers, Converter={StaticResource InverseBooleanConverter}}"
+                             Style="{StaticResource MaterialDesignRadioButton}"
+                             Margin="5" />
+            </StackPanel>
+            <!-- #endregion -->
+
+            <!-- #region: Race Day Data Grid -->
+            <DataGrid Grid.Row="1"
+                      ItemsSource="{Binding RaceDays}"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      SelectionMode="Single"
+                      SelectionUnit="FullRow"
+                      SelectedItem="{Binding SelectedRaceDay}"
+                      Style="{DynamicResource MaterialDesignDataGrid}" 
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                      Visibility="{Binding RaceDays.Count, Converter={StaticResource InverseEqualityToVisibilityConverter}, ConverterParameter={extensions:Int32 0}}">
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource MaterialDesignDataGridCell}"
+                           x:Key="DataGridTextColumnCenterStyle"
+                           TargetType="DataGridCell" >
+                        <Setter Property="HorizontalAlignment"
+                                Value="Center" />
+                    </Style>
+                    <Style BasedOn="{StaticResource MaterialDesignDataGridCell}"
+                           x:Key="DataGridTextColumnLeftStyle"
+                           TargetType="DataGridCell" >
+                        <Setter Property="HorizontalAlignment"
+                                Value="Left" />
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Race Name"
+                                        DisplayIndex="0"
+                                        Binding="{Binding RaceDayName}"
+                                        CellStyle="{StaticResource DataGridTextColumnLeftStyle}" />
+
+                    <DataGridTextColumn Header="SignUp Fee"
+                                        DisplayIndex="1"
+                                        Binding="{Binding SignUpFee, StringFormat={}£{0:N2}}"
+                                        CellStyle="{StaticResource DataGridTextColumnCenterStyle}" />
+
+                    <DataGridTemplateColumn Header="Lap Distance"
+                                            DisplayIndex="2"
+                                            CellStyle="{StaticResource DataGridTextColumnCenterStyle}" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock" >
+                                            <Style.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DisplayAsKilometers}"
+                                                    Value="True" >
+                                                    <Setter Property="Text" >
+                                                        <Setter.Value>
+                                                            <MultiBinding StringFormat="{}{0:N2} km" >
+                                                                <Binding Path="LapDistanceKilometers" />
+                                                            </MultiBinding>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DisplayAsKilometers}"
+                                                    Value="False" >
+                                                    <Setter Property="Text" >
+                                                        <Setter.Value>
+                                                            <MultiBinding StringFormat="{}{0:N2} m" >
+                                                                <Binding Path="LapDistanceMiles" />
+                                                            </MultiBinding>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="Est. Petrol Cost / Lap"
+                                        DisplayIndex="3"
+                                        Binding="{Binding PetrolCostPerLap, StringFormat={}£{0:N2}}"
+                                        CellStyle="{StaticResource DataGridTextColumnCenterStyle}" />
+
+                    <DataGridTextColumn Header="Total Races"
+                                        DisplayIndex="4"
+                                        Binding="{Binding TotalRaces}"
+                                        CellStyle="{StaticResource DataGridTextColumnCenterStyle}" />
+
+                    <DataGridTextColumn Header="Record Lap Time"
+                                        DisplayIndex="5"
+                                        Binding="{Binding RecordLapTime}"
+                                        CellStyle="{StaticResource DataGridTextColumnCenterStyle}" />
+
+                    <DataGridTextColumn Header="Record Holder"
+                                        DisplayIndex="6"
+                                        Binding="{Binding RecordHolderName}"
+                                        CellStyle="{StaticResource DataGridTextColumnCenterStyle}" />
+
+                    <DataGridTextColumn Header="Total Income"
+                                        DisplayIndex="7"
+                                        Binding="{Binding TotalIncome, StringFormat={}£{0:N2}}"
+                                        CellStyle="{StaticResource DataGridTextColumnCenterStyle}" />
+
+                    <DataGridTextColumn Header="Total Cost"
+                                        DisplayIndex="8"
+                                        Binding="{Binding TotalCost, StringFormat={}£{0:N2}}"
+                                        CellStyle="{StaticResource DataGridTextColumnCenterStyle}" />
+
+                    <DataGridTextColumn Header="Total Profit"
+                                        DisplayIndex="9"
+                                        Binding="{Binding TotalProfit, StringFormat={}£{0:N2}}"
+                                        CellStyle="{StaticResource DataGridTextColumnCenterStyle}" />
+
+                    <DataGridTextColumn Header="Avg. Profit"
+                                        DisplayIndex="10"
+                                        Binding="{Binding AverageProfit, StringFormat={}£{0:N2}}"
+                                        CellStyle="{StaticResource DataGridTextColumnCenterStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <!-- #endregion -->
+
+            <!-- No Data -->
+            <TextBlock Grid.Row="1"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Text="No Data"
+                       Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"
+                       Visibility="{Binding RaceDays.Count, Converter={StaticResource EqualityToVisibilityConverter}, ConverterParameter={extensions:Int32 0}}" />
+        </Grid>
+    </DockPanel>
+
+</UserControl>

@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using RaceDay.WpfUi.Infrastructure;
 
 namespace RaceDay.WpfUi.Models;
 
-public class CreateRaceDayModel : ObservableObjectWithValidation
+public class NewRaceDayModel : ObservableObjectWithValidation
 {
-    private string? _name = string.Empty;
-    private float? _signUpFee;
+    #region Fields
+
     private float? _lapDistance;
+    private string? _name = string.Empty;
     private float? _petrolCostPerLap;
-    public Guid Guid { get; set; }
+    private float? _signUpFee;
+
+    #endregion
+
+    #region Properties
 
     [Required(ErrorMessage = "Name cannot be empty")]
     [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters")]
@@ -47,4 +49,6 @@ public class CreateRaceDayModel : ObservableObjectWithValidation
     }
 
     public bool HasAllRequiredData => !string.IsNullOrEmpty(Name) && SignUpFee.HasValue && LapDistance.HasValue && PetrolCostPerLap.HasValue;
+
+    #endregion
 }

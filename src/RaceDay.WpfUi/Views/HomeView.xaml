@@ -4,50 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:RaceDay.WpfUi.ViewModels"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="850"
              d:DataContext="{d:DesignInstance vm:HomeViewModel, IsDesignTimeCreatable=True}" >
-    <DockPanel HorizontalAlignment="Stretch"
-               VerticalAlignment="Stretch"
-               LastChildFill="True" >
 
-        <!-- #region: Buttons -->
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    Margin="10"
-                    DockPanel.Dock="Bottom" >
-            <Button Content="Create New Race Day"
-                    Style="{DynamicResource MaterialDesignRaisedLightButton}"
-                    Margin="10 0" 
-                    Command="{Binding CreateNewRaceDayCommand}"/>
-            <Button Content="Start New Race For Selected Race Day"
-                    Style="{DynamicResource MaterialDesignRaisedSecondaryLightButton}"
-                    IsEnabled="True"
-                    Margin="10 0" 
-                    Command="{Binding StartNewRaceCommand}">
-            </Button>
-        </StackPanel>
-        <!-- #endregion -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <!-- Race Day Data Grid -->
+        <ContentControl Grid.Row="0"
+                        Content="{Binding RaceDaySummaryViewModel}" />
 
-            <!-- #region: Race Day Data Grid -->
-            <ContentControl Grid.Row="0"
-                            Content="{Binding RaceDaySummaryViewModel}" />
-            <!-- #endregion -->
-
-            <!-- #region: Selected Race Day Races Grid -->
-            <ContentControl Grid.Row="1"
-                            Content="{Binding RaceDayRacesViewModel}" />
-            <!-- #endregion -->
-
-        </Grid>
-    </DockPanel>
+        <!-- Selected Race Day Races Grid -->
+        <ContentControl Grid.Row="1"
+                        Content="{Binding RaceDayRacesViewModel}" />
+    </Grid>
 
 </UserControl>

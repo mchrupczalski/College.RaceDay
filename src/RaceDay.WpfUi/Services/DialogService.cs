@@ -53,6 +53,7 @@ public class DialogService : ObservableObject
     {
         var viewModel = _serviceProvider.GetRequiredService<TViewModel>();
         viewModel.Model = model;
+        viewModel.Result = default;
 
         ActiveDialogViewModel = viewModel;
         ActiveDialogViewModel.OpenDialog();
@@ -63,7 +64,6 @@ public class DialogService : ObservableObject
         if (viewModel.DialogClosingHandler != null)
         {
             result = await DialogHost.Show(viewModel, DialogHostIdentifier, viewModel.DialogClosingHandler);
-            Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
         }
         else
         {

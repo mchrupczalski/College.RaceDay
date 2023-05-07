@@ -6,17 +6,18 @@ using MaterialDesignThemes.Wpf;
 using RaceDay.Domain.DTOs;
 using RaceDay.Domain.Entities;
 using RaceDay.SqlLite.Commands;
+using RaceDay.SqlLite.Queries;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 
 namespace RaceDay.WpfUi.ViewModels;
 
-public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceModel>
+public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceSummaryModel>
 {
     #region Fields
 
     private readonly CreateRaceCommand _createRaceDayRaceCommand;
-    private RaceModel? _raceModel;
+    private readonly RaceSummaryQuery _raceSummaryQuery;
     private string _viewTitle = "Pick Date";
 
     #endregion
@@ -43,9 +44,10 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceMod
     }
 #pragma warning restore CS8618
 
-    public NewRaceViewModel(CreateRaceCommand createRaceDayRaceCommand)
+    public NewRaceViewModel(CreateRaceCommand createRaceDayRaceCommand, RaceSummaryQuery raceSummaryQuery)
     {
         _createRaceDayRaceCommand = createRaceDayRaceCommand;
+        _raceSummaryQuery = raceSummaryQuery;
         DialogClosingHandler = OnDialogClosing;
 
         ConfirmCommand = new RelayCommand(Confirm, CanConfirm);
@@ -59,21 +61,6 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceMod
     private void OnDialogClosing(object sender, DialogClosingEventArgs eventargs)
     {
         if (eventargs.Parameter is bool and false) return;
-
-        try
-        {
-            var dto = new RaceEntity()
-            {
-                RaceDayId = Model.RaceDayId,
-                RaceDate = Model.RaceDate
-            };
-            
-            var newRace = _createRaceDayRaceCommand.Execute(dto);
-        }
-        catch (Exception e)
-        {
-            ErrorMessage = e.Message;
-        }
     }
 
     #endregion
@@ -87,7 +74,36 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceMod
 
     private void Confirm(object? obj)
     {
-        Result = _raceModel;
-        CloseDialog();
+        var entity = new RaceEntity()
+        {
+            RaceDayId = Model.RaceDayId,
+            RaceDate = Model.RaceDate
+        };
+
+        try
+        {
+            var newRace = _createRaceDayRaceCommand.Execute(entity);
+            var resultDto = _raceSummaryQuery.GetById(newRace!.Id);
+            if (resultDto != null)
+                Result = new RaceSummaryModel()
+                {
+                    RaceId = resultDto.RaceId,
+                    RaceDayId = resultDto.RaceDayId,
+                    RaceDate = DateTime.TryParse(resultDto.RaceDate, out var raceDate) ? raceDate : null,
+                    TotalRacers = resultDto.TotalRacers,
+                    TotalLaps = resultDto.TotalLaps,
+                    BestLapTime = resultDto.BestLapTime,
+                    BestLapTimeHolder = resultDto.BestLapTimeHolder,
+                    TotalIncome = resultDto.TotalIncome,
+                    TotalExpenses = resultDto.TotalExpense,
+                    TotalProfit = resultDto.TotalIncome - resultDto.TotalExpense
+                };
+            
+            CloseDialog();
+        }
+        catch (Exception e)
+        {
+            ErrorMessage = e.Message;
+        }
     }
 }

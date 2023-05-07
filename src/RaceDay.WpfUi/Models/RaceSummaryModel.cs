@@ -2,13 +2,13 @@
 
 namespace RaceDay.WpfUi.Models;
 
-public class RaceDayRaceModel
+public class RaceSummaryModel
 {
+    public int RaceId { get; init; }
     public int RaceDayId { get; init; }
-    public int RaceNumber { get; init; }
-    public DateTime RaceDate { get; init; }
-    public int NumberOfRacers { get; init; }
-    public int TotalNumberOfLaps { get; init; }
+    public DateTime? RaceDate { get; init; }
+    public int TotalRacers { get; init; }
+    public int TotalLaps { get; init; }
     public TimeSpan BestLapTime { get; init; }
     public string? BestLapTimeHolder { get; init; }
     public float TotalIncome { get; init; }

@@ -129,7 +129,7 @@ public abstract class DialogViewModelBase<TModel, TResult> : DialogViewModelBase
     public TResult? Result
     {
         get => _result;
-        protected set => SetField(ref _result, value);
+        set => SetField(ref _result, value);
     }
 
     #endregion
