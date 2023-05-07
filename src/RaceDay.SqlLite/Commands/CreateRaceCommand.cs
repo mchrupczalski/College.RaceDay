@@ -17,35 +17,15 @@ public class CreateRaceCommand : CommandQueryBase
 
     public RaceEntity? Execute(RaceEntity entity)
     {
-        // @formatter:off
-        const string sql = "INSERT INTO Races(RaceDayId, RaceDate)" +
-                           "VALUES(@RaceDayId, @RaceDate);" +
-                           "SELECT Id, RaceDayId, RaceDate" +
-                           "FROM Races" + 
-                           "WHERE Id = last_insert_rowid();";
-        // @formatter:on
+        const string selectSql = "SELECT Id, RaceDayId, RaceDate FROM Races WHERE Id = last_insert_rowid();";
+        string insertSql = $"INSERT INTO Races(RaceDayId, RaceDate) VALUES({entity.RaceDayId}, '{entity.RaceDate:yyyy-MM-dd}');";
 
         using var cnx = CreateConnection();
-        //cnx.Open();
 
-        var result = cnx.Query<RaceEntity>(sql)
+        _ = cnx.Query<RaceEntity>(insertSql);
+        var result = cnx.Query<RaceEntity>(selectSql)
                         .FirstOrDefault();
-/*
-        using var cmd = new SqliteCommand(sql, cnx);
-        cmd.Parameters.AddWithValue("@RaceDayId", entity.RaceDayId);
-        cmd.Parameters.AddWithValue("@RaceDate",  entity.RaceDate.ToString("yyyy-MM-dd"));
-        cmd.Prepare();
 
-        var reader = cmd.ExecuteReader();
-        if (!reader.Read()) throw new SqliteException("The record could not be created.", 0);
-
-        var result = new RaceEntity
-        {
-            Id = reader.GetInt32(0),
-            RaceDayId = reader.GetInt32(1),
-            RaceDate = DateTime.Parse(reader.GetString(2))
-        };
-*/
         return result;
     }
 }

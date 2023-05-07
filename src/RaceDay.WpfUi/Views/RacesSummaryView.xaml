@@ -67,8 +67,7 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             
             <!-- Data Grid -->
@@ -78,7 +77,8 @@
                       Style="{DynamicResource MaterialDesignDataGrid}"
                       ItemsSource="{Binding Races}" 
                       IsReadOnly="True"
-                      SelectedItem="{Binding SelectedRace}">
+                      SelectedItem="{Binding SelectedRace}"
+                      Visibility="{Binding Races.Count, Converter={StaticResource InverseEqualityToVisibilityConverter}, ConverterParameter={extensions:Int32 0}}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Race Date"
                                         DisplayIndex="0"
@@ -108,7 +108,7 @@
             </DataGrid>
 
             <!-- No Data -->
-            <TextBlock Grid.Row="1"
+            <TextBlock Grid.Row="0"
                        HorizontalAlignment="Center"
                        Text="No Data"
                        Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"

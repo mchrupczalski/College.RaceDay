@@ -63,7 +63,6 @@ public class DialogService : ObservableObject
         if (viewModel.DialogClosingHandler != null)
         {
             result = await DialogHost.Show(viewModel, DialogHostIdentifier, viewModel.DialogClosingHandler);
-            Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
         }
         else
         {

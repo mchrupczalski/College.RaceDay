@@ -130,8 +130,8 @@ public class RacesSummaryViewModel : ViewModelBase
     {
         if(_daySummaryModel == null) return;
         var newRace = new NewRaceModel(){RaceDayId = _daySummaryModel.RaceDayId, RaceDayName = _daySummaryModel.RaceDayName, RaceDate = DateTime.Now};
-        var result = await _dialogService.DisplayDialogAsync<NewRaceViewModel, NewRaceModel, RaceModel>(newRace);
-        //if (result != null) RaceDays.Add(result);
+        var result = await _dialogService.DisplayDialogAsync<NewRaceViewModel, NewRaceModel, RaceSummaryModel>(newRace);
+        if (result != null) Races.Add(result);
     }
 
     /// <summary>
@@ -149,6 +149,7 @@ public class RacesSummaryViewModel : ViewModelBase
         {
             Races.Add(new RaceSummaryModel
             {
+                RaceId = race.RaceId,
                 RaceDayId = race.RaceDayId,
                 RaceDate = race.RaceDate,
                 TotalRacers = race.TotalRacers,

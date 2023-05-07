@@ -53,7 +53,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             
             <Grid.ColumnDefinitions>
@@ -90,7 +89,8 @@
                       SelectedItem="{Binding SelectedRaceDay}"
                       Style="{DynamicResource MaterialDesignDataGrid}" 
                       HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Auto">
+                      VerticalScrollBarVisibility="Auto"
+                      Visibility="{Binding RaceDays.Count, Converter={StaticResource InverseEqualityToVisibilityConverter}, ConverterParameter={extensions:Int32 0}}">
                 <DataGrid.Resources>
                     <Style BasedOn="{StaticResource MaterialDesignDataGridCell}"
                            x:Key="DataGridTextColumnCenterStyle"
@@ -199,7 +199,7 @@
             <!-- #endregion -->
 
             <!-- No Data -->
-            <TextBlock Grid.Row="2"
+            <TextBlock Grid.Row="1"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"
                        Text="No Data"

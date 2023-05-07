@@ -4,6 +4,7 @@ namespace RaceDay.WpfUi.Models;
 
 public class RaceSummaryModel
 {
+    public int RaceId { get; init; }
     public int RaceDayId { get; init; }
     public DateTime RaceDate { get; init; }
     public int TotalRacers { get; init; }
