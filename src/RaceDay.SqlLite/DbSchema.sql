@@ -2,12 +2,14 @@
 DROP VIEW IF EXISTS "vwDaySummary";
 DROP VIEW IF EXISTS "vwLapDetails";
 DROP VIEW IF EXISTS "vwDayDetails";
+DROP VIEW IF EXISTS "vwRaceRacers";
 
 DROP TABLE IF EXISTS "RaceLaps";
 DROP TABLE IF EXISTS "RaceRacers";
 DROP TABLE IF EXISTS "Racers";
 DROP TABLE IF EXISTS "Races";
 DROP TABLE IF EXISTS "Days";
+
 
 CREATE TABLE "Days" (
   "Id" INTEGER NOT NULL UNIQUE 
@@ -161,3 +163,10 @@ GROUP BY
     r.Id
 	,r.RaceDayId
 	,r.RaceDate;
+	
+	
+CREATE VIEW vwRaceRacers AS
+SELECT rr.RaceId, r.Id, r.Name, r.Age 
+FROM Racers AS r
+	LEFT JOIN RaceRacers AS rr
+		ON rr.RacerId = r.Id;
