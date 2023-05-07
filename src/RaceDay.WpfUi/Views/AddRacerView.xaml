@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="RaceDay.WpfUi.Views.AddRacerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:RaceDay.WpfUi.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             MaxWidth="948" 
+             MaxHeight="600"
+             d:DesignHeight="600"
+             d:DesignWidth="948"
+             d:DataContext="{d:DesignInstance vm:AddRacerViewModel, IsDesignTimeCreatable=True}" >
+    <DockPanel LastChildFill="True" >
+        <Grid Background="{DynamicResource MaterialDesignDarkBackground}"
+              DockPanel.Dock="Top"
+              HorizontalAlignment="Stretch" Margin="0" >
+            <Grid HorizontalAlignment="Stretch" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="36"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" Text="Edit Racers in Race" HorizontalAlignment="Center"
+                           Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                           Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                           Margin="50 5" />
+                
+                <Button Grid.Column="1" Background="Red" Padding="2" Margin="2 " Command="{Binding CloseCommand}">
+                    <materialDesign:PackIcon Kind="Close" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"></materialDesign:PackIcon>
+                </Button>
+            </Grid>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="300" />
+                <ColumnDefinition Width="*" MinWidth="300" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- All Racers -->
+            <materialDesign:Card Grid.Column="0"
+                                 Margin="8" >
+                <DockPanel LastChildFill="True" >
+                    <!-- Header -->
+                    <Border DockPanel.Dock="Top"
+                            Padding="8"
+                            BorderThickness="0 0 0 2"
+                            BorderBrush="{DynamicResource PrimaryHueMidBrush}" >
+                        <TextBlock Text="All Racers"
+                                   Style="{DynamicResource MaterialDesignHeadline6TextBlock}" />
+                    </Border>
+                    
+                    <Button DockPanel.Dock="Bottom" Margin="10">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Add Selected Racers to Race" Margin="5 0"/>
+                            <materialDesign:PackIcon Kind="ArrowRightCircle" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    
+                    <DataGrid ItemsSource="{Binding AllRacers}"
+                              AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Extended" Margin="10 0  10 10">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn DisplayIndex="0"
+                                                Header="Name"
+                                                Binding="{Binding  RacerName}" />
+                            <DataGridTextColumn DisplayIndex="1"
+                                                Header="Age"
+                                                Binding="{Binding  Age}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </materialDesign:Card>
+
+            <!-- Racers in Race -->
+            <materialDesign:Card Grid.Column="1"
+                                 Margin="8" >
+                <DockPanel LastChildFill="True" >
+                    <!-- Header -->
+                    <Border DockPanel.Dock="Top"
+                            Padding="8"
+                            BorderThickness="0 0 0 2"
+                            BorderBrush="{DynamicResource SecondaryHueMidBrush}" >
+                        <TextBlock Text="Racers In Race"
+                                   Style="{DynamicResource MaterialDesignHeadline6TextBlock}" />
+                    </Border>
+
+                    <DataGrid ItemsSource="{Binding SelectedRacers}" DockPanel.Dock="Top"
+                              AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Extended" Margin="10 0  10 10">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn DisplayIndex="0"
+                                                Header="Name"
+                                                Binding="{Binding  RacerName}" />
+                            <DataGridTextColumn DisplayIndex="1"
+                                                Header="Age"
+                                                Binding="{Binding  Age}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </materialDesign:Card>
+
+            <!-- Create New Racer -->
+            <materialDesign:Card Grid.Column="2"
+                                 Margin="8" >
+                <DockPanel LastChildFill="False" >
+                    <!-- Header -->
+                    <Border DockPanel.Dock="Top"
+                            Padding="8"
+                            BorderThickness="0 0 0 2"
+                            BorderBrush="Green" >
+                        <TextBlock Text="Create New Racer"
+                                   Style="{DynamicResource MaterialDesignHeadline6TextBlock}" />
+                    </Border>
+
+                    
+                    <!-- #region Input Grid -->
+                    <Grid Margin="10" DockPanel.Dock="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Name -->
+                        <TextBox Grid.Row="0"
+                                 VerticalAlignment="Center"
+                                 TextAlignment="Center"
+                                 materialDesign:HintAssist.Hint="Racer Name"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Text="{Binding NewRacer.RacerName, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                                 Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
+                                 Margin="10" />
+
+                        <!-- Age -->
+                        <TextBox Grid.Row="1"
+                                 VerticalAlignment="Center"
+                                 TextAlignment="Center"
+                                 materialDesign:HintAssist.Hint="Racer Age"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Text="{Binding NewRacer.Age, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                                 Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
+                                 Margin="10" />
+                    </Grid>
+                    
+                    <StackPanel DockPanel.Dock="Top" >
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center" >
+                            <Button Content="Create"
+                                    Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                                    Background="Green"
+                                    Margin="10"
+                                    Command="{Binding CreateNewRacerCommand}" />
+                            <Button Content="Cancel"
+                                    Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
+                                    Margin="10"
+                                    Command="{Binding CancelNewRacerCommand}" />
+                        </StackPanel>
+
+                        <materialDesign:Snackbar HorizontalAlignment="Stretch"
+                                                 IsActive="{Binding DisplayError}" >
+                            <materialDesign:SnackbarMessage Content="{Binding ErrorMessage}" />
+                        </materialDesign:Snackbar>
+                    </StackPanel>
+                    <!-- #endregion -->
+                </DockPanel>
+            </materialDesign:Card>
+
+        </Grid>
+    </DockPanel>
+</UserControl>

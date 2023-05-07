@@ -17,20 +17,9 @@ public class RaceSummaryQuery : CommandQueryBase
 
     public IEnumerable<RaceSummaryDto> GetAll(int raceDayId)
     {
-        // @formatter:off
-        const string sql = "SELECT" +
-                           "    RaceId" +
-                           "    RaceDayId" +
-                           "    ,RaceDate" +
-                           "    ,TotalRacers" +
-                           "    ,TotalLaps" +
-                           "    ,BestLapTime" +
-                           "    ,BestLapTimeHolder" +
-                           "    ,TotalIncome" +
-                           "    ,TotalExpense" +
-                           " FROM vwRaceSummary" +
+        const string sql = "SELECT RaceId, RaceDayId, RaceDate, TotalRacers, TotalLaps, BestLapTime, BestLapTimeHolder, TotalIncome, TotalExpense" +
+                           " FROM vwRaceSummary" + 
                            " WHERE RaceDayId = ?;";
-        // @formatter:on
 
         using var cnx = CreateConnection();
         var results = cnx.Query<RaceSummaryDto>(sql, raceDayId);
@@ -42,7 +31,7 @@ public class RaceSummaryQuery : CommandQueryBase
         // @formatter:off
         const string sql = "SELECT" +
                            "    RaceId" +
-                           "    RaceDayId" +
+                           "    ,RaceDayId" +
                            "    ,RaceDate" +
                            "    ,TotalRacers" +
                            "    ,TotalLaps" +

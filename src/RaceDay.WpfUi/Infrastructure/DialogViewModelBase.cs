@@ -67,18 +67,20 @@ public abstract class DialogViewModelBase : ObservableObject
     /// <summary>
     ///     Closes the dialog.
     /// </summary>
-    public void CloseDialog() => DialogHostIsOpen = false;
+    public void CloseDialog(object? o = null) => DialogHostIsOpen = false;
+
+    public static bool CanCloseDialog(object? o) => true;
 }
 
 /// <summary>
 ///     Base class for view models that are used to display dialogs, with a result.
 /// </summary>
 /// <typeparam name="TResult">A result that is returned when the dialog closes.</typeparam>
-public abstract class DialogViewModelBase<TResult> : DialogViewModelBase
+public abstract class DialogViewModelBase<TModel> : DialogViewModelBase
 {
     #region Fields
 
-    private TResult? _result;
+    private TModel _model;
 
     #endregion
 
@@ -88,10 +90,10 @@ public abstract class DialogViewModelBase<TResult> : DialogViewModelBase
     ///     The result that is returned when the dialog closes.
     ///     If no value is set, the dialog is assumed to have been cancelled.
     /// </summary>
-    public TResult? Result
+    public TModel Model
     {
-        get => _result;
-        protected set => SetField(ref _result, value);
+        get => _model;
+        set => SetField(ref _model, value);
     }
 
     #endregion

@@ -2,11 +2,14 @@
 using System.Windows.Input;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
+using RaceDay.WpfUi.Services;
 
 namespace RaceDay.WpfUi.ViewModels;
 
 public class RaceViewModel : ViewModelBase
 {
+    private readonly DialogService _dialogService;
+
     public delegate RaceViewModel CreateRaceViewModel(RaceModel raceModel);
 
     private RaceModel _raceModel;
@@ -41,23 +44,29 @@ public class RaceViewModel : ViewModelBase
         
         RaceModel.Racers.Add(new RacerModel()
         {
-            RaceDayId = 1,
-            RaceNumber = 1,
             RacerId = 1,
             RacerName = "Racer Name 01",
         });
         
         RaceModel.Racers.Add(new RacerModel()
         {
-            RaceDayId = 1,
-            RaceNumber = 1,
             RacerId = 2,
             RacerName = "Racer Name 02",
         });
     }
 
-    public RaceViewModel(RaceModel raceModel)
+    public RaceViewModel(RaceModel raceModel, DialogService dialogService)
     {
+        _dialogService = dialogService;
         RaceModel = raceModel;
+        
+        AddRacerCommand = new RelayCommand(AddRacer, CanAddRacer);
+    }
+
+    private bool CanAddRacer(object? arg) => true;
+
+    private void AddRacer(object? obj)
+    {
+        _dialogService.DisplayDialogAsync<AddRacerViewModel, RaceModel>(RaceModel);
     }
 }

@@ -31,8 +31,6 @@ public class RacerViewModel
     {
         Racer = new RacerModel
         {
-            RaceDayId = 1,
-            RaceNumber = 1,
             RacerId = 1,
             RacerName = "Racer Name 01",
             Age = 25
