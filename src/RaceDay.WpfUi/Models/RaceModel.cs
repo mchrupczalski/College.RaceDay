@@ -5,14 +5,13 @@ namespace RaceDay.WpfUi.Models;
 
 public class RaceModel
 {
-    public RaceModel(Guid guid)
-    {
-        Guid = guid;
-    }
-
-    public Guid Guid { get; init; }
-    public RaceDayModel? RaceDay { get; set; }
-
-    public DateTime RaceDate { get; set; }
-    public ObservableCollection<RaceLapModel> Laps { get; set; } = new();
+    public int RaceId { get; set; }
+    public int RaceDayId { get; set; }
+    public string? RaceDayName { get; set; }
+    public float SignUpFee { get; set; }
+    public TimeSpan AllTimeLapRecord { get; set; }
+    public ObservableCollection<RacerModel> Racers { get; } = new();
+    public TimeSpan RaceLapRecord { get; set; }
+    public bool IsRecordBeaten { get; set; }
+    public float RaceProfit { get; set; }
 }

@@ -6,16 +6,24 @@
         <v:HomeView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:RaceDaySummaryViewModel}" >
-        <v:RaceDaySummaryView />
+    <DataTemplate DataType="{x:Type vm:DaySummaryViewModel}" >
+        <v:DaySummaryView />
     </DataTemplate>
     
-    <DataTemplate DataType="{x:Type vm:RaceDayRacesViewModel}" >
-        <v:RaceDayRacesView />
+    <DataTemplate DataType="{x:Type vm:RacesSummaryViewModel}" >
+        <v:RacesSummaryView />
     </DataTemplate>
     
-    <DataTemplate DataType="{x:Type vm:CreateRaceDayViewModel}" >
-        <v:CreateRaceDayView />
+    <DataTemplate DataType="{x:Type vm:NewRaceDayViewModel}" >
+        <v:NewRaceDayView />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:NewRaceViewModel}" >
+        <v:NewRaceView />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:RaceViewModel}" >
+        <v:RaceView />
     </DataTemplate>
     
 </ResourceDictionary>

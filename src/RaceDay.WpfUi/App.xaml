@@ -8,26 +8,18 @@
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <converters:InverseEqualityToVisibilityConverter x:Key="InverseEqualityToVisibilityConverter" />
+            <converters:EqualityToVisibilityConverter x:Key="EqualityToVisibilityConverter" />
+            <converters:RowIndexConverter x:Key="RowIndexConverter" />
 
             <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="Themes/Generic.xaml" />
 
                 <ResourceDictionary Source="Templates/DataTemplates.xaml" />
                 <ResourceDictionary Source="Templates/ControlTemplates.xaml" />
                 <ResourceDictionary Source="Templates/StyleTemplates.xaml" />
 
-                <!--#region MaterialTheme-->
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
-
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Green.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.DeepOrange.xaml" />
+                <ResourceDictionary Source="Styles/Main.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="RaceDay.WpfUi.Views.NewRaceDayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:RaceDay.WpfUi.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Width="400"
+             mc:Ignorable="d"
+             d:Background="{DynamicResource MaterialDesignPaper}"
+             d:DesignHeight="300"
+             d:DesignWidth="200"
+             d:DataContext="{d:DesignInstance vm:NewRaceDayViewModel, IsDesignTimeCreatable=True}" >
+    <DockPanel HorizontalAlignment="Stretch"
+               VerticalAlignment="Stretch"
+               LastChildFill="True" >
+        <!-- #region: Header -->
+        <Grid Background="{DynamicResource MaterialDesignDarkBackground}"
+              DockPanel.Dock="Top"
+              HorizontalAlignment="Stretch" >
+            <Grid HorizontalAlignment="Center" >
+                <TextBlock Text="New Race Day"
+                           Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                           Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                           Margin="50 5" />
+            </Grid>
+        </Grid>
+        <!-- #endregion -->
+
+        <!-- #region: Buttons -->
+        <StackPanel DockPanel.Dock="Bottom" >
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center" >
+                <Button Content="Create"
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                        Background="Green"
+                        Margin="10"
+                        Command="{Binding SaveCommand}" />
+                <Button Content="Cancel"
+                        Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
+                        Margin="10"
+                        Command="{Binding CancelCommand}" />
+            </StackPanel>
+
+            <materialDesign:Snackbar HorizontalAlignment="Stretch"
+                                     IsActive="{Binding DisplayError}" >
+                <materialDesign:SnackbarMessage Content="{Binding ErrorMessage}" />
+            </materialDesign:Snackbar>
+        </StackPanel>
+        <!-- #endregion -->
+
+        <!-- #region Input Grid -->
+        <Grid Margin="10" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Name -->
+            <TextBox Grid.Row="0"
+                     VerticalAlignment="Center"
+                     TextAlignment="Center"
+                     materialDesign:HintAssist.Hint="Race Day Name"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Text="{Binding NewRaceDay.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
+                     Margin="10" />
+
+            <!-- Fee -->
+            <TextBox Grid.Row="1"
+                     VerticalAlignment="Center"
+                     TextAlignment="Center"
+                     materialDesign:HintAssist.Hint="SignUp Fee (£)"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Text="{Binding NewRaceDay.SignUpFee, UpdateSourceTrigger=LostFocus, ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
+                     Margin="10" />
+
+            <!-- Lap -->
+            <TextBox Grid.Row="2"
+                     VerticalAlignment="Center"
+                     TextAlignment="Center"
+                     materialDesign:HintAssist.Hint="Lap Distance (km)"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Text="{Binding NewRaceDay.LapDistance, UpdateSourceTrigger=LostFocus, ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
+                     Margin="10" />
+
+            <!-- Petrol Cost -->
+            <TextBox Grid.Row="3"
+                     VerticalAlignment="Center"
+                     TextAlignment="Center"
+                     materialDesign:HintAssist.Hint="Est. Petrol Cost Per Lap (£)"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Text="{Binding NewRaceDay.PetrolCostPerLap, UpdateSourceTrigger=LostFocus, ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
+                     Margin="10" />
+        </Grid>
+    </DockPanel>
+
+</UserControl>

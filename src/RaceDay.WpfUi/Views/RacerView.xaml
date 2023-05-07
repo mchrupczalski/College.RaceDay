@@ -1,0 +1,170 @@
+﻿<UserControl x:Class="RaceDay.WpfUi.Views.RacerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:RaceDay.WpfUi.ViewModels"
+             xmlns:ctrl="clr-namespace:RaceDay.WpfUi.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:Background="White"
+             mc:Ignorable="d"
+             d:DesignHeight="250"
+             d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance vm:RacerViewModel, IsDesignTimeCreatable=True}" >
+    <materialDesign:Card Padding=" 8 4"
+                         Margin="8"
+                         Background="{DynamicResource MaterialDesignPaper}"
+                         Foreground="{DynamicResource MaterialDesignLightForeground}"
+                         UniformCornerRadius="6" >
+
+
+        <DockPanel HorizontalAlignment="Stretch"
+                   LastChildFill="False" >
+            <!-- Buttons -->
+            <Grid DockPanel.Dock="Right" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Style="{DynamicResource MaterialDesignFlatButton}" 
+                        Visibility="{Binding Started, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                    <Image Source="../Resources/timer-100.png" />
+                </Button>
+
+                <Button Grid.Column="1"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Visibility="{Binding Started, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                    <Image Source="../Resources/finish-flag-100.png" />
+                </Button>
+            </Grid>
+            
+            <!-- Racer Data -->
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="36" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0"
+                       Grid.Column="0"
+                       Source="{Binding MedalImage}"
+                       d:Source="../Resources/medal-first-place-80.png"
+                       VerticalAlignment="Top" />
+
+                <!-- Id -->
+                <StackPanel Grid.Row="0"
+                            Grid.Column="1"
+                            Orientation="Vertical" >
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Text="#"
+                                   Style="{StaticResource CardHeader}"
+                                   Padding=" 0"
+                                   Margin="5 0" />
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource CardValue}"
+                               Padding="0"
+                               Margin="5 0"
+                               Text="{Binding Racer.RacerId}" />
+                </StackPanel>
+
+                <!-- Name -->
+                <ctrl:CardDataField Grid.Row="0"
+                                    Grid.Column="2"
+                                    Header="Name (Age):"
+                                    ImageSource="../Resources/motorbike-helmet-100.png" >
+                    <ctrl:CardDataField.Value>
+                        <MultiBinding StringFormat="{}{0} ({1})" >
+                            <Binding Path="Racer.RacerName" />
+                            <Binding Path="Racer.Age" />
+                        </MultiBinding>
+                    </ctrl:CardDataField.Value>
+                </ctrl:CardDataField>
+
+                <!-- Lap Record -->
+                <ctrl:CardDataField Grid.Row="0"
+                                    Grid.Column="3"
+                                    Header="Lap Record:"
+                                    Value="{Binding LapRecord, StringFormat={}{0:mm\\:ss\\:fff}}"
+                                    ImageSource="../Resources/time-100.png" />
+
+                <!-- Avg Lap Speed -->
+                <ctrl:CardDataField Grid.Row="0"
+                                    Grid.Column="4"
+                                    Header="Avg. Lap Speed:"
+                                    Value="{Binding AverageLapSpeed, StringFormat={}{0:N2} mph}"
+                                    ImageSource="../Resources/speed-100.png" />
+
+                <!-- Lap Counter -->
+                <ctrl:CardDataField Grid.Row="0"
+                                    Grid.Column="5"
+                                    Header="Total Laps:"
+                                    Value="{Binding LapCounter}"
+                                    ImageSource="../Resources/counter-100.png" />
+
+                <!-- Lap Time -->
+                <ctrl:CardDataField Grid.Row="0"
+                                    Grid.Column="6"
+                                    Header="Lap Timer:"
+                                    Value="{Binding LapTimer, StringFormat={}{0:mm\\:ss\\:fff}}"
+                                    ImageSource="../Resources/timer-100.png" />
+
+            </Grid>
+            
+            <!-- Laps -->
+            <Grid DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Button Grid.Row="0" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="Black" VerticalAlignment="Top" Visibility="{Binding DisplayLaps, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Source="../Resources/down-button-80.png" Height="12"/>
+                        <TextBlock Text="Show All Laps" Padding="5"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Grid.Row="0" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="Black" VerticalAlignment="Top" Visibility="{Binding DisplayLaps, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Source="../Resources/slide-up-80.png" Height="12"/>
+                        <TextBlock Text="Hide All Laps" Padding="5"/>
+                    </StackPanel>
+                </Button>
+                
+                <DataGrid Grid.Row="1" Visibility="{Binding DisplayLaps, Converter={StaticResource BooleanToVisibilityConverter}}" AutoGenerateColumns="False" ItemsSource="{Binding Laps}" CanUserAddRows="False" Style="{DynamicResource MaterialDesignDataGrid}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Lap" DisplayIndex="0" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowIndexConverter}, ConverterParameter=1 }" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Lap Time" DisplayIndex="1" Binding="{Binding LapTime, StringFormat={}{0:mm\\:ss\\:fff}}"/>
+                        <DataGridTextColumn Header="Lap Speed" DisplayIndex="2" Binding="{Binding LapSpeedMph, StringFormat={}{0:N2} mph}" IsReadOnly="True"/>
+                        <DataGridTemplateColumn DisplayIndex="3">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="Black" VerticalAlignment="Top" Padding="0" Margin="0" Height="18">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0">
+                                            <Image Source="../Resources/trash-can-80.png" Height="16" Margin="0"/>
+                                            <TextBlock Text="Delete" Padding="5 0" Margin="0"/>
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </DockPanel>
+
+
+    </materialDesign:Card>
+</UserControl>

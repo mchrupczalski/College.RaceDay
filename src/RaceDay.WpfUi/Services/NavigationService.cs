@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
-using MaterialDesignThemes.Wpf;
 using Microsoft.Extensions.DependencyInjection;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Interfaces;
@@ -9,51 +7,40 @@ namespace RaceDay.WpfUi.Services;
 
 public class NavigationService : ObservableObject
 {
+    #region Fields
+
     private readonly IServiceProvider _serviceProvider;
-    private INavigableViewModel? _activeViewModel;
-    private DialogViewModelBase? _activeDialogViewModel;
+    private ViewModelBase? _activeViewModel;
 
+    #endregion
 
-    public INavigableViewModel? ActiveViewModel
+    #region Properties
+
+    public ViewModelBase? ActiveViewModel
     {
         get => _activeViewModel;
         private set => SetField(ref _activeViewModel, value);
     }
 
-    public DialogViewModelBase? ActiveDialogViewModel
-    {
-        get => _activeDialogViewModel;
-        set => SetField(ref _activeDialogViewModel, value);
-    }
+    #endregion
 
-    public NavigationService(IServiceProvider serviceProvider)
-    {
-        _serviceProvider = serviceProvider;
-    }
-    
-    public void NavigateTo<T>() where T : INavigableViewModel
+    #region Constructors
+
+    public NavigationService(IServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
+
+    #endregion
+
+    public void NavigateTo<T>()
+        where T : ViewModelBase, INavigableViewModel
     {
         var viewModel = _serviceProvider.GetRequiredService<T>();
         ActiveViewModel = viewModel;
-        ActiveViewModel.OnNavigatedTo();
+        viewModel.OnNavigatedTo();
     }
     
-    public void DisplayDialog<T>() where T : DialogViewModelBase
+    public void NavigateTo(ViewModelBase viewModel)
     {
-        var viewModel = _serviceProvider.GetRequiredService<T>();
-        ActiveDialogViewModel = viewModel;
-        viewModel.OpenDialog();
-    }
-    
-    public void DisplayDialog<T>(Action? callOnClose) where T : DialogViewModelBase
-    {
-        var viewModel = _serviceProvider.GetRequiredService<T>();
-        ActiveDialogViewModel = viewModel;
-        viewModel.DialogClosingHandler = (sender, args) =>
-        {
-            callOnClose?.Invoke();
-        };
-        
-        viewModel.OpenDialog();
+        ActiveViewModel = viewModel;
+        //viewModel.OnNavigatedTo();
     }
 }
