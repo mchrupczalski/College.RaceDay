@@ -17,6 +17,7 @@ public class RacesSummaryViewModel : ViewModelBase
     private readonly RaceSummaryQuery _raceDayRacesQuery;
     private RaceSummaryModel? _selectedRace;
     private string _viewTitle = "Race Day Races";
+    private DaySummaryModel? _daySummaryModel;
 
     #endregion
 
@@ -118,26 +119,31 @@ public class RacesSummaryViewModel : ViewModelBase
     ///     Indicates whether the user can create a new Race.
     /// </summary>
     /// <param name="arg">Not used</param>
-    private static bool CanCreateRace(object? arg) => true;
+    private bool CanCreateRace(object? arg) => _daySummaryModel != null;
 
 
     /// <summary>
     ///     A method to trigger the new Race creation workflow.
     /// </summary>
     /// <param name="obj">Not used</param>
-    private void CreateRace(object? obj)
+    private async void CreateRace(object? obj)
     {
-        throw new NotImplementedException();
+        if(_daySummaryModel == null) return;
+        var newRace = new NewRaceModel(){RaceDayId = _daySummaryModel.RaceDayId, RaceDayName = _daySummaryModel.RaceDayName, RaceDate = DateTime.Now};
+        var result = await _dialogService.DisplayDialogAsync<NewRaceViewModel, NewRaceModel, RaceModel>(newRace);
+        //if (result != null) RaceDays.Add(result);
     }
 
     /// <summary>
     ///     Loads Race Details for given Race Day.
     /// </summary>
     /// <param name="raceDayId">The Race Day Id.</param>
-    public void LoadRaceDayRaces(int raceDayId)
+    public void LoadRaceDayRaces(DaySummaryModel raceDay)
     {
+        _daySummaryModel = raceDay;
+        
         Races.Clear();
-        var raceDtos = _raceDayRacesQuery.GetAll(raceDayId);
+        var raceDtos = _raceDayRacesQuery.GetAll(raceDay.RaceDayId);
 
         foreach (var race in raceDtos)
         {
