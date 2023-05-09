@@ -17,6 +17,7 @@ public class RacerViewModel : ObservableObject
     private readonly RaceModel _raceModel;
     private readonly RacerLapQuery _racerLapQuery;
     private readonly CreateRacerLapCommand _createRacerLapCommand;
+    private readonly DeleteRaceLapCommand _deleteRaceLapCommand;
 
     #region Delegates
 
@@ -83,6 +84,8 @@ public class RacerViewModel : ObservableObject
     public ICommand StartTimerCommand { get; }
     public ICommand StopTimerCommand { get; }
     public ICommand CatchLapTimeCommand { get; }
+    
+    public ICommand DeleteLapCommand { get; }
 
     #endregion
 
@@ -112,23 +115,42 @@ public class RacerViewModel : ObservableObject
         DisplayLaps = true;
     }
 
-    public RacerViewModel(RaceModel raceModel, RacerModel raceRacerModel, RacerLapQuery racerLapQuery, CreateRacerLapCommand createRacerLapCommand)
+    public RacerViewModel(RaceModel raceModel, RacerModel raceRacerModel, RacerLapQuery racerLapQuery, CreateRacerLapCommand createRacerLapCommand, DeleteRaceLapCommand deleteRaceLapCommand)
     {
         _raceModel = raceModel;
         _racerLapQuery = racerLapQuery;
         _createRacerLapCommand = createRacerLapCommand;
+        _deleteRaceLapCommand = deleteRaceLapCommand;
         Racer = raceRacerModel;
 
         ToggleLapsVisibilityCommand = new RelayCommand(ToggleLapsVisibility, CanToggleLapsVisibility);
         StartTimerCommand = new RelayCommand(StartTimer,                     CanStartTimer);
         StopTimerCommand = new RelayCommand(StopTimer,                       CanStopTimer);
         CatchLapTimeCommand = new RelayCommand(CatchLapTime,                 CanCatchLapTime);
+        DeleteLapCommand = new RelayCommand(DeleteLap,                       CanDeleteLap);
 
         _timer = new DispatcherTimer();
         _timer.Interval = TimeSpan.FromMilliseconds(100);
         _timer.Tick += TimerOnTick;
 
         LoadData();
+    }
+
+    private static bool CanDeleteLap(object? arg) => true;
+
+    private void DeleteLap(object? obj)
+    {
+        var lap = obj as RacerLapModel;
+        if (lap == null)
+            return;
+        
+        bool deleted = _deleteRaceLapCommand.Execute(lap.LapId);
+        if (!deleted) return;
+        
+        Laps.Remove(lap);
+        OnPropertyChanged(nameof(LapRecord));
+        OnPropertyChanged(nameof(LapCounter));
+        OnPropertyChanged(nameof(AverageLapSpeed));
     }
 
     private void LoadData()

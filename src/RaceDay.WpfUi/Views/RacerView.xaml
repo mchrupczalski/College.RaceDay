@@ -200,6 +200,8 @@
                                     <Button Style="{DynamicResource MaterialDesignFlatButton}"
                                             Foreground="Black"
                                             VerticalAlignment="Top"
+                                            Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.DeleteLapCommand}"
+                                            CommandParameter="{Binding .}"
                                             Padding="0"
                                             Margin="0"
                                             Height="18" >

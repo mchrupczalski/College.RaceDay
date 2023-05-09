@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 using RaceDay.WpfUi.Infrastructure;
 
 namespace RaceDay.WpfUi.Models;
@@ -35,6 +36,7 @@ public class RacerLapModel : ObservableObject
 
     public float LapDistanceMiles { get; init; }
     public float LapSpeedMph => LapDistanceMiles / (float)LapTime.TotalHours;
+    
 
     #endregion
 }

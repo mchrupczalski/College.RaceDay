@@ -41,7 +41,8 @@ public class Bootstrapper
                             services.AddSingleton<RacerViewModel.CreateRacerViewModel>(s => (race, racer) =>
                                                                                            new RacerViewModel(
                                                                                                race, racer, s.GetRequiredService<RacerLapQuery>(),
-                                                                                               s.GetRequiredService<CreateRacerLapCommand>()));
+                                                                                               s.GetRequiredService<CreateRacerLapCommand>(),
+                                                                                               s.GetRequiredService<DeleteRaceLapCommand>()));
 
                             services.AddSingleton<RaceViewModel.CreateRaceViewModel>(s => r => new RaceViewModel(r, s.GetRequiredService<DialogService>(),
                                                                                                                  s.GetRequiredService<NavigationService>(),
@@ -58,12 +59,15 @@ public class Bootstrapper
                             services.AddSingleton<RacersQuery>(s => new RacersQuery(dbPath));
                             services.AddSingleton<RacerLapQuery>(s => new RacerLapQuery(dbPath));
 
-                            /* Commands */
+                            /* Create Commands */
                             services.AddSingleton<CreateRaceDayCommand>(s => new CreateRaceDayCommand(dbPath));
                             services.AddSingleton<CreateRaceCommand>(s => new CreateRaceCommand(dbPath));
                             services.AddSingleton<CreateRacerCommand>(s => new CreateRacerCommand(dbPath));
                             services.AddSingleton<CreateRaceRacerCommand>(s => new CreateRaceRacerCommand(dbPath));
                             services.AddSingleton<CreateRacerLapCommand>(s => new CreateRacerLapCommand(dbPath));
+
+                            /* Delete Commands */
+                            services.AddSingleton<DeleteRaceLapCommand>(s => new DeleteRaceLapCommand(dbPath));
                         })
                        .Build();
 
