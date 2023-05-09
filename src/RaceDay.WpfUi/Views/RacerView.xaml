@@ -185,7 +185,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Lap"
                                             DisplayIndex="0"
-                                            Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowIndexConverter}, ConverterParameter=1 }"
+                                            Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RowIndexConverter}, ConverterParameter=1 }"
                                             IsReadOnly="True" />
                         <DataGridTextColumn Header="Lap Time"
                                             DisplayIndex="1"

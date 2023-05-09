@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -28,6 +29,7 @@ public class RacerViewModel : ObservableObject
     private readonly RacerLapQuery _racerLapQuery;
 
     private readonly DispatcherTimer _timer;
+    private readonly Stopwatch _stopwatch;
 
     private bool _displayLaps;
     private bool _finished;
@@ -133,8 +135,9 @@ public class RacerViewModel : ObservableObject
         DeleteLapCommand = new RelayCommand(DeleteLap,                       CanDeleteLap);
 
         _timer = new DispatcherTimer();
-        _timer.Interval = TimeSpan.FromMilliseconds(100);
+        _timer.Interval = TimeSpan.FromMilliseconds(1);
         _timer.Tick += TimerOnTick;
+        _stopwatch = new Stopwatch();
 
         LoadData();
     }
@@ -145,7 +148,9 @@ public class RacerViewModel : ObservableObject
 
     private void TimerOnTick(object? sender, EventArgs e)
     {
-        LapTimer = LapTimer.Add(TimeSpan.FromMilliseconds(100));
+        LapTimer = _stopwatch.ElapsedMilliseconds > 0
+                                    ? TimeSpan.FromMilliseconds(_stopwatch.ElapsedMilliseconds)
+                                    : TimeSpan.Zero;
     }
 
     #endregion
@@ -191,6 +196,7 @@ public class RacerViewModel : ObservableObject
     {
         var lapTime = LapTimer;
         LapTimer = TimeSpan.Zero;
+        _stopwatch.Restart();
 
         var entity = new RaceLapEntity
         {
@@ -220,8 +226,9 @@ public class RacerViewModel : ObservableObject
 
     private void StopTimer(object? obj)
     {
-        CatchLapTime(obj);
+        if(Started && !Finished) CatchLapTime(obj);
         _timer.Stop();
+        _stopwatch.Stop();
         Finished = true;
     }
 
@@ -230,6 +237,7 @@ public class RacerViewModel : ObservableObject
     private void StartTimer(object? obj)
     {
         _timer.Start();
+        _stopwatch.Start();
         Started = true;
     }
 

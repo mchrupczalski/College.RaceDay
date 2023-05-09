@@ -7,6 +7,11 @@
         <UseWPF>true</UseWPF>
         <UseWindowsForms>true</UseWindowsForms>
         <StartupObject>RaceDay.WpfUi.App</StartupObject>
+        <ApplicationIcon>Resources\car-64.ico</ApplicationIcon>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     </PropertyGroup>
 
     <ItemGroup>
@@ -61,6 +66,19 @@
       <Resource Include="Resources\trash-can.gif" />
       <None Remove="Resources\trash-can-80.png" />
       <Resource Include="Resources\trash-can-80.png" />
+      <None Remove="Resources\car-64.png" />
+      <Resource Include="Resources\car-64.png" />
     </ItemGroup>
+
+    <Target Name="MoveNugetsToLib" AfterTargets="AfterBuild">
+        <ItemGroup>
+            <NugetFiles Include="@(ReferenceCopyLocalPaths-&gt;HasMetadata('PathInPackage'))">
+                <OutPath>$(OutDir)lib\%(ReferenceCopyLocalPaths.NuGetPackageId)\%(ReferenceCopyLocalPaths.NuGetPackageVersion)\%(ReferenceCopyLocalPaths.PathInPackage)</OutPath>
+                <DeletePath>$(OutDir)%(ReferenceCopyLocalPaths.DestinationSubPath)</DeletePath>
+            </NugetFiles>
+        </ItemGroup>
+        <Copy SourceFiles="@(NugetFiles)" DestinationFiles="@(NugetFiles->'%(OutPath)')" />
+        <Delete Files="@(NugetFiles->'%(DeletePath)')" />
+    </Target>
 
 </Project>

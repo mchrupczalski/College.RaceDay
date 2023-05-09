@@ -149,6 +149,8 @@ public class RacesSummaryViewModel : ViewModelBase
         var result = await _dialogService.DisplayDialogAsync<NewRaceViewModel, NewRaceModel, RaceSummaryModel>(newRace);
         if (result != null) Races.Add(result);
 
+        if (result == null) return;
+        
         var raceModel = new RaceModel()
         {
             RaceId = result.RaceId,
@@ -182,7 +184,7 @@ public class RacesSummaryViewModel : ViewModelBase
                 RaceDate = DateTime.TryParse(race.RaceDate, out var raceDate) ? raceDate : null,
                 TotalRacers = race.TotalRacers,
                 TotalLaps = race.TotalLaps,
-                BestLapTime = race.BestLapTime,
+                BestLapTime = TimeSpan.FromSeconds(race.BestLapTime),
                 BestLapTimeHolder = race.BestLapTimeHolder,
                 TotalIncome = race.TotalIncome,
                 TotalExpenses = race.TotalExpense,
