@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Documents;
 using System.Windows.Input;
 using RaceDay.Domain.Entities;
 using RaceDay.SqlLite.Commands;
@@ -16,6 +18,7 @@ public class AddRacerViewModel : DialogViewModelBase<RaceModel>, INavigableViewM
     #region Fields
 
     private readonly CreateRaceRacerCommand _createRaceRacerCommand;
+    private readonly DeleteRaceRacerCommand _deleteRaceRacerCommand;
     private readonly CreateRacerCommand _createRacerCommand;
 
     private readonly RacersQuery _racersQuery;
@@ -33,6 +36,7 @@ public class AddRacerViewModel : DialogViewModelBase<RaceModel>, INavigableViewM
 
     public ObservableCollection<RacerModel> AllRacers { get; } = new();
     public ObservableCollection<RacerModel> SelectedRacers { get; } = new();
+    
     public ICommand CreateNewRacerCommand { get; }
     public ICommand CancelNewRacerCommand { get; }
     public ICommand CloseCommand { get; }
@@ -49,14 +53,17 @@ public class AddRacerViewModel : DialogViewModelBase<RaceModel>, INavigableViewM
     {
     }
 #pragma warning restore CS8618
-    public AddRacerViewModel(RacersQuery racersQuery, CreateRacerCommand createRacerCommand, CreateRaceRacerCommand createRaceRacerCommand)
+    public AddRacerViewModel(RacersQuery racersQuery, CreateRacerCommand createRacerCommand, CreateRaceRacerCommand createRaceRacerCommand, DeleteRaceRacerCommand deleteRaceRacerCommand)
     {
         _racersQuery = racersQuery;
         _createRacerCommand = createRacerCommand;
         _createRaceRacerCommand = createRaceRacerCommand;
+        _deleteRaceRacerCommand = deleteRaceRacerCommand;
 
-        CreateNewRacerCommand = new RelayCommand(CreateNewRacer, CanCreateNewRacer);
-        CancelNewRacerCommand = new RelayCommand(CancelNewRacer, CanCancelNewRacer);
+        CreateNewRacerCommand = new RelayCommand(CreateNewRacer,       CanCreateNewRacer);
+        CancelNewRacerCommand = new RelayCommand(CancelNewRacer,       CanCancelNewRacer);
+        AddSelectedRacersCommand = new RelayCommand(AddSelectedRacers, CanAddSelectedRacers);
+        RemoveRacersCommand = new RelayCommand(RemoveRacers,           CanRemoveRacers);
 
         CloseCommand = new RelayCommand(CloseDialog, CanCloseDialog);
     }
@@ -72,6 +79,46 @@ public class AddRacerViewModel : DialogViewModelBase<RaceModel>, INavigableViewM
     }
 
     #endregion
+
+    private static bool CanRemoveRacers(object? arg) => true;
+
+    private void RemoveRacers(object? obj)
+    {
+        if(obj is null) return;
+        var collection = (System.Collections.IList)obj!;
+        if (collection.Count == 0) return;
+        var racers = collection.Cast<RacerModel>()
+                               .ToArray();
+        
+        foreach (var racer in racers)
+        {
+            bool deleted = _deleteRaceRacerCommand.Execute(Model.RaceId, racer.RacerId);
+            if (!deleted) continue;
+            
+            AllRacers.Add(racer);
+            SelectedRacers.Remove(racer);
+        }
+    }
+
+    private static bool CanAddSelectedRacers(object? arg) => true;
+
+    private void AddSelectedRacers(object? obj)
+    {
+        if(obj is null) return;
+        var collection = (System.Collections.IList)obj!;
+        if (collection.Count == 0) return;
+        var racers = collection.Cast<RacerModel>()
+                               .ToArray();
+        
+        foreach (var racer in racers)
+        {
+            var entity = new RaceRacerEntity(){RaceDayId = Model.RaceDayId, RaceId = Model.RaceId, RacerId = racer.RacerId};
+            bool added = _createRaceRacerCommand.Execute(entity) != null;
+            
+            AllRacers.Remove(racer);
+            SelectedRacers.Add(racer);
+        }
+    }
 
     private static bool CanCancelNewRacer(object? arg) => true;
 

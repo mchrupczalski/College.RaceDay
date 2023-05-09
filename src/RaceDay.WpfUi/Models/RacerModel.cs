@@ -10,10 +10,17 @@ public class RacerModel : ObservableObjectWithValidation
 
     private byte? _age;
     private string? _racerName;
+    private bool _isSelected;
 
     #endregion
 
     #region Properties
+
+    public bool IsSelected
+    {
+        get => _isSelected;
+        set => SetField(ref _isSelected, value);
+    }
 
     [ReadOnly(true)]
     public int RacerId { get; init; }

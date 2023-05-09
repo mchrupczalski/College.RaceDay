@@ -68,6 +68,8 @@ public class Bootstrapper
 
                             /* Delete Commands */
                             services.AddSingleton<DeleteRaceLapCommand>(s => new DeleteRaceLapCommand(dbPath));
+                            services.AddSingleton<DeleteRaceRacerCommand>(s => new DeleteRaceRacerCommand(dbPath));
+                            
                         })
                        .Build();
 

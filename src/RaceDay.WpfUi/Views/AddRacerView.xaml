@@ -6,7 +6,7 @@
              xmlns:vm="clr-namespace:RaceDay.WpfUi.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             MaxWidth="948" 
+             MaxWidth="948"
              MaxHeight="600"
              d:DesignHeight="600"
              d:DesignWidth="948"
@@ -14,28 +14,40 @@
     <DockPanel LastChildFill="True" >
         <Grid Background="{DynamicResource MaterialDesignDarkBackground}"
               DockPanel.Dock="Top"
-              HorizontalAlignment="Stretch" Margin="0" >
+              HorizontalAlignment="Stretch"
+              Margin="0" >
             <Grid HorizontalAlignment="Stretch" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="36"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="36" />
                 </Grid.ColumnDefinitions>
-                
-                <TextBlock Grid.Column="0" Text="Edit Racers in Race" HorizontalAlignment="Center"
+
+                <TextBlock Grid.Column="0"
+                           Text="Edit Racers in Race"
+                           HorizontalAlignment="Center"
                            Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                            Foreground="{DynamicResource MaterialDesignDarkForeground}"
                            Margin="50 5" />
-                
-                <Button Grid.Column="1" Background="Red" Padding="2" Margin="2 " Command="{Binding CloseCommand}">
-                    <materialDesign:PackIcon Kind="Close" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"></materialDesign:PackIcon>
+
+                <Button Grid.Column="1"
+                        Background="Red"
+                        Padding="2"
+                        Margin="2 "
+                        Command="{Binding CloseCommand}" >
+                    <materialDesign:PackIcon Kind="Close"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             FontWeight="Bold" />
                 </Button>
             </Grid>
         </Grid>
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" MinWidth="300" />
-                <ColumnDefinition Width="*" MinWidth="300" />
+                <ColumnDefinition Width="*"
+                                  MinWidth="300" />
+                <ColumnDefinition Width="*"
+                                  MinWidth="300" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -51,16 +63,25 @@
                         <TextBlock Text="All Racers"
                                    Style="{DynamicResource MaterialDesignHeadline6TextBlock}" />
                     </Border>
-                    
-                    <Button DockPanel.Dock="Bottom" Margin="10" Command="{Binding AddSelectedRacersCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Add Selected Racers to Race" Margin="5 0"/>
-                            <materialDesign:PackIcon Kind="ArrowRightCircle" VerticalAlignment="Center" />
+
+                    <Button DockPanel.Dock="Bottom"
+                            Margin="10"
+                            Command="{Binding AddSelectedRacersCommand}"
+                            CommandParameter="{Binding ElementName=AllRacersDataGrid, Path=SelectedItems }" >
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text="Add Selected Racers to Race"
+                                       Margin="5 0" />
+                            <materialDesign:PackIcon Kind="ArrowRightCircle"
+                                                     VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
-                    
-                    <DataGrid ItemsSource="{Binding AllRacers}"
-                              AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Extended" Margin="10 0  10 10">
+
+                    <DataGrid x:Name="AllRacersDataGrid"
+                              ItemsSource="{Binding AllRacers}"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              SelectionMode="Extended"
+                              Margin="10 0  10 10" >
                         <DataGrid.Columns>
                             <DataGridTextColumn DisplayIndex="0"
                                                 Header="Name"
@@ -85,16 +106,28 @@
                         <TextBlock Text="Racers In Race"
                                    Style="{DynamicResource MaterialDesignHeadline6TextBlock}" />
                     </Border>
-                    
-                    <Button DockPanel.Dock="Bottom" Margin="10" Background="Firebrick" Command="{Binding RemoveRacersCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Delete" VerticalAlignment="Center" />
-                            <TextBlock Text="Remove Selected Racers" Margin="5 0"/>
+
+                    <Button DockPanel.Dock="Bottom"
+                            Margin="10"
+                            Background="Firebrick"
+                            Command="{Binding RemoveRacersCommand}"
+                            CommandParameter="{Binding ElementName=SelectedRacersDataGrid, Path=SelectedItems }"
+                            >
+                        <StackPanel Orientation="Horizontal" >
+                            <materialDesign:PackIcon Kind="Delete"
+                                                     VerticalAlignment="Center" />
+                            <TextBlock Text="Remove Selected Racers"
+                                       Margin="5 0" />
                         </StackPanel>
                     </Button>
 
-                    <DataGrid ItemsSource="{Binding SelectedRacers}" DockPanel.Dock="Top"
-                              AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Extended" Margin="10 0  10 10">
+                    <DataGrid x:Name="SelectedRacersDataGrid"
+                              ItemsSource="{Binding SelectedRacers}"
+                              DockPanel.Dock="Top"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              SelectionMode="Extended"
+                              Margin="10 0  10 10" >
                         <DataGrid.Columns>
                             <DataGridTextColumn DisplayIndex="0"
                                                 Header="Name"
@@ -120,9 +153,10 @@
                                    Style="{DynamicResource MaterialDesignHeadline6TextBlock}" />
                     </Border>
 
-                    
+
                     <!-- #region Input Grid -->
-                    <Grid Margin="10" DockPanel.Dock="Top">
+                    <Grid Margin="10"
+                          DockPanel.Dock="Top" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -151,7 +185,7 @@
                                  Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}"
                                  Margin="10" />
                     </Grid>
-                    
+
                     <StackPanel DockPanel.Dock="Top" >
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Center" >

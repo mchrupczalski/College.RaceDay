@@ -148,11 +148,12 @@ public class RaceViewModel : ViewModelBase
         var raceRacers = _racersQuery.GetRacersForRace(RaceModel.RaceId)
                                      .ToArray();
 
-        foreach (var racer in Racers)
+        var racersToRemove = Racers.Where(r => raceRacers.All(rr => rr.Id != r.Racer.RacerId))
+                                   .ToArray();
+        for (int i = 0; i < racersToRemove.Length; i++)
         {
-            var racerInRace = raceRacers.FirstOrDefault(r => r.Id == racer.Racer.RacerId);
-            if (racerInRace is not null) continue;
-
+            var racer = racersToRemove[i];
+            racer.StopTimerCommand.Execute(null);
             racer.Laps.CollectionChanged -= RacerLapsCollectionChanged;
             Racers.Remove(racer);
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,7 +55,9 @@ public partial class App : Application
         }
         catch (Exception e)
         {
-            MessageBox.Show(e.Message, "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (Debugger.IsAttached) throw;
+            else MessageBox.Show(e.Message, "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
         }
         finally
         {

@@ -15,7 +15,7 @@ public class CreateRaceRacerCommand : CommandQueryBase
 
     #endregion
 
-    public RaceRacerEntity Execute(RaceRacerEntity entity)
+    public RaceRacerEntity? Execute(RaceRacerEntity entity)
     {
         const string selectSql = "SELECT RaceId, RaceDayId, RacerId FROM RaceRacers WHERE rowid = last_insert_rowid();";
         string insertSql = $"INSERT INTO RaceRacers (RaceId, RaceDayId, RacerId) VALUES ({entity.RaceId}, {entity.RaceDayId}, {entity.RacerId});";
