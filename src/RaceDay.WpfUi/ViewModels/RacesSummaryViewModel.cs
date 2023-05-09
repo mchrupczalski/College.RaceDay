@@ -123,6 +123,7 @@ public class RacesSummaryViewModel : ViewModelBase
             RaceDayName = _daySummaryModel.RaceDayName,
             SignUpFee = _daySummaryModel.SignUpFee,
             AllTimeLapRecord = SelectedRace.BestLapTime,
+            PetrolCostPerLap = _daySummaryModel.PetrolCostPerLap
         };
 
         var raceVm = _createRaceViewModel(raceModel);

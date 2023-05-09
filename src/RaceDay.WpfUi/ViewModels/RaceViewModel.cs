@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using RaceDay.SqlLite.Queries;
@@ -63,20 +64,9 @@ public class RaceViewModel : ViewModelBase
             IsRecordBeaten = true,
             RaceProfit = 100.00f
         };
-
-        RaceModel.Racers.Add(new RacerModel
-        {
-            RacerId = 1,
-            RacerName = "Racer Name 01"
-        });
-
-        RaceModel.Racers.Add(new RacerModel
-        {
-            RacerId = 2,
-            RacerName = "Racer Name 02"
-        });
     }
 #pragma warning restore CS8618
+    
     public RaceViewModel(RaceModel raceModel,
                          DialogService dialogService,
                          NavigationService navigationService,
@@ -92,10 +82,31 @@ public class RaceViewModel : ViewModelBase
         AddRacerCommand = new RelayCommand(AddRacer, CanAddRacer);
         GoBackCommand = new RelayCommand(GoBack,     CanGoBack);
 
+        Racers.CollectionChanged += RacersCollectionChanged;
+        
         LoadRacers();
     }
 
     #endregion
+
+    #region Events And Handlers
+
+    private void RacersCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        if (e.Action != NotifyCollectionChangedAction.Add && e.Action != NotifyCollectionChangedAction.Remove) return;
+        UpdateRaceProfit();
+    }
+
+    #endregion
+
+    private void UpdateRaceProfit()
+    {
+        float totalIncome = RaceModel.SignUpFee * Racers.Count;
+        int totalLaps = Racers.Sum(racer => racer.Laps.Count);
+        float totalExpense = totalLaps * RaceModel.PetrolCostPerLap;
+
+        RaceModel.RaceProfit = totalIncome - totalExpense;
+    }
 
     private static bool CanGoBack(object? arg) => true;
 
@@ -117,8 +128,11 @@ public class RaceViewModel : ViewModelBase
         foreach (var racer in Racers)
         {
             var racerInRace = raceRacers.FirstOrDefault(r => r.Id == racer.Racer.RacerId);
-            if (racerInRace is null)
-                Racers.Remove(racer);
+            if (racerInRace is not null) continue;
+            
+            racer.Laps.CollectionChanged -= RacerLapsCollectionChanged;
+            Racers.Remove(racer);
+
         }
 
         foreach (var racerDto in raceRacers)
@@ -129,10 +143,18 @@ public class RaceViewModel : ViewModelBase
             var racerModel = new RacerModel
             {
                 RacerId = racerDto.Id,
-                RacerName = racerDto.Name
+                RacerName = racerDto.Name,
+                Age = racerDto.Age,
             };
             var racerViewModel = _createRacerViewModel(racerModel);
+            racerViewModel.Laps.CollectionChanged += RacerLapsCollectionChanged;
             Racers.Add(racerViewModel);
         }
+    }
+
+    private void RacerLapsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        if(e.Action != NotifyCollectionChangedAction.Add && e.Action != NotifyCollectionChangedAction.Remove) return;
+        UpdateRaceProfit();
     }
 }
