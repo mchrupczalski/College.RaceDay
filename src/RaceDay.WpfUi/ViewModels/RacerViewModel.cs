@@ -14,11 +14,6 @@ namespace RaceDay.WpfUi.ViewModels;
 
 public class RacerViewModel : ObservableObject
 {
-    private readonly RaceModel _raceModel;
-    private readonly RacerLapQuery _racerLapQuery;
-    private readonly CreateRacerLapCommand _createRacerLapCommand;
-    private readonly DeleteRaceLapCommand _deleteRaceLapCommand;
-
     #region Delegates
 
     public delegate RacerViewModel CreateRacerViewModel(RaceModel raceModel, RacerModel racerModel);
@@ -27,8 +22,13 @@ public class RacerViewModel : ObservableObject
 
     #region Fields
 
+    private readonly CreateRacerLapCommand _createRacerLapCommand;
+    private readonly DeleteRaceLapCommand _deleteRaceLapCommand;
+    private readonly RaceModel _raceModel;
+    private readonly RacerLapQuery _racerLapQuery;
+
     private readonly DispatcherTimer _timer;
-    
+
     private bool _displayLaps;
     private bool _finished;
     private TimeSpan _lapTimer;
@@ -52,7 +52,7 @@ public class RacerViewModel : ObservableObject
 
     public TimeSpan LapRecord => Laps.Count == 0 ? TimeSpan.Zero : Laps.Min(l => l.LapTime);
 
-    public float AverageLapSpeed => Laps.Count ==  0 ? 0 : Laps.Average(l => l.LapSpeedMph);
+    public float AverageLapSpeed => Laps.Count == 0 ? 0 : Laps.Average(l => l.LapSpeedMph);
 
     public int LapCounter => Laps.Count;
 
@@ -84,7 +84,6 @@ public class RacerViewModel : ObservableObject
     public ICommand StartTimerCommand { get; }
     public ICommand StopTimerCommand { get; }
     public ICommand CatchLapTimeCommand { get; }
-    
     public ICommand DeleteLapCommand { get; }
 
     #endregion
@@ -109,13 +108,17 @@ public class RacerViewModel : ObservableObject
             LapTime = new TimeSpan(0, 0, 2, 55, 123),
             LapDistanceMiles = 1.234f
         });
-        
+
         LapTimer = new TimeSpan(0, 0, 2, 55, 123);
         Started = true;
         DisplayLaps = true;
     }
 
-    public RacerViewModel(RaceModel raceModel, RacerModel raceRacerModel, RacerLapQuery racerLapQuery, CreateRacerLapCommand createRacerLapCommand, DeleteRaceLapCommand deleteRaceLapCommand)
+    public RacerViewModel(RaceModel raceModel,
+                          RacerModel raceRacerModel,
+                          RacerLapQuery racerLapQuery,
+                          CreateRacerLapCommand createRacerLapCommand,
+                          DeleteRaceLapCommand deleteRaceLapCommand)
     {
         _raceModel = raceModel;
         _racerLapQuery = racerLapQuery;
@@ -136,6 +139,17 @@ public class RacerViewModel : ObservableObject
         LoadData();
     }
 
+    #endregion
+
+    #region Events And Handlers
+
+    private void TimerOnTick(object? sender, EventArgs e)
+    {
+        LapTimer = LapTimer.Add(TimeSpan.FromMilliseconds(100));
+    }
+
+    #endregion
+
     private static bool CanDeleteLap(object? arg) => true;
 
     private void DeleteLap(object? obj)
@@ -143,10 +157,10 @@ public class RacerViewModel : ObservableObject
         var lap = obj as RacerLapModel;
         if (lap == null)
             return;
-        
+
         bool deleted = _deleteRaceLapCommand.Execute(lap.LapId);
         if (!deleted) return;
-        
+
         Laps.Remove(lap);
         OnPropertyChanged(nameof(LapRecord));
         OnPropertyChanged(nameof(LapCounter));
@@ -159,28 +173,17 @@ public class RacerViewModel : ObservableObject
         var laps = _racerLapQuery.GetLapsForRacerInRace(_raceModel.RaceId, Racer.RacerId);
         foreach (var lap in laps)
         {
-            Laps.Add(new RacerLapModel()
+            Laps.Add(new RacerLapModel
             {
                 LapId = lap.Id,
                 RaceDayId = _raceModel.RaceDayId,
                 RaceId = _raceModel.RaceId,
                 RacerId = Racer.RacerId,
                 LapTime = TimeSpan.FromSeconds(lap.LapTimeSeconds),
-                LapDistanceMiles = _raceModel.LapDistanceMiles,
+                LapDistanceMiles = _raceModel.LapDistanceMiles
             });
         }
     }
-
-    #endregion
-
-    #region Events And Handlers
-
-    private void TimerOnTick(object? sender, EventArgs e)
-    {
-        LapTimer = LapTimer.Add(TimeSpan.FromMilliseconds(100));
-    }
-
-    #endregion
 
     private bool CanCatchLapTime(object? arg) => Started && !Finished;
 
@@ -188,16 +191,16 @@ public class RacerViewModel : ObservableObject
     {
         var lapTime = LapTimer;
         LapTimer = TimeSpan.Zero;
-        
-        var entity = new RaceLapEntity()
+
+        var entity = new RaceLapEntity
         {
             RaceDayId = _raceModel.RaceDayId,
             RaceId = _raceModel.RaceId,
             RacerId = Racer.RacerId,
-            LapTimeSeconds = (float)lapTime.TotalSeconds,
+            LapTimeSeconds = (float)lapTime.TotalSeconds
         };
         var newLap = _createRacerLapCommand.Execute(entity);
-            
+
         Laps.Add(new RacerLapModel
         {
             LapId = newLap?.Id ?? 0,
@@ -205,9 +208,9 @@ public class RacerViewModel : ObservableObject
             RaceId = _raceModel.RaceId,
             RacerId = Racer.RacerId,
             LapTime = lapTime,
-            LapDistanceMiles = _raceModel.LapDistanceMiles,
+            LapDistanceMiles = _raceModel.LapDistanceMiles
         });
-        
+
         OnPropertyChanged(nameof(LapRecord));
         OnPropertyChanged(nameof(AverageLapSpeed));
         OnPropertyChanged(nameof(LapCounter));

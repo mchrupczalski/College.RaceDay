@@ -93,15 +93,24 @@ public class RaceViewModel : ViewModelBase
     {
         if (e.Action != NotifyCollectionChangedAction.Add && e.Action != NotifyCollectionChangedAction.Remove) return;
         UpdateRaceProfit();
+        GetBestRaceLap();
     }
 
     private void RacersCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         if (e.Action != NotifyCollectionChangedAction.Add && e.Action != NotifyCollectionChangedAction.Remove) return;
         UpdateRaceProfit();
+        GetBestRaceLap();
     }
 
     #endregion
+
+    private void GetBestRaceLap()
+    {
+        RaceModel.RaceLapRecord = Racers.SelectMany(racer => racer.Laps)
+                                        .MinBy(lap => lap.LapTime)
+                                       ?.LapTime ?? TimeSpan.Zero;
+    }
 
     private void UpdateRaceProfit()
     {
@@ -114,7 +123,17 @@ public class RaceViewModel : ViewModelBase
 
     private static bool CanGoBack(object? arg) => true;
 
-    private void GoBack(object? obj) => _navigationService.NavigateTo<HomeViewModel>();
+    private void GoBack(object? obj)
+    {
+        foreach (var racer in Racers)
+        {
+            racer.StopTimerCommand.Execute(null);
+            racer.Laps.CollectionChanged -= RacerLapsCollectionChanged;
+        }
+
+        Racers.CollectionChanged -= RacersCollectionChanged;
+        _navigationService.NavigateTo<HomeViewModel>();
+    }
 
     private static bool CanAddRacer(object? arg) => true;
 
