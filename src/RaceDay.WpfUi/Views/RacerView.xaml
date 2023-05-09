@@ -21,14 +21,17 @@
         <DockPanel HorizontalAlignment="Stretch"
                    LastChildFill="False" >
             <!-- Buttons -->
-            <Grid DockPanel.Dock="Right" VerticalAlignment="Top">
+            <Grid DockPanel.Dock="Right"
+                  VerticalAlignment="Top" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="55" MinWidth="55"/>
-                    <ColumnDefinition Width="55" MinWidth="55"/>
+                    <ColumnDefinition Width="55"
+                                      MinWidth="55" />
+                    <ColumnDefinition Width="55"
+                                      MinWidth="55" />
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0"
-                        Style="{DynamicResource MaterialDesignFlatButton}" 
+                        Style="{DynamicResource MaterialDesignFlatButton}"
                         Visibility="{Binding Started, Converter={StaticResource BooleanToVisibilityConverter}}" >
                     <Image Source="../Resources/timer-100.png" />
                 </Button>
@@ -38,20 +41,22 @@
                         Visibility="{Binding Started, Converter={StaticResource BooleanToVisibilityConverter}}" >
                     <Image Source="../Resources/finish-flag-100.png" />
                 </Button>
-                
+
                 <Button Grid.Column="1"
                         Style="{DynamicResource MaterialDesignFlatButton}"
                         Visibility="{Binding Started, Converter={StaticResource InverseBooleanToVisibilityConverter}}" >
                     <Image Source="../Resources/go-100.png" />
                 </Button>
             </Grid>
-            
+
             <!-- Racer Data -->
-            <Grid DockPanel.Dock="Top">
+            <Grid DockPanel.Dock="Top" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="36" />
-                    <ColumnDefinition Width="Auto" MinWidth="32"/>
-                    <ColumnDefinition Width="Auto" MinWidth="180"/>
+                    <ColumnDefinition Width="Auto"
+                                      MinWidth="32" />
+                    <ColumnDefinition Width="Auto"
+                                      MinWidth="180" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
@@ -128,40 +133,82 @@
                                     ImageSource="../Resources/timer-100.png" />
 
             </Grid>
-            
+
             <!-- Laps -->
-            <Grid DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Grid DockPanel.Dock="Top"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Top" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                
-                <Button Grid.Row="0" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="Black" VerticalAlignment="Top" Visibility="{Binding DisplayLaps, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Image Source="../Resources/down-button-80.png" Height="12"/>
-                        <TextBlock Text="Show All Laps" Padding="5"/>
+
+                <Button Grid.Row="0"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Foreground="Black"
+                        VerticalAlignment="Top"
+                        Command="{Binding ToggleLapsVisibilityCommand}"
+                        Visibility="{Binding DisplayLaps, Converter={StaticResource InverseBooleanToVisibilityConverter}}" >
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center" >
+                        <Image Source="../Resources/down-button-80.png"
+                               Height="12" />
+                        <TextBlock Text="Show All Laps"
+                                   Padding="5" />
                     </StackPanel>
                 </Button>
-                
-                <Button Grid.Row="0" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="Black" VerticalAlignment="Top" Visibility="{Binding DisplayLaps, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Image Source="../Resources/slide-up-80.png" Height="12"/>
-                        <TextBlock Text="Hide All Laps" Padding="5"/>
+
+                <Button Grid.Row="0"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Foreground="Black"
+                        VerticalAlignment="Top"
+                        Command="{Binding ToggleLapsVisibilityCommand}"
+                        Visibility="{Binding DisplayLaps, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center" >
+                        <Image Source="../Resources/slide-up-80.png"
+                               Height="12" />
+                        <TextBlock Text="Hide All Laps"
+                                   Padding="5" />
                     </StackPanel>
                 </Button>
-                
-                <DataGrid Grid.Row="1" Visibility="{Binding DisplayLaps, Converter={StaticResource BooleanToVisibilityConverter}}" AutoGenerateColumns="False" ItemsSource="{Binding Laps}" CanUserAddRows="False" Style="{DynamicResource MaterialDesignDataGrid}">
+
+                <DataGrid Grid.Row="1"
+                          Visibility="{Binding DisplayLaps, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          AutoGenerateColumns="False"
+                          ItemsSource="{Binding Laps}"
+                          CanUserAddRows="False"
+                          Style="{DynamicResource MaterialDesignDataGrid}" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Lap" DisplayIndex="0" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowIndexConverter}, ConverterParameter=1 }" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Lap Time" DisplayIndex="1" Binding="{Binding LapTime, StringFormat={}{0:mm\\:ss\\:fff}}"/>
-                        <DataGridTextColumn Header="Lap Speed" DisplayIndex="2" Binding="{Binding LapSpeedMph, StringFormat={}{0:N2} mph}" IsReadOnly="True"/>
-                        <DataGridTemplateColumn DisplayIndex="3">
+                        <DataGridTextColumn Header="Lap"
+                                            DisplayIndex="0"
+                                            Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowIndexConverter}, ConverterParameter=1 }"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Header="Lap Time"
+                                            DisplayIndex="1"
+                                            Binding="{Binding LapTime, StringFormat={}{0:mm\\:ss\\:fff}}" />
+                        <DataGridTextColumn Header="Lap Speed"
+                                            DisplayIndex="2"
+                                            Binding="{Binding LapSpeedMph, StringFormat={}{0:N2} mph}"
+                                            IsReadOnly="True" />
+                        <DataGridTemplateColumn DisplayIndex="3" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="Black" VerticalAlignment="Top" Padding="0" Margin="0" Height="18">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0">
-                                            <Image Source="../Resources/trash-can-80.png" Height="16" Margin="0"/>
-                                            <TextBlock Text="Delete" Padding="5 0" Margin="0"/>
+                                    <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Foreground="Black"
+                                            VerticalAlignment="Top"
+                                            Padding="0"
+                                            Margin="0"
+                                            Height="18" >
+                                        <StackPanel Orientation="Horizontal"
+                                                    VerticalAlignment="Top"
+                                                    Margin="0" >
+                                            <Image Source="../Resources/trash-can-80.png"
+                                                   Height="16"
+                                                   Margin="0" />
+                                            <TextBlock Text="Delete"
+                                                       Padding="5 0"
+                                                       Margin="0" />
                                         </StackPanel>
                                     </Button>
                                 </DataTemplate>

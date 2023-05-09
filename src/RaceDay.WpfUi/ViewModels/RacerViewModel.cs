@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using System.Windows.Media;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
@@ -8,8 +9,12 @@ namespace RaceDay.WpfUi.ViewModels;
 
 public class RacerViewModel : ObservableObject
 {
+    #region Delegates
+
     public delegate RacerViewModel CreateRacerViewModel(RacerModel racerModel);
-    
+
+    #endregion
+
     #region Fields
 
     private float _averageLapSpeed;
@@ -71,6 +76,8 @@ public class RacerViewModel : ObservableObject
         set => SetField(ref _displayLaps, value);
     }
 
+    public ICommand ToggleLapsVisibilityCommand { get; }
+
     #endregion
 
     #region Constructors
@@ -103,7 +110,15 @@ public class RacerViewModel : ObservableObject
         DisplayLaps = true;
     }
 
-    public RacerViewModel(RacerModel raceRacerModel) => Racer = raceRacerModel;
+    public RacerViewModel(RacerModel raceRacerModel)
+    {
+        Racer = raceRacerModel;
+
+        ToggleLapsVisibilityCommand = new RelayCommand(ToggleLapsVisibility, CanToggleLapsVisibility);
+    }
 
     #endregion
+
+    private static bool CanToggleLapsVisibility(object? arg) => true;
+    private void ToggleLapsVisibility(object? obj) => DisplayLaps = !DisplayLaps;
 }
