@@ -64,7 +64,8 @@ public class RaceViewModel : ViewModelBase
             RaceProfit = 100.00f
         };
 #pragma warning restore CS8618
-
+    
+    
     public RaceViewModel(RaceModel raceModel,
                          DialogService dialogService,
                          NavigationService navigationService,

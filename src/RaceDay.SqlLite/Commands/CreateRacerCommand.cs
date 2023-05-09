@@ -16,6 +16,12 @@ public class CreateRacerCommand : CommandQueryBase
 
     #endregion
 
+    /// <summary>
+    ///     Creates a new Racer record and returns the new record
+    /// </summary>
+    /// <param name="entity">Racer to create</param>
+    /// <exception cref="Exception">Thrown if record not found</exception>
+    /// <exception cref="CreateRecordException">Thrown if error creating record</exception>
     public RacerEntity Execute(RacerEntity entity)
     {
         const string selectSql = "SELECT Id, Name, Age FROM Racers WHERE rowid = last_insert_rowid();";

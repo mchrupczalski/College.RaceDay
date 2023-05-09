@@ -15,6 +15,10 @@ public class CreateRaceCommand : CommandQueryBase
     #endregion
 
 
+    /// <summary>
+    ///     Creates a new Race record and returns the new record
+    /// </summary>
+    /// <param name="entity">Race to create</param>
     public RaceEntity? Execute(RaceEntity entity)
     {
         const string selectSql = "SELECT Id, RaceDayId, RaceDate FROM Races WHERE Id = last_insert_rowid();";
