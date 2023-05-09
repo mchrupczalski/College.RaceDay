@@ -33,11 +33,21 @@ public class Bootstrapper
                                                                                                         s.GetRequiredService<NavigationService>(),
                                                                                                         s.GetRequiredService<RaceSummaryQuery>(),
                                                                                                         s.GetRequiredService<RaceViewModel.CreateRaceViewModel>()));
-
-                            services.AddSingleton<RaceViewModel.CreateRaceViewModel>(s => r => new RaceViewModel(r));
-
                             services.AddSingleton<NewRaceDayViewModel>();
                             services.AddSingleton<NewRaceViewModel>();
+                            services.AddSingleton<AddRacerViewModel>();
+
+                            /* Factories */
+                            services.AddSingleton<RacerViewModel.CreateRacerViewModel>(s => (race, racer) =>
+                                                                                           new RacerViewModel(
+                                                                                               race, racer, s.GetRequiredService<RacerLapQuery>(),
+                                                                                               s.GetRequiredService<CreateRacerLapCommand>(),
+                                                                                               s.GetRequiredService<DeleteRaceLapCommand>()));
+
+                            services.AddSingleton<RaceViewModel.CreateRaceViewModel>(s => r => new RaceViewModel(r, s.GetRequiredService<DialogService>(),
+                                                                                                                 s.GetRequiredService<NavigationService>(),
+                                                                                                                 s.GetRequiredService<RacerViewModel.CreateRacerViewModel>(),
+                                                                                                                 s.GetRequiredService<RacersQuery>()));
 
                             /* In SQLite Database */
                             string filesRoot = AppDomain.CurrentDomain.BaseDirectory;
@@ -46,10 +56,20 @@ public class Bootstrapper
                             /* Queries */
                             services.AddSingleton<DaySummaryQuery>(s => new DaySummaryQuery(dbPath));
                             services.AddSingleton<RaceSummaryQuery>(s => new RaceSummaryQuery(dbPath));
+                            services.AddSingleton<RacersQuery>(s => new RacersQuery(dbPath));
+                            services.AddSingleton<RacerLapQuery>(s => new RacerLapQuery(dbPath));
 
-                            /* Commands */
+                            /* Create Commands */
                             services.AddSingleton<CreateRaceDayCommand>(s => new CreateRaceDayCommand(dbPath));
                             services.AddSingleton<CreateRaceCommand>(s => new CreateRaceCommand(dbPath));
+                            services.AddSingleton<CreateRacerCommand>(s => new CreateRacerCommand(dbPath));
+                            services.AddSingleton<CreateRaceRacerCommand>(s => new CreateRaceRacerCommand(dbPath));
+                            services.AddSingleton<CreateRacerLapCommand>(s => new CreateRacerLapCommand(dbPath));
+
+                            /* Delete Commands */
+                            services.AddSingleton<DeleteRaceLapCommand>(s => new DeleteRaceLapCommand(dbPath));
+                            services.AddSingleton<DeleteRaceRacerCommand>(s => new DeleteRaceRacerCommand(dbPath));
+                            
                         })
                        .Build();
 

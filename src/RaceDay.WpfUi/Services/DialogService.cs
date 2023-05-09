@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Extensions.DependencyInjection;
 using RaceDay.WpfUi.Infrastructure;
+using RaceDay.WpfUi.Interfaces;
 
 namespace RaceDay.WpfUi.Services;
 
@@ -73,5 +74,28 @@ public class DialogService : ObservableObject
         ActiveDialogViewModel.PropertyChanged -= DialogStateChanged;
 
         return result is false ? default : viewModel.Result;
+    }
+    
+    public async Task DisplayDialogAsync<TViewModel, TModel>(TModel model)
+        where TViewModel : DialogViewModelBase<TModel>, INavigableViewModel
+    {
+        var viewModel = _serviceProvider.GetRequiredService<TViewModel>();
+        viewModel.Model = model;
+        viewModel.OnNavigatedTo();
+
+        ActiveDialogViewModel = viewModel;
+        ActiveDialogViewModel.OpenDialog();
+        ActiveDialogViewModel.PropertyChanged += DialogStateChanged;
+        
+        if (viewModel.DialogClosingHandler != null)
+        {
+            await DialogHost.Show(viewModel, DialogHostIdentifier, viewModel.DialogClosingHandler);
+        }
+        else
+        {
+            await DialogHost.Show(viewModel, DialogHostIdentifier);
+        }
+        
+        ActiveDialogViewModel.PropertyChanged -= DialogStateChanged;
     }
 }

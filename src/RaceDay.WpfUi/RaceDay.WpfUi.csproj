@@ -5,6 +5,7 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
         <StartupObject>RaceDay.WpfUi.App</StartupObject>
     </PropertyGroup>
 
@@ -20,7 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\RaceDay.Core\RaceDay.Core.csproj" />
       <ProjectReference Include="..\RaceDay.SqlLite\RaceDay.SqlLite.csproj" />
     </ItemGroup>
 

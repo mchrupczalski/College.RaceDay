@@ -1,5 +1,7 @@
 ﻿using RaceDay.Domain.Entities;
+using RaceDay.Domain.Exceptions;
 using RaceDay.SqlLite.Infrastructure;
+using SQLite;
 
 namespace RaceDay.SqlLite.Commands;
 
@@ -14,38 +16,26 @@ public class CreateRacerCommand : CommandQueryBase
 
     #endregion
 
-    public RacerEntity? Execute(RacerEntity entity)
+    public RacerEntity Execute(RacerEntity entity)
     {
-        // @formatter:off
-        const string sql = "INSERT INTO Racers(Name, Age)" +
-                           "VALUES(@Name, @Age);" +
-                           "SELECT Id, Name, Age" +
-                           "FROM Racers" +
-                           "WHERE Id = last_insert_rowid();";
-        // @formatter:on
+        const string selectSql = "SELECT Id, Name, Age FROM Racers WHERE rowid = last_insert_rowid();";
+        string insertSql = $"INSERT INTO Racers(Name, Age) VALUES('{entity.Name}', {entity.Age});";
 
-        using var cnx = CreateConnection();
-        //cnx.Open();
-        
-        var result = cnx.Query<RacerEntity>(sql)
-                        .FirstOrDefault();
-
-        /*
-        using var cmd = new SqliteCommand(sql, cnx);
-        cmd.Parameters.AddWithValue("@Name", entity.Name);
-        cmd.Parameters.AddWithValue("@Age",  entity.Age);
-        cmd.Prepare();
-
-        using var reader = cmd.ExecuteReader();
-        if (!reader.Read()) throw new SqliteException("The record could not be created.", 0);
-
-        var result = new RacerEntity
+        try
         {
-            Id = reader.GetInt32(0),
-            Name = reader.GetString(1),
-            Age = reader.GetByte(2)
-        };
-*/
-        return result;
+            using var cnx = CreateConnection();
+            _ = cnx.Query<RacerEntity>(insertSql);
+            var result = cnx.Query<RacerEntity>(selectSql)
+                            .FirstOrDefault();
+            
+            if(result == null) throw new Exception("Racer not found");
+
+            return result;
+        }
+        catch (Exception e)
+        {
+            throw new CreateRecordException("Error creating racer", e);
+        }
+
     }
 }
