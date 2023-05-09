@@ -51,8 +51,7 @@ public class RaceViewModel : ViewModelBase
 
 #pragma warning disable CS8618
     [Obsolete("For design-time only", true)]
-    public RaceViewModel()
-    {
+    public RaceViewModel() =>
         RaceModel = new RaceModel
         {
             RaceDayId = 1,
@@ -64,9 +63,8 @@ public class RaceViewModel : ViewModelBase
             IsRecordBeaten = true,
             RaceProfit = 100.00f
         };
-    }
 #pragma warning restore CS8618
-    
+
     public RaceViewModel(RaceModel raceModel,
                          DialogService dialogService,
                          NavigationService navigationService,
@@ -83,13 +81,19 @@ public class RaceViewModel : ViewModelBase
         GoBackCommand = new RelayCommand(GoBack,     CanGoBack);
 
         Racers.CollectionChanged += RacersCollectionChanged;
-        
+
         LoadRacers();
     }
 
     #endregion
 
     #region Events And Handlers
+
+    private void RacerLapsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        if (e.Action != NotifyCollectionChangedAction.Add && e.Action != NotifyCollectionChangedAction.Remove) return;
+        UpdateRaceProfit();
+    }
 
     private void RacersCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
@@ -129,10 +133,9 @@ public class RaceViewModel : ViewModelBase
         {
             var racerInRace = raceRacers.FirstOrDefault(r => r.Id == racer.Racer.RacerId);
             if (racerInRace is not null) continue;
-            
+
             racer.Laps.CollectionChanged -= RacerLapsCollectionChanged;
             Racers.Remove(racer);
-
         }
 
         foreach (var racerDto in raceRacers)
@@ -144,17 +147,11 @@ public class RaceViewModel : ViewModelBase
             {
                 RacerId = racerDto.Id,
                 RacerName = racerDto.Name,
-                Age = racerDto.Age,
+                Age = racerDto.Age
             };
             var racerViewModel = _createRacerViewModel(racerModel);
             racerViewModel.Laps.CollectionChanged += RacerLapsCollectionChanged;
             Racers.Add(racerViewModel);
         }
-    }
-
-    private void RacerLapsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
-    {
-        if(e.Action != NotifyCollectionChangedAction.Add && e.Action != NotifyCollectionChangedAction.Remove) return;
-        UpdateRaceProfit();
     }
 }
