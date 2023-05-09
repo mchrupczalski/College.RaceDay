@@ -52,7 +52,7 @@
                                    Style="{DynamicResource MaterialDesignHeadline6TextBlock}" />
                     </Border>
                     
-                    <Button DockPanel.Dock="Bottom" Margin="10">
+                    <Button DockPanel.Dock="Bottom" Margin="10" Command="{Binding AddSelectedRacersCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Add Selected Racers to Race" Margin="5 0"/>
                             <materialDesign:PackIcon Kind="ArrowRightCircle" VerticalAlignment="Center" />
@@ -85,6 +85,13 @@
                         <TextBlock Text="Racers In Race"
                                    Style="{DynamicResource MaterialDesignHeadline6TextBlock}" />
                     </Border>
+                    
+                    <Button DockPanel.Dock="Bottom" Margin="10" Background="Firebrick" Command="{Binding RemoveRacersCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Delete" VerticalAlignment="Center" />
+                            <TextBlock Text="Remove Selected Racers" Margin="5 0"/>
+                        </StackPanel>
+                    </Button>
 
                     <DataGrid ItemsSource="{Binding SelectedRacers}" DockPanel.Dock="Top"
                               AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Extended" Margin="10 0  10 10">
@@ -155,6 +162,7 @@
                                     Command="{Binding CreateNewRacerCommand}" />
                             <Button Content="Cancel"
                                     Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
+                                    Background="Firebrick"
                                     Margin="10"
                                     Command="{Binding CancelNewRacerCommand}" />
                         </StackPanel>

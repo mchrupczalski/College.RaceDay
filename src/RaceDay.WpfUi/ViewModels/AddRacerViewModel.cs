@@ -36,6 +36,8 @@ public class AddRacerViewModel : DialogViewModelBase<RaceModel>, INavigableViewM
     public ICommand CreateNewRacerCommand { get; }
     public ICommand CancelNewRacerCommand { get; }
     public ICommand CloseCommand { get; }
+    public ICommand RemoveRacersCommand { get; }
+    public ICommand AddSelectedRacersCommand { get; }
 
     #endregion
 
