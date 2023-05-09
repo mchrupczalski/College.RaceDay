@@ -1,0 +1,27 @@
+﻿<Application x:Class="RaceDay.WpfUi.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:RaceDay.WpfUi.Converters" >
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <converters:InverseEqualityToVisibilityConverter x:Key="InverseEqualityToVisibilityConverter" />
+            <converters:EqualityToVisibilityConverter x:Key="EqualityToVisibilityConverter" />
+            <converters:RowIndexConverter x:Key="RowIndexConverter" />
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="Themes/Generic.xaml" />
+
+                <ResourceDictionary Source="Templates/DataTemplates.xaml" />
+                <ResourceDictionary Source="Templates/ControlTemplates.xaml" />
+                <ResourceDictionary Source="Templates/StyleTemplates.xaml" />
+
+                <ResourceDictionary Source="Styles/Main.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
