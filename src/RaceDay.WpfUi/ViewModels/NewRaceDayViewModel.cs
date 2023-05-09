@@ -80,7 +80,7 @@ public class NewRaceDayViewModel : DialogViewModelBase<NewRaceDayModel, DaySumma
                         LapDistanceKilometers = resultDto.LapDistanceKm,
                         PetrolCostPerLap = resultDto.PetrolCostPerLap,
                         TotalRaces = resultDto.TotalRaces,
-                        RecordLapTime = resultDto.RecordLapTime,
+                        RecordLapTime = TimeSpan.FromSeconds(resultDto.RecordLapTime),
                         RecordHolderName = resultDto.RecordHolderName,
                         TotalIncome = resultDto.TotalIncome,
                         TotalCost = resultDto.TotalCost

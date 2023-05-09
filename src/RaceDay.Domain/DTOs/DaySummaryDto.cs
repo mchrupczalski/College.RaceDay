@@ -8,7 +8,7 @@ public record DaySummaryDto
     public float LapDistanceKm { get; init; }
     public float PetrolCostPerLap { get; init; }
     public int TotalRaces { get; init; }
-    public TimeSpan? RecordLapTime { get; init; }
+    public float RecordLapTime { get; init; }
     public string? RecordHolderName { get; init; }
     public float TotalIncome { get; init; }
     public float TotalCost { get; init; }

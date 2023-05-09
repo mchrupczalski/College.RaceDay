@@ -167,7 +167,7 @@
 
                     <DataGridTextColumn Header="Record Lap Time"
                                         DisplayIndex="5"
-                                        Binding="{Binding RecordLapTime}"
+                                        Binding="{Binding RecordLapTime, StringFormat={}{0:mm\\:ss\\:fff}}"
                                         CellStyle="{StaticResource DataGridTextColumnCenterStyle}" />
 
                     <DataGridTextColumn Header="Record Holder"

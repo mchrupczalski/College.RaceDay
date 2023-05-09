@@ -91,7 +91,7 @@
                                         Binding="{Binding TotalLaps}" />
                     <DataGridTextColumn Header="Best Lap Time"
                                         DisplayIndex="3"
-                                        Binding="{Binding BestLapTime}" />
+                                        Binding="{Binding BestLapTime, StringFormat={}{0:mm\\:ss\\:fff}}" />
                     <DataGridTextColumn Header="Best Lap Racer"
                                         DisplayIndex="4"
                                         Binding="{Binding BestLapTimeHolder}" />

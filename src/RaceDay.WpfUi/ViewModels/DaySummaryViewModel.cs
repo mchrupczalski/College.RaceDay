@@ -124,7 +124,7 @@ public class DaySummaryViewModel : ViewModelBase
                 LapDistanceKilometers = dto.LapDistanceKm,
                 PetrolCostPerLap = dto.PetrolCostPerLap,
                 TotalRaces = dto.TotalRaces,
-                RecordLapTime = dto.RecordLapTime,
+                RecordLapTime = TimeSpan.FromSeconds(dto.RecordLapTime),
                 RecordHolderName = dto.RecordHolderName,
                 TotalIncome = dto.TotalIncome,
                 TotalCost = dto.TotalCost

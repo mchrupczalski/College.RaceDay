@@ -37,22 +37,27 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
 
             raceDayRacesViewModel.LoadRaceDayRaces(raceDaySummaryViewModel.SelectedRaceDay);
             raceDayRacesViewModel.UpdateViewTitle(raceDaySummaryViewModel.SelectedRaceDay.RaceDayName);
-            
+
             raceDayRacesViewModel.Races.CollectionChanged += RacesCollectionChanged;
         };
     }
 
-    private void RacesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) => RaceDaySummaryViewModel.LoadData(false);
-
     #endregion
 
-    #region Implementation of INavigableViewModel
+    #region Interfaces Implement
 
     /// <inheritdoc />
     public void OnNavigatedTo()
     {
         RaceDaySummaryViewModel.LoadData();
+        if (RaceDaySummaryViewModel.SelectedRaceDay != null) RaceDayRacesViewModel.LoadRaceDayRaces(RaceDaySummaryViewModel.SelectedRaceDay);
     }
+
+    #endregion
+
+    #region Events And Handlers
+
+    private void RacesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) => RaceDaySummaryViewModel.LoadData(false);
 
     #endregion
 }

@@ -64,8 +64,8 @@ public class RaceViewModel : ViewModelBase
             RaceProfit = 100.00f
         };
 #pragma warning restore CS8618
-    
-    
+
+
     public RaceViewModel(RaceModel raceModel,
                          DialogService dialogService,
                          NavigationService navigationService,
@@ -80,6 +80,8 @@ public class RaceViewModel : ViewModelBase
 
         AddRacerCommand = new RelayCommand(AddRacer, CanAddRacer);
         GoBackCommand = new RelayCommand(GoBack,     CanGoBack);
+        StartAllCommand = new RelayCommand(StartAll, CanStartAll);
+        StopAllCommand = new RelayCommand(StopAll,   CanStopAll);
 
         Racers.CollectionChanged += RacersCollectionChanged;
 
@@ -106,11 +108,36 @@ public class RaceViewModel : ViewModelBase
 
     #endregion
 
+    private bool CanStopAll(object? arg) => Racers.Any(racer => racer is { Started: true, Finished: false });
+
+    private void StopAll(object? obj)
+    {
+        foreach (var racer in Racers)
+        {
+            if (racer is { Started: true, Finished: false })
+                racer.StopTimerCommand.Execute(null);
+        }
+    }
+
+    private bool CanStartAll(object? arg) => Racers.Any(racer => racer is { Started: false, Finished: false });
+
+    private void StartAll(object? obj)
+    {
+        foreach (var racer in Racers)
+        {
+            if (racer is { Started: false, Finished: false })
+                racer.StartTimerCommand.Execute(null);
+        }
+    }
+
     private void GetBestRaceLap()
     {
         RaceModel.RaceLapRecord = Racers.SelectMany(racer => racer.Laps)
                                         .MinBy(lap => lap.LapTime)
                                        ?.LapTime ?? TimeSpan.Zero;
+        
+        if(!RaceModel.IsRecordBeaten)
+            RaceModel.IsRecordBeaten = RaceModel.RaceLapRecord < RaceModel.AllTimeLapRecord;
     }
 
     private void UpdateRaceProfit()
@@ -174,5 +201,8 @@ public class RaceViewModel : ViewModelBase
             racerViewModel.Laps.CollectionChanged += RacerLapsCollectionChanged;
             Racers.Add(racerViewModel);
         }
+        
+        UpdateRaceProfit();
+        GetBestRaceLap();
     }
 }

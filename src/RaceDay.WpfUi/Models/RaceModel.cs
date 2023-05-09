@@ -32,12 +32,7 @@ public class RaceModel : ObservableObject
     public bool IsRecordBeaten
     {
         get => _isRecordBeaten;
-        set
-        {
-            if (value == _isRecordBeaten) return;
-            _isRecordBeaten = value;
-            OnPropertyChanged();
-        }
+        set => SetField(ref _isRecordBeaten, value);
     }
 
     public float PetrolCostPerLap { get; init; }
