@@ -36,10 +36,15 @@ public class Bootstrapper
                             services.AddSingleton<NewRaceDayViewModel>();
                             services.AddSingleton<NewRaceViewModel>();
                             services.AddSingleton<AddRacerViewModel>();
-                            
+
                             /* Factories */
-                            services.AddSingleton<RaceViewModel.CreateRaceViewModel>(s => r => new RaceViewModel(r, s.GetRequiredService<DialogService>()));
+                            services.AddSingleton<RacerViewModel.CreateRacerViewModel>(s => r => new RacerViewModel(r));
                             
+                            services.AddSingleton<RaceViewModel.CreateRaceViewModel>(s => r => new RaceViewModel(r, s.GetRequiredService<DialogService>(),
+                                                                                                                 s.GetRequiredService<NavigationService>(),
+                                                                                                                 s.GetRequiredService<RacerViewModel.CreateRacerViewModel>(),
+                                                                                                                 s.GetRequiredService<RacersQuery>()));
+
                             /* In SQLite Database */
                             string filesRoot = AppDomain.CurrentDomain.BaseDirectory;
                             string dbPath = Path.Combine(filesRoot, "RaceDay.SqlLite.db");
@@ -48,7 +53,7 @@ public class Bootstrapper
                             services.AddSingleton<DaySummaryQuery>(s => new DaySummaryQuery(dbPath));
                             services.AddSingleton<RaceSummaryQuery>(s => new RaceSummaryQuery(dbPath));
                             services.AddSingleton<RacersQuery>(s => new RacersQuery(dbPath));
-                            
+
                             /* Commands */
                             services.AddSingleton<CreateRaceDayCommand>(s => new CreateRaceDayCommand(dbPath));
                             services.AddSingleton<CreateRaceCommand>(s => new CreateRaceCommand(dbPath));

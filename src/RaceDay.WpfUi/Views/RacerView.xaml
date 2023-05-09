@@ -12,7 +12,7 @@
              d:DesignWidth="800"
              d:DataContext="{d:DesignInstance vm:RacerViewModel, IsDesignTimeCreatable=True}" >
     <materialDesign:Card Padding=" 8 4"
-                         Margin="8"
+                         Margin="0"
                          Background="{DynamicResource MaterialDesignPaper}"
                          Foreground="{DynamicResource MaterialDesignLightForeground}"
                          UniformCornerRadius="6" >
@@ -23,8 +23,8 @@
             <!-- Buttons -->
             <Grid DockPanel.Dock="Right" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="55" MinWidth="55"/>
+                    <ColumnDefinition Width="55" MinWidth="55"/>
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0"
@@ -38,14 +38,20 @@
                         Visibility="{Binding Started, Converter={StaticResource BooleanToVisibilityConverter}}" >
                     <Image Source="../Resources/finish-flag-100.png" />
                 </Button>
+                
+                <Button Grid.Column="1"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Visibility="{Binding Started, Converter={StaticResource InverseBooleanToVisibilityConverter}}" >
+                    <Image Source="../Resources/go-100.png" />
+                </Button>
             </Grid>
             
             <!-- Racer Data -->
             <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="36" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" MinWidth="32"/>
+                    <ColumnDefinition Width="Auto" MinWidth="200"/>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
@@ -74,6 +80,7 @@
                                    Margin="5 0" />
                     </StackPanel>
                     <TextBlock Style="{StaticResource CardValue}"
+                               HorizontalAlignment="Left"
                                Padding="0"
                                Margin="5 0"
                                Text="{Binding Racer.RacerId}" />

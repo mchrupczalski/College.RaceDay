@@ -143,23 +143,6 @@
         </StackPanel>
         
         <!-- Racers -->
-        <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding RaceModel.Racers}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <materialDesign:Card>
-                        <!-- Race Name -->
-                        <materialDesign:Card Grid.Row="0" Grid.Column="0" Padding="8 4" Margin="8"
-                                             Background="{DynamicResource MaterialDesignPaper}"
-                                             Foreground="{DynamicResource MaterialDesignLightForeground}"
-                                             UniformCornerRadius="6">
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="Race Name:" Style="{StaticResource CardHeader}"/>
-                                <TextBlock Text="{Binding  RacerName}" Style="{StaticResource CardValue}"/>
-                            </StackPanel>
-                        </materialDesign:Card>
-                    </materialDesign:Card>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Racers}"/>
     </DockPanel>
 </UserControl>

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
+using RaceDay.SqlLite.Queries;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 using RaceDay.WpfUi.Services;
@@ -8,65 +11,128 @@ namespace RaceDay.WpfUi.ViewModels;
 
 public class RaceViewModel : ViewModelBase
 {
-    private readonly DialogService _dialogService;
+    #region Delegates
 
     public delegate RaceViewModel CreateRaceViewModel(RaceModel raceModel);
 
-    private RaceModel _raceModel;
+    #endregion
+
+    #region Fields
+
+    private readonly RacerViewModel.CreateRacerViewModel _createRacerViewModel;
+
+    private readonly DialogService _dialogService;
+    private readonly NavigationService _navigationService;
+
+    private readonly RaceModel _raceModel;
+    private readonly RacersQuery _racersQuery;
+
+    #endregion
+
+    #region Properties
+
+    public ObservableCollection<RacerViewModel> Racers { get; } = new();
 
     public RaceModel RaceModel
     {
         get => _raceModel;
-        private set => SetField(ref _raceModel, value);
+        private init => SetField(ref _raceModel, value);
     }
 
     public ICommand StopAllCommand { get; }
     public ICommand StartAllCommand { get; }
     public ICommand AddRacerCommand { get; }
     public ICommand GoBackCommand { get; }
-    
 
+    #endregion
 
+    #region Constructors
+
+#pragma warning disable CS8618
     [Obsolete("For design-time only", true)]
     public RaceViewModel()
     {
-        RaceModel = new RaceModel()
+        RaceModel = new RaceModel
         {
             RaceDayId = 1,
             RaceDayName = "Race Name 01",
             RaceId = 1,
             SignUpFee = 10.00f,
             AllTimeLapRecord = new TimeSpan(0, 0, 2, 55, 123),
-            RaceLapRecord = new TimeSpan(0, 0, 3, 2, 623),
+            RaceLapRecord = new TimeSpan(0,    0, 3, 2,  623),
             IsRecordBeaten = true,
-            RaceProfit = 100.00f,
+            RaceProfit = 100.00f
         };
-        
-        RaceModel.Racers.Add(new RacerModel()
+
+        RaceModel.Racers.Add(new RacerModel
         {
             RacerId = 1,
-            RacerName = "Racer Name 01",
+            RacerName = "Racer Name 01"
         });
-        
-        RaceModel.Racers.Add(new RacerModel()
+
+        RaceModel.Racers.Add(new RacerModel
         {
             RacerId = 2,
-            RacerName = "Racer Name 02",
+            RacerName = "Racer Name 02"
         });
     }
-
-    public RaceViewModel(RaceModel raceModel, DialogService dialogService)
+#pragma warning restore CS8618
+    public RaceViewModel(RaceModel raceModel,
+                         DialogService dialogService,
+                         NavigationService navigationService,
+                         RacerViewModel.CreateRacerViewModel createRacerViewModel,
+                         RacersQuery racersQuery)
     {
         _dialogService = dialogService;
+        _navigationService = navigationService;
+        _createRacerViewModel = createRacerViewModel;
+        _racersQuery = racersQuery;
         RaceModel = raceModel;
-        
+
         AddRacerCommand = new RelayCommand(AddRacer, CanAddRacer);
+        GoBackCommand = new RelayCommand(GoBack,     CanGoBack);
+
+        LoadRacers();
     }
 
-    private bool CanAddRacer(object? arg) => true;
+    #endregion
 
-    private void AddRacer(object? obj)
+    private static bool CanGoBack(object? arg) => true;
+
+    private void GoBack(object? obj) => _navigationService.NavigateTo<HomeViewModel>();
+
+    private static bool CanAddRacer(object? arg) => true;
+
+    private async void AddRacer(object? obj)
     {
-        _dialogService.DisplayDialogAsync<AddRacerViewModel, RaceModel>(RaceModel);
+        await _dialogService.DisplayDialogAsync<AddRacerViewModel, RaceModel>(RaceModel);
+        LoadRacers();
+    }
+
+    private void LoadRacers()
+    {
+        var raceRacers = _racersQuery.GetRacersForRace(RaceModel.RaceId)
+                                     .ToArray();
+
+        foreach (var racer in Racers)
+        {
+            var racerInRace = raceRacers.FirstOrDefault(r => r.Id == racer.Racer.RacerId);
+            if (racerInRace is null)
+                Racers.Remove(racer);
+        }
+
+        foreach (var racerDto in raceRacers)
+        {
+            var racer = Racers.FirstOrDefault(r => r.Racer.RacerId == racerDto.Id);
+            if (racer is not null) continue;
+
+            var racerModel = new RacerModel
+            {
+                RacerId = racerDto.Id,
+                RacerName = racerDto.Name
+            };
+            var racerViewModel = _createRacerViewModel(racerModel);
+            Racers.Add(racerViewModel);
+        }
     }
 }

@@ -1,26 +1,75 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
+using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 
 namespace RaceDay.WpfUi.ViewModels;
 
-public class RacerViewModel
+public class RacerViewModel : ObservableObject
 {
+    public delegate RacerViewModel CreateRacerViewModel(RacerModel racerModel);
+    
+    #region Fields
+
+    private float _averageLapSpeed;
+    private bool _displayLaps;
+    private int _lapCounter;
+    private TimeSpan _lapRecord;
+    private TimeSpan _lapTimer;
+    private ImageSource? _medalImage;
+    private bool _started;
+
+    #endregion
+
     #region Properties
 
     public RacerModel Racer { get; }
-    public ImageSource? MedalImage { get; }
-    
-    
-    public ObservableCollection<RacerLapModel> Laps { get; } = new();
-    public TimeSpan LapRecord { get; set; }
-    public float AverageLapSpeed { get; set; }
 
-    public int LapCounter { get; set; }
-    public TimeSpan LapTimer { get; set; }
-    public bool Started { get; set; }
-    public bool DisplayLaps { get; set; }
+    public ImageSource? MedalImage
+    {
+        get => _medalImage;
+        set => SetField(ref _medalImage, value);
+    }
+
+
+    public ObservableCollection<RacerLapModel> Laps { get; } = new();
+
+    public TimeSpan LapRecord
+    {
+        get => _lapRecord;
+        set => SetField(ref _lapRecord, value);
+    }
+
+    public float AverageLapSpeed
+    {
+        get => _averageLapSpeed;
+        set => SetField(ref _averageLapSpeed, value);
+    }
+
+    public int LapCounter
+    {
+        get => _lapCounter;
+        set => SetField(ref _lapCounter, value);
+    }
+
+    public TimeSpan LapTimer
+    {
+        get => _lapTimer;
+        set => SetField(ref _lapTimer, value);
+    }
+
+    public bool Started
+    {
+        get => _started;
+        set => SetField(ref _started, value);
+    }
+
+    public bool DisplayLaps
+    {
+        get => _displayLaps;
+        set => SetField(ref _displayLaps, value);
+    }
 
     #endregion
 
@@ -45,7 +94,7 @@ public class RacerViewModel
             LapTime = new TimeSpan(0, 0, 2, 55, 123),
             LapDistanceKm = 1.234f
         });
-        
+
         LapRecord = new TimeSpan(0, 0, 2, 55, 123);
         AverageLapSpeed = 123.45f;
         LapCounter = 5;

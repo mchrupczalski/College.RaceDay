@@ -76,7 +76,7 @@ public class DialogService : ObservableObject
         return result is false ? default : viewModel.Result;
     }
     
-    public async void DisplayDialogAsync<TViewModel, TModel>(TModel model)
+    public async Task DisplayDialogAsync<TViewModel, TModel>(TModel model)
         where TViewModel : DialogViewModelBase<TModel>, INavigableViewModel
     {
         var viewModel = _serviceProvider.GetRequiredService<TViewModel>();
