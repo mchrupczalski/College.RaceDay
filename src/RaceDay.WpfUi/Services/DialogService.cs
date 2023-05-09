@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,13 +41,21 @@ public class DialogService : ObservableObject
     {
         {
             if (e.PropertyName != nameof(DialogViewModelBase.DialogHostIsOpen)) return;
-            if(ActiveDialogViewModel?.DialogHostIsOpen == false)
+            if (ActiveDialogViewModel?.DialogHostIsOpen == false)
                 DialogHost.Close(DialogHostIdentifier);
         }
     }
 
     #endregion
 
+    /// <summary>
+    ///     Displays a dialog with the specified view model.
+    /// </summary>
+    /// <param name="model">The base model containing the data to be displayed.</param>
+    /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+    /// <typeparam name="TModel">The type of the model.</typeparam>
+    /// <typeparam name="TResult">The type of the result.</typeparam>
+    /// <returns>The result specified by the <typeparamref name="TResult"/></returns>
     public async Task<TResult?> DisplayDialogAsync<TViewModel, TModel, TResult>(TModel model)
         where TViewModel : DialogViewModelBase<TModel, TResult>
     {
@@ -63,19 +70,21 @@ public class DialogService : ObservableObject
         object? result = null;
 
         if (viewModel.DialogClosingHandler != null)
-        {
             result = await DialogHost.Show(viewModel, DialogHostIdentifier, viewModel.DialogClosingHandler);
-        }
         else
-        {
             result = await DialogHost.Show(viewModel, DialogHostIdentifier);
-        }
-        
+
         ActiveDialogViewModel.PropertyChanged -= DialogStateChanged;
 
         return result is false ? default : viewModel.Result;
     }
-    
+
+    /// <summary>
+    ///     Displays a dialog with the specified view model.
+    /// </summary>
+    /// <param name="model">The base model containing the data to be displayed.</param>
+    /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+    /// <typeparam name="TModel">The type of the model.</typeparam>
     public async Task DisplayDialogAsync<TViewModel, TModel>(TModel model)
         where TViewModel : DialogViewModelBase<TModel>, INavigableViewModel
     {
@@ -86,16 +95,12 @@ public class DialogService : ObservableObject
         ActiveDialogViewModel = viewModel;
         ActiveDialogViewModel.OpenDialog();
         ActiveDialogViewModel.PropertyChanged += DialogStateChanged;
-        
+
         if (viewModel.DialogClosingHandler != null)
-        {
             await DialogHost.Show(viewModel, DialogHostIdentifier, viewModel.DialogClosingHandler);
-        }
         else
-        {
             await DialogHost.Show(viewModel, DialogHostIdentifier);
-        }
-        
+
         ActiveDialogViewModel.PropertyChanged -= DialogStateChanged;
     }
 }

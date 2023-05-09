@@ -30,6 +30,10 @@ public class NavigationService : ObservableObject
 
     #endregion
 
+    /// <summary>
+    ///     Navigates to the specified view model.
+    /// </summary>
+    /// <typeparam name="T">The type of the view model.</typeparam>
     public void NavigateTo<T>()
         where T : ViewModelBase, INavigableViewModel
     {
@@ -38,9 +42,12 @@ public class NavigationService : ObservableObject
         viewModel.OnNavigatedTo();
     }
     
+    /// <summary>
+    ///     Navigates to the specified view model.
+    /// </summary>
+    /// <param name="viewModel">The view model.</param>
     public void NavigateTo(ViewModelBase viewModel)
     {
         ActiveViewModel = viewModel;
-        //viewModel.OnNavigatedTo();
     }
 }

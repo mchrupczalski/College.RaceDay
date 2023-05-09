@@ -11,6 +11,10 @@ namespace RaceDay.WpfUi.StartUp;
 
 public class Bootstrapper
 {
+    /// <summary>
+    ///     Creates the host and configures the services.
+    /// </summary>
+    /// <param name="args">The arguments.</param>
     public static IHost Bootstrap(string[] args)
     {
         var host = Host.CreateDefaultBuilder(args)
