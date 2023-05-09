@@ -1,63 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RaceDay.WpfUi.Services;
 using RaceDay.WpfUi.StartUp;
 using RaceDay.WpfUi.ViewModels;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.Forms.MessageBox;
 
-namespace RaceDay.WpfUi
+namespace RaceDay.WpfUi;
+
+/// <summary>
+///     Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    #region Static Fields and Const
+
+    private static IHost _host = null!;
+
+    #endregion
+
+    #region Overrides
+
+    /// <inheritdoc />
+    protected override void OnStartup(StartupEventArgs e)
     {
-        private static IHost _host = null!;
-        
-        [STAThread]
-        public static void Main(string[] args)
+        base.OnStartup(e);
+
+        var mainWindow = _host.Services.GetRequiredService<MainWindow>();
+        var mainViewModel = _host.Services.GetRequiredService<MainViewModel>();
+        mainWindow.DataContext = mainViewModel;
+        mainWindow.Show();
+
+        var navService = _host.Services.GetRequiredService<NavigationService>();
+        navService.NavigateTo<HomeViewModel>();
+    }
+
+    #endregion
+
+    [STAThread]
+    public static void Main(string[] args)
+    {
+        try
         {
-            try
-            {
-                _host = Bootstrapper.Bootstrap(args);
-                _host.Start();
-                
-                var app = _host.Services.GetRequiredService<App>();
-                app.InitializeComponent();
-                app.Run();        
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
-            finally
-            {
-                _host.StopAsync();
-            }
+            _host = Bootstrapper.Bootstrap(args);
+            _host.Start();
+
+            var app = _host.Services.GetRequiredService<App>();
+            app.InitializeComponent();
+            app.Run();
         }
-
-        #region Overrides of Application
-
-        /// <inheritdoc />
-        protected override void OnStartup(StartupEventArgs e)
+        catch (Exception e)
         {
-            base.OnStartup(e);
-            
-            var mainWindow = _host.Services.GetRequiredService<MainWindow>();
-            var mainViewModel = _host.Services.GetRequiredService<MainViewModel>();
-            mainWindow.DataContext = mainViewModel;
-            mainWindow.Show();
-            
-            var navService = _host.Services.GetRequiredService<NavigationService>();
-            navService.NavigateTo<HomeViewModel>();
+            MessageBox.Show(e.Message, "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
-        #endregion
+        finally
+        {
+            _host.StopAsync();
+        }
     }
 }
