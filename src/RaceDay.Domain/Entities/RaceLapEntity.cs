@@ -6,7 +6,7 @@
 public record RaceLapEntity : EntityBase
 {
     #region Properties
-
+    
     /// <summary>
     ///     The Race Id this lap is associated with.
     /// </summary>

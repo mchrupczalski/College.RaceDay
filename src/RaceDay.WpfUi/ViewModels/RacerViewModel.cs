@@ -4,6 +4,9 @@ using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using RaceDay.Domain.Entities;
+using RaceDay.SqlLite.Commands;
+using RaceDay.SqlLite.Queries;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 
@@ -12,6 +15,8 @@ namespace RaceDay.WpfUi.ViewModels;
 public class RacerViewModel : ObservableObject
 {
     private readonly RaceModel _raceModel;
+    private readonly RacerLapQuery _racerLapQuery;
+    private readonly CreateRacerLapCommand _createRacerLapCommand;
 
     #region Delegates
 
@@ -98,7 +103,6 @@ public class RacerViewModel : ObservableObject
             RaceDayId = 1,
             RaceId = 1,
             RacerId = 1,
-            LapNumber = 1,
             LapTime = new TimeSpan(0, 0, 2, 55, 123),
             LapDistanceMiles = 1.234f
         });
@@ -108,9 +112,11 @@ public class RacerViewModel : ObservableObject
         DisplayLaps = true;
     }
 
-    public RacerViewModel(RaceModel raceModel, RacerModel raceRacerModel)
+    public RacerViewModel(RaceModel raceModel, RacerModel raceRacerModel, RacerLapQuery racerLapQuery, CreateRacerLapCommand createRacerLapCommand)
     {
         _raceModel = raceModel;
+        _racerLapQuery = racerLapQuery;
+        _createRacerLapCommand = createRacerLapCommand;
         Racer = raceRacerModel;
 
         ToggleLapsVisibilityCommand = new RelayCommand(ToggleLapsVisibility, CanToggleLapsVisibility);
@@ -121,6 +127,26 @@ public class RacerViewModel : ObservableObject
         _timer = new DispatcherTimer();
         _timer.Interval = TimeSpan.FromMilliseconds(100);
         _timer.Tick += TimerOnTick;
+
+        LoadData();
+    }
+
+    private void LoadData()
+    {
+        Laps.Clear();
+        var laps = _racerLapQuery.GetLapsForRacerInRace(_raceModel.RaceId, Racer.RacerId);
+        foreach (var lap in laps)
+        {
+            Laps.Add(new RacerLapModel()
+            {
+                LapId = lap.Id,
+                RaceDayId = _raceModel.RaceDayId,
+                RaceId = _raceModel.RaceId,
+                RacerId = Racer.RacerId,
+                LapTime = TimeSpan.FromSeconds(lap.LapTimeSeconds),
+                LapDistanceMiles = _raceModel.LapDistanceMiles,
+            });
+        }
     }
 
     #endregion
@@ -140,9 +166,19 @@ public class RacerViewModel : ObservableObject
     {
         var lapTime = LapTimer;
         LapTimer = TimeSpan.Zero;
-
+        
+        var entity = new RaceLapEntity()
+        {
+            RaceDayId = _raceModel.RaceDayId,
+            RaceId = _raceModel.RaceId,
+            RacerId = Racer.RacerId,
+            LapTimeSeconds = (float)lapTime.TotalSeconds,
+        };
+        var newLap = _createRacerLapCommand.Execute(entity);
+            
         Laps.Add(new RacerLapModel
         {
+            LapId = newLap?.Id ?? 0,
             RaceDayId = _raceModel.RaceDayId,
             RaceId = _raceModel.RaceId,
             RacerId = Racer.RacerId,
