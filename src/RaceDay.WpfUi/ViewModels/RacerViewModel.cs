@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -10,21 +11,20 @@ namespace RaceDay.WpfUi.ViewModels;
 
 public class RacerViewModel : ObservableObject
 {
+    private readonly RaceModel _raceModel;
+
     #region Delegates
 
-    public delegate RacerViewModel CreateRacerViewModel(RacerModel racerModel);
+    public delegate RacerViewModel CreateRacerViewModel(RaceModel raceModel, RacerModel racerModel);
 
     #endregion
 
     #region Fields
 
     private readonly DispatcherTimer _timer;
-
-    private float _averageLapSpeed;
+    
     private bool _displayLaps;
     private bool _finished;
-    private int _lapCounter;
-    private TimeSpan _lapRecord;
     private TimeSpan _lapTimer;
     private ImageSource? _medalImage;
     private bool _started;
@@ -44,23 +44,11 @@ public class RacerViewModel : ObservableObject
 
     public ObservableCollection<RacerLapModel> Laps { get; } = new();
 
-    public TimeSpan LapRecord
-    {
-        get => _lapRecord;
-        set => SetField(ref _lapRecord, value);
-    }
+    public TimeSpan LapRecord => Laps.Count == 0 ? TimeSpan.Zero : Laps.Min(l => l.LapTime);
 
-    public float AverageLapSpeed
-    {
-        get => _averageLapSpeed;
-        set => SetField(ref _averageLapSpeed, value);
-    }
+    public float AverageLapSpeed => Laps.Count ==  0 ? 0 : Laps.Average(l => l.LapSpeedMph);
 
-    public int LapCounter
-    {
-        get => _lapCounter;
-        set => SetField(ref _lapCounter, value);
-    }
+    public int LapCounter => Laps.Count;
 
     public TimeSpan LapTimer
     {
@@ -108,23 +96,21 @@ public class RacerViewModel : ObservableObject
         Laps.Add(new RacerLapModel
         {
             RaceDayId = 1,
-            RaceNumber = 1,
+            RaceId = 1,
             RacerId = 1,
             LapNumber = 1,
             LapTime = new TimeSpan(0, 0, 2, 55, 123),
-            LapDistanceKm = 1.234f
+            LapDistanceMiles = 1.234f
         });
-
-        LapRecord = new TimeSpan(0, 0, 2, 55, 123);
-        AverageLapSpeed = 123.45f;
-        LapCounter = 5;
+        
         LapTimer = new TimeSpan(0, 0, 2, 55, 123);
         Started = true;
         DisplayLaps = true;
     }
 
-    public RacerViewModel(RacerModel raceRacerModel)
+    public RacerViewModel(RaceModel raceModel, RacerModel raceRacerModel)
     {
+        _raceModel = raceModel;
         Racer = raceRacerModel;
 
         ToggleLapsVisibilityCommand = new RelayCommand(ToggleLapsVisibility, CanToggleLapsVisibility);
@@ -157,15 +143,16 @@ public class RacerViewModel : ObservableObject
 
         Laps.Add(new RacerLapModel
         {
-            RaceDayId = 1,
-            RaceNumber = 1,
-            RacerId = 1,
-            LapNumber = ++LapCounter,
+            RaceDayId = _raceModel.RaceDayId,
+            RaceId = _raceModel.RaceId,
+            RacerId = Racer.RacerId,
             LapTime = lapTime,
-            LapDistanceKm = 1.234f
+            LapDistanceMiles = _raceModel.LapDistanceMiles,
         });
-
-        if (LapRecord == TimeSpan.Zero || lapTime < LapRecord) LapRecord = lapTime;
+        
+        OnPropertyChanged(nameof(LapRecord));
+        OnPropertyChanged(nameof(AverageLapSpeed));
+        OnPropertyChanged(nameof(LapCounter));
     }
 
     private bool CanStopTimer(object? arg) => Started && !Finished;

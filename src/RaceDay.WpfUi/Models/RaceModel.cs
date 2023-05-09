@@ -19,6 +19,8 @@ public class RaceModel : ObservableObject
     public int RaceDayId { get; init; }
     public string? RaceDayName { get; init; }
     public float SignUpFee { get; init; }
+    
+    public float LapDistanceMiles { get; init; }
     public TimeSpan AllTimeLapRecord { get; init; }
 
     public TimeSpan RaceLapRecord

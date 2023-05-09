@@ -149,7 +149,7 @@ public class RaceViewModel : ViewModelBase
                 RacerName = racerDto.Name,
                 Age = racerDto.Age
             };
-            var racerViewModel = _createRacerViewModel(racerModel);
+            var racerViewModel = _createRacerViewModel(RaceModel, racerModel);
             racerViewModel.Laps.CollectionChanged += RacerLapsCollectionChanged;
             Racers.Add(racerViewModel);
         }

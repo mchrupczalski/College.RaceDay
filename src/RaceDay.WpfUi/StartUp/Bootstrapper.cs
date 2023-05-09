@@ -38,7 +38,7 @@ public class Bootstrapper
                             services.AddSingleton<AddRacerViewModel>();
 
                             /* Factories */
-                            services.AddSingleton<RacerViewModel.CreateRacerViewModel>(s => r => new RacerViewModel(r));
+                            services.AddSingleton<RacerViewModel.CreateRacerViewModel>(s => (race, racer) => new RacerViewModel(race, racer));
                             
                             services.AddSingleton<RaceViewModel.CreateRaceViewModel>(s => r => new RaceViewModel(r, s.GetRequiredService<DialogService>(),
                                                                                                                  s.GetRequiredService<NavigationService>(),
