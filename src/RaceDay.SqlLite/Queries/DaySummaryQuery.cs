@@ -15,6 +15,9 @@ public class DaySummaryQuery : CommandQueryBase
     #endregion
 
 
+    /// <summary>
+    ///     Gets all Day Summaries
+    /// </summary>
     public IEnumerable<DaySummaryDto> GetAll()
     {
         // @formatter:off

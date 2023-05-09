@@ -15,6 +15,10 @@ public class RaceSummaryQuery : CommandQueryBase
     #endregion
 
 
+    /// <summary>
+    ///     Gets all Races for Race Day summaries
+    /// </summary>
+    /// <param name="raceDayId">The Race Day id</param>
     public IEnumerable<RaceSummaryDto> GetAll(int raceDayId)
     {
         const string sql = "SELECT RaceId, RaceDayId, RaceDate, TotalRacers, TotalLaps, BestLapTime, BestLapTimeHolder, TotalIncome, TotalExpense" +
@@ -26,6 +30,10 @@ public class RaceSummaryQuery : CommandQueryBase
         return results;
     }
 
+    /// <summary>
+    ///     Gets summary for a specific Race
+    /// </summary>
+    /// <param name="id">The Race Id</param>
     public RaceSummaryDto? GetById(int id)
     {
         // @formatter:off

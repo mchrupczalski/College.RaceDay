@@ -20,10 +20,9 @@ public class CreateRaceDayCommand : CommandQueryBase
 
 
     /// <summary>
-    ///     Executes the command
+    ///     Creates a new Race Day record and returns the new record
     /// </summary>
-    /// <param name="dto">A <see cref="NewRaceDayDto" /> instance to create a record from.</param>
-    /// <returns>The id of the newly created record.</returns>
+    /// <param name="entity">Record to create</param>
     public DayEntity? Execute(DayEntity entity)
     {
         const string selectSql = " SELECT Id, Name, Fee, LapDistanceKm, PetrolCostPerLap FROM Days WHERE Id = last_insert_rowid();";

@@ -10,6 +10,10 @@ public class CreateRacerLapCommand : CommandQueryBase
     {
     }
 
+    /// <summary>
+    ///     Creates a new Lap record and returns the new record
+    /// </summary>
+    /// <param name="entity">Lap to create</param>
     public RaceLapEntity? Execute(RaceLapEntity entity)
     {
         const string selectSql = "SELECT Id, RaceId, RaceDayId, RacerId, LapTimeSeconds FROM RaceLaps WHERE Id = last_insert_rowid();";
