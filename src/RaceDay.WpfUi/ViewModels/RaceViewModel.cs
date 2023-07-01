@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
+using RaceDay.Domain.Interfaces;
 using RaceDay.SqlLite.Queries;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
@@ -26,7 +27,7 @@ public class RaceViewModel : ViewModelBase
     private readonly NavigationService _navigationService;
 
     private readonly RaceModel _raceModel;
-    private readonly RacersQuery _racersQuery;
+    private readonly IRacersQuery _racersQuery;
 
     #endregion
 
@@ -70,7 +71,7 @@ public class RaceViewModel : ViewModelBase
                          DialogService dialogService,
                          NavigationService navigationService,
                          RacerViewModel.CreateRacerViewModel createRacerViewModel,
-                         RacersQuery racersQuery)
+                         IRacersQuery racersQuery)
     {
         _dialogService = dialogService;
         _navigationService = navigationService;

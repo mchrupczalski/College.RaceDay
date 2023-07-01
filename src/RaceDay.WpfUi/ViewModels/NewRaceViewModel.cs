@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
-using RaceDay.Domain.DTOs;
 using RaceDay.Domain.Entities;
-using RaceDay.SqlLite.Commands;
-using RaceDay.SqlLite.Queries;
+using RaceDay.Domain.Interfaces;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 
@@ -16,8 +12,8 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceSum
 {
     #region Fields
 
-    private readonly CreateRaceCommand _createRaceDayRaceCommand;
-    private readonly RaceSummaryQuery _raceSummaryQuery;
+    private readonly ICreateRaceCommand _createRaceDayRaceCommand;
+    private readonly IRaceSummaryQuery _raceSummaryQuery;
     private string _viewTitle = "Pick Date";
 
     #endregion
@@ -37,14 +33,7 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceSum
 
     #region Constructors
 
-#pragma warning disable CS8618
-    [Obsolete("Design time only", true)]
-    public NewRaceViewModel()
-    {
-    }
-#pragma warning restore CS8618
-
-    public NewRaceViewModel(CreateRaceCommand createRaceDayRaceCommand, RaceSummaryQuery raceSummaryQuery)
+    public NewRaceViewModel(ICreateRaceCommand createRaceDayRaceCommand, IRaceSummaryQuery raceSummaryQuery)
     {
         _createRaceDayRaceCommand = createRaceDayRaceCommand;
         _raceSummaryQuery = raceSummaryQuery;
@@ -58,23 +47,24 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceSum
 
     #region Events And Handlers
 
-    private void OnDialogClosing(object sender, DialogClosingEventArgs eventargs)
+    private static void OnDialogClosing(object sender, DialogClosingEventArgs eventargs)
     {
-        if (eventargs.Parameter is bool and false) return;
+        if (eventargs.Parameter is bool and false)
+            return;
     }
 
     #endregion
 
 
-    private bool CanCancel(object? arg) => true;
+    private static bool CanCancel(object? arg) => true;
 
     private void Cancel(object? obj) => CloseDialog();
 
-    private bool CanConfirm(object? arg) => true;
+    private static bool CanConfirm(object? arg) => true;
 
     private void Confirm(object? obj)
     {
-        var entity = new RaceEntity()
+        var entity = new RaceEntity
         {
             RaceDayId = Model.RaceDayId,
             RaceDate = Model.RaceDate
@@ -85,7 +75,7 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceSum
             var newRace = _createRaceDayRaceCommand.Execute(entity);
             var resultDto = _raceSummaryQuery.GetById(newRace!.Id);
             if (resultDto != null)
-                Result = new RaceSummaryModel()
+                Result = new RaceSummaryModel
                 {
                     RaceId = resultDto.RaceId,
                     RaceDayId = resultDto.RaceDayId,
@@ -98,7 +88,7 @@ public sealed class NewRaceViewModel : DialogViewModelBase<NewRaceModel, RaceSum
                     TotalExpenses = resultDto.TotalExpense,
                     TotalProfit = resultDto.TotalIncome - resultDto.TotalExpense
                 };
-            
+
             CloseDialog();
         }
         catch (Exception e)

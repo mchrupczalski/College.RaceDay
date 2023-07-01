@@ -1,9 +1,10 @@
 ﻿using RaceDay.Domain.Entities;
+using RaceDay.Domain.Interfaces;
 using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Commands;
 
-public class DeleteRaceLapCommand : CommandQueryBase
+public class DeleteRaceLapCommand : CommandQueryBase, IDeleteRaceLapCommand
 {
     /// <inheritdoc />
     public DeleteRaceLapCommand(string dbPath) : base(dbPath)

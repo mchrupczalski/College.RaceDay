@@ -1,9 +1,10 @@
 ﻿using RaceDay.Domain.DTOs;
+using RaceDay.Domain.Interfaces;
 using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Queries;
 
-public class RacerLapQuery : CommandQueryBase
+public class RacerLapQuery : CommandQueryBase, IRacerLapQuery
 {
     #region Constructors
 

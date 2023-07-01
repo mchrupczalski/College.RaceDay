@@ -6,8 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using RaceDay.Domain.Entities;
-using RaceDay.SqlLite.Commands;
-using RaceDay.SqlLite.Queries;
+using RaceDay.Domain.Interfaces;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 
@@ -23,13 +22,14 @@ public class RacerViewModel : ObservableObject
 
     #region Fields
 
-    private readonly CreateRacerLapCommand _createRacerLapCommand;
-    private readonly DeleteRaceLapCommand _deleteRaceLapCommand;
+    private readonly ICreateRacerLapCommand _createRacerLapCommand;
+    private readonly IDeleteRaceLapCommand _deleteRaceLapCommand;
+
     private readonly RaceModel _raceModel;
-    private readonly RacerLapQuery _racerLapQuery;
+    private readonly IRacerLapQuery _racerLapQuery;
+    private readonly Stopwatch _stopwatch;
 
     private readonly DispatcherTimer _timer;
-    private readonly Stopwatch _stopwatch;
 
     private bool _displayLaps;
     private bool _finished;
@@ -118,9 +118,9 @@ public class RacerViewModel : ObservableObject
 
     public RacerViewModel(RaceModel raceModel,
                           RacerModel raceRacerModel,
-                          RacerLapQuery racerLapQuery,
-                          CreateRacerLapCommand createRacerLapCommand,
-                          DeleteRaceLapCommand deleteRaceLapCommand)
+                          IRacerLapQuery racerLapQuery,
+                          ICreateRacerLapCommand createRacerLapCommand,
+                          IDeleteRaceLapCommand deleteRaceLapCommand)
     {
         _raceModel = raceModel;
         _racerLapQuery = racerLapQuery;
@@ -149,8 +149,8 @@ public class RacerViewModel : ObservableObject
     private void TimerOnTick(object? sender, EventArgs e)
     {
         LapTimer = _stopwatch.ElapsedMilliseconds > 0
-                                    ? TimeSpan.FromMilliseconds(_stopwatch.ElapsedMilliseconds)
-                                    : TimeSpan.Zero;
+                       ? TimeSpan.FromMilliseconds(_stopwatch.ElapsedMilliseconds)
+                       : TimeSpan.Zero;
     }
 
     #endregion
@@ -164,7 +164,8 @@ public class RacerViewModel : ObservableObject
             return;
 
         bool deleted = _deleteRaceLapCommand.Execute(lap.LapId);
-        if (!deleted) return;
+        if (!deleted)
+            return;
 
         Laps.Remove(lap);
         OnPropertyChanged(nameof(LapRecord));
@@ -226,7 +227,8 @@ public class RacerViewModel : ObservableObject
 
     private void StopTimer(object? obj)
     {
-        if(Started && !Finished) CatchLapTime(obj);
+        if (Started && !Finished)
+            CatchLapTime(obj);
         _timer.Stop();
         _stopwatch.Stop();
         Finished = true;

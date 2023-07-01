@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Documents;
 using System.Windows.Input;
 using RaceDay.Domain.Entities;
-using RaceDay.SqlLite.Commands;
-using RaceDay.SqlLite.Queries;
+using RaceDay.Domain.Interfaces;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Interfaces;
 using RaceDay.WpfUi.Models;
@@ -17,11 +15,11 @@ public class AddRacerViewModel : DialogViewModelBase<RaceModel>, INavigableViewM
 {
     #region Fields
 
-    private readonly CreateRaceRacerCommand _createRaceRacerCommand;
-    private readonly DeleteRaceRacerCommand _deleteRaceRacerCommand;
-    private readonly CreateRacerCommand _createRacerCommand;
+    private readonly ICreateRaceRacerCommand _createRaceRacerCommand;
+    private readonly ICreateRacerCommand _createRacerCommand;
+    private readonly IDeleteRaceRacerCommand _deleteRaceRacerCommand;
 
-    private readonly RacersQuery _racersQuery;
+    private readonly IRacersQuery _racersQuery;
     private RacerModel _newRacer = new();
 
     #endregion
@@ -36,7 +34,7 @@ public class AddRacerViewModel : DialogViewModelBase<RaceModel>, INavigableViewM
 
     public ObservableCollection<RacerModel> AllRacers { get; } = new();
     public ObservableCollection<RacerModel> SelectedRacers { get; } = new();
-    
+
     public ICommand CreateNewRacerCommand { get; }
     public ICommand CancelNewRacerCommand { get; }
     public ICommand CloseCommand { get; }
@@ -46,14 +44,11 @@ public class AddRacerViewModel : DialogViewModelBase<RaceModel>, INavigableViewM
     #endregion
 
     #region Constructors
-
-#pragma warning disable CS8618
-    [Obsolete("Design time only", true)]
-    public AddRacerViewModel()
-    {
-    }
-#pragma warning restore CS8618
-    public AddRacerViewModel(RacersQuery racersQuery, CreateRacerCommand createRacerCommand, CreateRaceRacerCommand createRaceRacerCommand, DeleteRaceRacerCommand deleteRaceRacerCommand)
+    
+    public AddRacerViewModel(IRacersQuery racersQuery,
+                             ICreateRacerCommand createRacerCommand,
+                             ICreateRaceRacerCommand createRaceRacerCommand,
+                             IDeleteRaceRacerCommand deleteRaceRacerCommand)
     {
         _racersQuery = racersQuery;
         _createRacerCommand = createRacerCommand;
@@ -84,17 +79,19 @@ public class AddRacerViewModel : DialogViewModelBase<RaceModel>, INavigableViewM
 
     private void RemoveRacers(object? obj)
     {
-        if(obj is null) return;
-        var collection = (System.Collections.IList)obj!;
-        if (collection.Count == 0) return;
-        var racers = collection.Cast<RacerModel>()
-                               .ToArray();
-        
+        if (obj is null)
+            return;
+        var collection = (IList)obj!;
+        if (collection.Count == 0)
+            return;
+        var racers = collection.Cast<RacerModel>().ToArray();
+
         foreach (var racer in racers)
         {
             bool deleted = _deleteRaceRacerCommand.Execute(Model.RaceId, racer.RacerId);
-            if (!deleted) continue;
-            
+            if (!deleted)
+                continue;
+
             AllRacers.Add(racer);
             SelectedRacers.Remove(racer);
         }
@@ -104,17 +101,19 @@ public class AddRacerViewModel : DialogViewModelBase<RaceModel>, INavigableViewM
 
     private void AddSelectedRacers(object? obj)
     {
-        if(obj is null) return;
-        var collection = (System.Collections.IList)obj!;
-        if (collection.Count == 0) return;
-        var racers = collection.Cast<RacerModel>()
-                               .ToArray();
-        
+        if (obj is null)
+            return;
+        var collection = (IList)obj!;
+        if (collection.Count == 0)
+            return;
+        var racers = collection.Cast<RacerModel>().ToArray();
+
         foreach (var racer in racers)
         {
-            var entity = new RaceRacerEntity(){RaceDayId = Model.RaceDayId, RaceId = Model.RaceId, RacerId = racer.RacerId};
+            var entity = new RaceRacerEntity
+                { RaceDayId = Model.RaceDayId, RaceId = Model.RaceId, RacerId = racer.RacerId };
             bool added = _createRaceRacerCommand.Execute(entity) != null;
-            
+
             AllRacers.Remove(racer);
             SelectedRacers.Add(racer);
         }
@@ -171,10 +170,8 @@ public class AddRacerViewModel : DialogViewModelBase<RaceModel>, INavigableViewM
         SelectedRacers.Clear();
 
         var allRacers = _racersQuery.GetAll();
-        var raceRacers = _racersQuery.GetRacersForRace(Model.RaceId)
-                                     .ToArray();
-        var racersNotInRace = allRacers.Except(raceRacers)
-                                       .ToArray();
+        var raceRacers = _racersQuery.GetRacersForRace(Model.RaceId).ToArray();
+        var racersNotInRace = allRacers.Except(raceRacers).ToArray();
 
         foreach (var racer in racersNotInRace)
         {

@@ -1,9 +1,10 @@
 ﻿using RaceDay.Domain.Entities;
+using RaceDay.Domain.Interfaces;
 using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Commands;
 
-public class CreateRacerLapCommand : CommandQueryBase
+public class CreateRacerLapCommand : CommandQueryBase, ICreateRacerLapCommand
 {
     /// <inheritdoc />
     public CreateRacerLapCommand(string dbPath) : base(dbPath)
