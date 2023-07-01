@@ -1,10 +1,11 @@
 ﻿using RaceDay.Domain.Entities;
 using RaceDay.Domain.Exceptions;
+using RaceDay.Domain.Interfaces;
 using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Commands;
 
-public class CreateRaceRacerCommand : CommandQueryBase
+public class CreateRaceRacerCommand : CommandQueryBase, ICreateRaceRacerCommand
 {
     #region Constructors
 
@@ -21,8 +22,11 @@ public class CreateRaceRacerCommand : CommandQueryBase
     /// <param name="entity">Record to create</param>
     /// <exception cref="Exception">Throws if record not found</exception>
     /// <exception cref="CreateRecordException">Throws if error creating record</exception>
-    public RaceRacerEntity? Execute(RaceRacerEntity entity)
+    public RaceRacerEntity? Execute(RaceRacerEntity? entity)
     {
+        if (entity == null)
+            return entity;
+
         const string selectSql = "SELECT RaceId, RaceDayId, RacerId FROM RaceRacers WHERE rowid = last_insert_rowid();";
         string insertSql = $"INSERT INTO RaceRacers (RaceId, RaceDayId, RacerId) VALUES ({entity.RaceId}, {entity.RaceDayId}, {entity.RacerId});";
 

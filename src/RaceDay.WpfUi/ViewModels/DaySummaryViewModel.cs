@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using RaceDay.Domain.Interfaces;
 using RaceDay.SqlLite.Queries;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
@@ -14,7 +15,7 @@ public class DaySummaryViewModel : ViewModelBase
     #region Fields
 
     private readonly DialogService _dialogService;
-    private readonly DaySummaryQuery _raceDaySummaryQuery;
+    private readonly IDaySummaryQuery _raceDaySummaryQuery;
 
     private bool _displayAsKilometers = true;
     private DaySummaryModel? _selectedRaceDay;
@@ -50,47 +51,15 @@ public class DaySummaryViewModel : ViewModelBase
 
     #region Constructors
 
-#pragma warning disable CS8618
-    [Obsolete("Design-time only", true)]
-    public DaySummaryViewModel()
-    {
-        RaceDays.Add(new DaySummaryModel
-        {
-            RaceDayId = 1,
-            RaceDayName = "Test Race Day 1",
-            SignUpFee = 300,
-            LapDistanceKilometers = 5,
-            PetrolCostPerLap = 10,
-            TotalRaces = 3,
-            RecordLapTime = TimeSpan.FromMinutes(1.5),
-            RecordHolderName = "Test Racer",
-            TotalIncome = 1000f,
-            TotalCost = 100f
-        });
-
-        RaceDays.Add(new DaySummaryModel
-        {
-            RaceDayId = 2,
-            RaceDayName = "Test Race Day 2",
-            SignUpFee = 3000,
-            LapDistanceKilometers = 15,
-            PetrolCostPerLap = 100,
-            TotalRaces = 300,
-            RecordLapTime = TimeSpan.FromMinutes(1.8),
-            RecordHolderName = "Test Racer",
-            TotalIncome = 1000f,
-            TotalCost = 100f
-        });
-    }
-#pragma warning restore CS8618
-
-    public DaySummaryViewModel(DialogService dialogService, DaySummaryQuery raceDaySummaryQuery)
+    public DaySummaryViewModel(DialogService dialogService, IDaySummaryQuery raceDaySummaryQuery)
     {
         _dialogService = dialogService;
         _raceDaySummaryQuery = raceDaySummaryQuery;
-        
+
         CreateRaceDayCommand = new RelayCommand(CreateRaceDay, CanCreateRaceDay);
     }
+
+    #endregion
 
     /// <summary>
     ///     Indicates whether user can create new Race Day.
@@ -101,16 +70,16 @@ public class DaySummaryViewModel : ViewModelBase
     private async void CreateRaceDay(object? obj)
     {
         var newRaceDay = new NewRaceDayModel();
-        var result = await _dialogService.DisplayDialogAsync<NewRaceDayViewModel, NewRaceDayModel, DaySummaryModel>(newRaceDay);
-        if (result != null) RaceDays.Add(result);
+        var result =
+            await _dialogService.DisplayDialogAsync<NewRaceDayViewModel, NewRaceDayModel, DaySummaryModel>(newRaceDay);
+        if (result != null)
+            RaceDays.Add(result);
     }
-
-    #endregion
 
     public void LoadData(bool changeSelectedDay = true)
     {
         int? selectedDayId = SelectedRaceDay?.RaceDayId;
-        
+
         RaceDays.Clear();
         var dtos = _raceDaySummaryQuery.GetAll();
 
@@ -137,9 +106,12 @@ public class DaySummaryViewModel : ViewModelBase
             SelectedRaceDay = RaceDays.FirstOrDefault(r => r.RaceDayId == selectedDayId);
             return;
         }
+
         // when data is loaded check if previously selected day is in the collection and select it again
         bool hasSelectedRaceDay = SelectedRaceDay != null && RaceDays.Any(r => r.RaceDayId == selectedDayId);
-        if(hasSelectedRaceDay) SelectedRaceDay = RaceDays.FirstOrDefault(r => r.RaceDayId == selectedDayId);
-        else if(SelectedRaceDay == null && RaceDays.Any()) SelectedRaceDay = RaceDays.First();
+        if (hasSelectedRaceDay)
+            SelectedRaceDay = RaceDays.FirstOrDefault(r => r.RaceDayId == selectedDayId);
+        else if (SelectedRaceDay == null && RaceDays.Any())
+            SelectedRaceDay = RaceDays.First();
     }
 }

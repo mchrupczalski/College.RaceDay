@@ -1,5 +1,6 @@
 ﻿using RaceDay.Domain.DTOs;
 using RaceDay.Domain.Entities;
+using RaceDay.Domain.Interfaces;
 using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Commands;
@@ -7,7 +8,7 @@ namespace RaceDay.SqlLite.Commands;
 /// <summary>
 ///     A command to create new Race Day.
 /// </summary>
-public class CreateRaceDayCommand : CommandQueryBase
+public class CreateRaceDayCommand : CommandQueryBase, ICreateRaceDayCommand
 {
     #region Constructors
 

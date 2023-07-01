@@ -22,7 +22,7 @@ public class FloatValidationRule : ValidationRule
             if (string.IsNullOrWhiteSpace(stringValue)) return new ValidationResult(false,             $"{PropertyName} is null or whitespace");
             if (!float.TryParse(stringValue, out float floatValue)) return new ValidationResult(false, $"{PropertyName} is not a float");
             if (floatValue < Min) return new ValidationResult(false,                                   $"{PropertyName} is less than {Min}");
-            if (Max.HasValue && floatValue > Max.Value) return new ValidationResult(false,             $"{PropertyName} is greater than {Max.Value}");
+            if (floatValue > Max) return new ValidationResult(false,             $"{PropertyName} is greater than {Max.Value}");
             
             return ValidationResult.ValidResult;
         }

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using RaceDay.Domain.Entities;
-using RaceDay.SqlLite.Commands;
-using RaceDay.SqlLite.Queries;
+using RaceDay.Domain.Interfaces;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 
@@ -12,8 +11,8 @@ public class NewRaceDayViewModel : DialogViewModelBase<NewRaceDayModel, DaySumma
 {
     #region Fields
 
-    private readonly CreateRaceDayCommand _createRaceDayCommand;
-    private readonly DaySummaryQuery _daySummaryQuery;
+    private readonly ICreateRaceDayCommand _createRaceDayCommand;
+    private readonly IDaySummaryQuery _daySummaryQuery;
 
 
     private NewRaceDayModel _newRaceDay = new();
@@ -35,15 +34,7 @@ public class NewRaceDayViewModel : DialogViewModelBase<NewRaceDayModel, DaySumma
 
     #region Constructors
 
-#pragma warning disable CS8618
-    [Obsolete("Design time only", true)]
-    public NewRaceDayViewModel()
-
-    {
-    }
-#pragma warning restore CS8618
-
-    public NewRaceDayViewModel(CreateRaceDayCommand createRaceDayCommand, DaySummaryQuery daySummaryQuery)
+    public NewRaceDayViewModel(ICreateRaceDayCommand createRaceDayCommand, IDaySummaryQuery daySummaryQuery)
     {
         _createRaceDayCommand = createRaceDayCommand;
         _daySummaryQuery = daySummaryQuery;

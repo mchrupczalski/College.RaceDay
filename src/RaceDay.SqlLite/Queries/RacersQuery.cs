@@ -1,9 +1,10 @@
 ﻿using RaceDay.Domain.DTOs;
+using RaceDay.Domain.Interfaces;
 using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Queries;
 
-public class RacersQuery : CommandQueryBase
+public class RacersQuery : CommandQueryBase, IRacersQuery
 {
     /// <inheritdoc />
     public RacersQuery(string dbPath) : base(dbPath)
