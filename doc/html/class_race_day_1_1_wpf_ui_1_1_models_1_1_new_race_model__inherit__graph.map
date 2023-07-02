@@ -1,0 +1,7 @@
+<map id="RaceDay.WpfUi.Models.NewRaceModel" name="RaceDay.WpfUi.Models.NewRaceModel">
+<area shape="rect" id="Node000001" title="Model for creating new Races." alt="" coords="5,155,194,197"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object.html" title="Base class for observable objects Implements INotifyPropertyChanged" alt="" coords="38,80,161,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,122,102,154,97,154,97,122"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="21,5,178,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="102,47,102,80,97,80,97,47"/>
+</map>

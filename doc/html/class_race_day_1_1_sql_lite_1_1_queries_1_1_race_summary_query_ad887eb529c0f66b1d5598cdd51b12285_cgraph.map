@@ -1,0 +1,5 @@
+<map id="RaceDay.SqlLite.Queries.RaceSummaryQuery.GetById" name="RaceDay.SqlLite.Queries.RaceSummaryQuery.GetById">
+<area shape="rect" id="Node000001" title="Gets summary for a specific Race." alt="" coords="5,5,199,48"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base.html#a45262d71490a9bcd0fa331c783f052fe" title="Creates a new SQLiteConnection instance." alt="" coords="247,5,499,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,24,232,24,232,29,199,29"/>
+</map>

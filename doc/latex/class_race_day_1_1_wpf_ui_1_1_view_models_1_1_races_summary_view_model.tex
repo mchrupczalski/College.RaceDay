@@ -1,0 +1,146 @@
+\doxysection{Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Races\+Summary\+View\+Model Class Reference}
+\hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model}{}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model}\index{RaceDay.WpfUi.ViewModels.RacesSummaryViewModel@{RaceDay.WpfUi.ViewModels.RacesSummaryViewModel}}
+
+
+A view model providing data and logic for Races Summary view.  
+
+
+
+
+Inheritance diagram for Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Races\+Summary\+View\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Races\+Summary\+View\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_af243703cac35387d772cc33191ee6ca5}{Races\+Summary\+View\+Model}} (\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service}{Dialog\+Service}} dialog\+Service, \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service}{Navigation\+Service}} navigation\+Service, \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query}{IRace\+Summary\+Query}} race\+Day\+Races\+Query, \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_ace9bceb88537e938cd128938765be24f}{Race\+View\+Model.\+Create\+Race\+View\+Model}} create\+Race\+View\+Model)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the Races\+Summary\+View\+Model class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_ae7059c415c628d78ea9e291e6317483e}{Load\+Race\+Day\+Races}} (Day\+Summary\+Model race\+Day)
+\begin{DoxyCompactList}\small\item\em Loads Race Details for given Race Day. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_a3524170a6e5a33faced310e4193b07b3}{Update\+View\+Title}} (string? title)
+\begin{DoxyCompactList}\small\item\em Updates the View Title. It will append \"{} -\/ Races\"{} to the title. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_a52c3d8568f78b1d5a62f8b0d07d395cd}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_a52c3d8568f78b1d5a62f8b0d07d395cd} 
+Observable\+Collection$<$ \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_models_1_1_race_summary_model}{Race\+Summary\+Model}} $>$ {\bfseries Races} = new()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A collection of Race\+Summary\+Model objects. Each object contains summarized details about a race. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_a2f2bf2247513185e7c57fba9f6264924}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_a2f2bf2247513185e7c57fba9f6264924} 
+\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_models_1_1_race_summary_model}{Race\+Summary\+Model}}? {\bfseries Selected\+Race}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The currently selected Race\+Summary\+Model. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_ae96573fbd423f00234a0ecbeedc58976}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_ae96573fbd423f00234a0ecbeedc58976} 
+ICommand {\bfseries Create\+Race\+Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A command for creating a new Race. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_adb62571d46080ff39e580510c7d1b494}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_adb62571d46080ff39e580510c7d1b494} 
+ICommand {\bfseries Display\+Race\+Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A command for navigating to Race view. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_a590c48ec9ac6e858c02d25ae3bac30af}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_a590c48ec9ac6e858c02d25ae3bac30af} 
+string {\bfseries View\+Title}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The title of the view, updated when Race Day is selected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac6f120f211eb4336e8e7769821511a8b}{On\+Property\+Changed}} (\mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Raises the Property\+Changed event. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac0ddbef8e2e7257c462f6463f0b4cc87}{Set\+Field$<$ T $>$}} (ref T field, T value, \mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Sets the field and raises the Property\+Changed event if the value has changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Events inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Property\+Changed\+Event\+Handler? {\bfseries Property\+Changed}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A view model providing data and logic for Races Summary view. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_af243703cac35387d772cc33191ee6ca5}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_af243703cac35387d772cc33191ee6ca5} 
+\index{RaceDay.WpfUi.ViewModels.RacesSummaryViewModel@{RaceDay.WpfUi.ViewModels.RacesSummaryViewModel}!RacesSummaryViewModel@{RacesSummaryViewModel}}
+\index{RacesSummaryViewModel@{RacesSummaryViewModel}!RaceDay.WpfUi.ViewModels.RacesSummaryViewModel@{RaceDay.WpfUi.ViewModels.RacesSummaryViewModel}}
+\doxysubsubsection{\texorpdfstring{RacesSummaryViewModel()}{RacesSummaryViewModel()}}
+{\footnotesize\ttfamily Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Races\+Summary\+View\+Model.\+Races\+Summary\+View\+Model (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service}{Dialog\+Service}}}]{dialog\+Service,  }\item[{\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service}{Navigation\+Service}}}]{navigation\+Service,  }\item[{\mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query}{IRace\+Summary\+Query}}}]{race\+Day\+Races\+Query,  }\item[{\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_ace9bceb88537e938cd128938765be24f}{Race\+View\+Model\+::\+Create\+Race\+View\+Model}}}]{create\+Race\+View\+Model }\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the Races\+Summary\+View\+Model class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dialog\+Service} & The dialog service.\\
+\hline
+{\em navigation\+Service} & The navigation service.\\
+\hline
+{\em race\+Day\+Races\+Query} & Query to select all Races and their summary details for a given Race Day.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_ae7059c415c628d78ea9e291e6317483e}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_ae7059c415c628d78ea9e291e6317483e} 
+\index{RaceDay.WpfUi.ViewModels.RacesSummaryViewModel@{RaceDay.WpfUi.ViewModels.RacesSummaryViewModel}!LoadRaceDayRaces@{LoadRaceDayRaces}}
+\index{LoadRaceDayRaces@{LoadRaceDayRaces}!RaceDay.WpfUi.ViewModels.RacesSummaryViewModel@{RaceDay.WpfUi.ViewModels.RacesSummaryViewModel}}
+\doxysubsubsection{\texorpdfstring{LoadRaceDayRaces()}{LoadRaceDayRaces()}}
+{\footnotesize\ttfamily void Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Races\+Summary\+View\+Model.\+Load\+Race\+Day\+Races (\begin{DoxyParamCaption}\item[{Day\+Summary\+Model}]{race\+Day }\end{DoxyParamCaption})}
+
+
+
+Loads Race Details for given Race Day. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em race\+Day\+Id} & The Race Day Id.\\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_ae7059c415c628d78ea9e291e6317483e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_a3524170a6e5a33faced310e4193b07b3}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_a3524170a6e5a33faced310e4193b07b3} 
+\index{RaceDay.WpfUi.ViewModels.RacesSummaryViewModel@{RaceDay.WpfUi.ViewModels.RacesSummaryViewModel}!UpdateViewTitle@{UpdateViewTitle}}
+\index{UpdateViewTitle@{UpdateViewTitle}!RaceDay.WpfUi.ViewModels.RacesSummaryViewModel@{RaceDay.WpfUi.ViewModels.RacesSummaryViewModel}}
+\doxysubsubsection{\texorpdfstring{UpdateViewTitle()}{UpdateViewTitle()}}
+{\footnotesize\ttfamily void Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Races\+Summary\+View\+Model.\+Update\+View\+Title (\begin{DoxyParamCaption}\item[{string?}]{title }\end{DoxyParamCaption})}
+
+
+
+Updates the View Title. It will append \"{} -\/ Races\"{} to the title. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & The title to set.\\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model_a3524170a6e5a33faced310e4193b07b3_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Wpf\+Ui/\+View\+Models/Races\+Summary\+View\+Model.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,112 @@
+\doxysection{Race\+Day.\+Wpf\+Ui.\+View\+Models.\+New\+Race\+View\+Model Class Reference}
+\hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model}{}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model}\index{RaceDay.WpfUi.ViewModels.NewRaceViewModel@{RaceDay.WpfUi.ViewModels.NewRaceViewModel}}
+
+
+A view model providing data and logic for a view for creating new Races.  
+
+
+
+
+Inheritance diagram for Race\+Day.\+Wpf\+Ui.\+View\+Models.\+New\+Race\+View\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Race\+Day.\+Wpf\+Ui.\+View\+Models.\+New\+Race\+View\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model_aa223b8f07189ad252cc02ac73ac74822}{New\+Race\+View\+Model}} (\mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_create_race_command}{ICreate\+Race\+Command}} create\+Race\+Day\+Race\+Command, \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query}{IRace\+Summary\+Query}} race\+Summary\+Query)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the New\+Race\+View\+Model class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Dialog\+View\+Model\+Base$<$ New\+Race\+Model, Race\+Summary\+Model $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Open\+Dialog} ()
+\begin{DoxyCompactList}\small\item\em Opens the dialog. \end{DoxyCompactList}\item 
+void {\bfseries Close\+Dialog} (object? o=null)
+\begin{DoxyCompactList}\small\item\em Closes the dialog. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model_ac66300dfe231f5f4a4567e5207543052}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model_ac66300dfe231f5f4a4567e5207543052} 
+string {\bfseries View\+Title}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The title of the view. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model_a36a905f3fc89d5d2b7a7311e12a9e96f}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model_a36a905f3fc89d5d2b7a7311e12a9e96f} 
+ICommand {\bfseries Confirm\+Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Command for confirming the operation. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model_a60ce4435475820c503094e272424e694}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model_a60ce4435475820c503094e272424e694} 
+ICommand {\bfseries Cancel\+Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Command for cancelling the operation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Dialog\+View\+Model\+Base$<$ New\+Race\+Model, Race\+Summary\+Model $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+string {\bfseries Error\+Message}\hspace{0.3cm}{\ttfamily  \mbox{[}get, protected set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The error message to display in the dialog. \end{DoxyCompactList}\item 
+bool {\bfseries Display\+Error}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Whether or not to display the error message in the dialog. \end{DoxyCompactList}\item 
+bool {\bfseries Dialog\+Host\+Is\+Open}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Indicates whether or not the dialog is open. This is used to bind to the Dialog\+Host.\+Is\+Open property. Dialog closes when this is set to false. \end{DoxyCompactList}\item 
+virtual ? Dialog\+Closing\+Event\+Handler {\bfseries Dialog\+Closing\+Handler}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The dialog closing handler. This is used to bind to the Dialog\+Host.\+Dialog\+Closing attached property. This can be used to prevent the dialog from closing or implement custom logic when the dialog closes. \end{DoxyCompactList}\item 
+TModel \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_aee141306e9ef8e74877664b78304319a}{Model}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The result that is returned when the dialog closes. If no value is set, the dialog is assumed to have been cancelled. \end{DoxyCompactList}\item 
+TResult? {\bfseries Result}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The result that is returned when the dialog closes. If no value is set, the dialog is assumed to have been cancelled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Dialog\+View\+Model\+Base$<$ New\+Race\+Model, Race\+Summary\+Model $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static bool {\bfseries Can\+Close\+Dialog} (object? o)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac6f120f211eb4336e8e7769821511a8b}{On\+Property\+Changed}} (\mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Raises the Property\+Changed event. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac0ddbef8e2e7257c462f6463f0b4cc87}{Set\+Field$<$ T $>$}} (ref T field, T value, \mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Sets the field and raises the Property\+Changed event if the value has changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Events inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Property\+Changed\+Event\+Handler? {\bfseries Property\+Changed}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A view model providing data and logic for a view for creating new Races. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model_aa223b8f07189ad252cc02ac73ac74822}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model_aa223b8f07189ad252cc02ac73ac74822} 
+\index{RaceDay.WpfUi.ViewModels.NewRaceViewModel@{RaceDay.WpfUi.ViewModels.NewRaceViewModel}!NewRaceViewModel@{NewRaceViewModel}}
+\index{NewRaceViewModel@{NewRaceViewModel}!RaceDay.WpfUi.ViewModels.NewRaceViewModel@{RaceDay.WpfUi.ViewModels.NewRaceViewModel}}
+\doxysubsubsection{\texorpdfstring{NewRaceViewModel()}{NewRaceViewModel()}}
+{\footnotesize\ttfamily Race\+Day.\+Wpf\+Ui.\+View\+Models.\+New\+Race\+View\+Model.\+New\+Race\+View\+Model (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_create_race_command}{ICreate\+Race\+Command}}}]{create\+Race\+Day\+Race\+Command,  }\item[{\mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query}{IRace\+Summary\+Query}}}]{race\+Summary\+Query }\end{DoxyParamCaption})}
+
+
+
+Creates a new instance of the New\+Race\+View\+Model class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em create\+Race\+Day\+Race\+Command} & Command for creating new Races in the persistence storage\\
+\hline
+{\em race\+Summary\+Query} & Query for retrieving Race summaries from the persistence storage\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Wpf\+Ui/\+View\+Models/New\+Race\+View\+Model.\+cs\end{DoxyCompactItemize}

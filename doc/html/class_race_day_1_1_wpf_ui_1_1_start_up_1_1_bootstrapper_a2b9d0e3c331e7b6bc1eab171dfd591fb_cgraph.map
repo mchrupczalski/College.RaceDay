@@ -1,0 +1,7 @@
+<map id="RaceDay.WpfUi.StartUp.Bootstrapper.Bootstrap" name="RaceDay.WpfUi.StartUp.Bootstrapper.Bootstrap">
+<area shape="rect" id="Node000001" title="Creates the host and configures the services." alt="" coords="5,39,249,81"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_racer_view_model.html#abb038b84e8a3c496409b273cec08477c" title="A delegate factory method for creating a new RacerViewModel." alt="" coords="297,5,554,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="249,44,281,40,282,45,249,49"/>
+<area shape="rect" id="Node000003" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model.html#ace9bceb88537e938cd128938765be24f" title="A delegate factory method for creating a RaceViewModel from a RaceModel" alt="" coords="301,72,550,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="249,71,286,75,286,80,249,76"/>
+</map>

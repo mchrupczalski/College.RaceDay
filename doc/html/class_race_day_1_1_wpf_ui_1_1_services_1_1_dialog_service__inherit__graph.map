@@ -1,0 +1,7 @@
+<map id="RaceDay.WpfUi.Services.DialogService" name="RaceDay.WpfUi.Services.DialogService">
+<area shape="rect" id="Node000001" title="Service for displaying dialogs in the application." alt="" coords="5,155,212,197"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object.html" title="Base class for observable objects Implements INotifyPropertyChanged" alt="" coords="47,80,170,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,122,111,154,106,154,106,122"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="30,5,187,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="111,47,111,80,106,80,106,47"/>
+</map>

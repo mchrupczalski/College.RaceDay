@@ -1,0 +1,116 @@
+\doxysection{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Dialog\+View\+Model\+Base\texorpdfstring{$<$}{<} TModel, TResult \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base}{}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base}\index{RaceDay.WpfUi.Infrastructure.DialogViewModelBase$<$ TModel, TResult $>$@{RaceDay.WpfUi.Infrastructure.DialogViewModelBase$<$ TModel, TResult $>$}}
+
+
+Base class for view models that are used to display dialogs.  
+
+
+
+
+Inheritance diagram for Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Dialog\+View\+Model\+Base\texorpdfstring{$<$}{<} TModel, TResult \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Dialog\+View\+Model\+Base\texorpdfstring{$<$}{<} TModel, TResult \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_aa512850ea2ddb72d10fe0f3f5f420114}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_aa512850ea2ddb72d10fe0f3f5f420114} 
+void {\bfseries Open\+Dialog} ()
+\begin{DoxyCompactList}\small\item\em Opens the dialog. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_aa477d2083da62b7a1f51ff79b35cf9ba}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_aa477d2083da62b7a1f51ff79b35cf9ba} 
+void {\bfseries Close\+Dialog} (object? o=null)
+\begin{DoxyCompactList}\small\item\em Closes the dialog. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_a160854d1ffae38ef37bb43708c5a50c1}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_a160854d1ffae38ef37bb43708c5a50c1} 
+static bool {\bfseries Can\+Close\+Dialog} (object? o)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_abb9e778decdbd260342ba9527f5ff899}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_abb9e778decdbd260342ba9527f5ff899} 
+string {\bfseries Error\+Message}\hspace{0.3cm}{\ttfamily  \mbox{[}get, protected set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The error message to display in the dialog. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_aac1b47099c18d9a2087f2875c6dc3323}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_aac1b47099c18d9a2087f2875c6dc3323} 
+bool {\bfseries Display\+Error}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Whether or not to display the error message in the dialog. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_ac39f1fff040f70188ef4df8a9fd9f91f}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_ac39f1fff040f70188ef4df8a9fd9f91f} 
+bool {\bfseries Dialog\+Host\+Is\+Open}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Indicates whether or not the dialog is open. This is used to bind to the Dialog\+Host.\+Is\+Open property. Dialog closes when this is set to false. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_ad3023fb0057a2f066d549a97ca27b3c3}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_ad3023fb0057a2f066d549a97ca27b3c3} 
+virtual ? Dialog\+Closing\+Event\+Handler {\bfseries Dialog\+Closing\+Handler}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The dialog closing handler. This is used to bind to the Dialog\+Host.\+Dialog\+Closing attached property. This can be used to prevent the dialog from closing or implement custom logic when the dialog closes. \end{DoxyCompactList}\item 
+TModel \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_aee141306e9ef8e74877664b78304319a}{Model}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The result that is returned when the dialog closes. If no value is set, the dialog is assumed to have been cancelled. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_a9b3529a6bac444dfac07d03c16d7ae94}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_a9b3529a6bac444dfac07d03c16d7ae94} 
+TResult? {\bfseries Result}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The result that is returned when the dialog closes. If no value is set, the dialog is assumed to have been cancelled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac6f120f211eb4336e8e7769821511a8b}{On\+Property\+Changed}} (\mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Raises the Property\+Changed event. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac0ddbef8e2e7257c462f6463f0b4cc87}{Set\+Field$<$ T $>$}} (ref T field, T value, \mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Sets the field and raises the Property\+Changed event if the value has changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Events inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Property\+Changed\+Event\+Handler? {\bfseries Property\+Changed}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for view models that are used to display dialogs. 
+
+Base class for view models that are used to display dialogs, with a model and result.
+
+Base class for view models that are used to display dialogs, with a result.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TModel} & A result that is returned when the dialog closes.\\
+\hline
+\end{DoxyTemplParams}
+
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TModel} & A model that is used to display data in the dialog.\\
+\hline
+{\em TResult} & A result that is returned when the dialog closes.\\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Property Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_aee141306e9ef8e74877664b78304319a}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base_aee141306e9ef8e74877664b78304319a} 
+\index{RaceDay.WpfUi.Infrastructure.DialogViewModelBase$<$ TModel, TResult $>$@{RaceDay.WpfUi.Infrastructure.DialogViewModelBase$<$ TModel, TResult $>$}!Model@{Model}}
+\index{Model@{Model}!RaceDay.WpfUi.Infrastructure.DialogViewModelBase$<$ TModel, TResult $>$@{RaceDay.WpfUi.Infrastructure.DialogViewModelBase$<$ TModel, TResult $>$}}
+\doxysubsubsection{\texorpdfstring{Model}{Model}}
+{\footnotesize\ttfamily TModel Dialog\+View\+Model\+Base.\+Model\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The result that is returned when the dialog closes. If no value is set, the dialog is assumed to have been cancelled. 
+
+The model that is used to display data in the dialog. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Wpf\+Ui/\+Infrastructure/Dialog\+View\+Model\+Base.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,119 @@
+\doxysection{Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Day\+Summary\+View\+Model Class Reference}
+\hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model}{}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model}\index{RaceDay.WpfUi.ViewModels.DaySummaryViewModel@{RaceDay.WpfUi.ViewModels.DaySummaryViewModel}}
+
+
+A view model providing data and logic for the Day Summary view.  
+
+
+
+
+Inheritance diagram for Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Day\+Summary\+View\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Day\+Summary\+View\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a01426c39284ea6abd1bf80ad7cbb52f6}{Day\+Summary\+View\+Model}} (\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service}{Dialog\+Service}} dialog\+Service, \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_day_summary_query}{IDay\+Summary\+Query}} race\+Day\+Summary\+Query)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the Day\+Summary\+View\+Model class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a213904e66e22e6118957c47f1984e869}{Load\+Data}} (bool change\+Selected\+Day=true)
+\begin{DoxyCompactList}\small\item\em Loads data from the persistence layer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a6b60558be72b780bad8ca268c1200194}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a6b60558be72b780bad8ca268c1200194} 
+bool {\bfseries Display\+As\+Kilometers}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Indicates whether to display the distance in miles or kilometers. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a24d079d0d3700df1bf44f060aff6e7d1}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a24d079d0d3700df1bf44f060aff6e7d1} 
+Observable\+Collection$<$ Day\+Summary\+Model $>$ {\bfseries Race\+Days} = new()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A collection of Race Day summaries. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a6dda3bb7226cacad6c722d628e0f4b96}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a6dda3bb7226cacad6c722d628e0f4b96} 
+Day\+Summary\+Model? {\bfseries Selected\+Race\+Day}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The Race Day selected in the UI. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a88bbda4558a7d596276c19f6796b4583}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a88bbda4558a7d596276c19f6796b4583} 
+string {\bfseries View\+Title}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The title of the view. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a0b32f61a378ed6a1a73db69b9c178b22}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a0b32f61a378ed6a1a73db69b9c178b22} 
+ICommand {\bfseries Create\+Race\+Day\+Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A command for creating Race Day. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac6f120f211eb4336e8e7769821511a8b}{On\+Property\+Changed}} (\mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Raises the Property\+Changed event. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac0ddbef8e2e7257c462f6463f0b4cc87}{Set\+Field$<$ T $>$}} (ref T field, T value, \mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Sets the field and raises the Property\+Changed event if the value has changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Events inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Property\+Changed\+Event\+Handler? {\bfseries Property\+Changed}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A view model providing data and logic for the Day Summary view. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a01426c39284ea6abd1bf80ad7cbb52f6}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a01426c39284ea6abd1bf80ad7cbb52f6} 
+\index{RaceDay.WpfUi.ViewModels.DaySummaryViewModel@{RaceDay.WpfUi.ViewModels.DaySummaryViewModel}!DaySummaryViewModel@{DaySummaryViewModel}}
+\index{DaySummaryViewModel@{DaySummaryViewModel}!RaceDay.WpfUi.ViewModels.DaySummaryViewModel@{RaceDay.WpfUi.ViewModels.DaySummaryViewModel}}
+\doxysubsubsection{\texorpdfstring{DaySummaryViewModel()}{DaySummaryViewModel()}}
+{\footnotesize\ttfamily Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Day\+Summary\+View\+Model.\+Day\+Summary\+View\+Model (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service}{Dialog\+Service}}}]{dialog\+Service,  }\item[{\mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_day_summary_query}{IDay\+Summary\+Query}}}]{race\+Day\+Summary\+Query }\end{DoxyParamCaption})}
+
+
+
+Creates a new instance of the Day\+Summary\+View\+Model class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dialog\+Service} & The dialog service\\
+\hline
+{\em race\+Day\+Summary\+Query} & A query for Race Day summaries\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a213904e66e22e6118957c47f1984e869}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a213904e66e22e6118957c47f1984e869} 
+\index{RaceDay.WpfUi.ViewModels.DaySummaryViewModel@{RaceDay.WpfUi.ViewModels.DaySummaryViewModel}!LoadData@{LoadData}}
+\index{LoadData@{LoadData}!RaceDay.WpfUi.ViewModels.DaySummaryViewModel@{RaceDay.WpfUi.ViewModels.DaySummaryViewModel}}
+\doxysubsubsection{\texorpdfstring{LoadData()}{LoadData()}}
+{\footnotesize\ttfamily void Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Day\+Summary\+View\+Model.\+Load\+Data (\begin{DoxyParamCaption}\item[{bool}]{change\+Selected\+Day = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Loads data from the persistence layer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em change\+Selected\+Day} & Indicates whether to change the selected day\\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model_a213904e66e22e6118957c47f1984e869_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Wpf\+Ui/\+View\+Models/Day\+Summary\+View\+Model.\+cs\end{DoxyCompactItemize}

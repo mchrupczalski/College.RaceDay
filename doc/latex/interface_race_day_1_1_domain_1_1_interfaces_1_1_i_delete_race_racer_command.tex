@@ -1,0 +1,62 @@
+\doxysection{Race\+Day.\+Domain.\+Interfaces.\+IDelete\+Race\+Racer\+Command Interface Reference}
+\hypertarget{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_delete_race_racer_command}{}\label{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_delete_race_racer_command}\index{RaceDay.Domain.Interfaces.IDeleteRaceRacerCommand@{RaceDay.Domain.Interfaces.IDeleteRaceRacerCommand}}
+
+
+A command for deleting a Racer from the Race.  
+
+
+
+
+Inheritance diagram for Race\+Day.\+Domain.\+Interfaces.\+IDelete\+Race\+Racer\+Command\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_delete_race_racer_command__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_delete_race_racer_command_aec53b1f97cf14a15432e94c2f2ce63cd}{Execute}} (int race\+Id, int racer\+Id)
+\begin{DoxyCompactList}\small\item\em Deletes racer from race. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A command for deleting a Racer from the Race. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_delete_race_racer_command_aec53b1f97cf14a15432e94c2f2ce63cd}\label{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_delete_race_racer_command_aec53b1f97cf14a15432e94c2f2ce63cd} 
+\index{RaceDay.Domain.Interfaces.IDeleteRaceRacerCommand@{RaceDay.Domain.Interfaces.IDeleteRaceRacerCommand}!Execute@{Execute}}
+\index{Execute@{Execute}!RaceDay.Domain.Interfaces.IDeleteRaceRacerCommand@{RaceDay.Domain.Interfaces.IDeleteRaceRacerCommand}}
+\doxysubsubsection{\texorpdfstring{Execute()}{Execute()}}
+{\footnotesize\ttfamily bool Race\+Day.\+Domain.\+Interfaces.\+IDelete\+Race\+Racer\+Command.\+Execute (\begin{DoxyParamCaption}\item[{int}]{race\+Id,  }\item[{int}]{racer\+Id }\end{DoxyParamCaption})}
+
+
+
+Deletes racer from race. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em race\+Id} & The Race Id to remove the racer from\\
+\hline
+{\em racer\+Id} & The Racer Id to be removed\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the racer was deleted, false if not
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Throws if laps remain for racer\\
+\hline
+\end{DoxyExceptions}
+
+
+Implemented in \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_commands_1_1_delete_race_racer_command_a5fc8899540121d6806f60229abd5ff84}{Race\+Day.\+Sql\+Lite.\+Commands.\+Delete\+Race\+Racer\+Command}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Domain/\+Interfaces/IDelete\+Race\+Racer\+Command.\+cs\end{DoxyCompactItemize}

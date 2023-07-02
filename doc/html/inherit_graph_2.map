@@ -1,0 +1,56 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="234,21,384,48"/>
+<area shape="rect" id="Node000001" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base.html" title="Base class for view models that are used to display dialogs." alt="" coords="491,5,699,64"/>
+<area shape="poly" id="edge37_Node000000_Node000001" title=" " alt="" coords="399,32,490,32,490,37,399,37"/>
+<area shape="rect" id="Node000005" href="$interface_race_day_1_1_wpf_ui_1_1_interfaces_1_1_i_navigable_view_model.html" title="Interface for view models that need to be notified when navigated to." alt="" coords="506,488,683,531"/>
+<area shape="rect" id="Node000004" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_add_racer_view_model.html" title="A view model providing data and logic for the Add Racer view." alt="" coords="785,421,977,464"/>
+<area shape="poly" id="edge38_Node000005_Node000004" title=" " alt="" coords="697,483,786,462,787,467,698,488"/>
+<area shape="rect" id="Node000006" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_home_view_model.html" title="A view model providing data and logic for the Home view." alt="" coords="785,488,977,531"/>
+<area shape="poly" id="edge39_Node000005_Node000006" title=" " alt="" coords="698,507,785,507,785,512,698,512"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="243,96,375,123"/>
+<area shape="rect" id="Node000016" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_with_validation.html" title="Base class for observable objects with validation &#160;&#160;Implements INotifyPropertyChanged &#160;&#160;Implements IN..." alt="" coords="491,88,698,131"/>
+<area shape="poly" id="edge40_Node000019_Node000016" title=" " alt="" coords="390,107,491,107,491,112,390,112"/>
+<area shape="rect" id="Node000017" href="$class_race_day_1_1_wpf_ui_1_1_models_1_1_new_race_day_model.html" title="A model for creating new Race Days." alt="" coords="787,55,975,97"/>
+<area shape="poly" id="edge41_Node000016_Node000017" title=" " alt="" coords="713,93,786,84,787,90,713,98"/>
+<area shape="rect" id="Node000018" href="$class_race_day_1_1_wpf_ui_1_1_models_1_1_racer_model.html" title="Model for Racer." alt="" coords="782,121,980,164"/>
+<area shape="poly" id="edge42_Node000016_Node000018" title=" " alt="" coords="713,120,782,129,782,134,713,126"/>
+<area shape="rect" id="Node000026" title=" " alt="" coords="5,396,163,423"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object.html" title="Base class for observable objects Implements INotifyPropertyChanged" alt="" coords="211,388,407,431"/>
+<area shape="poly" id="edge43_Node000026_Node000002" title=" " alt="" coords="178,407,210,407,210,412,178,412"/>
+<area shape="poly" id="edge50_Node000002_Node000001" title=" " alt="" coords="319,373,344,300,377,211,415,128,435,96,453,74,489,52,492,57,457,78,439,99,420,131,382,213,349,302,324,375"/>
+<area shape="poly" id="edge51_Node000002_Node000016" title=" " alt="" coords="317,372,334,320,362,257,401,194,426,165,453,140,489,121,492,126,457,145,430,169,406,197,367,260,339,322,322,374"/>
+<area shape="rect" id="Node000003" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base.html" title=" " alt="" coords="475,421,714,464"/>
+<area shape="poly" id="edge44_Node000002_Node000003" title=" " alt="" coords="422,420,475,426,474,431,422,425"/>
+<area shape="rect" id="Node000012" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base.html" title=" " alt="" coords="455,765,734,824"/>
+<area shape="poly" id="edge46_Node000002_Node000012" title=" " alt="" coords="319,445,334,508,360,587,378,628,400,669,426,707,457,741,488,763,485,767,453,745,422,710,396,672,373,631,355,589,329,509,314,446"/>
+<area shape="rect" id="Node000014" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base.html" title=" " alt="" coords="467,869,723,928"/>
+<area shape="poly" id="edge48_Node000002_Node000014" title=" " alt="" coords="316,445,326,523,350,627,368,682,392,736,421,788,457,834,477,852,501,867,498,871,474,856,453,838,417,791,387,739,364,684,345,628,321,524,310,446"/>
+<area shape="rect" id="Node000007" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_view_model_base.html" title="Base class for all view models." alt="" coords="497,688,693,731"/>
+<area shape="poly" id="edge52_Node000002_Node000007" title=" " alt="" coords="322,445,339,497,367,559,406,621,430,650,457,674,476,686,497,694,495,699,473,690,453,678,426,653,401,625,362,561,334,498,317,446"/>
+<area shape="rect" id="Node000020" href="$class_race_day_1_1_wpf_ui_1_1_models_1_1_new_race_model.html" title="Model for creating new Races." alt="" coords="501,155,689,197"/>
+<area shape="poly" id="edge58_Node000002_Node000020" title=" " alt="" coords="323,374,344,335,373,289,410,245,454,207,499,187,501,191,456,212,413,248,377,293,348,337,328,376"/>
+<area shape="rect" id="Node000021" href="$class_race_day_1_1_wpf_ui_1_1_models_1_1_race_model.html" title="A model of the Race." alt="" coords="498,221,691,264"/>
+<area shape="poly" id="edge59_Node000002_Node000021" title=" " alt="" coords="335,375,386,322,419,296,454,274,497,257,499,261,456,278,422,300,390,326,339,379"/>
+<area shape="rect" id="Node000022" href="$class_race_day_1_1_wpf_ui_1_1_models_1_1_racer_lap_model.html" title="A model of the Racer Lap." alt="" coords="496,288,693,331"/>
+<area shape="poly" id="edge60_Node000002_Node000022" title=" " alt="" coords="364,379,454,340,495,328,496,333,456,345,366,384"/>
+<area shape="rect" id="Node000023" href="$class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service.html" title="Service for displaying dialogs in the application." alt="" coords="492,355,698,397"/>
+<area shape="poly" id="edge61_Node000002_Node000023" title=" " alt="" coords="421,394,491,385,491,391,422,399"/>
+<area shape="rect" id="Node000024" href="$class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service.html" title="Service for navigating between views in the application." alt="" coords="480,555,709,597"/>
+<area shape="poly" id="edge62_Node000002_Node000024" title=" " alt="" coords="339,440,390,492,422,518,456,540,482,552,479,556,454,545,419,523,386,496,335,444"/>
+<area shape="rect" id="Node000025" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_racer_view_model.html" title="A view model providing data and logic for the Racer view." alt="" coords="499,621,690,664"/>
+<area shape="poly" id="edge63_Node000002_Node000025" title=" " alt="" coords="328,442,348,481,377,526,413,570,456,607,500,627,497,632,454,612,410,574,373,529,344,484,323,445"/>
+<area shape="poly" id="edge45_Node000003_Node000004" title=" " alt="" coords="729,440,785,440,785,445,729,445"/>
+<area shape="rect" id="Node000013" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_day_view_model.html" title="A view model providing data and logic for view for creating new Race Days." alt="" coords="785,821,977,864"/>
+<area shape="poly" id="edge47_Node000012_Node000013" title=" " alt="" coords="750,818,785,824,784,829,749,823"/>
+<area shape="rect" id="Node000015" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_new_race_view_model.html" title="A view model providing data and logic for a view for creating new Races." alt="" coords="785,888,977,931"/>
+<area shape="poly" id="edge49_Node000014_Node000015" title=" " alt="" coords="738,901,785,903,785,908,738,907"/>
+<area shape="poly" id="edge54_Node000007_Node000006" title=" " alt="" coords="705,691,733,674,746,659,753,643,756,610,760,576,767,558,780,541,796,529,799,533,784,545,772,561,765,577,762,610,758,644,750,661,736,678,708,696"/>
+<area shape="rect" id="Node000008" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model.html" title="A view model providing data and logic for the Day Summary view." alt="" coords="785,555,977,597"/>
+<area shape="poly" id="edge53_Node000007_Node000008" title=" " alt="" coords="706,688,733,674,748,658,756,642,765,625,781,607,800,596,803,600,784,611,769,628,761,644,753,662,736,678,708,693"/>
+<area shape="rect" id="Node000009" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_main_view_model.html" title="A view model providing data and logic for the Main view." alt="" coords="785,621,977,664"/>
+<area shape="poly" id="edge55_Node000007_Node000009" title=" " alt="" coords="703,682,786,662,787,667,704,687"/>
+<area shape="rect" id="Node000010" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model.html" title="A view model providing data and logic for the Race view." alt="" coords="785,688,977,731"/>
+<area shape="poly" id="edge56_Node000007_Node000010" title=" " alt="" coords="708,707,785,707,785,712,708,712"/>
+<area shape="rect" id="Node000011" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model.html" title="A view model providing data and logic for Races Summary view." alt="" coords="785,755,977,797"/>
+<area shape="poly" id="edge57_Node000007_Node000011" title=" " alt="" coords="704,732,787,751,786,757,703,737"/>
+</map>

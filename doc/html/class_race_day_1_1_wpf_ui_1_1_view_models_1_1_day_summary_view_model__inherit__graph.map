@@ -1,0 +1,9 @@
+<map id="RaceDay.WpfUi.ViewModels.DaySummaryViewModel" name="RaceDay.WpfUi.ViewModels.DaySummaryViewModel">
+<area shape="rect" id="Node000001" title="A view model providing data and logic for the Day Summary view." alt="" coords="5,229,197,272"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_view_model_base.html" title="Base class for all view models." alt="" coords="44,155,158,181"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,196,104,229,98,229,98,196"/>
+<area shape="rect" id="Node000003" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object.html" title="Base class for observable objects Implements INotifyPropertyChanged" alt="" coords="39,80,163,107"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="104,122,104,154,98,154,98,122"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="22,5,180,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="104,47,104,80,98,80,98,47"/>
+</map>

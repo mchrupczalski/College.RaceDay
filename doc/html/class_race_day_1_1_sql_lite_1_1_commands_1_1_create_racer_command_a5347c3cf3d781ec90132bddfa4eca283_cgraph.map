@@ -1,0 +1,5 @@
+<map id="RaceDay.SqlLite.Commands.CreateRacerCommand.Execute" name="RaceDay.SqlLite.Commands.CreateRacerCommand.Execute">
+<area shape="rect" id="Node000001" title="Creates a new Racer record and returns the new record." alt="" coords="5,5,210,48"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base.html#a45262d71490a9bcd0fa331c783f052fe" title="Creates a new SQLiteConnection instance." alt="" coords="258,5,510,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,24,243,24,243,29,210,29"/>
+</map>

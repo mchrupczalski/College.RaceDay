@@ -1,0 +1,7 @@
+<map id="RaceDay.WpfUi.ViewModels.RacesSummaryViewModel.LoadRaceDayRaces" name="RaceDay.WpfUi.ViewModels.RacesSummaryViewModel.LoadRaceDayRaces">
+<area shape="rect" id="Node000001" title="Loads Race Details for given Race Day." alt="" coords="273,31,512,89"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_home_view_model.html#a5496b23f9c791f013d55a73f8eb9d669" title="Creates a new instance of the HomeViewModel class." alt="" coords="5,5,225,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="257,46,225,43,225,37,258,41"/>
+<area shape="rect" id="Node000003" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_home_view_model.html#afe86acada4273d4e861a5fa1dd34a1e8" title="Called when the view model is navigated to." alt="" coords="10,72,220,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="258,79,221,83,220,78,258,74"/>
+</map>

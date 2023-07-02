@@ -1,0 +1,17 @@
+<map id="RaceDay.WpfUi.Infrastructure.ViewModelBase" name="RaceDay.WpfUi.Infrastructure.ViewModelBase">
+<area shape="rect" id="Node000001" title="Base class for all view models." alt="" coords="382,139,578,181"/>
+<area shape="rect" id="Node000004" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model.html" title="A view model providing data and logic for the Day Summary view." alt="" coords="626,5,818,48"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="518,127,568,92,625,58,651,46,653,51,628,62,571,96,521,132"/>
+<area shape="rect" id="Node000005" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_home_view_model.html" title="A view model providing data and logic for the Home view." alt="" coords="626,72,818,115"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="573,132,641,113,642,118,574,137"/>
+<area shape="rect" id="Node000006" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_main_view_model.html" title="A view model providing data and logic for the Main view." alt="" coords="626,139,818,181"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="593,157,626,157,626,163,593,163"/>
+<area shape="rect" id="Node000007" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model.html" title="A view model providing data and logic for the Race view." alt="" coords="626,205,818,248"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="574,183,642,202,641,207,573,188"/>
+<area shape="rect" id="Node000008" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model.html" title="A view model providing data and logic for Races Summary view." alt="" coords="626,272,818,315"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="521,188,571,224,628,258,653,269,651,274,625,262,568,228,518,193"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object.html" title="Base class for observable objects Implements INotifyPropertyChanged" alt="" coords="211,147,334,173"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="348,157,381,157,381,163,348,163"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,147,163,173"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="177,157,210,157,210,163,177,163"/>
+</map>

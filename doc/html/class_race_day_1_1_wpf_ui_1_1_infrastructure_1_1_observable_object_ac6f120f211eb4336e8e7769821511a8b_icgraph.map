@@ -1,0 +1,5 @@
+<map id="RaceDay.WpfUi.Infrastructure.ObservableObject.OnPropertyChanged" name="RaceDay.WpfUi.Infrastructure.ObservableObject.OnPropertyChanged">
+<area shape="rect" id="Node000001" title="Raises the PropertyChanged event." alt="" coords="260,5,504,48"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object.html#ac0ddbef8e2e7257c462f6463f0b4cc87" title="Sets the field and raises the PropertyChanged event if the value has changed." alt="" coords="5,5,212,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="245,29,212,29,212,24,245,24"/>
+</map>

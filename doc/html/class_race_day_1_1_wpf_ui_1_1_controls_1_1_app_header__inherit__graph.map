@@ -1,0 +1,9 @@
+<map id="RaceDay.WpfUi.Controls.AppHeader" name="RaceDay.WpfUi.Controls.AppHeader">
+<area shape="rect" id="Node000001" title="Interaction logic for AppHeader.xaml The header for the application." alt="" coords="237,56,429,99"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="52,5,142,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,31,245,53,244,58,156,36"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,56,189,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="204,75,236,75,236,80,204,80"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="8,123,186,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="188,116,254,97,255,102,189,121"/>
+</map>
