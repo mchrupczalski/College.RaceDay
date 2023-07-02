@@ -1,0 +1,160 @@
+\doxysection{Race\+Day.\+Wpf\+Ui.\+Services.\+Dialog\+Service Class Reference}
+\hypertarget{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service}{}\label{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service}\index{RaceDay.WpfUi.Services.DialogService@{RaceDay.WpfUi.Services.DialogService}}
+
+
+Service for displaying dialogs in the application.  
+
+
+
+
+Inheritance diagram for Race\+Day.\+Wpf\+Ui.\+Services.\+Dialog\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Race\+Day.\+Wpf\+Ui.\+Services.\+Dialog\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_a340a71da62570b1d6c0b448deb2ca7ac}{Dialog\+Service}} (IService\+Provider service\+Provider)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the Dialog\+Service class. \end{DoxyCompactList}\item 
+async Task$<$ TResult?$>$ \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_ad4a033562ecf049ba8ca7602a9767fc1}{Display\+Dialog\+Async$<$ TView\+Model, TModel, TResult $>$}} (TModel model)
+\begin{DoxyCompactList}\small\item\em Displays a dialog with the specified view model. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_a2a867e613909b0ec0ff317ba248e255c}{Display\+Dialog\+Async$<$ TView\+Model, TModel $>$}} (TModel model)
+\begin{DoxyCompactList}\small\item\em Displays a dialog with the specified view model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_a5c8730159999388661f648acaddd11a8}\label{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_a5c8730159999388661f648acaddd11a8} 
+string {\bfseries Dialog\+Host\+Identifier} = \"{}Root\+Dialog\+Host\"{}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The identifier of the dialog host. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_aaba3ed0a8536c283308169f20a2071ce}\label{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_aaba3ed0a8536c283308169f20a2071ce} 
+\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base}{Dialog\+View\+Model\+Base}}? {\bfseries Active\+Dialog\+View\+Model}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A view model currently displayed in the dialog host. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac6f120f211eb4336e8e7769821511a8b}{On\+Property\+Changed}} (\mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Raises the Property\+Changed event. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac0ddbef8e2e7257c462f6463f0b4cc87}{Set\+Field$<$ T $>$}} (ref T field, T value, \mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Sets the field and raises the Property\+Changed event if the value has changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Events inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Property\+Changed\+Event\+Handler? {\bfseries Property\+Changed}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Service for displaying dialogs in the application. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_a340a71da62570b1d6c0b448deb2ca7ac}\label{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_a340a71da62570b1d6c0b448deb2ca7ac} 
+\index{RaceDay.WpfUi.Services.DialogService@{RaceDay.WpfUi.Services.DialogService}!DialogService@{DialogService}}
+\index{DialogService@{DialogService}!RaceDay.WpfUi.Services.DialogService@{RaceDay.WpfUi.Services.DialogService}}
+\doxysubsubsection{\texorpdfstring{DialogService()}{DialogService()}}
+{\footnotesize\ttfamily Race\+Day.\+Wpf\+Ui.\+Services.\+Dialog\+Service.\+Dialog\+Service (\begin{DoxyParamCaption}\item[{IService\+Provider}]{service\+Provider }\end{DoxyParamCaption})}
+
+
+
+Creates a new instance of the Dialog\+Service class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em service\+Provider} & The service provider\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_a2a867e613909b0ec0ff317ba248e255c}\label{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_a2a867e613909b0ec0ff317ba248e255c} 
+\index{RaceDay.WpfUi.Services.DialogService@{RaceDay.WpfUi.Services.DialogService}!DisplayDialogAsync$<$ TViewModel, TModel $>$@{DisplayDialogAsync$<$ TViewModel, TModel $>$}}
+\index{DisplayDialogAsync$<$ TViewModel, TModel $>$@{DisplayDialogAsync$<$ TViewModel, TModel $>$}!RaceDay.WpfUi.Services.DialogService@{RaceDay.WpfUi.Services.DialogService}}
+\doxysubsubsection{\texorpdfstring{DisplayDialogAsync$<$ TViewModel, TModel $>$()}{DisplayDialogAsync< TViewModel, TModel >()}}
+{\footnotesize\ttfamily async Task Race\+Day.\+Wpf\+Ui.\+Services.\+Dialog\+Service.\+Display\+Dialog\+Async$<$ TView\+Model, TModel $>$ (\begin{DoxyParamCaption}\item[{TModel}]{model }\end{DoxyParamCaption})}
+
+
+
+Displays a dialog with the specified view model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & The base model containing the data to be displayed.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TView\+Model} & The type of the view model.\\
+\hline
+{\em TModel} & The type of the model.\\
+\hline
+\end{DoxyTemplParams}
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em TView\+Model} : {\em Dialog\+View\+Model\+Base$<$TModel$>$}]\item[{\em TView\+Model} : {\em INavigable\+View\+Model}]\end{description}
+\end{Desc}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_a2a867e613909b0ec0ff317ba248e255c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_ad4a033562ecf049ba8ca7602a9767fc1}\label{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_ad4a033562ecf049ba8ca7602a9767fc1} 
+\index{RaceDay.WpfUi.Services.DialogService@{RaceDay.WpfUi.Services.DialogService}!DisplayDialogAsync$<$ TViewModel, TModel, TResult $>$@{DisplayDialogAsync$<$ TViewModel, TModel, TResult $>$}}
+\index{DisplayDialogAsync$<$ TViewModel, TModel, TResult $>$@{DisplayDialogAsync$<$ TViewModel, TModel, TResult $>$}!RaceDay.WpfUi.Services.DialogService@{RaceDay.WpfUi.Services.DialogService}}
+\doxysubsubsection{\texorpdfstring{DisplayDialogAsync$<$ TViewModel, TModel, TResult $>$()}{DisplayDialogAsync< TViewModel, TModel, TResult >()}}
+{\footnotesize\ttfamily async Task$<$ TResult?$>$ Race\+Day.\+Wpf\+Ui.\+Services.\+Dialog\+Service.\+Display\+Dialog\+Async$<$ TView\+Model, TModel, TResult $>$ (\begin{DoxyParamCaption}\item[{TModel}]{model }\end{DoxyParamCaption})}
+
+
+
+Displays a dialog with the specified view model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & The base model containing the data to be displayed.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TView\+Model} & The type of the view model.\\
+\hline
+{\em TModel} & The type of the model.\\
+\hline
+{\em TResult} & The type of the result.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The result specified by the {\itshape TResult} 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em TView\+Model} : {\em Dialog\+View\+Model\+Base}]\item[{\em TView\+Model} : {\em TModel}]\item[{\em TView\+Model} : {\em TResult}]\end{description}
+\end{Desc}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service_ad4a033562ecf049ba8ca7602a9767fc1_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Wpf\+Ui/\+Services/Dialog\+Service.\+cs\end{DoxyCompactItemize}

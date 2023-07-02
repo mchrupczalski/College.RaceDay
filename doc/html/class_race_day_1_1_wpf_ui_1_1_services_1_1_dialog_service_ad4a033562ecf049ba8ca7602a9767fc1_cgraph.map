@@ -1,0 +1,5 @@
+<map id="RaceDay.WpfUi.Services.DialogService.DisplayDialogAsync&lt; TViewModel, TModel, TResult &gt;" name="RaceDay.WpfUi.Services.DialogService.DisplayDialogAsync&lt; TViewModel, TModel, TResult &gt;">
+<area shape="rect" id="Node000001" title="Displays a dialog with the specified view model." alt="" coords="5,5,223,64"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_dialog_view_model_base.html#aa512850ea2ddb72d10fe0f3f5f420114" title="Opens the dialog." alt="" coords="271,13,492,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,32,256,32,256,37,223,37"/>
+</map>

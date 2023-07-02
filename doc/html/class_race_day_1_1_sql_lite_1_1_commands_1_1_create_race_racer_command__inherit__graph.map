@@ -1,0 +1,9 @@
+<map id="RaceDay.SqlLite.Commands.CreateRaceRacerCommand" name="RaceDay.SqlLite.Commands.CreateRaceRacerCommand">
+<area shape="rect" id="Node000001" title=" " alt="" coords="77,171,269,213"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base.html" title="The base class for all command and query classes." alt="" coords="5,96,151,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,130,150,168,147,172,102,134"/>
+<area shape="rect" id="Node000003" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_create_race_racer_command.html" title="A command for creating Racer for a Race." alt="" coords="175,96,360,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="243,134,199,172,195,168,240,130"/>
+<area shape="rect" id="Node000004" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_exchange_data_command.html" title=" " alt="" coords="183,5,352,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="270,63,270,95,265,95,265,63"/>
+</map>

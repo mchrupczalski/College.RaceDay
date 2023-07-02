@@ -1,0 +1,5 @@
+<map id="RaceDay.WpfUi.Infrastructure.ObservableObject" name="RaceDay.WpfUi.Infrastructure.ObservableObject">
+<area shape="rect" id="Node000001" title="Base class for observable objects Implements INotifyPropertyChanged" alt="" coords="5,80,202,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="25,5,182,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,47,106,80,101,80,101,47"/>
+</map>

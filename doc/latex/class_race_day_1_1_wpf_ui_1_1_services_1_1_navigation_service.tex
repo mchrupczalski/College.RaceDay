@@ -1,0 +1,126 @@
+\doxysection{Race\+Day.\+Wpf\+Ui.\+Services.\+Navigation\+Service Class Reference}
+\hypertarget{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service}{}\label{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service}\index{RaceDay.WpfUi.Services.NavigationService@{RaceDay.WpfUi.Services.NavigationService}}
+
+
+Service for navigating between views in the application.  
+
+
+
+
+Inheritance diagram for Race\+Day.\+Wpf\+Ui.\+Services.\+Navigation\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Race\+Day.\+Wpf\+Ui.\+Services.\+Navigation\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service_aa722a1e7052cdc0ca3d19487b8d9d5c0}{Navigation\+Service}} (IService\+Provider service\+Provider)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the Navigation\+Service class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service_a17ec24980aa3f24e4b49d7c71321c55d}{Navigate\+To$<$ T $>$}} ()
+\begin{DoxyCompactList}\small\item\em Navigates to the specified view model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service_aab1ecface642c76a0cd3db71eff551d9}{Navigate\+To}} (\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_view_model_base}{View\+Model\+Base}} view\+Model)
+\begin{DoxyCompactList}\small\item\em Navigates to the specified view model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service_ac42866b952d75473685ce3fd6c7a2042}\label{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service_ac42866b952d75473685ce3fd6c7a2042} 
+\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_view_model_base}{View\+Model\+Base}}? {\bfseries Active\+View\+Model}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A view model currently displayed in the application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac6f120f211eb4336e8e7769821511a8b}{On\+Property\+Changed}} (\mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Raises the Property\+Changed event. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac0ddbef8e2e7257c462f6463f0b4cc87}{Set\+Field$<$ T $>$}} (ref T field, T value, \mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Sets the field and raises the Property\+Changed event if the value has changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Events inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Property\+Changed\+Event\+Handler? {\bfseries Property\+Changed}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Service for navigating between views in the application. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service_aa722a1e7052cdc0ca3d19487b8d9d5c0}\label{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service_aa722a1e7052cdc0ca3d19487b8d9d5c0} 
+\index{RaceDay.WpfUi.Services.NavigationService@{RaceDay.WpfUi.Services.NavigationService}!NavigationService@{NavigationService}}
+\index{NavigationService@{NavigationService}!RaceDay.WpfUi.Services.NavigationService@{RaceDay.WpfUi.Services.NavigationService}}
+\doxysubsubsection{\texorpdfstring{NavigationService()}{NavigationService()}}
+{\footnotesize\ttfamily Race\+Day.\+Wpf\+Ui.\+Services.\+Navigation\+Service.\+Navigation\+Service (\begin{DoxyParamCaption}\item[{IService\+Provider}]{service\+Provider }\end{DoxyParamCaption})}
+
+
+
+Creates a new instance of the Navigation\+Service class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em service\+Provider} & The service provider\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service_aab1ecface642c76a0cd3db71eff551d9}\label{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service_aab1ecface642c76a0cd3db71eff551d9} 
+\index{RaceDay.WpfUi.Services.NavigationService@{RaceDay.WpfUi.Services.NavigationService}!NavigateTo@{NavigateTo}}
+\index{NavigateTo@{NavigateTo}!RaceDay.WpfUi.Services.NavigationService@{RaceDay.WpfUi.Services.NavigationService}}
+\doxysubsubsection{\texorpdfstring{NavigateTo()}{NavigateTo()}}
+{\footnotesize\ttfamily void Race\+Day.\+Wpf\+Ui.\+Services.\+Navigation\+Service.\+Navigate\+To (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_view_model_base}{View\+Model\+Base}}}]{view\+Model }\end{DoxyParamCaption})}
+
+
+
+Navigates to the specified view model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em view\+Model} & The view model.\\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service_aab1ecface642c76a0cd3db71eff551d9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service_a17ec24980aa3f24e4b49d7c71321c55d}\label{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service_a17ec24980aa3f24e4b49d7c71321c55d} 
+\index{RaceDay.WpfUi.Services.NavigationService@{RaceDay.WpfUi.Services.NavigationService}!NavigateTo$<$ T $>$@{NavigateTo$<$ T $>$}}
+\index{NavigateTo$<$ T $>$@{NavigateTo$<$ T $>$}!RaceDay.WpfUi.Services.NavigationService@{RaceDay.WpfUi.Services.NavigationService}}
+\doxysubsubsection{\texorpdfstring{NavigateTo$<$ T $>$()}{NavigateTo< T >()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service_aab1ecface642c76a0cd3db71eff551d9}{Race\+Day.\+Wpf\+Ui.\+Services.\+Navigation\+Service.\+Navigate\+To}}$<$ T $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Navigates to the specified view model. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the view model.\\
+\hline
+\end{DoxyTemplParams}
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T} : {\em View\+Model\+Base}]\item[{\em T} : {\em INavigable\+View\+Model}]\end{description}
+\end{Desc}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Wpf\+Ui/\+Services/Navigation\+Service.\+cs\end{DoxyCompactItemize}

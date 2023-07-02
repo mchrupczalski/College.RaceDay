@@ -1,28 +1,35 @@
-﻿using System;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Interfaces;
 
 namespace RaceDay.WpfUi.ViewModels;
 
+/// <summary>
+///     A view model providing data and logic for the Home view
+/// </summary>
 public class HomeViewModel : ViewModelBase, INavigableViewModel
 {
     #region Properties
 
+    /// <summary>
+    ///     A view model providing data and logic for the Day Summary view
+    /// </summary>
     public DaySummaryViewModel RaceDaySummaryViewModel { get; }
+
+    /// <summary>
+    ///     A view model providing data and logic for the Races Summary view
+    /// </summary>
     public RacesSummaryViewModel RaceDayRacesViewModel { get; }
 
     #endregion
 
     #region Constructors
 
-#pragma warning disable CS8618
-    [Obsolete("Design time only", true)]
-    public HomeViewModel()
-    {
-    }
-#pragma warning restore CS8618
-
+    /// <summary>
+    ///     Creates a new instance of the <see cref="HomeViewModel" /> class
+    /// </summary>
+    /// <param name="raceDaySummaryViewModel">A view model providing data and logic for the Day Summary view</param>
+    /// <param name="raceDayRacesViewModel">A view model providing data and logic for the Races Summary view</param>
     public HomeViewModel(DaySummaryViewModel raceDaySummaryViewModel, RacesSummaryViewModel raceDayRacesViewModel)
     {
         RaceDaySummaryViewModel = raceDaySummaryViewModel;
@@ -30,8 +37,10 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
 
         raceDaySummaryViewModel.PropertyChanged += (sender, args) =>
         {
-            if (args.PropertyName != nameof(RaceDaySummaryViewModel.SelectedRaceDay)) return;
-            if (raceDaySummaryViewModel.SelectedRaceDay == null) return;
+            if (args.PropertyName != nameof(RaceDaySummaryViewModel.SelectedRaceDay))
+                return;
+            if (raceDaySummaryViewModel.SelectedRaceDay == null)
+                return;
 
             raceDayRacesViewModel.Races.CollectionChanged -= RacesCollectionChanged;
 
@@ -50,14 +59,21 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
     public void OnNavigatedTo()
     {
         RaceDaySummaryViewModel.LoadData();
-        if (RaceDaySummaryViewModel.SelectedRaceDay != null) RaceDayRacesViewModel.LoadRaceDayRaces(RaceDaySummaryViewModel.SelectedRaceDay);
+        if (RaceDaySummaryViewModel.SelectedRaceDay != null)
+            RaceDayRacesViewModel.LoadRaceDayRaces(RaceDaySummaryViewModel.SelectedRaceDay);
     }
 
     #endregion
 
     #region Events And Handlers
 
-    private void RacesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) => RaceDaySummaryViewModel.LoadData(false);
+    /// <summary>
+    ///     A handler for the <see cref="INotifyCollectionChanged.CollectionChanged" /> event of the
+    ///     <see cref="RaceDayRacesViewModel" />.Races collection.
+    ///     If the collection changes, the <see cref="RaceDaySummaryViewModel" /> reloads data
+    /// </summary>
+    private void RacesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) =>
+        RaceDaySummaryViewModel.LoadData(false);
 
     #endregion
 }

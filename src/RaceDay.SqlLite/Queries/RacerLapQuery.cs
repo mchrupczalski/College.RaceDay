@@ -1,18 +1,20 @@
 ﻿using RaceDay.Domain.DTOs;
+using RaceDay.Domain.Interfaces;
 using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Queries;
 
-public class RacerLapQuery : CommandQueryBase
+/// <inheritdoc cref="IRacerLapQuery" />
+public class RacerLapQuery : CommandQueryBase, IRacerLapQuery
 {
     #region Constructors
 
     /// <inheritdoc />
-    public RacerLapQuery(string dbPath) : base(dbPath)
-    {
-    }
+    public RacerLapQuery(string dbPath) : base(dbPath) { }
 
     #endregion
+
+    #region Interfaces Implement
 
     /// <summary>
     ///     Gets all Laps for Racer in Race
@@ -25,4 +27,6 @@ public class RacerLapQuery : CommandQueryBase
         using var cnx = CreateConnection();
         return cnx.Query<RaceLapDto>(sql, raceId, racerId);
     }
+
+    #endregion
 }

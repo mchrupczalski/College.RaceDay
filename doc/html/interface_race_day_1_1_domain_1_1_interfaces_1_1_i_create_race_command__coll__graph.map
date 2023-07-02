@@ -1,0 +1,5 @@
+<map id="RaceDay.Domain.Interfaces.ICreateRaceCommand" name="RaceDay.Domain.Interfaces.ICreateRaceCommand">
+<area shape="rect" id="Node000001" title="A command for creating Race." alt="" coords="5,96,192,139"/>
+<area shape="rect" id="Node000002" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_exchange_data_command.html" title=" " alt="" coords="14,5,183,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,63,101,96,96,96,96,63"/>
+</map>

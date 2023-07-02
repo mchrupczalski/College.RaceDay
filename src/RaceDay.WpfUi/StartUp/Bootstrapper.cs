@@ -2,6 +2,7 @@
 using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RaceDay.Domain.Interfaces;
 using RaceDay.SqlLite.Commands;
 using RaceDay.SqlLite.Queries;
 using RaceDay.WpfUi.Services;
@@ -9,6 +10,10 @@ using RaceDay.WpfUi.ViewModels;
 
 namespace RaceDay.WpfUi.StartUp;
 
+/// <summary>
+///     The bootstrapper for the application. <br />
+///     This class is responsible for creating the host and configuring the services.
+/// </summary>
 public class Bootstrapper
 {
     /// <summary>
@@ -17,65 +22,61 @@ public class Bootstrapper
     /// <param name="args">The arguments.</param>
     public static IHost Bootstrap(string[] args)
     {
-        var host = Host.CreateDefaultBuilder(args)
-                       .ConfigureServices((context, services) =>
-                        {
-                            services.AddSingleton<App>();
-                            services.AddSingleton<MainWindow>();
-                            services.AddSingleton<MainViewModel>();
+        var host = Host.CreateDefaultBuilder(args).ConfigureServices((context, services) =>
+        {
+            services.AddSingleton<App>();
+            services.AddSingleton<MainWindow>();
+            services.AddSingleton<MainViewModel>();
 
-                            /* Services */
-                            services.AddSingleton<NavigationService>();
-                            services.AddSingleton<DialogService>();
+            /* Services */
+            services.AddSingleton<NavigationService>();
+            services.AddSingleton<DialogService>();
 
-                            /* ViewModels */
-                            services.AddSingleton<HomeViewModel>(s => new HomeViewModel(s.GetRequiredService<DaySummaryViewModel>(),
-                                                                                        s.GetRequiredService<RacesSummaryViewModel>()));
-                            services.AddSingleton<DaySummaryViewModel>(
-                                s => new DaySummaryViewModel(s.GetRequiredService<DialogService>(), s.GetRequiredService<DaySummaryQuery>()));
-                            services.AddSingleton<RacesSummaryViewModel>(s => new RacesSummaryViewModel(s.GetRequiredService<DialogService>(),
-                                                                                                        s.GetRequiredService<NavigationService>(),
-                                                                                                        s.GetRequiredService<RaceSummaryQuery>(),
-                                                                                                        s.GetRequiredService<RaceViewModel.CreateRaceViewModel>()));
-                            services.AddSingleton<NewRaceDayViewModel>();
-                            services.AddSingleton<NewRaceViewModel>();
-                            services.AddSingleton<AddRacerViewModel>();
+            /* ViewModels */
+            services.AddSingleton<HomeViewModel>(s => new HomeViewModel(s.GetRequiredService<DaySummaryViewModel>(), s.GetRequiredService<RacesSummaryViewModel>()));
+            services.AddSingleton<DaySummaryViewModel>(s => new DaySummaryViewModel(s.GetRequiredService<DialogService>(), s.GetRequiredService<IDaySummaryQuery>()));
 
-                            /* Factories */
-                            services.AddSingleton<RacerViewModel.CreateRacerViewModel>(s => (race, racer) =>
-                                                                                           new RacerViewModel(
-                                                                                               race, racer, s.GetRequiredService<RacerLapQuery>(),
-                                                                                               s.GetRequiredService<CreateRacerLapCommand>(),
-                                                                                               s.GetRequiredService<DeleteRaceLapCommand>()));
+            services.AddSingleton<RacesSummaryViewModel>(s => new RacesSummaryViewModel(s.GetRequiredService<DialogService>(), s.GetRequiredService<NavigationService>(),
+                                                                                        s.GetRequiredService<IRaceSummaryQuery>(),
+                                                                                        s.GetRequiredService<RaceViewModel.CreateRaceViewModel>()));
+            services.AddSingleton<NewRaceDayViewModel>();
+            services.AddSingleton<NewRaceViewModel>();
+            services.AddSingleton<AddRacerViewModel>();
 
-                            services.AddSingleton<RaceViewModel.CreateRaceViewModel>(s => r => new RaceViewModel(r, s.GetRequiredService<DialogService>(),
-                                                                                                                 s.GetRequiredService<NavigationService>(),
-                                                                                                                 s.GetRequiredService<RacerViewModel.CreateRacerViewModel>(),
-                                                                                                                 s.GetRequiredService<RacersQuery>()));
+            /* Factories */
+            services.AddSingleton<RacerViewModel.CreateRacerViewModel>(s => (race, racer) =>
+                                                                           new RacerViewModel(race, racer, s.GetRequiredService<IRacerLapQuery>(),
+                                                                                              s.GetRequiredService<ICreateRacerLapCommand>(),
+                                                                                              s.GetRequiredService<IDeleteRaceLapCommand>()));
 
-                            /* In SQLite Database */
-                            string filesRoot = AppDomain.CurrentDomain.BaseDirectory;
-                            string dbPath = Path.Combine(filesRoot, "RaceDay.SqlLite.db");
+            services.AddSingleton<RaceViewModel.CreateRaceViewModel>(s => r => new RaceViewModel(r, s.GetRequiredService<DialogService>(),
+                                                                                                 s.GetRequiredService<NavigationService>(),
+                                                                                                 s.GetRequiredService<RacerViewModel.CreateRacerViewModel>(),
+                                                                                                 s.GetRequiredService<IRacersQuery>()));
 
-                            /* Queries */
-                            services.AddSingleton<DaySummaryQuery>(s => new DaySummaryQuery(dbPath));
-                            services.AddSingleton<RaceSummaryQuery>(s => new RaceSummaryQuery(dbPath));
-                            services.AddSingleton<RacersQuery>(s => new RacersQuery(dbPath));
-                            services.AddSingleton<RacerLapQuery>(s => new RacerLapQuery(dbPath));
+            /* In SQLite Database */
+            string filesRoot = AppDomain.CurrentDomain.BaseDirectory;
+            string dbPath = Path.Combine(filesRoot, "RaceDay.SqlLite.db");
 
-                            /* Create Commands */
-                            services.AddSingleton<CreateRaceDayCommand>(s => new CreateRaceDayCommand(dbPath));
-                            services.AddSingleton<CreateRaceCommand>(s => new CreateRaceCommand(dbPath));
-                            services.AddSingleton<CreateRacerCommand>(s => new CreateRacerCommand(dbPath));
-                            services.AddSingleton<CreateRaceRacerCommand>(s => new CreateRaceRacerCommand(dbPath));
-                            services.AddSingleton<CreateRacerLapCommand>(s => new CreateRacerLapCommand(dbPath));
+            /* Queries */
+            services.AddSingleton<IDaySummaryQuery, DaySummaryQuery>(s => new DaySummaryQuery(dbPath));
+            services.AddSingleton<IRaceSummaryQuery, RaceSummaryQuery>(s => new RaceSummaryQuery(dbPath));
+            services.AddSingleton<IRacersQuery, RacersQuery>(s => new RacersQuery(dbPath));
+            services.AddSingleton<IRacerLapQuery, RacerLapQuery>(s => new RacerLapQuery(dbPath));
 
-                            /* Delete Commands */
-                            services.AddSingleton<DeleteRaceLapCommand>(s => new DeleteRaceLapCommand(dbPath));
-                            services.AddSingleton<DeleteRaceRacerCommand>(s => new DeleteRaceRacerCommand(dbPath));
-                            
-                        })
-                       .Build();
+            /* Create Commands */
+            services.AddSingleton<ICreateRaceDayCommand, CreateRaceDayCommand>(s => new CreateRaceDayCommand(dbPath));
+            services.AddSingleton<ICreateRaceCommand, CreateRaceCommand>(s => new CreateRaceCommand(dbPath));
+            services.AddSingleton<ICreateRacerCommand, CreateRacerCommand>(s => new CreateRacerCommand(dbPath));
+
+            services.AddSingleton<ICreateRaceRacerCommand, CreateRaceRacerCommand>(s => new CreateRaceRacerCommand(dbPath));
+
+            services.AddSingleton<ICreateRacerLapCommand, CreateRacerLapCommand>(s => new CreateRacerLapCommand(dbPath));
+
+            /* Delete Commands */
+            services.AddSingleton<IDeleteRaceLapCommand, DeleteRaceLapCommand>(s => new DeleteRaceLapCommand(dbPath));
+            services.AddSingleton<IDeleteRaceRacerCommand, DeleteRaceRacerCommand>(s => new DeleteRaceRacerCommand(dbPath));
+        }).Build();
 
         return host;
     }

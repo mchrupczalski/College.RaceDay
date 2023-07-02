@@ -1,19 +1,21 @@
 ﻿using RaceDay.Domain.Entities;
 using RaceDay.Domain.Exceptions;
+using RaceDay.Domain.Interfaces;
 using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Commands;
 
-public class CreateRaceRacerCommand : CommandQueryBase
+/// <inheritdoc cref="ICreateRaceRacerCommand" />
+public class CreateRaceRacerCommand : CommandQueryBase, ICreateRaceRacerCommand
 {
     #region Constructors
 
     /// <inheritdoc />
-    public CreateRaceRacerCommand(string connectionString) : base(connectionString)
-    {
-    }
+    public CreateRaceRacerCommand(string connectionString) : base(connectionString) { }
 
     #endregion
+
+    #region Interfaces Implement
 
     /// <summary>
     ///     Adds a racer to race and returns the new record
@@ -21,8 +23,11 @@ public class CreateRaceRacerCommand : CommandQueryBase
     /// <param name="entity">Record to create</param>
     /// <exception cref="Exception">Throws if record not found</exception>
     /// <exception cref="CreateRecordException">Throws if error creating record</exception>
-    public RaceRacerEntity? Execute(RaceRacerEntity entity)
+    public RaceRacerEntity? Execute(RaceRacerEntity? entity)
     {
+        if (entity == null)
+            return entity;
+
         const string selectSql = "SELECT RaceId, RaceDayId, RacerId FROM RaceRacers WHERE rowid = last_insert_rowid();";
         string insertSql = $"INSERT INTO RaceRacers (RaceId, RaceDayId, RacerId) VALUES ({entity.RaceId}, {entity.RaceDayId}, {entity.RacerId});";
 
@@ -30,10 +35,10 @@ public class CreateRaceRacerCommand : CommandQueryBase
         {
             using var cnx = CreateConnection();
             _ = cnx.Query<RaceRacerEntity>(insertSql);
-            var result = cnx.Query<RaceRacerEntity>(selectSql)
-                            .FirstOrDefault();
-            
-            if(result == null) throw new Exception("Race Racer not found");
+            var result = cnx.Query<RaceRacerEntity>(selectSql).FirstOrDefault();
+
+            if (result == null)
+                throw new Exception("Race Racer not found");
 
             return result;
         }
@@ -42,4 +47,6 @@ public class CreateRaceRacerCommand : CommandQueryBase
             throw new CreateRecordException("Error creating Race Racer", e);
         }
     }
+
+    #endregion
 }

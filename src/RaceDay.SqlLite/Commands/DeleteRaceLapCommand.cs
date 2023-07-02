@@ -1,15 +1,21 @@
 ﻿using RaceDay.Domain.Entities;
+using RaceDay.Domain.Interfaces;
 using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Commands;
 
-public class DeleteRaceLapCommand : CommandQueryBase
+/// <inheritdoc cref="IDeleteRaceLapCommand" />
+public class DeleteRaceLapCommand : CommandQueryBase, IDeleteRaceLapCommand
 {
+    #region Constructors
+
     /// <inheritdoc />
-    public DeleteRaceLapCommand(string dbPath) : base(dbPath)
-    {
-    }
-    
+    public DeleteRaceLapCommand(string dbPath) : base(dbPath) { }
+
+    #endregion
+
+    #region Interfaces Implement
+
     /// <summary>
     ///     Deletes the lap for racer
     /// </summary>
@@ -19,12 +25,13 @@ public class DeleteRaceLapCommand : CommandQueryBase
     {
         string deleteSql = $"DELETE FROM RaceLaps WHERE Id = {raceLapId};";
         string selectSql = $"SELECT * FROM RaceLaps WHERE Id = {raceLapId};";
-        
+
         using var cnx = CreateConnection();
         _ = cnx.Query<RaceLapEntity>(deleteSql);
-        var result = cnx.Query<RaceLapEntity>(selectSql)
-                        .FirstOrDefault();
-        
+        var result = cnx.Query<RaceLapEntity>(selectSql).FirstOrDefault();
+
         return result == null;
     }
+
+    #endregion
 }

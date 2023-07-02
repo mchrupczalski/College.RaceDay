@@ -1,0 +1,9 @@
+<map id="RaceDay.WpfUi.App" name="RaceDay.WpfUi.App">
+<area shape="rect" id="Node000001" title="Interaction logic for App.xaml." alt="" coords="253,56,393,83"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="62,5,148,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,29,263,53,261,58,162,34"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,56,205,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="220,67,252,67,252,72,220,72"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="16,107,194,149"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="200,100,270,81,271,86,201,105"/>
+</map>

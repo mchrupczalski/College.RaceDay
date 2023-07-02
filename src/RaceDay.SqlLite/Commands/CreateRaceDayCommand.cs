@@ -1,28 +1,22 @@
-﻿using RaceDay.Domain.DTOs;
-using RaceDay.Domain.Entities;
+﻿using RaceDay.Domain.Entities;
+using RaceDay.Domain.Interfaces;
 using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Commands;
 
-/// <summary>
-///     A command to create new Race Day.
-/// </summary>
-public class CreateRaceDayCommand : CommandQueryBase
+/// <inheritdoc cref="ICreateRaceDayCommand" />
+public class CreateRaceDayCommand : CommandQueryBase, ICreateRaceDayCommand
 {
     #region Constructors
 
     /// <inheritdoc />
-    public CreateRaceDayCommand(string connectionString) : base(connectionString)
-    {
-    }
+    public CreateRaceDayCommand(string connectionString) : base(connectionString) { }
 
     #endregion
 
+    #region Interfaces Implement
 
-    /// <summary>
-    ///     Creates a new Race Day record and returns the new record
-    /// </summary>
-    /// <param name="entity">Record to create</param>
+    /// <inheritdoc />
     public DayEntity? Execute(DayEntity entity)
     {
         const string selectSql = " SELECT Id, Name, Fee, LapDistanceKm, PetrolCostPerLap FROM Days WHERE Id = last_insert_rowid();";
@@ -31,10 +25,11 @@ public class CreateRaceDayCommand : CommandQueryBase
 
         using var cnx = CreateConnection();
         _ = cnx.Query<DayEntity>(insertSql);
-        
-        var result = cnx.Query<DayEntity>(selectSql)
-                        .FirstOrDefault();
+
+        var result = cnx.Query<DayEntity>(selectSql).FirstOrDefault();
 
         return result;
     }
+
+    #endregion
 }

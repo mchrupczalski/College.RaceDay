@@ -1,0 +1,73 @@
+\doxysection{Race\+Day.\+Domain.\+Interfaces.\+IRace\+Summary\+Query Interface Reference}
+\hypertarget{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query}{}\label{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query}\index{RaceDay.Domain.Interfaces.IRaceSummaryQuery@{RaceDay.Domain.Interfaces.IRaceSummaryQuery}}
+
+
+A query for Race summary.  
+
+
+
+
+Inheritance diagram for Race\+Day.\+Domain.\+Interfaces.\+IRace\+Summary\+Query\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+IEnumerable$<$ Race\+Summary\+Dto $>$ \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query_ad50eee876369fd3b3ebb4a93c91d4119}{Get\+All}} (int race\+Day\+Id)
+\begin{DoxyCompactList}\small\item\em Gets all Races for Race Day summaries. \end{DoxyCompactList}\item 
+Race\+Summary\+Dto? \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query_a7919f2d5b48ebeeff9737b176b9a865a}{Get\+By\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Gets summary for a specific Race. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A query for Race summary. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query_ad50eee876369fd3b3ebb4a93c91d4119}\label{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query_ad50eee876369fd3b3ebb4a93c91d4119} 
+\index{RaceDay.Domain.Interfaces.IRaceSummaryQuery@{RaceDay.Domain.Interfaces.IRaceSummaryQuery}!GetAll@{GetAll}}
+\index{GetAll@{GetAll}!RaceDay.Domain.Interfaces.IRaceSummaryQuery@{RaceDay.Domain.Interfaces.IRaceSummaryQuery}}
+\doxysubsubsection{\texorpdfstring{GetAll()}{GetAll()}}
+{\footnotesize\ttfamily IEnumerable$<$ Race\+Summary\+Dto $>$ Race\+Day.\+Domain.\+Interfaces.\+IRace\+Summary\+Query.\+Get\+All (\begin{DoxyParamCaption}\item[{int}]{race\+Day\+Id }\end{DoxyParamCaption})}
+
+
+
+Gets all Races for Race Day summaries. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em race\+Day\+Id} & The Race Day id\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query_ad67e313377e52eb97b532df24c7764b0}{Race\+Day.\+Sql\+Lite.\+Queries.\+Race\+Summary\+Query}}.
+
+\Hypertarget{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query_a7919f2d5b48ebeeff9737b176b9a865a}\label{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query_a7919f2d5b48ebeeff9737b176b9a865a} 
+\index{RaceDay.Domain.Interfaces.IRaceSummaryQuery@{RaceDay.Domain.Interfaces.IRaceSummaryQuery}!GetById@{GetById}}
+\index{GetById@{GetById}!RaceDay.Domain.Interfaces.IRaceSummaryQuery@{RaceDay.Domain.Interfaces.IRaceSummaryQuery}}
+\doxysubsubsection{\texorpdfstring{GetById()}{GetById()}}
+{\footnotesize\ttfamily Race\+Summary\+Dto? Race\+Day.\+Domain.\+Interfaces.\+IRace\+Summary\+Query.\+Get\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Gets summary for a specific Race. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The Race Id\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query_ad887eb529c0f66b1d5598cdd51b12285}{Race\+Day.\+Sql\+Lite.\+Queries.\+Race\+Summary\+Query}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Domain/\+Interfaces/IRace\+Summary\+Query.\+cs\end{DoxyCompactItemize}

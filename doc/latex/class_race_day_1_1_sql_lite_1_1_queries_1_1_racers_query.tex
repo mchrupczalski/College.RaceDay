@@ -1,0 +1,125 @@
+\doxysection{Race\+Day.\+Sql\+Lite.\+Queries.\+Racers\+Query Class Reference}
+\hypertarget{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query}{}\label{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query}\index{RaceDay.SqlLite.Queries.RacersQuery@{RaceDay.SqlLite.Queries.RacersQuery}}
+
+
+ 
+
+
+
+
+Inheritance diagram for Race\+Day.\+Sql\+Lite.\+Queries.\+Racers\+Query\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Race\+Day.\+Sql\+Lite.\+Queries.\+Racers\+Query\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query_ad7a894e2f02a62cfc0492add48377568}\label{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query_ad7a894e2f02a62cfc0492add48377568} 
+{\bfseries Racers\+Query} (string db\+Path)
+\item 
+IEnumerable$<$ Racer\+Dto $>$ \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query_abdfc773a7167095e2e73ddce45767482}{Get\+All}} ()
+\begin{DoxyCompactList}\small\item\em Gets all Racers. \end{DoxyCompactList}\item 
+IEnumerable$<$ Racer\+Dto $>$ \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query_ae90cb77396528bdf3e63bb6dc71d7ddf}{Get\+Racers\+For\+Race}} (int race\+Id)
+\begin{DoxyCompactList}\small\item\em Gets all Racers for Race.
+
+
+\begin{DoxyParams}{Parameters}
+{\em race\+Id} & The Race Id\\
+\hline
+\end{DoxyParams}
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+IEnumerable$<$ Racer\+Dto $>$ \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_racers_query_aeb8e0a90380d7abb9e9ec5f1855212e9}{Get\+All}} ()
+\begin{DoxyCompactList}\small\item\em Gets all Racers. \end{DoxyCompactList}\item 
+IEnumerable$<$ Racer\+Dto $>$ \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_racers_query_af2985ec77e8bc56e92629d992235c5b3}{Get\+Racers\+For\+Race}} (int race\+Id)
+\begin{DoxyCompactList}\small\item\em Gets all Racers for Race. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base}{Race\+Day.\+Sql\+Lite.\+Infrastructure.\+Command\+Query\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base_a85b295d800898ba9be1a1971d19e2e70}{Command\+Query\+Base}} (string db\+Path)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the Command\+Query\+Base class. \end{DoxyCompactList}\item 
+SQLite\+Connection {\bfseries Create\+Connection} ()
+\begin{DoxyCompactList}\small\item\em Creates a new SQLite\+Connection instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base}{Race\+Day.\+Sql\+Lite.\+Infrastructure.\+Command\+Query\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+SQLite\+Connection\+String {\bfseries Connection\+String}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The connection string to the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query_abdfc773a7167095e2e73ddce45767482}\label{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query_abdfc773a7167095e2e73ddce45767482} 
+\index{RaceDay.SqlLite.Queries.RacersQuery@{RaceDay.SqlLite.Queries.RacersQuery}!GetAll@{GetAll}}
+\index{GetAll@{GetAll}!RaceDay.SqlLite.Queries.RacersQuery@{RaceDay.SqlLite.Queries.RacersQuery}}
+\doxysubsubsection{\texorpdfstring{GetAll()}{GetAll()}}
+{\footnotesize\ttfamily IEnumerable$<$ Racer\+Dto $>$ Race\+Day.\+Sql\+Lite.\+Queries.\+Racers\+Query.\+Get\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all Racers. 
+
+
+
+Implements \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_racers_query_aeb8e0a90380d7abb9e9ec5f1855212e9}{Race\+Day.\+Domain.\+Interfaces.\+IRacers\+Query}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query_abdfc773a7167095e2e73ddce45767482_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query_ae90cb77396528bdf3e63bb6dc71d7ddf}\label{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query_ae90cb77396528bdf3e63bb6dc71d7ddf} 
+\index{RaceDay.SqlLite.Queries.RacersQuery@{RaceDay.SqlLite.Queries.RacersQuery}!GetRacersForRace@{GetRacersForRace}}
+\index{GetRacersForRace@{GetRacersForRace}!RaceDay.SqlLite.Queries.RacersQuery@{RaceDay.SqlLite.Queries.RacersQuery}}
+\doxysubsubsection{\texorpdfstring{GetRacersForRace()}{GetRacersForRace()}}
+{\footnotesize\ttfamily IEnumerable$<$ Racer\+Dto $>$ Race\+Day.\+Sql\+Lite.\+Queries.\+Racers\+Query.\+Get\+Racers\+For\+Race (\begin{DoxyParamCaption}\item[{int}]{race\+Id }\end{DoxyParamCaption})}
+
+
+
+Gets all Racers for Race.
+
+
+\begin{DoxyParams}{Parameters}
+{\em race\+Id} & The Race Id\\
+\hline
+\end{DoxyParams}
+ 
+
+
+
+Implements \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_racers_query_af2985ec77e8bc56e92629d992235c5b3}{Race\+Day.\+Domain.\+Interfaces.\+IRacers\+Query}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query_ae90cb77396528bdf3e63bb6dc71d7ddf_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Sql\+Lite/\+Queries/Racers\+Query.\+cs\end{DoxyCompactItemize}

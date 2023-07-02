@@ -1,24 +1,28 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using RaceDay.SqlLite.Queries;
+using RaceDay.Domain.Interfaces;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 using RaceDay.WpfUi.Services;
 
 namespace RaceDay.WpfUi.ViewModels;
 
+/// <summary>
+///     A view model providing data and logic for Races Summary view
+/// </summary>
 public class RacesSummaryViewModel : ViewModelBase
 {
     #region Fields
 
+    private readonly RaceViewModel.CreateRaceViewModel _createRaceViewModel;
+
     private readonly DialogService _dialogService;
     private readonly NavigationService _navigationService;
-    private readonly RaceSummaryQuery _raceDayRacesQuery;
-    private readonly RaceViewModel.CreateRaceViewModel _createRaceViewModel;
+    private readonly IRaceSummaryQuery _raceDayRacesQuery;
+    private DaySummaryModel? _daySummaryModel;
     private RaceSummaryModel? _selectedRace;
     private string _viewTitle = "Race Day Races";
-    private DaySummaryModel? _daySummaryModel;
 
     #endregion
 
@@ -39,7 +43,14 @@ public class RacesSummaryViewModel : ViewModelBase
         set => SetField(ref _selectedRace, value);
     }
 
+    /// <summary>
+    ///     A command for creating a new Race
+    /// </summary>
     public ICommand CreateRaceCommand { get; }
+
+    /// <summary>
+    ///     A command for navigating to Race view
+    /// </summary>
     public ICommand DisplayRaceCommand { get; }
 
     /// <summary>
@@ -93,7 +104,10 @@ public class RacesSummaryViewModel : ViewModelBase
     /// <param name="dialogService">The dialog service.</param>
     /// <param name="navigationService">The navigation service.</param>
     /// <param name="raceDayRacesQuery">Query to select all Races and their summary details for a given Race Day.</param>
-    public RacesSummaryViewModel(DialogService dialogService, NavigationService navigationService, RaceSummaryQuery raceDayRacesQuery, RaceViewModel.CreateRaceViewModel createRaceViewModel)
+    public RacesSummaryViewModel(DialogService dialogService,
+                                 NavigationService navigationService,
+                                 IRaceSummaryQuery raceDayRacesQuery,
+                                 RaceViewModel.CreateRaceViewModel createRaceViewModel)
     {
         _dialogService = dialogService;
         _navigationService = navigationService;
@@ -112,11 +126,16 @@ public class RacesSummaryViewModel : ViewModelBase
     /// <param name="arg">Not used</param>
     private bool CanDisplayRace(object? arg) => SelectedRace != null;
 
+    /// <summary>
+    ///     The action for navigating to the Race view.
+    /// </summary>
+    /// <param name="obj">Not used</param>
     private void DisplayRace(object? obj)
     {
-        if (SelectedRace == null || _daySummaryModel == null ) return;
-        
-        var raceModel = new RaceModel()
+        if (SelectedRace == null || _daySummaryModel == null)
+            return;
+
+        var raceModel = new RaceModel
         {
             RaceId = SelectedRace.RaceId,
             RaceDayId = _daySummaryModel.RaceDayId,
@@ -144,20 +163,26 @@ public class RacesSummaryViewModel : ViewModelBase
     /// <param name="obj">Not used</param>
     private async void CreateRace(object? obj)
     {
-        if(_daySummaryModel == null) return;
-        var newRace = new NewRaceModel(){RaceDayId = _daySummaryModel.RaceDayId, RaceDayName = _daySummaryModel.RaceDayName, RaceDate = DateTime.Now};
+        if (_daySummaryModel == null)
+            return;
+        var newRace = new NewRaceModel
+        {
+            RaceDayId = _daySummaryModel.RaceDayId, RaceDayName = _daySummaryModel.RaceDayName, RaceDate = DateTime.Now
+        };
         var result = await _dialogService.DisplayDialogAsync<NewRaceViewModel, NewRaceModel, RaceSummaryModel>(newRace);
-        if (result != null) Races.Add(result);
+        if (result != null)
+            Races.Add(result);
 
-        if (result == null) return;
-        
-        var raceModel = new RaceModel()
+        if (result == null)
+            return;
+
+        var raceModel = new RaceModel
         {
             RaceId = result.RaceId,
             RaceDayId = _daySummaryModel.RaceDayId,
             RaceDayName = _daySummaryModel.RaceDayName,
             SignUpFee = _daySummaryModel.SignUpFee,
-            AllTimeLapRecord = result.BestLapTime,
+            AllTimeLapRecord = result.BestLapTime
         };
 
         var raceVm = _createRaceViewModel(raceModel);
@@ -171,7 +196,7 @@ public class RacesSummaryViewModel : ViewModelBase
     public void LoadRaceDayRaces(DaySummaryModel raceDay)
     {
         _daySummaryModel = raceDay;
-        
+
         Races.Clear();
         var raceDtos = _raceDayRacesQuery.GetAll(raceDay.RaceDayId);
 

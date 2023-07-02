@@ -1,0 +1,5 @@
+<map id="RaceDay.WpfUi.StartUp.Bootstrapper.Bootstrap" name="RaceDay.WpfUi.StartUp.Bootstrapper.Bootstrap">
+<area shape="rect" id="Node000001" title="Creates the host and configures the services." alt="" coords="226,5,469,48"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_app.html#a511c1c004e42d034b5d9a61c00312ab5" title="The main entry point for the application." alt="" coords="5,13,178,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,29,178,29,178,24,211,24"/>
+</map>

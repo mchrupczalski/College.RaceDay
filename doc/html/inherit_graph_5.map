@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,113,117,140"/>
+<area shape="rect" id="Node000001" href="$class_race_day_1_1_wpf_ui_1_1_converters_1_1_equality_to_visibility_converter.html" title="Converts a value to a visibility If the value equals the parameter, then visible, otherwise collapsed..." alt="" coords="185,5,370,48"/>
+<area shape="poly" id="edge67_Node000000_Node000001" title=" " alt="" coords="90,102,124,79,164,58,192,46,194,51,166,62,127,84,93,107"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_converters_1_1_inverse_boolean_converter.html" title="Converts a boolean to its inverse." alt="" coords="186,72,369,115"/>
+<area shape="poly" id="edge68_Node000000_Node000002" title=" " alt="" coords="131,113,185,105,186,110,131,119"/>
+<area shape="rect" id="Node000003" href="$class_race_day_1_1_wpf_ui_1_1_converters_1_1_inverse_equality_to_visibility_converter.html" title="Converts a value to a visibility If the value equals the parameter, then collapsed,..." alt="" coords="165,139,390,181"/>
+<area shape="poly" id="edge69_Node000000_Node000003" title=" " alt="" coords="131,135,165,140,164,145,131,140"/>
+<area shape="rect" id="Node000004" href="$class_race_day_1_1_wpf_ui_1_1_converters_1_1_row_index_converter.html" title="Convenience converter to get the row index of an item in a list." alt="" coords="186,205,369,248"/>
+<area shape="poly" id="edge70_Node000000_Node000004" title=" " alt="" coords="93,147,127,170,166,191,194,202,192,207,164,196,124,174,90,151"/>
+</map>

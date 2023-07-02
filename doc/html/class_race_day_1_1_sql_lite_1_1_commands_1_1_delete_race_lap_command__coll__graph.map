@@ -1,0 +1,7 @@
+<map id="RaceDay.SqlLite.Commands.DeleteRaceLapCommand" name="RaceDay.SqlLite.Commands.DeleteRaceLapCommand">
+<area shape="rect" id="Node000001" title=" " alt="" coords="73,80,265,123"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base.html" title="The base class for all command and query classes." alt="" coords="5,5,151,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,40,147,78,144,82,101,44"/>
+<area shape="rect" id="Node000003" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_delete_race_lap_command.html" title="A command for deleting a Lap for a Racer." alt="" coords="175,5,346,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="237,44,194,82,190,77,234,40"/>
+</map>

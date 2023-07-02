@@ -1,0 +1,7 @@
+<map id="RaceDay.WpfUi.Interfaces.INavigableViewModel" name="RaceDay.WpfUi.Interfaces.INavigableViewModel">
+<area shape="rect" id="Node000001" title="Interface for view models that need to be notified when navigated to." alt="" coords="120,5,298,48"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_add_racer_view_model.html" title="A view model providing data and logic for the Add Racer view." alt="" coords="5,96,197,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,60,128,97,125,93,171,55"/>
+<area shape="rect" id="Node000003" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_home_view_model.html" title="A view model providing data and logic for the Home view." alt="" coords="221,96,413,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="247,55,293,93,290,97,244,60"/>
+</map>
