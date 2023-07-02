@@ -4,17 +4,32 @@ using RaceDay.WpfUi.Interfaces;
 
 namespace RaceDay.WpfUi.ViewModels;
 
+/// <summary>
+///     A view model providing data and logic for the Home view
+/// </summary>
 public class HomeViewModel : ViewModelBase, INavigableViewModel
 {
     #region Properties
 
+    /// <summary>
+    ///     A view model providing data and logic for the Day Summary view
+    /// </summary>
     public DaySummaryViewModel RaceDaySummaryViewModel { get; }
+
+    /// <summary>
+    ///     A view model providing data and logic for the Races Summary view
+    /// </summary>
     public RacesSummaryViewModel RaceDayRacesViewModel { get; }
 
     #endregion
 
     #region Constructors
 
+    /// <summary>
+    ///     Creates a new instance of the <see cref="HomeViewModel" /> class
+    /// </summary>
+    /// <param name="raceDaySummaryViewModel">A view model providing data and logic for the Day Summary view</param>
+    /// <param name="raceDayRacesViewModel">A view model providing data and logic for the Races Summary view</param>
     public HomeViewModel(DaySummaryViewModel raceDaySummaryViewModel, RacesSummaryViewModel raceDayRacesViewModel)
     {
         RaceDaySummaryViewModel = raceDaySummaryViewModel;
@@ -52,6 +67,11 @@ public class HomeViewModel : ViewModelBase, INavigableViewModel
 
     #region Events And Handlers
 
+    /// <summary>
+    ///     A handler for the <see cref="INotifyCollectionChanged.CollectionChanged" /> event of the
+    ///     <see cref="RaceDayRacesViewModel" />.Races collection.
+    ///     If the collection changes, the <see cref="RaceDaySummaryViewModel" /> reloads data
+    /// </summary>
     private void RacesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) =>
         RaceDaySummaryViewModel.LoadData(false);
 

@@ -1,8 +1,8 @@
 ﻿using RaceDay.Domain.Entities;
-using RaceDay.Domain.Exceptions;
 
 namespace RaceDay.Domain.Interfaces;
 
-public interface ICreateRacerCommand : IExchangeDataCommand<RacerEntity?>
-{
-}
+/// <summary>
+///     A command for creating Racer.
+/// </summary>
+public interface ICreateRacerCommand : IExchangeDataCommand<RacerEntity?> { }

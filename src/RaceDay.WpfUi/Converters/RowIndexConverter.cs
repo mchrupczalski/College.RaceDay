@@ -1,14 +1,20 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace RaceDay.WpfUi.Converters;
 
-public class RowIndexConverter: IValueConverter
+/// <summary>
+///     Convenience converter to get the row index of an item in a list
+/// </summary>
+public class RowIndexConverter : IValueConverter
 {
-    public object Convert(object value, Type targetType, object? parameter, 
-                          System.Globalization.CultureInfo culture)
+    #region Interfaces Implement
+
+    /// <inheritdoc />
+    public object Convert(object value, Type targetType, object? parameter, CultureInfo culture)
     {
         var item = (DependencyObject)value;
         var ic = ItemsControl.ItemsControlFromItemContainer(item);
@@ -17,7 +23,9 @@ public class RowIndexConverter: IValueConverter
         return ic.ItemContainerGenerator.IndexFromContainer(item) + offset;
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, 
-                              System.Globalization.CultureInfo culture) =>
+    /// <inheritdoc />
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
         Binding.DoNothing;
+
+    #endregion
 }

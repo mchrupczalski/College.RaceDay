@@ -2,6 +2,7 @@
 
 namespace RaceDay.Domain.Interfaces;
 
-public interface ICreateRacerLapCommand : IExchangeDataCommand<RaceLapEntity>
-{
-}
+/// <summary>
+///     A command for creating Lap for a Racer.
+/// </summary>
+public interface ICreateRacerLapCommand : IExchangeDataCommand<RaceLapEntity> { }

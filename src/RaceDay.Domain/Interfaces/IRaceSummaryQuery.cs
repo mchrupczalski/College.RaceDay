@@ -2,8 +2,13 @@
 
 namespace RaceDay.Domain.Interfaces;
 
+/// <summary>
+///     A query for Race summary.
+/// </summary>
 public interface IRaceSummaryQuery
 {
+    #region Abstract Members
+
     /// <summary>
     ///     Gets all Races for Race Day summaries
     /// </summary>
@@ -15,4 +20,6 @@ public interface IRaceSummaryQuery
     /// </summary>
     /// <param name="id">The Race Id</param>
     RaceSummaryDto? GetById(int id);
+
+    #endregion
 }

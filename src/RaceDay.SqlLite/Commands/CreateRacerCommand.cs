@@ -6,6 +6,7 @@ using SQLite;
 
 namespace RaceDay.SqlLite.Commands;
 
+/// <inheritdoc cref="ICreateRacerCommand" />
 public class CreateRacerCommand : CommandQueryBase, ICreateRacerCommand
 {
     #region Constructors

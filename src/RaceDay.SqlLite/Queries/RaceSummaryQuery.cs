@@ -4,17 +4,17 @@ using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Queries;
 
+/// <inheritdoc cref="IRaceSummaryQuery" />
 public class RaceSummaryQuery : CommandQueryBase, IRaceSummaryQuery
 {
     #region Constructors
 
     /// <inheritdoc />
-    public RaceSummaryQuery(string connectionString) : base(connectionString)
-    {
-    }
+    public RaceSummaryQuery(string connectionString) : base(connectionString) { }
 
     #endregion
 
+    #region Interfaces Implement
 
     /// <summary>
     ///     Gets all Races for Race Day summaries
@@ -22,8 +22,7 @@ public class RaceSummaryQuery : CommandQueryBase, IRaceSummaryQuery
     /// <param name="raceDayId">The Race Day id</param>
     public IEnumerable<RaceSummaryDto> GetAll(int raceDayId)
     {
-        const string sql = "SELECT RaceId, RaceDayId, RaceDate, TotalRacers, TotalLaps, BestLapTime, BestLapTimeHolder, TotalIncome, TotalExpense" +
-                           " FROM vwRaceSummary" + 
+        const string sql = "SELECT RaceId, RaceDayId, RaceDate, TotalRacers, TotalLaps, BestLapTime, BestLapTimeHolder, TotalIncome, TotalExpense" + " FROM vwRaceSummary" +
                            " WHERE RaceDayId = ?;";
 
         using var cnx = CreateConnection();
@@ -53,8 +52,9 @@ public class RaceSummaryQuery : CommandQueryBase, IRaceSummaryQuery
         // @formatter:on
 
         using var cnx = CreateConnection();
-        var result = cnx.Query<RaceSummaryDto>(sql, id)
-                        .FirstOrDefault();
+        var result = cnx.Query<RaceSummaryDto>(sql, id).FirstOrDefault();
         return result;
     }
+
+    #endregion
 }

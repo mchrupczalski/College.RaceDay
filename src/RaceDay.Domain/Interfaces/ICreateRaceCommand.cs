@@ -2,6 +2,7 @@
 
 namespace RaceDay.Domain.Interfaces;
 
-public interface ICreateRaceCommand : IExchangeDataCommand<RaceEntity?>
-{
-}
+/// <summary>
+///     A command for creating Race.
+/// </summary>
+public interface ICreateRaceCommand : IExchangeDataCommand<RaceEntity?> { }

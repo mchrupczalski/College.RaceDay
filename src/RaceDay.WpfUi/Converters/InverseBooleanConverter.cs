@@ -4,6 +4,9 @@ using System.Windows.Data;
 
 namespace RaceDay.WpfUi.Converters;
 
+/// <summary>
+///     Converts a boolean to its inverse
+/// </summary>
 public class InverseBooleanConverter : IValueConverter
 {
     #region Interfaces Implement
