@@ -41,6 +41,10 @@ public partial class App : Application
 
     #endregion
 
+    /// <summary>
+    ///     The main entry point for the application
+    /// </summary>
+    /// <param name="args">The command line arguments</param>
     [STAThread]
     public static void Main(string[] args)
     {
@@ -55,9 +59,10 @@ public partial class App : Application
         }
         catch (Exception e)
         {
-            if (Debugger.IsAttached) throw;
-            else MessageBox.Show(e.Message, "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            
+            if (Debugger.IsAttached)
+                throw;
+            else
+                MessageBox.Show(e.Message, "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         finally
         {

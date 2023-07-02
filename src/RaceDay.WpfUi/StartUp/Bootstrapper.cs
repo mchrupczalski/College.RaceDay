@@ -10,6 +10,10 @@ using RaceDay.WpfUi.ViewModels;
 
 namespace RaceDay.WpfUi.StartUp;
 
+/// <summary>
+///     The bootstrapper for the application. <br />
+///     This class is responsible for creating the host and configuring the services.
+/// </summary>
 public class Bootstrapper
 {
     /// <summary>

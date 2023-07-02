@@ -1,0 +1,103 @@
+\doxysection{Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Race\+View\+Model Class Reference}
+\hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model}{}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model}\index{RaceDay.WpfUi.ViewModels.RaceViewModel@{RaceDay.WpfUi.ViewModels.RaceViewModel}}
+
+
+A view model providing data and logic for the Race view.  
+
+
+
+
+Inheritance diagram for Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Race\+View\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Race\+View\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_ace9bceb88537e938cd128938765be24f}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_ace9bceb88537e938cd128938765be24f} 
+delegate \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model}{Race\+View\+Model}} {\bfseries Create\+Race\+View\+Model} (\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_models_1_1_race_model}{Race\+Model}} race\+Model)
+\begin{DoxyCompactList}\small\item\em A delegate factory method for creating a Race\+View\+Model from a Race\+Model \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_aa84090ca068e976d32eac153d9d8040b}{Race\+View\+Model}} (\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_models_1_1_race_model}{Race\+Model}} race\+Model, \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service}{Dialog\+Service}} dialog\+Service, \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service}{Navigation\+Service}} navigation\+Service, \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_racer_view_model_abb038b84e8a3c496409b273cec08477c}{Racer\+View\+Model.\+Create\+Racer\+View\+Model}} create\+Racer\+View\+Model, \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_racers_query}{IRacers\+Query}} racers\+Query)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of Race\+View\+Model \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_a3ceb7bb0da9f254eb036d8ad19d792f8}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_a3ceb7bb0da9f254eb036d8ad19d792f8} 
+Observable\+Collection$<$ \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_racer_view_model}{Racer\+View\+Model}} $>$ {\bfseries Racers} = new()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A collection of view models representing Racers participating in the Race. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_ab650fc35c995e0489e59d9fdbca1b1cf}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_ab650fc35c995e0489e59d9fdbca1b1cf} 
+\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_models_1_1_race_model}{Race\+Model}} {\bfseries Race\+Model}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The model of the Race being displayed. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_aab0dc2ec5e6d94f25fec978a5ff7fd77}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_aab0dc2ec5e6d94f25fec978a5ff7fd77} 
+ICommand {\bfseries Stop\+All\+Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A command for stopping timers of all Racers. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_abd146a61a84fd38dabc11fd50e29fb86}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_abd146a61a84fd38dabc11fd50e29fb86} 
+ICommand {\bfseries Start\+All\+Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A command for starting timers of all Racers. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_aa964b9cf436d243fce20d347f2bad878}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_aa964b9cf436d243fce20d347f2bad878} 
+ICommand {\bfseries Add\+Racer\+Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A command for adding a Racer to the Race. \end{DoxyCompactList}\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_abc48a2924690a962342c6be714b2ae64}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_abc48a2924690a962342c6be714b2ae64} 
+ICommand {\bfseries Go\+Back\+Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A command for navigating back. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac6f120f211eb4336e8e7769821511a8b}{On\+Property\+Changed}} (\mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Raises the Property\+Changed event. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac0ddbef8e2e7257c462f6463f0b4cc87}{Set\+Field$<$ T $>$}} (ref T field, T value, \mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Sets the field and raises the Property\+Changed event if the value has changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Events inherited from \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Property\+Changed\+Event\+Handler? {\bfseries Property\+Changed}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A view model providing data and logic for the Race view. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_aa84090ca068e976d32eac153d9d8040b}\label{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_race_view_model_aa84090ca068e976d32eac153d9d8040b} 
+\index{RaceDay.WpfUi.ViewModels.RaceViewModel@{RaceDay.WpfUi.ViewModels.RaceViewModel}!RaceViewModel@{RaceViewModel}}
+\index{RaceViewModel@{RaceViewModel}!RaceDay.WpfUi.ViewModels.RaceViewModel@{RaceDay.WpfUi.ViewModels.RaceViewModel}}
+\doxysubsubsection{\texorpdfstring{RaceViewModel()}{RaceViewModel()}}
+{\footnotesize\ttfamily Race\+Day.\+Wpf\+Ui.\+View\+Models.\+Race\+View\+Model.\+Race\+View\+Model (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_models_1_1_race_model}{Race\+Model}}}]{race\+Model,  }\item[{\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service}{Dialog\+Service}}}]{dialog\+Service,  }\item[{\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_services_1_1_navigation_service}{Navigation\+Service}}}]{navigation\+Service,  }\item[{\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_view_models_1_1_racer_view_model_abb038b84e8a3c496409b273cec08477c}{Racer\+View\+Model\+::\+Create\+Racer\+View\+Model}}}]{create\+Racer\+View\+Model,  }\item[{\mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_racers_query}{IRacers\+Query}}}]{racers\+Query }\end{DoxyParamCaption})}
+
+
+
+Creates a new instance of Race\+View\+Model 
+
+
+\begin{DoxyParams}{Parameters}
+{\em race\+Model} & The Race model to display\\
+\hline
+{\em dialog\+Service} & The dialog service\\
+\hline
+{\em navigation\+Service} & The navigation service\\
+\hline
+{\em create\+Racer\+View\+Model} & A delegate factory method for creating a Racer\+View\+Model\\
+\hline
+{\em racers\+Query} & A query for retrieving Racers\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Wpf\+Ui/\+View\+Models/Race\+View\+Model.\+cs\end{DoxyCompactItemize}

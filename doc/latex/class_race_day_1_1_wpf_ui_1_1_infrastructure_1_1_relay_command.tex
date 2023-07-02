@@ -1,0 +1,106 @@
+\doxysection{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Relay\+Command Class Reference}
+\hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command}{}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command}\index{RaceDay.WpfUi.Infrastructure.RelayCommand@{RaceDay.WpfUi.Infrastructure.RelayCommand}}
+
+
+A command that can be bound to a UI element.  
+
+
+
+
+Inheritance diagram for Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Relay\+Command\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Relay\+Command\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command_a5e4491469062c6d3e3c8ca48a5a976b4}{Relay\+Command}} (Action$<$ object?$>$ execute, Func$<$ object?, bool $>$ can\+Execute)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the Relay\+Command class. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command_a500fd4544bd890b03b09ef2404a37578}{Can\+Execute}} (object? parameter)
+\begin{DoxyCompactList}\small\item\em Defines the method that determines whether the command can execute in its current state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command_a2b28596f5907cfe002451b1571549ec3}{Execute}} (object? parameter)
+\begin{DoxyCompactList}\small\item\em Defines the method to be called when the command is invoked. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command_a17c03bee6081663132d4605cd2d4b8c0}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command_a17c03bee6081663132d4605cd2d4b8c0} 
+Event\+Handler? {\bfseries Can\+Execute\+Changed}
+\begin{DoxyCompactList}\small\item\em Occurs when changes occur that affect whether or not the command should execute. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A command that can be bound to a UI element. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command_a5e4491469062c6d3e3c8ca48a5a976b4}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command_a5e4491469062c6d3e3c8ca48a5a976b4} 
+\index{RaceDay.WpfUi.Infrastructure.RelayCommand@{RaceDay.WpfUi.Infrastructure.RelayCommand}!RelayCommand@{RelayCommand}}
+\index{RelayCommand@{RelayCommand}!RaceDay.WpfUi.Infrastructure.RelayCommand@{RaceDay.WpfUi.Infrastructure.RelayCommand}}
+\doxysubsubsection{\texorpdfstring{RelayCommand()}{RelayCommand()}}
+{\footnotesize\ttfamily Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Relay\+Command.\+Relay\+Command (\begin{DoxyParamCaption}\item[{Action$<$ object?$>$}]{execute,  }\item[{Func$<$ object?, bool $>$}]{can\+Execute }\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the Relay\+Command class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em execute} & A delegate to execute when the command is executed\\
+\hline
+{\em can\+Execute} & A delegate to execute to determine if the command can be executed\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command_a500fd4544bd890b03b09ef2404a37578}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command_a500fd4544bd890b03b09ef2404a37578} 
+\index{RaceDay.WpfUi.Infrastructure.RelayCommand@{RaceDay.WpfUi.Infrastructure.RelayCommand}!CanExecute@{CanExecute}}
+\index{CanExecute@{CanExecute}!RaceDay.WpfUi.Infrastructure.RelayCommand@{RaceDay.WpfUi.Infrastructure.RelayCommand}}
+\doxysubsubsection{\texorpdfstring{CanExecute()}{CanExecute()}}
+{\footnotesize\ttfamily bool Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Relay\+Command.\+Can\+Execute (\begin{DoxyParamCaption}\item[{object?}]{parameter }\end{DoxyParamCaption})}
+
+
+
+Defines the method that determines whether the command can execute in its current state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parameter} & An optional parameter to pass to the command\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if this command can be executed; otherwise, false.
+\end{DoxyReturn}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command_a2b28596f5907cfe002451b1571549ec3}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_relay_command_a2b28596f5907cfe002451b1571549ec3} 
+\index{RaceDay.WpfUi.Infrastructure.RelayCommand@{RaceDay.WpfUi.Infrastructure.RelayCommand}!Execute@{Execute}}
+\index{Execute@{Execute}!RaceDay.WpfUi.Infrastructure.RelayCommand@{RaceDay.WpfUi.Infrastructure.RelayCommand}}
+\doxysubsubsection{\texorpdfstring{Execute()}{Execute()}}
+{\footnotesize\ttfamily void Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Relay\+Command.\+Execute (\begin{DoxyParamCaption}\item[{object?}]{parameter }\end{DoxyParamCaption})}
+
+
+
+Defines the method to be called when the command is invoked. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parameter} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Wpf\+Ui/\+Infrastructure/Relay\+Command.\+cs\end{DoxyCompactItemize}

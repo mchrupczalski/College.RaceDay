@@ -4,6 +4,7 @@ using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Commands;
 
+/// <inheritdoc cref="ICreateRacerLapCommand" />
 public class CreateRacerLapCommand : CommandQueryBase, ICreateRacerLapCommand
 {
     /// <inheritdoc />

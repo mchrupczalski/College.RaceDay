@@ -7,6 +7,9 @@ using RaceDay.WpfUi.Models;
 
 namespace RaceDay.WpfUi.ViewModels;
 
+/// <summary>
+///     A view model providing data and logic for view for creating new Race Days
+/// </summary>
 public class NewRaceDayViewModel : DialogViewModelBase<NewRaceDayModel, DaySummaryModel>
 {
     #region Fields
@@ -21,19 +24,34 @@ public class NewRaceDayViewModel : DialogViewModelBase<NewRaceDayModel, DaySumma
 
     #region Properties
 
+    /// <summary>
+    ///     A model representing a new Race Day
+    /// </summary>
     public NewRaceDayModel NewRaceDay
     {
         get => _newRaceDay;
         private set => SetField(ref _newRaceDay, value);
     }
 
+    /// <summary>
+    ///     A command for cancelling the operation
+    /// </summary>
     public ICommand CancelCommand { get; }
+
+    /// <summary>
+    ///     A command for saving data to the persistence storage
+    /// </summary>
     public ICommand SaveCommand { get; }
 
     #endregion
 
     #region Constructors
 
+    /// <summary>
+    ///     Creates a new instance of the <see cref="NewRaceDayViewModel" /> class
+    /// </summary>
+    /// <param name="createRaceDayCommand">A command for creating new Race Day in the persistence storage</param>
+    /// <param name="daySummaryQuery">A query for retrieving Race Day summaries from the persistence storage</param>
     public NewRaceDayViewModel(ICreateRaceDayCommand createRaceDayCommand, IDaySummaryQuery daySummaryQuery)
     {
         _createRaceDayCommand = createRaceDayCommand;
@@ -45,6 +63,10 @@ public class NewRaceDayViewModel : DialogViewModelBase<NewRaceDayModel, DaySumma
 
     #endregion
 
+    /// <summary>
+    ///     Saves the data to the persistence storage
+    /// </summary>
+    /// <param name="obj">Not used</param>
     private void Save(object? obj)
     {
         var entity = new DayEntity
@@ -86,12 +108,23 @@ public class NewRaceDayViewModel : DialogViewModelBase<NewRaceDayModel, DaySumma
         }
     }
 
+    /// <summary>
+    ///     Determines whether the data can be saved to the persistence storage
+    /// </summary>
+    /// <param name="arg">Not used</param>
+    /// <returns></returns>
     private bool CanSave(object? arg) => NewRaceDay is { HasErrors: false, HasAllRequiredData: true };
 
-    private void Cancel(object? obj)
-    {
-        CloseDialog();
-    }
+    /// <summary>
+    ///     Closes the dialog
+    /// </summary>
+    /// <param name="obj">Not used</param>
+    private void Cancel(object? obj) => CloseDialog();
 
+    /// <summary>
+    ///     Determines whether the operation can be cancelled
+    /// </summary>
+    /// <param name="arg">Not used</param>
+    /// <returns>Always true</returns>
     private static bool CanCancel(object? arg) => true;
 }

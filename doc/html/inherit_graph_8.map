@@ -1,0 +1,55 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base.html" title="The base class for all command and query classes." alt="" coords="331,339,532,381"/>
+<area shape="rect" id="Node000001" href="$class_race_day_1_1_sql_lite_1_1_commands_1_1_create_race_command.html" title=" " alt="" coords="580,7,772,49"/>
+<area shape="poly" id="edge72_Node000000_Node000001" title=" " alt="" coords="528,327,530,325,551,292,559,260,559,228,554,195,549,163,548,129,557,95,578,61,593,48,596,52,582,64,562,98,554,130,554,162,559,195,564,227,564,261,556,294,534,328,532,331"/>
+<area shape="rect" id="Node000004" href="$class_race_day_1_1_sql_lite_1_1_commands_1_1_create_race_day_command.html" title=" " alt="" coords="580,75,772,117"/>
+<area shape="poly" id="edge73_Node000000_Node000004" title=" " alt="" coords="528,327,530,325,547,301,554,277,555,254,554,230,552,206,553,181,561,156,578,130,595,116,599,120,582,134,566,158,559,182,557,206,559,230,561,254,559,278,551,303,534,328,532,331"/>
+<area shape="rect" id="Node000006" href="$class_race_day_1_1_sql_lite_1_1_commands_1_1_create_race_racer_command.html" title=" " alt="" coords="580,144,772,187"/>
+<area shape="poly" id="edge74_Node000000_Node000006" title=" " alt="" coords="527,328,530,325,542,310,549,295,554,265,558,233,565,217,578,201,599,185,602,189,582,205,570,220,563,235,559,265,554,297,547,313,534,329,530,332"/>
+<area shape="rect" id="Node000009" href="$class_race_day_1_1_sql_lite_1_1_commands_1_1_create_racer_command.html" title=" " alt="" coords="580,215,772,257"/>
+<area shape="poly" id="edge75_Node000000_Node000009" title=" " alt="" coords="522,329,530,324,545,313,554,301,564,288,578,275,613,256,616,260,582,280,567,292,558,304,549,316,534,329,524,334"/>
+<area shape="rect" id="Node000012" href="$class_race_day_1_1_sql_lite_1_1_commands_1_1_create_racer_lap_command.html" title=" " alt="" coords="580,289,772,332"/>
+<area shape="poly" id="edge76_Node000000_Node000012" title=" " alt="" coords="546,334,579,327,580,333,547,339"/>
+<area shape="rect" id="Node000015" href="$class_race_day_1_1_sql_lite_1_1_commands_1_1_delete_race_lap_command.html" title=" " alt="" coords="580,372,772,415"/>
+<area shape="poly" id="edge77_Node000000_Node000015" title=" " alt="" coords="547,373,580,378,579,383,546,378"/>
+<area shape="rect" id="Node000017" href="$class_race_day_1_1_sql_lite_1_1_commands_1_1_delete_race_racer_command.html" title=" " alt="" coords="580,472,772,515"/>
+<area shape="poly" id="edge78_Node000000_Node000017" title=" " alt="" coords="520,385,533,391,645,469,642,474,531,396,518,390"/>
+<area shape="rect" id="Node000019" href="$class_race_day_1_1_sql_lite_1_1_queries_1_1_day_summary_query.html" title=" " alt="" coords="591,539,762,581"/>
+<area shape="poly" id="edge79_Node000000_Node000019" title=" " alt="" coords="531,389,534,392,547,409,555,426,559,460,563,493,569,509,582,525,597,536,593,540,578,529,565,511,557,494,553,460,550,427,543,411,530,395,527,393"/>
+<area shape="rect" id="Node000021" href="$class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query.html" title=" " alt="" coords="591,605,762,648"/>
+<area shape="poly" id="edge80_Node000000_Node000021" title=" " alt="" coords="532,389,534,392,552,417,560,443,561,468,559,493,557,518,558,542,565,567,582,592,595,603,592,607,578,595,560,569,553,543,552,518,554,493,555,468,554,444,547,420,530,395,528,393"/>
+<area shape="rect" id="Node000023" href="$class_race_day_1_1_sql_lite_1_1_queries_1_1_racer_lap_query.html" title=" " alt="" coords="591,672,762,715"/>
+<area shape="poly" id="edge81_Node000000_Node000023" title=" " alt="" coords="532,389,534,392,556,426,564,460,564,494,559,527,554,560,553,592,561,625,582,658,595,670,591,673,578,662,556,627,548,593,549,559,554,526,559,493,559,461,551,428,530,395,528,393"/>
+<area shape="rect" id="Node000025" href="$class_race_day_1_1_sql_lite_1_1_queries_1_1_racers_query.html" title=" " alt="" coords="591,739,762,781"/>
+<area shape="poly" id="edge82_Node000000_Node000025" title=" " alt="" coords="532,390,534,392,550,413,560,435,569,477,567,519,559,560,551,601,549,642,557,683,567,704,582,725,594,736,590,740,578,728,563,706,552,685,543,642,546,600,554,559,562,519,564,478,555,437,545,416,530,395,528,393"/>
+<area shape="rect" id="Node000005" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_create_race_day_command.html" title="A command for creating Race Day." alt="" coords="338,72,525,115"/>
+<area shape="poly" id="edge83_Node000005_Node000004" title=" " alt="" coords="539,92,580,92,580,98,539,97"/>
+<area shape="rect" id="Node000020" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_day_summary_query.html" title="A query for getting Day Summaries." alt="" coords="338,539,525,581"/>
+<area shape="poly" id="edge84_Node000020_Node000019" title=" " alt="" coords="539,557,590,557,590,563,539,563"/>
+<area shape="rect" id="Node000016" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_delete_race_lap_command.html" title="A command for deleting a Lap for a Racer." alt="" coords="338,405,525,448"/>
+<area shape="poly" id="edge85_Node000016_Node000015" title=" " alt="" coords="539,409,579,404,580,409,540,415"/>
+<area shape="rect" id="Node000018" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_delete_race_racer_command.html" title="A command for deleting a Racer from the Race." alt="" coords="338,472,525,515"/>
+<area shape="poly" id="edge86_Node000018_Node000017" title=" " alt="" coords="539,491,580,491,580,496,539,496"/>
+<area shape="rect" id="Node000003" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_exchange_data_command.html" title=" " alt="" coords="14,5,274,48"/>
+<area shape="rect" id="Node000002" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_create_race_command.html" title="A command for creating Race." alt="" coords="338,5,525,48"/>
+<area shape="poly" id="edge87_Node000003_Node000002" title=" " alt="" coords="289,24,338,24,338,29,289,29"/>
+<area shape="poly" id="edge88_Node000002_Node000001" title=" " alt="" coords="539,25,580,25,580,30,539,30"/>
+<area shape="rect" id="Node000014" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_exchange_data_command.html" title=" " alt="" coords="5,272,283,315"/>
+<area shape="rect" id="Node000013" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_create_racer_lap_command.html" title="A command for creating Lap for a Racer." alt="" coords="338,272,525,315"/>
+<area shape="poly" id="edge89_Node000014_Node000013" title=" " alt="" coords="297,291,338,291,338,296,297,296"/>
+<area shape="poly" id="edge90_Node000013_Node000012" title=" " alt="" coords="540,298,580,301,579,307,539,304"/>
+<area shape="rect" id="Node000008" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_exchange_data_command.html" title=" " alt="" coords="22,123,266,181"/>
+<area shape="rect" id="Node000007" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_create_race_racer_command.html" title="A command for creating Racer for a Race." alt="" coords="338,139,525,181"/>
+<area shape="poly" id="edge91_Node000008_Node000007" title=" " alt="" coords="281,153,338,155,338,160,281,158"/>
+<area shape="poly" id="edge92_Node000007_Node000006" title=" " alt="" coords="539,160,580,161,580,166,539,165"/>
+<area shape="rect" id="Node000011" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_exchange_data_command.html" title=" " alt="" coords="12,205,276,248"/>
+<area shape="rect" id="Node000010" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_create_racer_command.html" title="A command for creating Racer." alt="" coords="338,205,525,248"/>
+<area shape="poly" id="edge93_Node000011_Node000010" title=" " alt="" coords="290,224,338,224,338,229,290,229"/>
+<area shape="poly" id="edge94_Node000010_Node000009" title=" " alt="" coords="539,228,580,230,580,235,539,233"/>
+<area shape="rect" id="Node000024" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_racer_lap_query.html" title="A query to retrieve Laps for a Racer." alt="" coords="338,672,525,715"/>
+<area shape="poly" id="edge95_Node000024_Node000023" title=" " alt="" coords="539,691,590,691,590,696,539,696"/>
+<area shape="rect" id="Node000026" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_racers_query.html" title="A query for getting Racers." alt="" coords="338,739,525,781"/>
+<area shape="poly" id="edge96_Node000026_Node000025" title=" " alt="" coords="539,757,590,757,590,763,539,763"/>
+<area shape="rect" id="Node000022" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query.html" title="A query for Race summary." alt="" coords="338,605,525,648"/>
+<area shape="poly" id="edge97_Node000022_Node000021" title=" " alt="" coords="539,624,590,624,590,629,539,629"/>
+</map>

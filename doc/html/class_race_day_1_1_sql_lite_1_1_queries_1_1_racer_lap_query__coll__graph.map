@@ -1,0 +1,7 @@
+<map id="RaceDay.SqlLite.Queries.RacerLapQuery" name="RaceDay.SqlLite.Queries.RacerLapQuery">
+<area shape="rect" id="Node000001" title=" " alt="" coords="68,80,240,123"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base.html" title="The base class for all command and query classes." alt="" coords="5,5,151,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,41,137,78,133,82,98,45"/>
+<area shape="rect" id="Node000003" href="$interface_race_day_1_1_domain_1_1_interfaces_1_1_i_racer_lap_query.html" title="A query to retrieve Laps for a Racer." alt="" coords="174,5,289,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="211,45,175,82,172,78,207,41"/>
+</map>

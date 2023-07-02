@@ -5,16 +5,17 @@ using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Commands;
 
+/// <inheritdoc cref="ICreateRaceRacerCommand" />
 public class CreateRaceRacerCommand : CommandQueryBase, ICreateRaceRacerCommand
 {
     #region Constructors
 
     /// <inheritdoc />
-    public CreateRaceRacerCommand(string connectionString) : base(connectionString)
-    {
-    }
+    public CreateRaceRacerCommand(string connectionString) : base(connectionString) { }
 
     #endregion
+
+    #region Interfaces Implement
 
     /// <summary>
     ///     Adds a racer to race and returns the new record
@@ -34,10 +35,10 @@ public class CreateRaceRacerCommand : CommandQueryBase, ICreateRaceRacerCommand
         {
             using var cnx = CreateConnection();
             _ = cnx.Query<RaceRacerEntity>(insertSql);
-            var result = cnx.Query<RaceRacerEntity>(selectSql)
-                            .FirstOrDefault();
-            
-            if(result == null) throw new Exception("Race Racer not found");
+            var result = cnx.Query<RaceRacerEntity>(selectSql).FirstOrDefault();
+
+            if (result == null)
+                throw new Exception("Race Racer not found");
 
             return result;
         }
@@ -46,4 +47,6 @@ public class CreateRaceRacerCommand : CommandQueryBase, ICreateRaceRacerCommand
             throw new CreateRecordException("Error creating Race Racer", e);
         }
     }
+
+    #endregion
 }

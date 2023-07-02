@@ -2,13 +2,15 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using RaceDay.Domain.Interfaces;
-using RaceDay.SqlLite.Queries;
 using RaceDay.WpfUi.Infrastructure;
 using RaceDay.WpfUi.Models;
 using RaceDay.WpfUi.Services;
 
 namespace RaceDay.WpfUi.ViewModels;
 
+/// <summary>
+///     A view model providing data and logic for Races Summary view
+/// </summary>
 public class RacesSummaryViewModel : ViewModelBase
 {
     #region Fields
@@ -41,7 +43,14 @@ public class RacesSummaryViewModel : ViewModelBase
         set => SetField(ref _selectedRace, value);
     }
 
+    /// <summary>
+    ///     A command for creating a new Race
+    /// </summary>
     public ICommand CreateRaceCommand { get; }
+
+    /// <summary>
+    ///     A command for navigating to Race view
+    /// </summary>
     public ICommand DisplayRaceCommand { get; }
 
     /// <summary>
@@ -117,6 +126,10 @@ public class RacesSummaryViewModel : ViewModelBase
     /// <param name="arg">Not used</param>
     private bool CanDisplayRace(object? arg) => SelectedRace != null;
 
+    /// <summary>
+    ///     The action for navigating to the Race view.
+    /// </summary>
+    /// <param name="obj">Not used</param>
     private void DisplayRace(object? obj)
     {
         if (SelectedRace == null || _daySummaryModel == null)

@@ -1,0 +1,5 @@
+<map id="RaceDay.WpfUi.Interfaces.INavigableViewModel.OnNavigatedTo" name="RaceDay.WpfUi.Interfaces.INavigableViewModel.OnNavigatedTo">
+<area shape="rect" id="Node000001" title="Called when the view model is navigated to." alt="" coords="260,13,493,56"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_services_1_1_dialog_service.html#a2a867e613909b0ec0ff317ba248e255c" title="Displays a dialog with the specified view model." alt="" coords="5,5,212,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="245,37,212,37,212,32,245,32"/>
+</map>

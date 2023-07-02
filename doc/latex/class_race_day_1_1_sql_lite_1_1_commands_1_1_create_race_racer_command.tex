@@ -1,0 +1,94 @@
+\doxysection{Race\+Day.\+Sql\+Lite.\+Commands.\+Create\+Race\+Racer\+Command Class Reference}
+\hypertarget{class_race_day_1_1_sql_lite_1_1_commands_1_1_create_race_racer_command}{}\label{class_race_day_1_1_sql_lite_1_1_commands_1_1_create_race_racer_command}\index{RaceDay.SqlLite.Commands.CreateRaceRacerCommand@{RaceDay.SqlLite.Commands.CreateRaceRacerCommand}}
+
+
+ 
+
+
+
+
+Inheritance diagram for Race\+Day.\+Sql\+Lite.\+Commands.\+Create\+Race\+Racer\+Command\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{class_race_day_1_1_sql_lite_1_1_commands_1_1_create_race_racer_command__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Race\+Day.\+Sql\+Lite.\+Commands.\+Create\+Race\+Racer\+Command\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{class_race_day_1_1_sql_lite_1_1_commands_1_1_create_race_racer_command__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_sql_lite_1_1_commands_1_1_create_race_racer_command_a98c1b5af20976c703122a1076396dc10}\label{class_race_day_1_1_sql_lite_1_1_commands_1_1_create_race_racer_command_a98c1b5af20976c703122a1076396dc10} 
+{\bfseries Create\+Race\+Racer\+Command} (string connection\+String)
+\item 
+Race\+Racer\+Entity? \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_commands_1_1_create_race_racer_command_ae48415774745e65311989a7843bc59fd}{Execute}} (Race\+Racer\+Entity? entity)
+\begin{DoxyCompactList}\small\item\em Adds a racer to race and returns the new record. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_exchange_data_command}{Race\+Day.\+Domain.\+Interfaces.\+IExchange\+Data\+Command$<$ Race\+Racer\+Entity?$>$}}}
+\begin{DoxyCompactItemize}
+\item 
+T? \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_exchange_data_command_a62c8a37f1ff46b63efbe14dce2fcca69}{Execute}} (T entity)
+\begin{DoxyCompactList}\small\item\em Creates or Updates an entity and returns the new record. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base}{Race\+Day.\+Sql\+Lite.\+Infrastructure.\+Command\+Query\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base_a85b295d800898ba9be1a1971d19e2e70}{Command\+Query\+Base}} (string db\+Path)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the Command\+Query\+Base class. \end{DoxyCompactList}\item 
+SQLite\+Connection {\bfseries Create\+Connection} ()
+\begin{DoxyCompactList}\small\item\em Creates a new SQLite\+Connection instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base}{Race\+Day.\+Sql\+Lite.\+Infrastructure.\+Command\+Query\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+SQLite\+Connection\+String {\bfseries Connection\+String}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The connection string to the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_race_day_1_1_sql_lite_1_1_commands_1_1_create_race_racer_command_ae48415774745e65311989a7843bc59fd}\label{class_race_day_1_1_sql_lite_1_1_commands_1_1_create_race_racer_command_ae48415774745e65311989a7843bc59fd} 
+\index{RaceDay.SqlLite.Commands.CreateRaceRacerCommand@{RaceDay.SqlLite.Commands.CreateRaceRacerCommand}!Execute@{Execute}}
+\index{Execute@{Execute}!RaceDay.SqlLite.Commands.CreateRaceRacerCommand@{RaceDay.SqlLite.Commands.CreateRaceRacerCommand}}
+\doxysubsubsection{\texorpdfstring{Execute()}{Execute()}}
+{\footnotesize\ttfamily Race\+Racer\+Entity? Race\+Day.\+Sql\+Lite.\+Commands.\+Create\+Race\+Racer\+Command.\+Execute (\begin{DoxyParamCaption}\item[{Race\+Racer\+Entity?}]{entity }\end{DoxyParamCaption})}
+
+
+
+Adds a racer to race and returns the new record. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & Record to create\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Throws if record not found\\
+\hline
+{\em Create\+Record\+Exception} & Throws if error creating record\\
+\hline
+\end{DoxyExceptions}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_sql_lite_1_1_commands_1_1_create_race_racer_command_ae48415774745e65311989a7843bc59fd_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Sql\+Lite/\+Commands/Create\+Race\+Racer\+Command.\+cs\end{DoxyCompactItemize}

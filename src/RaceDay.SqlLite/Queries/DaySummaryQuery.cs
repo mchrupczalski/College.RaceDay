@@ -4,21 +4,19 @@ using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Queries;
 
+/// <inheritdoc cref="IDaySummaryQuery" />
 public class DaySummaryQuery : CommandQueryBase, IDaySummaryQuery
 {
     #region Constructors
 
     /// <inheritdoc />
-    public DaySummaryQuery(string connectionString) : base(connectionString)
-    {
-    }
+    public DaySummaryQuery(string connectionString) : base(connectionString) { }
 
     #endregion
 
+    #region Interfaces Implement
 
-    /// <summary>
-    ///     Gets all Day Summaries
-    /// </summary>
+    /// <inheritdoc />
     public IEnumerable<DaySummaryDto> GetAll()
     {
         // @formatter:off
@@ -35,12 +33,13 @@ public class DaySummaryQuery : CommandQueryBase, IDaySummaryQuery
                            "    ,TotalCost" +
                            " FROM vwDaySummary;";
         // @formatter:on
-        
+
         using var cnx = CreateConnection();
         var results = cnx.Query<DaySummaryDto>(sql);
         return results;
     }
 
+    /// <inheritdoc />
     public DaySummaryDto? GetById(int id)
     {
         // @formatter:off
@@ -58,9 +57,11 @@ public class DaySummaryQuery : CommandQueryBase, IDaySummaryQuery
                            " FROM vwDaySummary" +
                            " WHERE RaceDayId = ?;";
         // @formatter:on
-        
+
         using var cnx = CreateConnection();
         var result = cnx.Query<DaySummaryDto>(sql, id).FirstOrDefault();
         return result;
     }
+
+    #endregion
 }

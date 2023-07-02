@@ -4,6 +4,9 @@ using RaceDay.WpfUi.Infrastructure;
 
 namespace RaceDay.WpfUi.Models;
 
+/// <summary>
+///     A model of the Racer Lap
+/// </summary>
 public class RacerLapModel : ObservableObject
 {
     #region Static Fields and Const
@@ -20,11 +23,29 @@ public class RacerLapModel : ObservableObject
 
     #region Properties
 
+    /// <summary>
+    ///     The unique identifier of the Racer Lap
+    /// </summary>
     public int LapId { get; init; }
+    
+    /// <summary>
+    ///     The unique identifier of the Race Day
+    /// </summary>
     public int RaceDayId { get; init; }
+    
+    /// <summary>
+    ///     The unique identifier of the Race
+    /// </summary>
     public int RaceId { get; init; }
+    
+    /// <summary>
+    ///     The unique identifier of the Racer
+    /// </summary>
     public int RacerId { get; init; }
 
+    /// <summary>
+    ///     The Lap time
+    /// </summary>
     public TimeSpan LapTime
     {
         get => _lapTime;
@@ -34,7 +55,14 @@ public class RacerLapModel : ObservableObject
         }
     }
 
+    /// <summary>
+    ///     The Lap distance in miles
+    /// </summary>
     public float LapDistanceMiles { get; init; }
+    
+    /// <summary>
+    ///     The Lap speed in miles per hour
+    /// </summary>
     public float LapSpeedMph => LapDistanceMiles / (float)LapTime.TotalHours;
     
 

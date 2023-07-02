@@ -1,0 +1,121 @@
+\doxysection{Race\+Day.\+Sql\+Lite.\+Queries.\+Race\+Summary\+Query Class Reference}
+\hypertarget{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query}{}\label{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query}\index{RaceDay.SqlLite.Queries.RaceSummaryQuery@{RaceDay.SqlLite.Queries.RaceSummaryQuery}}
+
+
+ 
+
+
+
+
+Inheritance diagram for Race\+Day.\+Sql\+Lite.\+Queries.\+Race\+Summary\+Query\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Race\+Day.\+Sql\+Lite.\+Queries.\+Race\+Summary\+Query\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query_ae86c1e46459eef6fab26c300d9833196}\label{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query_ae86c1e46459eef6fab26c300d9833196} 
+{\bfseries Race\+Summary\+Query} (string connection\+String)
+\item 
+IEnumerable$<$ Race\+Summary\+Dto $>$ \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query_ad67e313377e52eb97b532df24c7764b0}{Get\+All}} (int race\+Day\+Id)
+\begin{DoxyCompactList}\small\item\em Gets all Races for Race Day summaries. \end{DoxyCompactList}\item 
+Race\+Summary\+Dto? \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query_ad887eb529c0f66b1d5598cdd51b12285}{Get\+By\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Gets summary for a specific Race. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+IEnumerable$<$ Race\+Summary\+Dto $>$ \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query_ad50eee876369fd3b3ebb4a93c91d4119}{Get\+All}} (int race\+Day\+Id)
+\begin{DoxyCompactList}\small\item\em Gets all Races for Race Day summaries. \end{DoxyCompactList}\item 
+Race\+Summary\+Dto? \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query_a7919f2d5b48ebeeff9737b176b9a865a}{Get\+By\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Gets summary for a specific Race. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base}{Race\+Day.\+Sql\+Lite.\+Infrastructure.\+Command\+Query\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base_a85b295d800898ba9be1a1971d19e2e70}{Command\+Query\+Base}} (string db\+Path)
+\begin{DoxyCompactList}\small\item\em Creates a new instance of the Command\+Query\+Base class. \end{DoxyCompactList}\item 
+SQLite\+Connection {\bfseries Create\+Connection} ()
+\begin{DoxyCompactList}\small\item\em Creates a new SQLite\+Connection instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \mbox{\hyperlink{class_race_day_1_1_sql_lite_1_1_infrastructure_1_1_command_query_base}{Race\+Day.\+Sql\+Lite.\+Infrastructure.\+Command\+Query\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+SQLite\+Connection\+String {\bfseries Connection\+String}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The connection string to the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query_ad67e313377e52eb97b532df24c7764b0}\label{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query_ad67e313377e52eb97b532df24c7764b0} 
+\index{RaceDay.SqlLite.Queries.RaceSummaryQuery@{RaceDay.SqlLite.Queries.RaceSummaryQuery}!GetAll@{GetAll}}
+\index{GetAll@{GetAll}!RaceDay.SqlLite.Queries.RaceSummaryQuery@{RaceDay.SqlLite.Queries.RaceSummaryQuery}}
+\doxysubsubsection{\texorpdfstring{GetAll()}{GetAll()}}
+{\footnotesize\ttfamily IEnumerable$<$ Race\+Summary\+Dto $>$ Race\+Day.\+Sql\+Lite.\+Queries.\+Race\+Summary\+Query.\+Get\+All (\begin{DoxyParamCaption}\item[{int}]{race\+Day\+Id }\end{DoxyParamCaption})}
+
+
+
+Gets all Races for Race Day summaries. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em race\+Day\+Id} & The Race Day id\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query_ad50eee876369fd3b3ebb4a93c91d4119}{Race\+Day.\+Domain.\+Interfaces.\+IRace\+Summary\+Query}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query_ad67e313377e52eb97b532df24c7764b0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query_ad887eb529c0f66b1d5598cdd51b12285}\label{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query_ad887eb529c0f66b1d5598cdd51b12285} 
+\index{RaceDay.SqlLite.Queries.RaceSummaryQuery@{RaceDay.SqlLite.Queries.RaceSummaryQuery}!GetById@{GetById}}
+\index{GetById@{GetById}!RaceDay.SqlLite.Queries.RaceSummaryQuery@{RaceDay.SqlLite.Queries.RaceSummaryQuery}}
+\doxysubsubsection{\texorpdfstring{GetById()}{GetById()}}
+{\footnotesize\ttfamily Race\+Summary\+Dto? Race\+Day.\+Sql\+Lite.\+Queries.\+Race\+Summary\+Query.\+Get\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Gets summary for a specific Race. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The Race Id\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_race_day_1_1_domain_1_1_interfaces_1_1_i_race_summary_query_a7919f2d5b48ebeeff9737b176b9a865a}{Race\+Day.\+Domain.\+Interfaces.\+IRace\+Summary\+Query}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_sql_lite_1_1_queries_1_1_race_summary_query_ad887eb529c0f66b1d5598cdd51b12285_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Sql\+Lite/\+Queries/Race\+Summary\+Query.\+cs\end{DoxyCompactItemize}

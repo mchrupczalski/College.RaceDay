@@ -1,0 +1,113 @@
+\doxysection{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object Class Reference}
+\hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}{}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object}\index{RaceDay.WpfUi.Infrastructure.ObservableObject@{RaceDay.WpfUi.Infrastructure.ObservableObject}}
+
+
+Base class for observable objects Implements INotify\+Property\+Changed  
+
+
+
+
+Inheritance diagram for Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac6f120f211eb4336e8e7769821511a8b}{On\+Property\+Changed}} (\mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Raises the Property\+Changed event. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac0ddbef8e2e7257c462f6463f0b4cc87}{Set\+Field$<$ T $>$}} (ref T field, T value, \mbox{[}Caller\+Member\+Name\mbox{]} string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em Sets the field and raises the Property\+Changed event if the value has changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_a957b2e915ff973db92df05b7acecf109}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_a957b2e915ff973db92df05b7acecf109} 
+Property\+Changed\+Event\+Handler? {\bfseries Property\+Changed}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for observable objects Implements INotify\+Property\+Changed 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac6f120f211eb4336e8e7769821511a8b}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac6f120f211eb4336e8e7769821511a8b} 
+\index{RaceDay.WpfUi.Infrastructure.ObservableObject@{RaceDay.WpfUi.Infrastructure.ObservableObject}!OnPropertyChanged@{OnPropertyChanged}}
+\index{OnPropertyChanged@{OnPropertyChanged}!RaceDay.WpfUi.Infrastructure.ObservableObject@{RaceDay.WpfUi.Infrastructure.ObservableObject}}
+\doxysubsubsection{\texorpdfstring{OnPropertyChanged()}{OnPropertyChanged()}}
+{\footnotesize\ttfamily virtual void Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object.\+On\+Property\+Changed (\begin{DoxyParamCaption}\item[{\mbox{[}\+Caller\+Member\+Name\mbox{]} string?}]{property\+Name = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Raises the Property\+Changed event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em property\+Name} & Name of the property.\\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac6f120f211eb4336e8e7769821511a8b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac0ddbef8e2e7257c462f6463f0b4cc87}\label{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac0ddbef8e2e7257c462f6463f0b4cc87} 
+\index{RaceDay.WpfUi.Infrastructure.ObservableObject@{RaceDay.WpfUi.Infrastructure.ObservableObject}!SetField$<$ T $>$@{SetField$<$ T $>$}}
+\index{SetField$<$ T $>$@{SetField$<$ T $>$}!RaceDay.WpfUi.Infrastructure.ObservableObject@{RaceDay.WpfUi.Infrastructure.ObservableObject}}
+\doxysubsubsection{\texorpdfstring{SetField$<$ T $>$()}{SetField< T >()}}
+{\footnotesize\ttfamily virtual bool Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object.\+Set\+Field$<$ T $>$ (\begin{DoxyParamCaption}\item[{ref T}]{field,  }\item[{T}]{value,  }\item[{\mbox{[}\+Caller\+Member\+Name\mbox{]} string?}]{property\+Name = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Sets the field and raises the Property\+Changed event if the value has changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em field} & A reference to the field to set.\\
+\hline
+{\em value} & The value to set the field to.\\
+\hline
+{\em property\+Name} & Name of the property.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the field.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+True if the value has changed, false otherwise.
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_with_validation_af7fdcbb78a7101b1fe40096ae1bc6227}{Race\+Day.\+Wpf\+Ui.\+Infrastructure.\+Observable\+Object\+With\+Validation}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_race_day_1_1_wpf_ui_1_1_infrastructure_1_1_observable_object_ac0ddbef8e2e7257c462f6463f0b4cc87_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Personal/\+College.\+Race\+Day/src/\+Race\+Day.\+Wpf\+Ui/\+Infrastructure/Observable\+Object.\+cs\end{DoxyCompactItemize}

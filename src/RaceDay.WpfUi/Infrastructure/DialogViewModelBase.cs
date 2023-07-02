@@ -75,12 +75,12 @@ public abstract class DialogViewModelBase : ObservableObject
 /// <summary>
 ///     Base class for view models that are used to display dialogs, with a result.
 /// </summary>
-/// <typeparam name="TResult">A result that is returned when the dialog closes.</typeparam>
+/// <typeparam name="TModel">A result that is returned when the dialog closes.</typeparam>
 public abstract class DialogViewModelBase<TModel> : DialogViewModelBase
 {
     #region Fields
 
-    private TModel _model;
+    private TModel _model = default!;
 
     #endregion
 

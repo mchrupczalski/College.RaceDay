@@ -5,6 +5,9 @@ using RaceDay.WpfUi.Interfaces;
 
 namespace RaceDay.WpfUi.Services;
 
+/// <summary>
+///     Service for navigating between views in the application
+/// </summary>
 public class NavigationService : ObservableObject
 {
     #region Fields
@@ -16,6 +19,9 @@ public class NavigationService : ObservableObject
 
     #region Properties
 
+    /// <summary>
+    ///     A view model currently displayed in the application
+    /// </summary>
     public ViewModelBase? ActiveViewModel
     {
         get => _activeViewModel;
@@ -26,6 +32,10 @@ public class NavigationService : ObservableObject
 
     #region Constructors
 
+    /// <summary>
+    ///     Creates a new instance of the <see cref="NavigationService" /> class
+    /// </summary>
+    /// <param name="serviceProvider">The service provider</param>
     public NavigationService(IServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
 
     #endregion
@@ -41,13 +51,10 @@ public class NavigationService : ObservableObject
         ActiveViewModel = viewModel;
         viewModel.OnNavigatedTo();
     }
-    
+
     /// <summary>
     ///     Navigates to the specified view model.
     /// </summary>
     /// <param name="viewModel">The view model.</param>
-    public void NavigateTo(ViewModelBase viewModel)
-    {
-        ActiveViewModel = viewModel;
-    }
+    public void NavigateTo(ViewModelBase viewModel) => ActiveViewModel = viewModel;
 }

@@ -8,6 +8,9 @@ using RaceDay.WpfUi.Interfaces;
 
 namespace RaceDay.WpfUi.Services;
 
+/// <summary>
+///     Service for displaying dialogs in the application
+/// </summary>
 public class DialogService : ObservableObject
 {
     #region Fields
@@ -19,8 +22,14 @@ public class DialogService : ObservableObject
 
     #region Properties
 
+    /// <summary>
+    ///     The identifier of the dialog host
+    /// </summary>
     public string DialogHostIdentifier { get; } = "RootDialogHost";
 
+    /// <summary>
+    ///     A view model currently displayed in the dialog host
+    /// </summary>
     public DialogViewModelBase? ActiveDialogViewModel
     {
         get => _activeDialogViewModel;
@@ -31,19 +40,28 @@ public class DialogService : ObservableObject
 
     #region Constructors
 
+    /// <summary>
+    ///     Creates a new instance of the <see cref="DialogService" /> class
+    /// </summary>
+    /// <param name="serviceProvider">The service provider</param>
     public DialogService(IServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
 
     #endregion
 
     #region Events And Handlers
 
+    /// <summary>
+    ///     Handles the <see cref="DialogViewModelBase.PropertyChanged" /> event of the <see cref="ActiveDialogViewModel" />
+    /// </summary>
+    /// <param name="sender"> The sender of the event</param>
+    /// <param name="e">The event arguments</param>
     private void DialogStateChanged(object? sender, PropertyChangedEventArgs e)
     {
-        {
-            if (e.PropertyName != nameof(DialogViewModelBase.DialogHostIsOpen)) return;
-            if (ActiveDialogViewModel?.DialogHostIsOpen == false)
-                DialogHost.Close(DialogHostIdentifier);
-        }
+        if (e.PropertyName != nameof(DialogViewModelBase.DialogHostIsOpen))
+            return;
+
+        if (ActiveDialogViewModel?.DialogHostIsOpen == false)
+            DialogHost.Close(DialogHostIdentifier);
     }
 
     #endregion
@@ -55,7 +73,7 @@ public class DialogService : ObservableObject
     /// <typeparam name="TViewModel">The type of the view model.</typeparam>
     /// <typeparam name="TModel">The type of the model.</typeparam>
     /// <typeparam name="TResult">The type of the result.</typeparam>
-    /// <returns>The result specified by the <typeparamref name="TResult"/></returns>
+    /// <returns>The result specified by the <typeparamref name="TResult" /></returns>
     public async Task<TResult?> DisplayDialogAsync<TViewModel, TModel, TResult>(TModel model)
         where TViewModel : DialogViewModelBase<TModel, TResult>
     {

@@ -1,0 +1,7 @@
+<map id="RaceDay.WpfUi.ViewModels.HomeViewModel.OnNavigatedTo" name="RaceDay.WpfUi.ViewModels.HomeViewModel.OnNavigatedTo">
+<area shape="rect" id="Node000001" title="Called when the view model is navigated to." alt="" coords="5,43,215,85"/>
+<area shape="rect" id="Node000002" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_day_summary_view_model.html#a213904e66e22e6118957c47f1984e869" title="Loads data from the persistence layer." alt="" coords="271,5,494,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,47,256,41,257,47,216,52"/>
+<area shape="rect" id="Node000003" href="$class_race_day_1_1_wpf_ui_1_1_view_models_1_1_races_summary_view_model.html#ae7059c415c628d78ea9e291e6317483e" title="Loads Race Details for given Race Day." alt="" coords="263,72,502,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,76,248,80,248,86,215,81"/>
+</map>

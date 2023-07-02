@@ -4,12 +4,17 @@ using RaceDay.SqlLite.Infrastructure;
 
 namespace RaceDay.SqlLite.Commands;
 
+/// <inheritdoc cref="IDeleteRaceRacerCommand" />
 public class DeleteRaceRacerCommand : CommandQueryBase, IDeleteRaceRacerCommand
 {
+    #region Constructors
+
     /// <inheritdoc />
-    public DeleteRaceRacerCommand(string dbPath) : base(dbPath)
-    {
-    }
+    public DeleteRaceRacerCommand(string dbPath) : base(dbPath) { }
+
+    #endregion
+
+    #region Interfaces Implement
 
     /// <summary>
     ///     Deletes racer from race
@@ -22,21 +27,22 @@ public class DeleteRaceRacerCommand : CommandQueryBase, IDeleteRaceRacerCommand
     {
         string deleteLapsSql = $"DELETE FROM RaceLaps WHERE RaceId = {raceId} AND RacerId = {racerId};";
         string selectLapsSql = $"SELECT * FROM RaceLaps WHERE RaceId = {raceId} AND RacerId = {racerId};";
-        
+
         string deleteRaceRacerSql = $"DELETE FROM RaceRacers WHERE RaceId = {raceId} AND RacerId = {racerId};";
         string selectRaceRacerSql = $"SELECT * FROM RaceRacers WHERE RaceId = {raceId} AND RacerId = {racerId};";
-        
+
         using var cnx = CreateConnection();
         _ = cnx.Query<RaceLapEntity>(deleteLapsSql);
-        bool lapsRemained = cnx.Query<RaceLapEntity>(selectLapsSql)
-                       .Any();
-        
-        if(lapsRemained) throw new Exception("Cannot delete racer because laps remain");
+        bool lapsRemained = cnx.Query<RaceLapEntity>(selectLapsSql).Any();
+
+        if (lapsRemained)
+            throw new Exception("Cannot delete racer because laps remain");
 
         _ = cnx.Query<RaceRacerEntity>(deleteRaceRacerSql);
-        bool raceRacerRemained = cnx.Query<RaceRacerEntity>(selectRaceRacerSql)
-                               .Any();
-        
+        bool raceRacerRemained = cnx.Query<RaceRacerEntity>(selectRaceRacerSql).Any();
+
         return !raceRacerRemained;
     }
+
+    #endregion
 }

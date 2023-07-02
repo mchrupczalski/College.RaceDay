@@ -1,0 +1,9 @@
+<map id="RaceDay.WpfUi.Views.DaySummaryView" name="RaceDay.WpfUi.Views.DaySummaryView">
+<area shape="rect" id="Node000001" title="DaySummaryView." alt="" coords="370,80,633,107"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,189,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,41,416,77,415,82,203,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="8,72,186,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="201,91,369,91,369,96,201,96"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="64,139,130,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="144,143,404,105,405,110,145,148"/>
+</map>
